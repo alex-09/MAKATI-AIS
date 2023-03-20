@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BudgetYear;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +14,12 @@ return new class extends Migration
     {
         Schema::create('appropriations', function (Blueprint $table) {
             $table->id();
-            $table->integer('year');
+            $table->integer('budget_year_id');
             $table->string('fund_source');
             $table->string('reference_document');
-            $table->string('appropriation_type');
+            $table->string('appropriation_type_id');
             $table->string('department');
-            $table->string('department_code');
+            $table->string('department_code_id');
             $table->string('status');
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Activity::class);
+            $table->integer('activity_code_id');
             $table->string('account_name');
             $table->string('account_code');
             $table->integer('allotment_amount');

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Project::class);
+            $table->integer('project_code_id');
             $table->string('activity');
             $table->string('activity_code');
             $table->string('activity_description');

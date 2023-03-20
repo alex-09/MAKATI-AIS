@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\BudgetYear;
+use Illuminate\support\Facades\DB;
 
 return new class extends Migration
 {
@@ -12,12 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appropriation_types', function (Blueprint $table) {
-            $table->id();
-            $table->integer('budget_year_id');
-            $table->string('appropriation');
-            $table->timestamps();
-        });
+            $store = "DROP PROCEDURE IF EXISTS `select_by_user_id`;
+
+            CREATE PROCEDURE `select_by_user_id` (IN idx int)
+
+            BEGIN
+                SELECT * FROM users WHERE id = idx;
+            END;";
+ 
+            DB::unprepared($store);
+
     }
 
     /**
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appropriation_types');
+        Schema::dropIfExists('test_procedures');
     }
 };

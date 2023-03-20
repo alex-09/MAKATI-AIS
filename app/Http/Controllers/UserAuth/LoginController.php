@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginuserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
+    //LOGIN USER
     public function index(LoginuserRequest $request){
 
         try {
@@ -17,10 +19,12 @@ class LoginController extends Controller
 
             if (Auth::attempt($credential)) {
 
+                $request->session()->regenerate();
+
                 return response()->json([
 
-                    'status' => false,
-                    'message' => "something went wrong login failed",
+                    'status' => true,
+                    'message' => 'You Successfully Logged In',
                     'auth' => $credential
 
                 ]);
@@ -28,8 +32,8 @@ class LoginController extends Controller
 
             return response()->json([
 
-                'status' => true,
-                'message' => 'You Successfully Logged In',
+                'status' => false,
+                'message' => "something went wrong login failed",
                 'auth' => $credential
 
             ]);
@@ -43,6 +47,21 @@ class LoginController extends Controller
             ]);
         }
     }
+
+
+
+    // public function show(){
+
+    //     $users = DB::select("CALL GetUsers()");
+
+    //     // $id = 6;
+    //     // $users = DB::select("CALL GetUsers(".$id.")");
+        
+    //     return response()->json([
+    //         'data' => $users
+    //     ]);
+        
+    // }
 
 
 }

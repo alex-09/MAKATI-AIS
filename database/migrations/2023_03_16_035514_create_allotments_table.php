@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('allotments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(BudgetYear::class);
+            $table->integer('budget_year_id');
             $table->string('adjustment_type');
             $table->string('department');
             $table->string('fund_source');

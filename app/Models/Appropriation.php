@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Appropriation extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'budget_year',
+        'fund_source',
+        'reference_document',
+        'appropriation_type',
+        'department',
+        'office_code',
+        'status',
+    ];
 }

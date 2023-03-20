@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAuth\LoginController;
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('makati')->group(function(){
     Route::apiResource('/login', LoginController::class);
 });
+
+Route::post('/EnrollAppro', [EnrollAppropriationController::class, 'EnrollAppro']);
