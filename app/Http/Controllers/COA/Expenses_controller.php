@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class Expenses_controller extends Controller
 {
+    //DISPLAY EXPENSES
     public function showExpenses(){
 
         $yearslist = DB::select('CALL coa_expenses()');

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class Assets_controller extends Controller
 {
+    //DISPLAY ASSETS
     public function showAssets(){
 
         $yearslist = DB::select('CALL coa_assets()');
@@ -18,6 +19,10 @@ class Assets_controller extends Controller
             'message' => 'Assets Display Successfully',
             'data' => $yearslist
         ]);
+    }
+
+    public function filterAssets(){
+
     }
     
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class Liabilities_controller extends Controller
 {
+    //DISPLAY LIABILITIES
     public function showLiabilities(){
 
         $yearslist = DB::select('CALL coa_Liabilities()');
