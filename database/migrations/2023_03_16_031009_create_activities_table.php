@@ -14,14 +14,13 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->integer('project_code_id');
+            $table->unsignedBigInteger('budget_year_id')->nullable();
+            $table->unsignedBigInteger('department_code_id')->nullable();
+            $table->unsignedBigInteger('program_code_id')->nullable();
+            $table->unsignedBigInteger('project_code_id')->nullable();
             $table->string('activity');
             $table->string('activity_code');
             $table->string('activity_description');
-            $table->integer('expenses');
-            $table->integer('appropriation_amount');
-            $table->integer('allotment');
-            $table->integer('balance');
             $table->timestamps();
         });
     }

@@ -10,7 +10,9 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
-        'program',
+        'budget_year_id',
+        'department_code_id',
+        'program_code_id',
         'project',
         'project_code',
         ];

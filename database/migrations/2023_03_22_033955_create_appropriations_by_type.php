@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -12,16 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-            $store = "DROP PROCEDURE IF EXISTS `select_by_user_id`;
-
-            CREATE PROCEDURE `select_by_user_id` (IN idx int)
-
+        $procedure = "DROP PROCEDURE IF EXISTS `appropriations_by_type`;
+            CREATE PROCEDURE `appropriations_by_type` (IN idx int)
             BEGIN
-                SELECT * FROM users WHERE id = idx;
+            SELECT * FROM appropriations WHERE appropriation_type_id = idx;
             END;";
- 
-            DB::unprepared($store);
 
+            DB::unprepared($procedure);
     }
 
     /**
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('test_procedures');
+        Schema::dropIfExists('appropriations_by_type');
     }
 };

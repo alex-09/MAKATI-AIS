@@ -14,12 +14,12 @@ return new class extends Migration
     {
         Schema::create('appropriations', function (Blueprint $table) {
             $table->id();
-            $table->integer('budget_year_id');
+            $table->unsignedBigInteger('budget_year_id')->nullable();
             $table->string('fund_source');
             $table->string('reference_document');
-            $table->string('appropriation_type_id');
+            $table->unsignedBigInteger('appropriation_type_id')->nullable();
             $table->string('department');
-            $table->string('department_code_id');
+            $table->unsignedBigInteger('department_code_id')->nullable();
             $table->string('status');
             $table->timestamps();
         });

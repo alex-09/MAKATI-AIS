@@ -10,15 +10,14 @@ class Activity extends Model
     use HasFactory;
 
     protected $fillable = [
-        
-        // 'project',
+        'budget_year_id',
+        'department_code_id',
+        'program_code_id',
+        'project_code_id',
         'activity',
         'activity_code',
         'activity_description',
-        'allotment',
         'expenses',
-        'appropriation_amount',
-        'balance',
 
     ];
 }
