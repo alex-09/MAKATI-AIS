@@ -6,18 +6,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class Expenses_controller extends Controller
+class AssetsController extends Controller
 {
-    //DISPLAY EXPENSES
-    public function showExpenses(){
+    //DISPLAY ASSETS
+    public function showAssets(){
 
-        $yearslist = DB::select('CALL coa_expenses()');
+        $yearslist = DB::select('CALL coa_assets()');
 
         return response()->json([
 
             'status' => True,
-            'message' => 'Expenses Display Successfully',
+            'message' => 'Assets Display Successfully',
             'data' => $yearslist
         ]);
     }
+
+    public function filterAssets(){
+
+    }
+    
 }

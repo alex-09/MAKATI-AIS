@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\Appropriation\EnrollAppropriationController;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\COA\Assets_controller;
-use App\Http\Controllers\COA\Equity_controller;
-use App\Http\Controllers\COA\Expenses_controller;
-use App\Http\Controllers\COA\Income_controller;
-use App\Http\Controllers\COA\Liabilities_controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\COA\AssetsController;
+use App\Http\Controllers\COA\EquityController;
+use App\Http\Controllers\COA\IncomeController;
+use App\Http\Controllers\COA\ExpensesController;
+use App\Http\Controllers\COA\LiabilitiesController;
+use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,15 +37,15 @@ Route::prefix('makati')->group(function(){
 
 Route::prefix('coa')->group(function(){
     
-    Route::get('/showAssets', [Assets_controller::class, 'showAssets']); 
+    Route::get('/showAssets', [AssetsController::class, 'showAssets']); 
 
-    Route::get('/showEquity', [Equity_controller::class, 'showEquity']); 
+    Route::get('/showEquity', [EquityController::class, 'showEquity']); 
 
-    Route::get('/showExpenses', [Expenses_controller::class, 'showExpenses']); 
+    Route::get('/showExpenses', [ExpensesController::class, 'showExpenses']); 
 
-    Route::get('/showIncome', [Income_Controller::class, 'showIncome']); 
+    Route::get('/showIncome', [IncomeController::class, 'showIncome']); 
 
-    Route::get('/showLiabilities', [Liabilities_controller::class, 'showLiabilities']); 
+    Route::get('/showLiabilities', [LiabilitiesController::class, 'showLiabilities']); 
 
 });
 
