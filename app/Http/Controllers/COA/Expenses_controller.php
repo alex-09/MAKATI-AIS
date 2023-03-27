@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Controllers\COA;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
+class Expenses_controller extends Controller
+{
+    public function showExpenses(){
+
+        $yearslist = DB::select('CALL coa_expenses()');
+
+        return response()->json([
+
+            'status' => True,
+            'message' => 'Expenses Display Successfully',
+            'data' => $yearslist
+        ]);
+    }
+}

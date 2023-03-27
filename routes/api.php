@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\COA\Assets_controller;
+use App\Http\Controllers\COA\Equity_controller;
+use App\Http\Controllers\COA\Expenses_controller;
+use App\Http\Controllers\COA\Income_controller;
+use App\Http\Controllers\COA\Liabilities_controller;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserAuth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +20,47 @@ use App\Http\Controllers\UserAuth\LoginController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
 });
 
 
 Route::prefix('makati')->group(function(){
-    Route::apiResource('/login', LoginController::class);
+    
+    Route::post('/register', [AuthController::class, 'register']); 
+
+    Route::get('/login', [AuthController::class, 'login']); 
+    
+    Route::post('/logout', [AuthController::class, 'logout']); 
+
 });
 
-Route::post('/EnrollAppro', [EnrollAppropriationController::class, 'EnrollAppro']);
+Route::prefix('coa')->group(function(){
+    
+    Route::get('/showAssets', [Assets_controller::class, 'showAssets']); 
+
+    Route::get('/showEquity', [Equity_controller::class, 'showEquity']); 
+
+    Route::get('/showExpenses', [Expenses_controller::class, 'showExpenses']); 
+
+    Route::get('/showIncome', [Income_Controller::class, 'showIncome']); 
+
+    Route::get('/showLiabilities', [Liabilities_controller::class, 'showLiabilities']); 
+
+});
+
+Route::prefix('appropriation')->group(function () {
+
+    Route::get('/yearlist', [EnrollAppropriationController::class, 'YearList']); 
+
+    Route::get('/approtypes', [EnrollAppropriationController::class, 'ApproTypes']); 
+
+    Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
+
+    Route::get('/filter', [EnrollAppropriationController::class, 'FilterAppropriation']);
+
+    Route::get('/assets', [EnrollAppropriationController::class, 'GetCoaAssets']);
+
+});
+
+
