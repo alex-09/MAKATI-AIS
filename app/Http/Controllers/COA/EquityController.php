@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Equity_controller extends Controller
+class EquityController extends Controller
 {
     //DISPLAY EQUITY
     public function showEquity(){
