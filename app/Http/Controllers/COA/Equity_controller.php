@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Equity_controller extends Controller
 {
+    //DISPLAY EQUITY
     public function showEquity(){
 
         $yearslist = DB::select('CALL coa_equity()');

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class Income_controller extends Controller
 {
+    //DISPLAY INCOME
     public function showIncome(){
 
         $yearslist = DB::select('CALL coa_income()');
