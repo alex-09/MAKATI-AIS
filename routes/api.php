@@ -7,6 +7,7 @@ use App\Http\Controllers\COA\Equity_controller;
 use App\Http\Controllers\COA\Expenses_controller;
 use App\Http\Controllers\COA\Income_controller;
 use App\Http\Controllers\COA\Liabilities_controller;
+use App\Http\Controllers\Allotment\EnrollAllotmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,5 +63,17 @@ Route::prefix('appropriation')->group(function () {
     Route::get('/assets', [EnrollAppropriationController::class, 'GetCoaAssets']);
 
 });
+
+Route::prefix('allotment')->group(function () {
+
+    Route::get('filter', [EnrollAllotmentController::class, 'filterAllotment']); 
+    Route::post('enroll', [EnrollAllotmentController::class, 'enrollAllotment']); 
+    Route::post('showList', [EnrollAllotmentController::class, 'showList']); 
+    Route::post('update/{id}', [EnrollAllotmentController::class, 'updateAllotment']); 
+});
+
+
+
+
 
 

@@ -18,5 +18,6 @@ class Expenses extends Model
         'account_name',
         'account_code',
         'appropriation_amount',
+        'allotment_amount'
     ];
 }

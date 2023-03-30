@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('account_name');
             $table->string('account_code');
             $table->integer('appropriation_amount');
+            $table->bigInteger('allotment_amount');
             $table->timestamps();
         });
     }
