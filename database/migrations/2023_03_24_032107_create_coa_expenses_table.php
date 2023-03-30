@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('coa_expenses', function (Blueprint $table) {
             $table->id();
-            $table->integer('account_group');
-            $table->integer('major_account_group');
-            $table->integer('sub-major_account_group');
-            $table->integer('general_ledger_accounts');
-            $table->integer('sub_ledger_accounts');
-            $table->integer('sub-sub_ledger_accounts');
+            $table->string('account_group');
+            $table->string('major_account_group');
+            $table->string('sub-major_account_group');
+            $table->string('general_ledger_accounts');
+            $table->string('sub_ledger_accounts');
+            $table->string('sub-sub_ledger_accounts');
             $table->string('account_code');
             $table->string('account_title');
-            $table->string('description');
+            $table->string('description')->nullable();
+            $table->integer('status');
+            $table->date('date')->nullable();
+            $table->timestamps();
         });
     }
 

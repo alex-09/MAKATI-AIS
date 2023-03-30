@@ -35,20 +35,6 @@ Route::prefix('makati')->group(function(){
 
 });
 
-Route::prefix('coa')->group(function(){
-    
-    Route::get('/showAssets', [AssetsController::class, 'showAssets']); 
-
-    Route::get('/showEquity', [EquityController::class, 'showEquity']); 
-
-    Route::get('/showExpenses', [ExpensesController::class, 'showExpenses']); 
-
-    Route::get('/showIncome', [IncomeController::class, 'showIncome']); 
-
-    Route::get('/showLiabilities', [LiabilitiesController::class, 'showLiabilities']); 
-
-});
-
 Route::prefix('appropriation')->group(function () {
 
     Route::get('/yearlist', [EnrollAppropriationController::class, 'YearList']); 
