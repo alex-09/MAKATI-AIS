@@ -85,25 +85,25 @@ class IncomeController extends Controller
             if($status['status'] == 1){
 
                 $status->update([
-                    'status' => 0
+                    'status' => 'disable'
                 ]);
 
                 return response()->json([
                     'status' => true,
-                    'message' => 'Update successfully',
-                    'data' => '0'
+                    'message' => 'Account disabled successfully',
+                    'data' => 'disable'
                 ]);
 
             }else{
 
                 $status->update([
-                    'status' => 1
+                    'status' => 'enable'
                 ]);
     
                 return response()->json([
                     'status' => true,
-                    'message' => 'Update successfully',
-                    'data' => '1'
+                    'message' => 'Account Enabled successfully',
+                    'data' => 'enable'
                 ]);
             }
 

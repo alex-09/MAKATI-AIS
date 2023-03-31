@@ -53,7 +53,7 @@ class AssetsController extends Controller
                 'sub-sub_ledger_accounts' => $validateAssets['sub_sub_ledger_accounts'],
                 'account_code' => $validateAssets['account_code'],
                 'account_title' => $validateAssets['account_title'],
-                'status' => 0,
+                'status' => 'enable',
                 'date' => $currDate
 
             ]);
@@ -82,28 +82,28 @@ class AssetsController extends Controller
 
             $status = COAAssets::where('id', $id)->first();
 
-            if($status['status'] == 1){
+            if($status['status'] == 'enable'){
 
                 $status->update([
-                    'status' => 0
+                    'status' => 'disable'
                 ]);
 
                 return response()->json([
                     'status' => true,
-                    'message' => 'Update successfully',
-                    'data' => '0'
+                    'message' => 'Account disabled successfully',
+                    'data' => 'disable'
                 ]);
 
             }else{
 
                 $status->update([
-                    'status' => 1
+                    'status' => 'enable'
                 ]);
     
                 return response()->json([
                     'status' => true,
-                    'message' => 'Update successfully',
-                    'data' => '1'
+                    'message' => 'Account Enabled successfully',
+                    'data' => 'enable'
                 ]);
             }
 

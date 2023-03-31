@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('account_code');
             $table->string('account_title');
             $table->string('description')->nullable();
-            $table->integer('status');
+            $table->string('status');
             $table->date('date')->nullable();
             $table->timestamps();
         });
