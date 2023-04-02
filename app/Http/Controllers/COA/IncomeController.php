@@ -32,28 +32,27 @@ class IncomeController extends Controller
                 
                 'account_group' => 'required|max:2|min:2',
                 'major_account_group' => 'required|max:2|min:2',
-                'sub-major_account_group' => 'required|max:2|min:2',
+                'sub_major_account_group' => 'required|max:2|min:2',
                 'general_ledger_accounts' => 'required|max:3|min:3',
                 'sub_ledger_accounts' => 'required|max:3|min:3',
-                'sub-sub_ledger_accounts' => 'required|max:3|min:3',
-                'account_code' => 'required',
+                'sub_sub_ledger_accounts' => 'required|max:3|min:3',
                 'account_title' => 'required',
 
             ]);
 
-            $currDate = Carbon::now()->toDateString();
+            $currDate = Carbon::now()->format('Y');
 
             $insertedData = COAIncome::create([
 
                 'account_group' => $validateAssets['account_group'],
                 'major_account_group' => $validateAssets['major_account_group'],
-                'sub-major_account_group' => $validateAssets['sub-major_account_group'],
+                'sub_major_account_group' => $validateAssets['sub_major_account_group'],
                 'general_ledger_accounts' => $validateAssets['general_ledger_accounts'],
                 'sub_ledger_accounts' => $validateAssets['sub_ledger_accounts'],
-                'sub-sub_ledger_accounts' => $validateAssets['sub-sub_ledger_accounts'],
-                'account_code' => $validateAssets['account_code'],
+                'sub_sub_ledger_accounts' => $validateAssets['sub_sub_ledger_accounts'],
+                'account_code' => $request->account_code,
                 'account_title' => $validateAssets['account_title'],
-                'status' => 0,
+                'status' => 'enable',
                 'date' => $currDate
 
             ]);

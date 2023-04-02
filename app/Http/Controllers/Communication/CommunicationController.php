@@ -24,7 +24,7 @@ class CommunicationController extends Controller
             $lastId = ReceiveCommunications::latest('id')->first();
 
             // $transac_id = "COM-" . $date . "-" . str_pad('0', 7, '0', STR_PAD_LEFT);
-            //THE COMMENTED LINE ABOVE IS A FUNCTION THAT MAKES TRANSACTION ID WHEN THE TABLE IS EMPTY (NO ID TO RETRIEVE)
+            // THE COMMENTED LINE ABOVE IS A FUNCTION THAT MAKES TRANSACTION ID WHEN THE TABLE IS EMPTY (NO ID TO RETRIEVE)
             $transac_id = "COM-" . $date . "-" . str_pad($lastId['id'], 7, '0', STR_PAD_LEFT);
 
             $insertRecCom = ReceiveCommunications::create([
@@ -48,7 +48,7 @@ class CommunicationController extends Controller
             ]);
 
             return response()->json([
-                'status' => false,
+                'status' => true,
                 'message' => 'Inserted Successfully',
                 'data' => $insertRecCom
             ]);
