@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Program;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Appropriation extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'budget_year_id',
         'fund_source',
@@ -16,4 +19,9 @@ class Appropriation extends Model
         'department_code_id',
         'status',
     ];
+
+    public function programs(){
+        
+        return $this->Has(Program::class);
+    }
 }

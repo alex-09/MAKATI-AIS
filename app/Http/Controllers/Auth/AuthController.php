@@ -56,14 +56,15 @@ class AuthController extends Controller
                 'password' => 'required'
             ]);
 
-            if(Auth::attempt($input)) {
-
+            if (Auth::attempt($input)) {
+                
                 if(Auth::user()->user_role==1){
 
                     //ADMIN USER
                     return response()->json([
                         'status' => true,
-                        'message' => 'Welcome Admin'
+                        'message' => 'Welcome Admin',
+                        'token' =>Auth::user()
                     ]);
 
                 }elseif(Auth::user()->user_role==2){
@@ -125,9 +126,14 @@ class AuthController extends Controller
 
     }
 
-    // public function logout(Request $request){
+    public function logout(){
 
-    //     // auth()->user()->tokens()->delete();
+        Auth::logout();
 
-    // }
+        return response()->json([
+            'status' => true,
+            'message' => "logout succesfully"
+        ]);
+
+    }
 }

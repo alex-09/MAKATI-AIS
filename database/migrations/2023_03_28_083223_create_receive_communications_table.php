@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('receive_communications', function (Blueprint $table) {
             $table->id();
-            $table->string('transaction_id_num');
+            $table->string('transaction_id_num', 32)->index();
             $table->string('type');
             $table->string('subject');
             $table->string('department');
@@ -26,9 +26,9 @@ return new class extends Migration
             $table->string('bearer_address');
             $table->string('bearer_contact_no');
             $table->string('bearer_department');
-            $table->string('remarks')->nullable();
-            $table->string('reviewer_remarks')->nullable();
-            $table->string('approver_remarks')->nullable();
+            $table->longText('remarks')->nullable();
+            $table->longText('reviewer_remarks')->nullable();
+            $table->longText('approver_remarks')->nullable();
             $table->string('document')->nullable();
             $table->string('assign_to')->nullable();
             $table->string('cluster')->nullable();

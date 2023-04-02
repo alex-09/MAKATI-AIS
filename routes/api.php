@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\COA\AssetsController;
 use App\Http\Controllers\COA\EquityController;
 use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
-use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\Communication\CommunicationController;
+use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::prefix('makati')->group(function() {
 
     Route::get('/login', [AuthController::class, 'login']); 
     
-    Route::post('/logout', [AuthController::class, 'logout']); 
+    Route::get('/logout', [AuthController::class, 'logout']); 
 
 });
 
@@ -101,5 +102,11 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/frs', [CommunicationController::class, 'commFrs']); 
 
     Route::get('/aics', [CommunicationController::class, 'commAics']);
+
+});
+
+Route::prefix('TestRelationships')->group(function () {
+
+    Route::get('test', [TestController::class, 'test']);
 
 });
