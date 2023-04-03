@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Communication;
 
 use Carbon\Carbon;
 
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Models\ActionHistory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ReceiveCommunications;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\UploadedFile;
 
 class CommunicationController extends Controller
 {
@@ -257,5 +257,15 @@ class CommunicationController extends Controller
         ]);
 
 
+    }
+
+    public function viewPdf($id){
+
+        $data = 0;
+
+        $pdf = PDF::loadView('receive_Comm.php', ['data' => $data])
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->stream();
     }
 }

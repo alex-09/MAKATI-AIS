@@ -103,6 +103,8 @@ Route::prefix('ReceiveCommunication')->group(function () {
 
     Route::get('/aics', [CommunicationController::class, 'commAics']);
 
+    Route::get('/viewPdf', [CommunicationController::class, 'viewPdf']);
+
 });
 
 Route::prefix('TestRelationships')->group(function () {
