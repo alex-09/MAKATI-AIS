@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Communication;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
+use App\Models\ActionHistory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\ActionHistory;
 use App\Models\ReceiveCommunications;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\UploadedFile;
 
 class CommunicationController extends Controller
 {
@@ -17,15 +19,34 @@ class CommunicationController extends Controller
 
         try{
 
-            //GET YEAR AND MONTH 
+            $validator = Validator::make($request->all(),
+                [
+                    'type' => 'required',
+                    'subject' => 'required',
+                    'department' => 'required',
+                    'bearer_name' => 'required',
+                    'document' => 'mimes:jpeg,jpg,JPG,doc,docx,pdf|max:2048'
+                ]);
+
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 422);
+            }
+
+            // //GET YEAR AND MONTH 
             $date = Carbon::now()->format('Y-M');
 
             //GET THE LAST ID INSERTED IN TABLE
             $lastId = ReceiveCommunications::latest('id')->first();
 
-            // $transac_id = "COM-" . $date . "-" . str_pad('0', 7, '0', STR_PAD_LEFT);
+            // // $transac_id = "COM-" . $date . "-" . str_pad('0', 7, '0', STR_PAD_LEFT);
             // THE COMMENTED LINE ABOVE IS A FUNCTION THAT MAKES TRANSACTION ID WHEN THE TABLE IS EMPTY (NO ID TO RETRIEVE)
             $transac_id = "COM-" . $date . "-" . str_pad($lastId['id'], 7, '0', STR_PAD_LEFT);
+
+            // $docuName = $request->file('document')->getClientOriginalName();
+
+            $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
+
+            $request->document->move(public_path('uploads'), $docuFile);
 
             $insertRecCom = ReceiveCommunications::create([
 
@@ -42,7 +63,7 @@ class CommunicationController extends Controller
                 'bearer_address' => $request->bearer_address,
                 'bearer_contact_no' => $request->bearer_contact_no,
                 'bearer_department' => $request->bearer_department,
-                'document' => $request->document,
+                'document' => $docuFile,
                 'remarks' => $request->remarks
 
             ]);
