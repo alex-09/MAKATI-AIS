@@ -259,13 +259,13 @@ class CommunicationController extends Controller
 
     }
 
-    public function viewPdf($id){
+    // public function viewPdf($id){
 
-        $data = 0;
+    //     $data = 0;
 
-        $pdf = PDF::loadView('receive_Comm.php', ['data' => $data])
-            ->setPaper('a4', 'landscape');
+    //     $pdf = PDF::loadView('receive_Comm.php', ['data' => $data])
+    //         ->setPaper('a4', 'landscape');
 
-        return $pdf->stream();
-    }
+    //     return $pdf->stream();
+    // }
 }
