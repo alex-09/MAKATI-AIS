@@ -16,12 +16,12 @@ return new class extends Migration
             $table->id();                           
             $table->string('name');               
             $table->string('email')->unique();       
-            $table->integer('user_role_id')->default(1)->references('user_role_id')->on('user_roles');
+            $table->unsignedBigInteger('role_id')->references('id')->on('user_roles');
             $table->timestamp('email_verified_at')->nullable(); 
             $table->string('password');             
             $table->rememberToken();               
-            $table->timestamps();                  
- 
+            $table->timestamps();           
+            
         });
     }
 

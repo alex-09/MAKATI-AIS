@@ -21,7 +21,7 @@ class CommunicationController extends Controller
 
             $validator = Validator::make($request->all(),
                 [
-                    'type' => 'required',
+                    'type_id' => 'required',
                     'subject' => 'required',
                     'department' => 'required',
                     'bearer_name' => 'required',
@@ -35,44 +35,46 @@ class CommunicationController extends Controller
             // //GET YEAR AND MONTH 
             $date = Carbon::now()->format('Y-M');
 
-            //GET THE LAST ID INSERTED IN TABLE
-            $lastId = ReceiveCommunications::latest('id')->first();
+                // $transac_id = "COM-" . $date . "-" . str_pad('0', 7, '0', STR_PAD_LEFT);
 
-            // // $transac_id = "COM-" . $date . "-" . str_pad('0', 7, '0', STR_PAD_LEFT);
-            // THE COMMENTED LINE ABOVE IS A FUNCTION THAT MAKES TRANSACTION ID WHEN THE TABLE IS EMPTY (NO ID TO RETRIEVE)
-            $transac_id = "COM-" . $date . "-" . str_pad($lastId['id'], 7, '0', STR_PAD_LEFT);
+                 //GET THE LAST ID INSERTED IN TABLE
+                $lastId = ReceiveCommunications::latest('id')->first();
 
-            // $docuName = $request->file('document')->getClientOriginalName();
+                $commId = $lastId['id'];
 
-            $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
+                $transac_id = "COM-" . $date . "-" . str_pad(++$commId, 7, '0', STR_PAD_LEFT);
 
-            $request->document->move(public_path('uploads'), $docuFile);
+                // $docuName = $request->file('document')->getClientOriginalName();
 
-            $insertRecCom = ReceiveCommunications::create([
+                $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
 
-                'transaction_id_num' => $transac_id,
-                'type' => $request->type,
-                'subject' => $request->subject,
-                'department' => $request->department,
-                'email' => $request->email,
-                'DRN' => $request->drn,
-                'reply_to' => $request->reply_to,
-                'sender' => $request->sender,
-                'contact_no' => $request->contact_no,
-                'bearer_name' => $request->bearer_name,
-                'bearer_address' => $request->bearer_address,
-                'bearer_contact_no' => $request->bearer_contact_no,
-                'bearer_department' => $request->bearer_department,
-                'document' => $docuFile,
-                'remarks' => $request->remarks
+                $request->document->move(public_path('uploads'), $docuFile);
 
-            ]);
+                $insertRecCom = ReceiveCommunications::create([
 
-            return response()->json([
-                'status' => true,
-                'message' => 'Inserted Successfully',
-                'data' => $insertRecCom
-            ]);
+                    'transaction_id_num' => $transac_id,
+                    'receive_comm_type_id' => $request->type_id,
+                    'subject' => $request->subject,
+                    'department' => $request->department,
+                    'email' => $request->email,
+                    'DRN' => $request->drn,
+                    'reply_to' => $request->reply_to,
+                    'sender' => $request->sender,
+                    'contact_no' => $request->contact_no,
+                    'bearer_name' => $request->bearer_name,
+                    'bearer_address' => $request->bearer_address,
+                    'bearer_contact_no' => $request->bearer_contact_no,
+                    'bearer_department' => $request->bearer_department,
+                    'document' => $docuFile,
+                    'remarks' => $request->remarks
+
+                ]);
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Inserted Successfully',
+                    'data' => $insertRecCom
+                ]);
 
         }catch (\Throwable $th){
 

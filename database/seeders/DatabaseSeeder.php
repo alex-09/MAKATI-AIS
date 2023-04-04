@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\ReceiveCommAssignto;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +17,9 @@ class DatabaseSeeder extends Seeder
             
             user_roles::class,
             ReceiveCommunicationType::class,
-            ReceiveCommunicationAssign::class
+            ReceiveCommunicationAssign::class,
+            BudgetYearSeeder::class,
+            UserSeed::class,
 
         ]);
 

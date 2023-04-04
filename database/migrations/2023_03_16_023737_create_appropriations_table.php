@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('appropriations', function (Blueprint $table) {
             $table->id();
+            $table->string('appro_id')->index();
             $table->unsignedBigInteger('budget_year_id')->nullable();
             $table->string('fund_source');
             $table->string('reference_document');

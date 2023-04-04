@@ -14,7 +14,7 @@ class ReceiveCommunications extends Model
     protected $fillable = [
 
         'transaction_id_num',
-        'type_id',
+        'receive_comm_type_id',
         'subject',
         'department',
         'email',

@@ -14,37 +14,35 @@ class UserSeed extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            [   'name' => 'Jom',
-                'email'=> 'jom@gmail.com',
-                'user_role_id' => '1',
-                'password' => Hash::make('qwe123')
-            ],
-            [   'name' => 'Jom',
-                'email'=> 'jom@gmail.com',
-                'user_role_id' => '1',
-                'password' => Hash::make('qwe123')
-                
-            ],
-            [   'name' => 'Jom',
-                'email'=> 'jom@gmail.com',
-                'user_role_id' => '1',
-                'password' => Hash::make('qwe123')
-                    
-            ],
-            [   'name' => 'Jom',
-                'email'=> 'jom@gmail.com',
-                'user_role_id' => '1',
-                'password' => Hash::make('qwe123')
-            ],
-            [   'name' => 'Jom',
-                'email'=> 'jom@gmail.com',
-                'user_role_id' => '1',
-                'password' => Hash::make('qwe123')   
-            ],
-
-
-        
-        ]);
+        User::create(['name' => 'Admin',
+                'email'=> 'Admin@gmail.com',
+                'role_id' => '1',
+                'password' => bcrypt('qwe123')
+    ]);
+        User::create(['name' => 'Approver',
+                'email'=> 'Approver@gmail.com',
+                'role_id' => '2',
+                'password' => bcrypt('qwe123')    
+            ]);
+        User::create(['name' => 'Receiver',
+                'email'=> 'Receiver@gmail.com',
+                'role_id' => '3',
+                'password' => bcrypt('qwe123')
+            ]);
+        User::create(['name' => 'Encoder',
+                'email'=> 'Encoder@gmail.com',
+                'role_id' => '4',
+                'password' => bcrypt('qwe123')
+            ]);
+        User::create(['name' => 'Processor',
+                'email'=> 'Processor@gmail.com',
+                'role_id' => '5',
+                'password' => bcrypt('qwe123')   
+            ]);
+        User::create(['name' => 'Bookkeeper',
+                'email'=> 'Bookkeeper@gmail.com',
+                'role_id' => '5',
+                'password' => bcrypt('qwe123')   
+            ]);
     }
 }

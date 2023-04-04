@@ -10,9 +10,12 @@ class Program extends Model
     use HasFactory;
 
     protected $fillable = [
-        'budget_year_id',
-        'department_code_id',
+        'appro_id',
         'program',
         'program_code',
     ];
+
+    public function appropriations() {
+        return $this->belongsTo(Appropriation::class, 'appro_id', 'appro_id');
+    }
 }

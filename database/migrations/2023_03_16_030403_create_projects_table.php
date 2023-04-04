@@ -14,12 +14,14 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('budget_year_id')->nullable();
-            $table->unsignedBigInteger('department_code_id')->nullable();
-            $table->unsignedBigInteger('program_code_id')->nullable();
+            $table->string('appro_id');
+            $table->string('program_code_id');
             $table->string('project');
-            $table->string('project_code');
+            $table->string('project_code')->index();
             $table->timestamps();
+
+            $table->foreign('appro_id')->references('appro_id')->on('appropriations');
+            $table->foreign('program_code_id')->references('program_code')->on('programs');
         });
     }
 
