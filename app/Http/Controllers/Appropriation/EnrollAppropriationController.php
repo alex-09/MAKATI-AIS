@@ -54,9 +54,9 @@ class EnrollAppropriationController extends Controller
             
             // $getApproId = Appropriation::latest('id')->first();
 
-            // dd($approId = "APPRO_".++$getApproId['id']);
+            // $approId = "APPRO_".++$getApproId['id'];
 
-            $approId = "APPRO_"."1";
+            $approId = "APPRO_"."2";
 
 
             // INSERT DATA IN APPROPRIATION TABLE
@@ -167,7 +167,12 @@ class EnrollAppropriationController extends Controller
             //     'activity' => 'required',
             // ]);
 
-            $data = Appropriation::with('programs')->where('appro_id', $request->appro_id)->get();
+            $data = Appropriation::with('programs.projects.activities')
+            ->get();
+
+            //$data = Program::with('projects')->where('program_code', $request->program_code)->get();
+
+            // $data = Appropriation::where('budget_year_id', '=', $request->budyear)->first();
 
             return response()->json([
 

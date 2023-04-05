@@ -17,6 +17,9 @@ class Activity extends Model
         'activity_code',
         'activity_description',
         'expenses',
-
     ];
+
+    public function projects(){
+        return $this->belongsTo(Project::class, 'project_code_id', 'project_code');
+    }
 }

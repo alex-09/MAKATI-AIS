@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('program_code_id');
             $table->string('project_code_id');
             $table->string('activity');
-            $table->string('activity_code');
+            $table->string('activity_code')->index();
             $table->string('activity_description');
             $table->timestamps();
 

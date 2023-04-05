@@ -18,4 +18,8 @@ class Program extends Model
     public function appropriations() {
         return $this->belongsTo(Appropriation::class, 'appro_id', 'appro_id');
     }
+
+    public function projects(){
+        return $this->hasMany(Project::class, 'program_code_id', 'program_code');
+    }
 }
