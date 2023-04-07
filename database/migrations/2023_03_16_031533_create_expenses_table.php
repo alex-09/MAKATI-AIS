@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('activity_code_id')->nullable();
             $table->string('account_name');
             $table->string('account_code');
-            $table->integer('appropriation_amount');
+            $table->float('appropriation_amount', 15, 6);
+            $table->float('addition', 15, 6)->nullable();
+            $table->float('deduction', 15, 6)->nullable();
             $table->timestamps();
 
             $table->foreign('appro_id')->references('appro_id')->on('appropriations');

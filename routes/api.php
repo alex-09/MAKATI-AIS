@@ -10,6 +10,7 @@ use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\Communication\CommunicationController;
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
+use App\Http\Controllers\Appropriation\UpdateAppropriationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,7 @@ Route::prefix('coa')->group(function() {
 
 Route::prefix('appropriation')->group(function () {
 
+    //ENROLL
     Route::get('/yearlist', [EnrollAppropriationController::class, 'YearList']); 
 
     Route::get('/approtypes', [EnrollAppropriationController::class, 'ApproTypes']); 
@@ -83,9 +85,12 @@ Route::prefix('appropriation')->group(function () {
 
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
 
-    Route::get('/filter', [EnrollAppropriationController::class, 'FilterAppropriation']);
+    //UPDATE
+    Route::get('/filter', [UpdateAppropriationController::class, 'FilterAppropriation']);
 
-    Route::get('/assets', [EnrollAppropriationController::class, 'GetCoaAssets']);
+    Route::post('/addActivity', [UpdateAppropriationController::class, 'addActivity']);
+
+    Route::post('/updateAppro', [UpdateAppropriationController::class, 'updateAppro']);
 
 });
 

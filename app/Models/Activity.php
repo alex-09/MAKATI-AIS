@@ -16,7 +16,10 @@ class Activity extends Model
         'activity',
         'activity_code',
         'activity_description',
-        'expenses',
+        'total_exp_amount',
+        'total_addition',
+        'total_deduction'
+
     ];
 
     public function projects(){

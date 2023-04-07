@@ -21,7 +21,11 @@ return new class extends Migration
             $table->unsignedBigInteger('appropriation_type_id')->nullable();
             $table->string('department');
             $table->unsignedBigInteger('department_code_id')->nullable();
+            $table->string('supp_budget_num')->nullable();
+            $table->string('date_document')->nullable();
             $table->string('status')->nullable();
+            
+
             $table->timestamps();
         });
     }

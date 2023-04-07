@@ -48,7 +48,7 @@ class EnrollAppropriationController extends Controller
 
             $approIdInc = $getApproId['id'];
 
-            $approId = "APPRO_".++$approIdInc;
+            $approId = "APPRO_".$approIdInc;
 
             // $approId = "test";
 
@@ -70,6 +70,7 @@ class EnrollAppropriationController extends Controller
                 'appropriation_type_id' => $request->appropriation_type,
                 'department' => $request->department,
                 'department_code_id' => $request->office_code,
+                'status' => null
 
             ]);
 
