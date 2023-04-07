@@ -41,7 +41,7 @@ class UserSeed extends Seeder
             ]);
         User::create(['name' => 'Bookkeeper',
                 'email'=> 'Bookkeeper@gmail.com',
-                'role_id' => '5',
+                'role_id' => '6',
                 'password' => bcrypt('qwe123')   
             ]);
     }

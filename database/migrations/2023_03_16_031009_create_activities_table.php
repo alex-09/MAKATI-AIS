@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('appro_id');
-            $table->string('program_code_id');
-            $table->string('project_code_id');
+            $table->string('appro_id')->nullable();
+            $table->string('program_code_id')->nullable();
+            $table->string('project_code_id')->nullable();
             $table->string('activity');
             $table->string('activity_code')->index();
             $table->string('activity_description');

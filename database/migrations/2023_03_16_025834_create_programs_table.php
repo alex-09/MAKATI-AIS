@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string('appro_id');
+            $table->string('appro_id')->nullable();
             $table->string('program');
             $table->string('program_code')->index();
             $table->timestamps();

@@ -19,4 +19,8 @@ class Expenses extends Model
         'account_code',
         'appropriation_amount',
     ];
+
+    public function activities(){
+        return $this->belongsTo(Activity::class, 'activity_code_id', 'activity_code');
+    }
 }

@@ -31,7 +31,7 @@ Route::prefix('makati')->group(function() {
     
     Route::post('/register', [AuthController::class, 'register']); 
 
-    Route::get('/login', [AuthController::class, 'login']); 
+    Route::post('/login', [AuthController::class, 'login']); 
     
     Route::get('/logout', [AuthController::class, 'logout']); 
 
@@ -78,6 +78,10 @@ Route::prefix('appropriation')->group(function () {
     Route::get('/approtypes', [EnrollAppropriationController::class, 'ApproTypes']); 
 
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
+
+    Route::post('/addProgram', [EnrollAppropriationController::class, 'addProgram']); 
+
+    Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
 
     Route::get('/filter', [EnrollAppropriationController::class, 'FilterAppropriation']);
 

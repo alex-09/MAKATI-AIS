@@ -22,4 +22,8 @@ class Activity extends Model
     public function projects(){
         return $this->belongsTo(Project::class, 'project_code_id', 'project_code');
     }
+
+    public function expenses(){
+        return $this->hasMany(Expenses::class, 'activity_code_id', 'activity_code');
+    }
 }

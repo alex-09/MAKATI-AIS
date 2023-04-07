@@ -18,7 +18,7 @@ class Appropriation extends Model
         'appropriation_type_id',
         'department',
         'department_code_id',
-        'status',
+        'status'
     ];
 
     public function programs(){

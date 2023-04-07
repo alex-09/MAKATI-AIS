@@ -44,6 +44,14 @@ class EnrollAppropriationController extends Controller
 
         try{
 
+            $getApproId = Appropriation::latest('id')->first();
+
+            $approIdInc = $getApproId['id'];
+
+            $approId = "APPRO_".++$approIdInc;
+
+            // $approId = "test";
+
             $request->validate([
                 'budget_year_id' => 'required',
                 'fund_source' => 'required',
@@ -51,13 +59,6 @@ class EnrollAppropriationController extends Controller
                 'appropriation_type' => 'required',
                 'department' =>'required'
             ]);
-            
-            // $getApproId = Appropriation::latest('id')->first();
-
-            // $approId = "APPRO_".++$getApproId['id'];
-
-            $approId = "APPRO_"."2";
-
 
             // INSERT DATA IN APPROPRIATION TABLE
             $enrollDetails = Appropriation::create([
@@ -69,9 +70,86 @@ class EnrollAppropriationController extends Controller
                 'appropriation_type_id' => $request->appropriation_type,
                 'department' => $request->department,
                 'department_code_id' => $request->office_code,
-                'status' => $request->status,
 
             ]);
+
+            $enrollDetails->save();
+
+            // INSERT DATA IN PROGRAM TABLE
+            $enrollProgram = Program::create([
+
+                'appro_id' =>$approId,
+                'program' => $request->program,
+                'program_code' => $request->program_code,
+
+            ]);
+
+            // INSERT DATA IN PROJECT TABLE
+            $enrollProject = Project::create([
+
+                'appro_id' => $approId,
+                'program_code_id' => $request->program_code,
+                'project' => $request->project,
+                'project_code' => $request->project_code,
+                
+            ]);
+
+            // INSERT DATA IN ACTIVITY TABLE
+            $enrollActivity = Activity::create([
+
+                'appro_id' => $approId,
+                'department_code_id' => $request->office_code,
+                'program_code_id' => $request->program_code,
+                'project_code_id' => $request->project_code,
+                'activity' => $request->activity,
+                'activity_code' => $request->activity_code,
+                'activity_description' => $request->activity_description,
+
+            ]);
+
+            // INSERT DATA IN EXPENSES TABLE
+            $enrollExpenses = Expenses::create([
+
+                'appro_id' => $approId,
+                'program_code_id' => $request->program_code,
+                'project_code_id' => $request->project_code,
+                'activity_code_id' => $request->activity_code,
+                'account_code' => $request->account_code,
+                'account_name' => $request->account_name,
+                'appropriation_amount' => $request->appropriation_amount,
+
+            ]);
+
+            // RETURN RESULT
+            return response()->json([
+
+                'status' => true,
+                'message' => "Insert data success!",
+                'Details' => $enrollDetails,
+                'Program' => $enrollProgram,
+                'Project' => $enrollProject,
+                'Activity' => $enrollActivity,
+                'Expenses' => $enrollExpenses,
+
+            ]);
+
+        } catch(\Throwable $th){
+
+            return response()->json([
+
+                'status' => false,
+                'message' => "Something went wrong!",
+                'error' => $th->getMessage()
+
+            ]);
+        }
+    }
+
+    public function addProgram(Request $request){
+
+        try{
+
+            $approId = $request->approId;
 
             // INSERT DATA IN PROGRAM TABLE
             $enrollProgram = Program::create([
@@ -118,18 +196,11 @@ class EnrollAppropriationController extends Controller
 
             ]);
 
-            $enrollDetails->save();
-            $enrollProgram->save();
-            $enrollProject->save();
-            $enrollActivity->save();
-            $enrollExpenses->save();
-
             // RETURN RESULT
             return response()->json([
 
                 'status' => true,
                 'message' => "Insert data success!",
-                'Details' => $enrollDetails,
                 'Program' => $enrollProgram,
                 'Project' => $enrollProject,
                 'Activity' => $enrollActivity,
@@ -149,30 +220,58 @@ class EnrollAppropriationController extends Controller
         }
     }
 
-    
+    public function forReview(Request $request){
+        
+        $status = "for Review";
+
+        $appro = Appropriation::where('appro_id', $request->appro_id)->first();
+
+        $appro->update([
+            'status' => $status
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Appropriation status is for review',
+            'data' => 'disable'
+        ]);
+        
+    }
+
     // FILTER APPROPRIATION FOR UPDATE
     public function FilterAppropriation(Request $request){
 
         try{
 
-            // $request->validate([
-            //     'budget_year_id' => 'required',
-            //     'fund_source' => 'required',
-            //     'type_of_adjustment' => 'required',
-            //     'supplementary_budget_number' => 'required',
-            //     'reference_document' => 'required',
-            //     'department' => 'required',
-            //     'program' => 'required',
-            //     'project' => 'required',
-            //     'activity' => 'required',
-            // ]);
+            $request->validate([
+                'budyear' => 'required',
+                'fundSource' => 'required',
+                'refdocu' => 'required',
+                'dept' => 'required',
+                'prog_code' => 'required',
+                'proj_code' => 'required',
+                'act_code' => 'required',
+            ]);
 
-            $data = Appropriation::with('programs.projects.activities')
-            ->get();
+            $data = Appropriation::where([
 
-            //$data = Program::with('projects')->where('program_code', $request->program_code)->get();
+                ['budget_year_id', '=', $request->budyear],
+                ['fund_source', '=', $request->fundSource],
+                ['department', '=', $request->dept],
+                ['reference_document', '=', $request->refdocu]
 
-            // $data = Appropriation::where('budget_year_id', '=', $request->budyear)->first();
+            ])->with([ 'programs' => ( function ($q) use($request){
+                    $q->where('program_code', $request->prog_code);
+
+                }), 'programs.projects' => ( function ($qu) use($request){
+                        $qu->where('project_code', $request->proj_code);
+
+                }), 'programs.projects.activities' => ( function ($que) use($request) {
+                        $que->where('activity_code', $request->act_code);
+
+                }), 
+                    'programs.projects.activities.expenses'
+            ])->first();
 
             return response()->json([
 
