@@ -10,14 +10,23 @@ class Activity extends Model
     use HasFactory;
 
     protected $fillable = [
-        'budget_year_id',
-        'department_code_id',
+        'appro_id',
         'program_code_id',
         'project_code_id',
         'activity',
         'activity_code',
         'activity_description',
-        'expenses',
+        'total_exp_amount',
+        'total_addition',
+        'total_deduction'
 
     ];
+
+    public function projects(){
+        return $this->belongsTo(Project::class, 'project_code_id', 'project_code');
+    }
+
+    public function expenses(){
+        return $this->hasMany(Expenses::class, 'activity_code_id', 'activity_code');
+    }
 }

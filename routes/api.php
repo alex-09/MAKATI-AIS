@@ -10,6 +10,7 @@ use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\Communication\CommunicationController;
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
+use App\Http\Controllers\Appropriation\UpdateAppropriationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::prefix('makati')->group(function() {
     
     Route::post('/register', [AuthController::class, 'register']); 
 
-    Route::get('/login', [AuthController::class, 'login']); 
+    Route::post('/login', [AuthController::class, 'login']); 
     
     Route::get('/logout', [AuthController::class, 'logout']); 
 
@@ -73,15 +74,23 @@ Route::prefix('coa')->group(function() {
 
 Route::prefix('appropriation')->group(function () {
 
+    //ENROLL
     Route::get('/yearlist', [EnrollAppropriationController::class, 'YearList']); 
 
     Route::get('/approtypes', [EnrollAppropriationController::class, 'ApproTypes']); 
 
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
 
-    Route::get('/filter', [EnrollAppropriationController::class, 'FilterAppropriation']);
+    Route::post('/addProgram', [EnrollAppropriationController::class, 'addProgram']); 
 
-    Route::get('/assets', [EnrollAppropriationController::class, 'GetCoaAssets']);
+    Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
+
+    //UPDATE
+    Route::get('/filter', [UpdateAppropriationController::class, 'FilterAppropriation']);
+
+    Route::post('/addActivity', [UpdateAppropriationController::class, 'addActivity']);
+
+    Route::post('/updateAppro', [UpdateAppropriationController::class, 'updateAppro']);
 
 });
 
@@ -102,6 +111,8 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/frs', [CommunicationController::class, 'commFrs']); 
 
     Route::get('/aics', [CommunicationController::class, 'commAics']);
+
+    Route::get('/viewPdf', [CommunicationController::class, 'viewPdf']);
 
 });
 

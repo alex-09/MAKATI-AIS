@@ -25,6 +25,7 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'role_id' => 1,
                 'password' => Hash::make($input['password'])
             ]);
 
@@ -51,14 +52,15 @@ class AuthController extends Controller
     {
         try{
 
-            $input = $request->validate([
-                'name' => 'required',
+            $request->validate([
+                'email' => 'required',
                 'password' => 'required'
             ]);
 
+            $input = $request->only('email', 'password');
             if (Auth::attempt($input)) {
                 
-                if(Auth::user()->user_role==1){
+                if(Auth::user()->role_id==1){
 
                     //ADMIN USER
                     return response()->json([
@@ -67,15 +69,15 @@ class AuthController extends Controller
                         'token' =>Auth::user()
                     ]);
 
-                }elseif(Auth::user()->user_role==2){
+                }elseif(Auth::user()->role_id==2){
 
                     //APPROVER USER
                     return response()->json([
                         'status' => true,
-                        'message' => 'Welcome Approver'
+                        'message' => 'Welcome Approver',
                     ]);     
 
-                }elseif(Auth::user()->user_role==3){
+                }elseif(Auth::user()->role_id==3){
 
                     //RECEIVER USER
                     return response()->json([
@@ -83,7 +85,7 @@ class AuthController extends Controller
                         'message' => 'Welcome Receiver'
                     ]);
 
-                }elseif(Auth::user()->user_role==4){
+                }elseif(Auth::user()->role_id==4){
 
                     //ENCODER USER
                     return response()->json([
@@ -91,7 +93,7 @@ class AuthController extends Controller
                         'message' => 'Welcome Encoder'
                     ]);    
 
-                }elseif(Auth::user()->user_role==5){
+                }elseif(Auth::user()->role_id==5){
 
                     //PROCESSOR USER
                     return response()->json([
@@ -99,7 +101,7 @@ class AuthController extends Controller
                         'message' => 'Welcome Processor'
                     ]);  
 
-                }elseif(Auth::user()->user_role==6){
+                }elseif(Auth::user()->role_id==6){
 
                     //BOOKKEEPER USER
                     return response()->json([
