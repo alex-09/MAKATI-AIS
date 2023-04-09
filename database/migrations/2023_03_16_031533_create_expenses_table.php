@@ -13,13 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('expenses', function (Blueprint $table) {
-            $table->id();
-            $table->string('appro_id')->nullable();
-            $table->string('program_code_id')->nullable();
-            $table->string('project_code_id')->nullable();
-            $table->string('activity_code_id')->nullable();
+            $table->id('expenses_id');
+            $table->string('appro_id');
+            $table->integer('program_code_id');
+            $table->integer('project_code_id');
+            $table->integer('activity_code_id');
             $table->string('account_name');
-            $table->string('account_code');
+            $table->integer('account_code');
             $table->float('appropriation_amount', 15, 6);
             $table->float('addition', 15, 6)->nullable();
             $table->float('deduction', 15, 6)->nullable();

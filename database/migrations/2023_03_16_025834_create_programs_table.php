@@ -13,10 +13,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('programs', function (Blueprint $table) {
-            $table->id();
-            $table->string('appro_id')->nullable();
+            $table->id('program_id');
+            $table->string('appro_id');
             $table->string('program');
-            $table->string('program_code')->index();
+            $table->integer('program_code')->index();
             $table->timestamps();
 
             $table->foreign('appro_id')->references('appro_id')->on('appropriations');
