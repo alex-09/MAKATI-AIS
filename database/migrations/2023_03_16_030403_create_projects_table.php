@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('project_code')->index();
             $table->timestamps();
 
-            $table->foreign('appro_id')->references('appro_id')->on('appropriations');
-            $table->foreign('program_code_id')->references('program_code')->on('programs');
+            $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('program_code_id')->references('program_code')->on('programs')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

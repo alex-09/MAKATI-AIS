@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ReceiveCommunicationAssign::class,
             BudgetYearSeeder::class,
             UserSeed::class,
+            ApproSeeder::class
 
         ]);
 

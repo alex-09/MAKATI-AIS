@@ -16,13 +16,13 @@ return new class extends Migration
         CREATE PROCEDURE `listappropriation`()
             BEGIN
             
-                SELECT prog.program, proj.project, act.activity, act.total_exp_amount
+                SELECT prog.program, proj.project, act.activity, act.appro_total, act.appro_id, act.activity_code
             
                 FROM programs AS prog
-                INNER JOIN projects AS proj
-                ON prog.program_code = proj.program_code_id
+                INNER JOIN projects as proj
+                ON prog.program_code = proj.program_code_id AND prog.appro_id = proj.appro_id
                 INNER JOIN activities as act
-                ON proj.project_code = act.project_code_id;
+                ON proj.project_code = act.project_code_id AND proj.appro_id = act.appro_id;
             
             END;";
             

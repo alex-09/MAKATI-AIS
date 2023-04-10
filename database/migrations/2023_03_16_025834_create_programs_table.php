@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('program_code')->index();
             $table->timestamps();
 
-            $table->foreign('appro_id')->references('appro_id')->on('appropriations');
+            $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

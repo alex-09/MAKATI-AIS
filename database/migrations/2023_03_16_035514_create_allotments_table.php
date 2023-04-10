@@ -14,20 +14,25 @@ return new class extends Migration
     {
         Schema::create('allotments', function (Blueprint $table) {
             $table->id();
-            $table->integer('budget_year_id');
-            $table->string('adjustment_type');
-            $table->string('department');
-            $table->string('fund_source');
-            $table->string('appropriation_type');
-            $table->string('document_date');
+            $table->unsignedBigInteger('budget_year_id');
+            $table->string('allot_id');
+            $table->string('adjustment_type')->nullable();
+            $table->unsignedBigInteger('office_code')->nullable();
+            $table->integer('fund_source');
+            $table->unsignedBigInteger('appropriation_type');
+            $table->string('document_date')->nullable();
             $table->string('document_source');
-            $table->string('supplemental_budget_no');
-            $table->string('office_code');
-            $table->string('program');
-            $table->string('project');
-            $table->string('activity');
-            $table->string('status');
+            $table->string('supplemental_budget_no')->nullable();
+            $table->integer('program_code_id');
+            $table->integer('project_code_id');
+            $table->integer('activity_code_id');
+            $table->integer('status')->nullable();
             $table->timestamps();
+
+            $table->foreign('budget_year_id')->references('id')->on('budget_years')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('program_code_id')->references('program_code')->on('programs')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('project_code_id')->references('project_code')->on('projects')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('activity_code_id')->references('activity_code')->on('activities')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

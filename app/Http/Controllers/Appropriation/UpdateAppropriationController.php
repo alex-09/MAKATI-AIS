@@ -72,6 +72,7 @@ class UpdateAppropriationController extends Controller
                 'activity' => $request->activity,
                 'activity_code' => $request->activity_code,
                 'activity_description' => $request->activity_description,
+                'appro_total' => $request->appro_total,
             
             ]);
             
@@ -84,7 +85,7 @@ class UpdateAppropriationController extends Controller
                 'activity_code_id' => $request->activity_code,
                 'account_code' => $request->account_code,
                 'account_name' => $request->account_name,
-                'appropriation_amount' => $request->appropriation_amount,
+                'appro_amount' => $request->appropriation_amount,
             
             ]);
 
@@ -127,17 +128,17 @@ class UpdateAppropriationController extends Controller
                             ->where('account_code', $request->acc_code);
 
             $expRef->update([
-                'addition' => $request->add,
-                'deduction' => $request->deduct
+                'appro_add' => $request->add,
+                'appro_deduct' => $request->deduct
             ]);
 
             $actRef = Activity::where('appro_id', $request->approId)
                             ->where('activity_code', $request->act_code);
 
             $updateTotal = $actRef->update([
-                'total_exp_amount' => $request->total_exp,
-                'total_addition' => $request->total_add,
-                'total_deduction' => $request->total_deduct
+                'appro_total' => $request->total_exp,
+                'appro_total_add' => $request->total_add,
+                'appro_total_deduct' => $request->total_deduct
             ]);
 
             return response()->json([

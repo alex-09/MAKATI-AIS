@@ -18,10 +18,10 @@ return new class extends Migration
         IN project int(5), IN activity int(5))
         BEGIN
             SELECT ap.appro_id, ap.reference_document, ap.department_code_id, 
-            prog.id, prog.program, prog.program_code, 
-            proj.id, proj.project, proj.project_code,
-            act.id, act.activity, act.activity_code, act.activity_description, 
-            exp.id, exp.account_name, exp.account_code, exp.appropriation_amount
+            prog.program_id, prog.program, prog.program_code, 
+            proj.project_id, proj.project, proj.project_code,
+            act.activity_id, act.activity, act.activity_code, act.activity_description, 
+            exp.expenses_id, exp.account_name, exp.account_code, exp.appro_amount
 
             FROM appropriations AS ap
             INNER JOIN programs AS prog
