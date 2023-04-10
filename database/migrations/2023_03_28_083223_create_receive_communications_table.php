@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('receive_communications', function (Blueprint $table) {
             $table->id();
             $table->string('transaction_id_num', 32)->index();
-            $table->string('type');
+            $table->unsignedBigInteger('receive_comm_type_id')->references('id')->on('receive_comm_types');
             $table->string('subject');
             $table->string('department');
             $table->string('email');
@@ -30,13 +30,13 @@ return new class extends Migration
             $table->longText('reviewer_remarks')->nullable();
             $table->longText('approver_remarks')->nullable();
             $table->string('document')->nullable();
-            $table->string('assign_to')->nullable();
+            $table->unsignedBigInteger('receive_comm_assignto_id')->nullable()->references('id')->on('receive_comm_assigntos');
             $table->string('cluster')->nullable();
             $table->string('restriction')->nullable();
             $table->string('action')->nullable();
             $table->string('no_of_days')->nullable();
             $table->string('status')->nullable();
-            $table->timestamps();
+            $table->timestamps();;
         });
     }
 

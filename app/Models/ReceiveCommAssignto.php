@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-class BudgetYear extends Model
+class ReceiveCommAssignto extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'year'
+        'assign_to_type',
+        'cluster'
     ];
-
 }

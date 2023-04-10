@@ -11,17 +11,18 @@ class Appropriation extends Model
     use HasFactory;
     
     protected $fillable = [
+        'appro_id',
         'budget_year_id',
         'fund_source',
         'reference_document',
         'appropriation_type_id',
         'department',
         'department_code_id',
-        'status',
+        'status'
     ];
 
     public function programs(){
         
-        return $this->Has(Program::class);
+        return $this->hasMany(Program::class, 'appro_id', 'appro_id');
     }
 }

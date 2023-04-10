@@ -14,15 +14,21 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('budget_year_id')->nullable();
-            $table->unsignedBigInteger('department_code_id')->nullable();
-            $table->unsignedBigInteger('program_code_id')->nullable();
-            $table->unsignedBigInteger('project_code_id')->nullable();
-            $table->unsignedBigInteger('activity_code_id')->nullable();
+            $table->string('appro_id')->nullable();
+            $table->string('program_code_id')->nullable();
+            $table->string('project_code_id')->nullable();
+            $table->string('activity_code_id')->nullable();
             $table->string('account_name');
             $table->string('account_code');
-            $table->integer('appropriation_amount');
+            $table->float('appropriation_amount', 15, 6);
+            $table->float('addition', 15, 6)->nullable();
+            $table->float('deduction', 15, 6)->nullable();
             $table->timestamps();
+
+            $table->foreign('appro_id')->references('appro_id')->on('appropriations');
+            $table->foreign('program_code_id')->references('program_code')->on('programs');
+            $table->foreign('project_code_id')->references('project_code')->on('projects');
+            $table->foreign('activity_code_id')->references('activity_code')->on('activities');
         });
     }
 
