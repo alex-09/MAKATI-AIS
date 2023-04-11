@@ -58,59 +58,13 @@ class AuthController extends Controller
             ]);
 
             $input = $request->only('email', 'password');
-            if (Auth::attempt($input)) {
-                
-                if(Auth::user()->role_id==1){
-
-                    //ADMIN USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Admin',
-                        'token' =>Auth::user()
-                    ]);
-
-                }elseif(Auth::user()->role_id==2){
-
-                    //APPROVER USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Approver',
-                    ]);     
-
-                }elseif(Auth::user()->role_id==3){
-
-                    //RECEIVER USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Receiver'
-                    ]);
-
-                }elseif(Auth::user()->role_id==4){
-
-                    //ENCODER USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Encoder'
-                    ]);    
-
-                }elseif(Auth::user()->role_id==5){
-
-                    //PROCESSOR USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Processor'
-                    ]);  
-
-                }elseif(Auth::user()->role_id==6){
-
-                    //BOOKKEEPER USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Bookkeeper'
-                    ]);       
-                }
+            if(Auth::attempt($input)){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Logged In Successfully',
+                    'data' => Auth::user()
+                ]);
             }
-
             return response()->json([
                 'status' => false,
                 'message' => 'Your have entered a wrong name or password!'

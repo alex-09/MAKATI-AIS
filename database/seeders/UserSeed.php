@@ -17,31 +17,37 @@ class UserSeed extends Seeder
         User::create(['name' => 'Admin',
                 'email'=> 'Admin@gmail.com',
                 'role_id' => '1',
+                'isAdmin' => 1,
                 'password' => bcrypt('qwe123')
     ]);
         User::create(['name' => 'Approver',
                 'email'=> 'Approver@gmail.com',
                 'role_id' => '2',
+                'isAdmin' => 0,
                 'password' => bcrypt('qwe123')    
             ]);
         User::create(['name' => 'Receiver',
                 'email'=> 'Receiver@gmail.com',
                 'role_id' => '3',
+                'isAdmin' => 0,
                 'password' => bcrypt('qwe123')
             ]);
         User::create(['name' => 'Encoder',
                 'email'=> 'Encoder@gmail.com',
                 'role_id' => '4',
+                'isAdmin' => 0,
                 'password' => bcrypt('qwe123')
             ]);
         User::create(['name' => 'Processor',
                 'email'=> 'Processor@gmail.com',
                 'role_id' => '5',
+                'isAdmin' => 0,
                 'password' => bcrypt('qwe123')   
             ]);
         User::create(['name' => 'Bookkeeper',
                 'email'=> 'Bookkeeper@gmail.com',
                 'role_id' => '6',
+                'isAdmin' => 0,
                 'password' => bcrypt('qwe123')   
             ]);
     }

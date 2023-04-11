@@ -16,9 +16,16 @@ class Activity extends Model
         'activity',
         'activity_code',
         'activity_description',
-        'total_exp_amount',
-        'total_addition',
-        'total_deduction'
+        'appro_total',
+        'appro_total_add',
+        'appro_total_deduct',
+        'allot_total',
+        'balance',
+        'total_allot_add',
+        'total_allot_deduct',
+        'total_allot_adjust_balance',
+        'total_unallot_balance',
+        'total_obli',
 
     ];
 

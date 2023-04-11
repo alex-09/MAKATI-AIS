@@ -8,7 +8,9 @@ use App\Http\Controllers\COA\EquityController;
 use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
+use App\Http\Controllers\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\Communication\CommunicationController;
+use App\Http\Controllers\Appropriation\ListAppropriationController;
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\Appropriation\UpdateAppropriationController;
 
@@ -91,6 +93,18 @@ Route::prefix('appropriation')->group(function () {
     Route::post('/addActivity', [UpdateAppropriationController::class, 'addActivity']);
 
     Route::post('/updateAppro', [UpdateAppropriationController::class, 'updateAppro']);
+
+    //LIST 
+    Route::get('/listAppro', [ListAppropriationController::class, 'index']);
+
+});
+
+Route::prefix('allotment')->group(function () {
+
+    //ENROLL
+    Route::get('/filter', [EnrollAllotmentController::class, 'filterAllot']);
+
+    Route::post('/enroll', [EnrollAllotmentController::class, 'enrollAllotment']);
 
 });
 

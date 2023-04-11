@@ -105,6 +105,7 @@ class EnrollAppropriationController extends Controller
                 'activity' => $request->activity,
                 'activity_code' => $request->activity_code,
                 'activity_description' => $request->activity_description,
+                'appro_total' => $request->appro_total,
 
             ]);
 
@@ -117,7 +118,7 @@ class EnrollAppropriationController extends Controller
                 'activity_code_id' => $request->activity_code,
                 'account_code' => $request->account_code,
                 'account_name' => $request->account_name,
-                'appropriation_amount' => $request->appropriation_amount,
+                'appro_amount' => $request->appropriation_amount,
 
             ]);
 
@@ -181,6 +182,7 @@ class EnrollAppropriationController extends Controller
                 'activity' => $request->activity,
                 'activity_code' => $request->activity_code,
                 'activity_description' => $request->activity_description,
+                'appro_total' => $request->appro_total,
 
             ]);
 
@@ -193,7 +195,7 @@ class EnrollAppropriationController extends Controller
                 'activity_code_id' => $request->activity_code,
                 'account_code' => $request->account_code,
                 'account_name' => $request->account_name,
-                'appropriation_amount' => $request->appropriation_amount,
+                'appro_amount' => $request->appropriation_amount,
 
             ]);
 
@@ -237,63 +239,6 @@ class EnrollAppropriationController extends Controller
             'data' => 'disable'
         ]);
         
-    }
-
-    // FILTER APPROPRIATION FOR UPDATE
-    public function FilterAppropriation(Request $request){
-
-        try{
-
-            $request->validate([
-                'budyear' => 'required',
-                'fundSource' => 'required',
-                'refdocu' => 'required',
-                'dept' => 'required',
-                'prog_code' => 'required',
-                'proj_code' => 'required',
-                'act_code' => 'required',
-            ]);
-
-            $data = Appropriation::where([
-
-                ['budget_year_id', '=', $request->budyear],
-                ['fund_source', '=', $request->fundSource],
-                ['department', '=', $request->dept],
-                ['reference_document', '=', $request->refdocu]
-
-            ])->with([ 'programs' => ( function ($q) use($request){
-                    $q->where('program_code', $request->prog_code);
-
-                }), 'programs.projects' => ( function ($qu) use($request){
-                        $qu->where('project_code', $request->proj_code);
-
-                }), 'programs.projects.activities' => ( function ($que) use($request) {
-                        $que->where('activity_code', $request->act_code);
-
-                }), 
-                    'programs.projects.activities.expenses'
-            ])->first();
-
-            return response()->json([
-
-                'status' => true,
-                'message' => 'successfully fetch',
-                'data' => $data,
-
-
-            ]);
-
-        } catch(\Throwable $th){
-
-            return response()->json([
-
-                'status' => false,
-                'message' => "Something went wrong!",
-                'error' => $th->getMessage()
-            ]);
-        }
-
-
     }
 
     
