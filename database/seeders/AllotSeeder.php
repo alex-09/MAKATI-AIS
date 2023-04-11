@@ -15,13 +15,14 @@ class AllotSeeder extends Seeder
     {
         Allotment::create([
             'allot_id' => "test", 
-            'budget_year_id' => 1, 
-            'fund_source' => 1,
-            'appropriation_type' => 1,
+            'budget_year_id' => 3, 
+            'fund_source' => 3,
+            'appropriation_type' => 3,
             'document_source' => "test",
-            'program_code_id' => 222,
-            'project_code_id' => 222,
-            'activity_code_id' => 222
+            'office_code' => 333,
+            'program_code_id' => 333,
+            'project_code_id' => 333,
+            'activity_code_id' => 333
         ]);
     }
 }
