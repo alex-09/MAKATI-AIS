@@ -9,6 +9,7 @@ use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\Allotment\EnrollAllotmentController;
+use App\Http\Controllers\Allotment\UpdateAllotmentController;
 use App\Http\Controllers\Communication\CommunicationController;
 use App\Http\Controllers\Appropriation\ListAppropriationController;
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
@@ -106,6 +107,11 @@ Route::prefix('allotment')->group(function () {
 
     Route::post('/enroll', [EnrollAllotmentController::class, 'enrollAllotment']);
 
+    //UPDATE
+    Route::get('/filterAllot', [UpdateAllotmentController::class, 'filter']);
+
+    Route::get('/updateAllot', [UpdateAllotmentController::class, 'update']);
+
 });
 
 Route::prefix('ReceiveCommunication')->group(function () {
@@ -127,11 +133,5 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/aics', [CommunicationController::class, 'commAics']);
 
     Route::get('/viewPdf', [CommunicationController::class, 'viewPdf']);
-
-});
-
-Route::prefix('TestRelationships')->group(function () {
-
-    Route::get('test', [TestController::class, 'test']);
 
 });
