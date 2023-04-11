@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Expenses;
 use Illuminate\Http\Request;
 use App\Models\Appropriation;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class UpdateAppropriationController extends Controller
@@ -14,41 +15,30 @@ class UpdateAppropriationController extends Controller
     public function FilterAppropriation(Request $request){
 
             try{
-    
+
                 $request->validate([
                     'budyear' => 'required',
                     'fundSource' => 'required',
+                    'dept_code' => 'required',
                     'refdocu' => 'required',
-                    'dept' => 'required',
                     'prog_code' => 'required',
                     'proj_code' => 'required',
-                    'act_code' => 'required',
+                    'act_code' => 'required'
                 ]);
-    
-                $data = Appropriation::where([
-    
-                    ['budget_year_id', '=', $request->budyear],
-                    ['fund_source', '=', $request->fundSource],
-                    ['department', '=', $request->dept],
-                    ['reference_document', '=', $request->refdocu]
-    
-                ])->with([ 'programs' => ( function ($q) use($request){
-                        $q->where('program_code', $request->prog_code);
-    
-                    }), 'programs.projects' => ( function ($qu) use($request){
-                            $qu->where('project_code', $request->proj_code);
-    
-                    }), 'programs.projects.activities' => ( function ($que) use($request) {
-                            $que->where('activity_code', $request->act_code);
-    
-                    }), 
-                        'programs.projects.activities.expenses'
-                ])->first();
+                
+                $data = DB::select('call searchAppro(?,?,?,?,?,?,?)',array(
+                    $request->budyear,
+                    $request->fundSource,
+                    $request->dept_code,
+                    $request->refdocu,
+                    $request->prog_code,
+                    $request->proj_code,
+                    $request->act_code));
     
                 return response()->json([
     
                     'status' => true,
-                    'message' => 'successfully fetch',
+                    'message' => 'Successfully fetch',
                     'data' => $data,
     
     
@@ -82,6 +72,7 @@ class UpdateAppropriationController extends Controller
                 'activity' => $request->activity,
                 'activity_code' => $request->activity_code,
                 'activity_description' => $request->activity_description,
+                'appro_total' => $request->appro_total,
             
             ]);
             
@@ -94,7 +85,7 @@ class UpdateAppropriationController extends Controller
                 'activity_code_id' => $request->activity_code,
                 'account_code' => $request->account_code,
                 'account_name' => $request->account_name,
-                'appropriation_amount' => $request->appropriation_amount,
+                'appro_amount' => $request->appropriation_amount,
             
             ]);
 
@@ -121,36 +112,40 @@ class UpdateAppropriationController extends Controller
         
         try{
             
-            $input = $request->validate([
-                'supp_budget_num' => 'required'
+            $request->validate([
+                'supp_budget_num' => 'required',
+                'adjustment_type' => 'required'
             ]);
 
-            $approRef = Appropriation::where('appro_id', "=", $request->approId)->first();
-
-            $updateAppro = $approRef->update([
-                'supp_budget_num' => $input['supp_budget_num']
+            $approRef = Appropriation::where('appro_id', $request->approId);
+            
+            $approRef->update([
+                'supp_budget_num' => $request->supp_budget_num,
+                'adjustment_type' => $request->adjustment_type,
             ]);
 
-            // $expRef = Expenses::where('appro_id', $request->approId, "AND", 'account_code', $request->acc_code)->first();
+            $expRef = Expenses::where('appro_id', $request->approId)
+                            ->where('account_code', $request->acc_code);
 
-            // $updateexp = $expRef->update([
-            //     'addition' => $request->add,
-            //     'deduction' => $request->deduct
-            // ]);
+            $expRef->update([
+                'appro_add' => $request->add,
+                'appro_deduct' => $request->deduct
+            ]);
 
-            // $actRef = Activity::where('appro_id', $request->approId, "AND", 'activity_code', $request->act_code)->first();
+            $actRef = Activity::where('appro_id', $request->approId)
+                            ->where('activity_code', $request->act_code);
 
-            // $updateTotal = $actRef->update([
-            //     'total_exp_amount' => $request->total_exp,
-            //     'c' => $request->total_add,
-            //     'total_deduction' => $request->total_deduct
-            // ]);
+            $updateTotal = $actRef->update([
+                'appro_total' => $request->total_exp,
+                'appro_total_add' => $request->total_add,
+                'appro_total_deduct' => $request->total_deduct
+            ]);
 
             return response()->json([
 
                 'status' => true,
                 'message' => 'Success!',
-                'data' => $updateAppro
+                'data' => $updateTotal
 
             ]);
 

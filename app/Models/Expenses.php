@@ -17,9 +17,16 @@ class Expenses extends Model
         'activity_code_id',
         'account_name',
         'account_code',
-        'appropriation_amount',
-        'addtion',
-        'deduction'
+        'appro_amount',
+        'appro_add',
+        'appro_deduct',
+        'allot_amount',
+        'balance',
+        'allot_add',
+        'allot_deduct',
+        'allot_adjust_balance',
+        'unallot_balance',
+        'obli_ammount',
     ];
 
     public function activities(){
