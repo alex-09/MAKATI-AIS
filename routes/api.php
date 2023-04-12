@@ -8,6 +8,7 @@ use App\Http\Controllers\COA\EquityController;
 use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
+use App\Http\Controllers\Allotment\ListAllotmentController;
 use App\Http\Controllers\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\Allotment\UpdateAllotmentController;
 use App\Http\Controllers\Communication\CommunicationController;
@@ -111,6 +112,10 @@ Route::prefix('allotment')->group(function () {
     Route::get('/filterAllot', [UpdateAllotmentController::class, 'filter']);
 
     Route::get('/updateAllot', [UpdateAllotmentController::class, 'update']);
+
+    //LIST
+    Route::get('/listAllot', [ListAllotmentController::class, 'list']);
+
 
 });
 
