@@ -10,14 +10,26 @@ class Expenses extends Model
     use HasFactory;
 
     protected $fillable = [
-        'budget_year_id',
-        'department_code_id',
+
+        'appro_id',
         'program_code_id',
         'project_code_id',
         'activity_code_id',
         'account_name',
         'account_code',
-        'appropriation_amount',
-        'allotment_amount'
+        'appro_amount',
+        'appro_add',
+        'appro_deduct',
+        'allot_amount',
+        'balance',
+        'allot_add',
+        'allot_deduct',
+        'allot_adjust_balance',
+        'unallot_balance',
+        'obli_ammount',
     ];
+
+    public function activities(){
+        return $this->belongsTo(Activity::class, 'activity_code_id', 'activity_code');
+    }
 }

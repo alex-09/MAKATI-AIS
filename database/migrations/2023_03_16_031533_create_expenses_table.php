@@ -13,17 +13,30 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('expenses', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('budget_year_id')->nullable();
-            $table->unsignedBigInteger('department_code_id')->nullable();
-            $table->unsignedBigInteger('program_code_id')->nullable();
-            $table->unsignedBigInteger('project_code_id')->nullable();
-            $table->unsignedBigInteger('activity_code_id')->nullable();
+            $table->id('expenses_id');
+            $table->string('appro_id');
+            $table->string('allot_id')->nullable();
+            $table->integer('program_code_id');
+            $table->integer('project_code_id');
+            $table->integer('activity_code_id');
             $table->string('account_name');
-            $table->string('account_code');
-            $table->integer('appropriation_amount');
-            $table->bigInteger('allotment_amount');
+            $table->integer('account_code');
+            $table->float('appro_amount', 17, 6);
+            $table->float('appro_add', 17, 6)->nullable();
+            $table->float('appro_deduct', 17, 6)->nullable();
+            $table->float('allot_amount', 17, 6)->nullable();
+            $table->float('balance', 17, 6)->nullable();
+            $table->float('allot_add', 17, 6)->nullable();
+            $table->float('allot_deduct', 17, 6)->nullable();
+            $table->float('allot_adjust_balance', 17, 6)->nullable();
+            $table->float('unallot_balance', 17, 6)->nullable();
+            $table->float('obli_ammount', 17, 6)->nullable();
             $table->timestamps();
+
+            $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('program_code_id')->references('program_code')->on('programs')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('project_code_id')->references('project_code')->on('projects')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('activity_code_id')->references('activity_code')->on('activities')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -2,156 +2,153 @@
 
 namespace App\Http\Controllers\Allotment;
 
-use App\Http\Controllers\Controller;
-use App\Models\status;
+use App\Models\Activity;
+use App\Models\Expenses;
 use App\Models\Allotment;
-use App\Models\Project;
 use Illuminate\Http\Request;
-use App\Models\Program;
 use Illuminate\Support\Facades\DB;
-use Throwable;
+use App\Http\Controllers\Controller;
 
 class EnrollAllotmentController extends Controller
-
 {
+    public function filterAllot(Request $request){
+        try{
+            $request->validate([
+                'budyear' => 'required',
+                'fundSource' => 'required',
+                'refdocu' => 'required',
+                'prog_code' => 'required',
+                'proj_code' => 'required',
+                'act_code' => 'required'
+            ]);
+            
+            $data = DB::select('call searchApproForAllot(?,?,?,?,?,?)',array(
+                $request->budyear,
+                $request->fundSource,
+                $request->refdocu,
+                $request->prog_code,
+                $request->proj_code,
+                $request->act_code));
 
+            return response()->json([
+                'status' => true,
+                'message' => 'Successfully fetch',
+                'data' => $data,
+            ]);
+
+        }catch (\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went Wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
 
     public function enrollAllotment(Request $request){
-
         try{
 
-            $request->validate([
+            $getAllotId = Allotment::latest('id')->first();
 
-                'budget_year_id' => 'required',
-                'fund_source' => 'required',
-                'document_source' => 'required',
-                'adjustment_type' => 'required',
-                'appropriation_type' => 'required',
-                'department' =>'required',
-                'document_date' =>'required',
-                'supplemental_budget_no'=>'required',
-                'office_code'=>'required',
-                'program'=>'required',
-                'project'=>'required',
-                'activity'=>'required',
-                'status'=>'required'
+            $allotIdInc = $getAllotId['id'];
 
+            $allotId = "ALLOT_".$allotIdInc;
+
+            // $approId = "test";
+
+            $enrollAllot = Allotment::create([
+                'allot_id' => $allotId,
+                'budget_year_id' => $request->budyear,
+                'fund_source' => $request->fundSource,
+                'appropriation_type'=> $request->appro_type,
+                'document_source' => $request->refdocu,
+                'program_code_id' => $request->prog_code,
+                'project_code_id' => $request->proj_code,
+                'activity_code_id' => $request->act_code
             ]);
 
-            $enrollDetails = new Allotment();
+            $exp = Expenses::where('appro_id', $request->approId)
+                            ->where('account_code', $request->acc_code);
 
-            $enrollDetails->budget_year_id=$request->input('budget_year_id');
-            $enrollDetails->fund_source=$request->input('fund_source');
-            $enrollDetails->document_source=$request->input('document_source');
-            $enrollDetails->adjustment_type=$request->input('adjustment_type');
-            $enrollDetails->appropriation_type=$request->input('appropriation_type');
-            $enrollDetails->department=$request->input('department');
-            $enrollDetails->document_date=$request->input('document_date');
-            $enrollDetails->supplemental_budget_no=$request->input('supplemental_budget_no');
-            $enrollDetails->office_code=$request->input('office_code');
-            $enrollDetails->program=$request->input('program');
-            $enrollDetails->project=$request->input('project');
-            $enrollDetails->activity=$request->input('activity');
-            $enrollDetails->status=$request->input('status');
+            $exp->update([
+                'allot_amount' => $request->allot_amount,
+                'balance' => $request->bal,
+                'allot_id' => $allotId ]);
+                
 
-            $enrollDetails->save();
+            $act = Activity::where('appro_id', $request->approId)
+                            ->where('activity_code', $request->act_code);
+
+            $act->update([
+                    'allot_total' => $request->allot_total,
+                    'balance' => $request->bal]);
 
             return response()->json([
+                'status' => true,
+                'message' => 'Success',
+                'data' => $enrollAllot
+            ]);
 
+        }catch (\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
+
+    // number_format("1000000",2)."<br>";
+    public function addActivity(Request $request){
+         
+        try{
+    
+            // INSERT DATA IN ACTIVITY TABLE
+            $enrollActivity = Activity::create([
+    
+                'appro_id' => $request->approId,
+                'program_code_id' => $request->program_code,
+                'project_code_id' => $request->project_code,
+                'activity' => $request->activity,
+                'activity_code' => $request->activity_code,
+                'activity_description' => $request->activity_description,
+                'appro_total' => $request->appro_total,
+                'allot_total' => $request->allot_total,
+                'balance' => $request->bal
+                
+            ]);
+                
+                // INSERT DATA IN EXPENSES TABLE
+            $enrollExpenses = Expenses::create([
+                
+                'appro_id' => $request->approId,
+                'program_code_id' => $request->program_code,
+                'project_code_id' => $request->project_code,
+                'activity_code_id' => $request->activity_code,
+                'account_code' => $request->account_code,
+                'account_name' => $request->account_name,
+                'appro_amount' => $request->appropriation_amount,
+                'allot_amount' => $request->allot_amount,
+                'balance' => $request->bal,
+                
+            ]);
+    
+            return response()->json([
+    
                 'status' => true,
                 'message' => "Insert data success!",
-                'details' => $enrollDetails,
+                'Activity' => $enrollActivity,
+                'Expenses' => $enrollExpenses,
+    
             ]);
-
+    
         }catch(\Throwable $th){
-
+                
             return response()->json([
-
                 'status' => false,
-                'message' => "Something went wrong!",
+                'message' => "Something Went Wrong!",
                 'error' => $th->getMessage()
-
-            ]);
-        }
-
-    }
-
-    public function updateAllotment(Request $request, $id){
-
-        try
-        {
-            $updateAllot = Allotment::find($id);
-            $updateAllot->budget_year_id=$request->input('budget_year_id');
-            $updateAllot->department=$request->input('department');
-            $updateAllot->fund_source=$request->input('fund_source');
-            $updateAllot->project=$request->input('project');
-            $updateAllot->appropriation_type=$request->input('appropriation_type');
-            $updateAllot->document_date=$request->input('document_date');
-            $updateAllot->document_source=$request->input('document_source');
-            $updateAllot->supplemental_budget_no=$request->input('supplemental_budget_no');
-            $updateAllot->office_code=$request->input('office_code');
-            $updateAllot->program=$request->input('program');
-            $updateAllot->activity=$request->input('activity');
-            $updateAllot->status=$request->input('status');
-            $updateAllot->adjustment_type=$request->input('adjustment_type');
-
-            $updateAllot->save();
-
-            return response()->json([
-                'status'=>true,
-                'message1' => 'Succesfully Update'
-            ]);
-        }
-
-        catch(Throwable $th)
-        {
-            return response()->json([
-
-                'status'=>false,
-                'message'=>'Something went wrong!',
-                'error'=>$th->getMessage()
             ]);
         }
     }
-    public function showList(){
-
-        $allotments = Allotment::all();
-
-        if(isset($allotments)){
-
-            return response()->json([
-
-                'status'=>true,
-                'showAllotment'=>$allotments
-            ]);
-        }
-        else{
-            return response()->json([
-
-                'error'=>'Not Found'
-            ]);
-        }
-
-}
-    public function filterAllotment(){
-
-        try{
-        
-
-            $data = Allotment::join('programs', 'programs.id', '=', 'allotments.program')
-            ->paginate(15);
-
-           
-            return response()->json($data);
-            
-        }catch(Throwable $th){
-            return response()->json([
-
-                'status'=>false,
-                'message'=>'Something went wrong!',
-                'error'=>$th->getMessage()
-            ]);
-        }
-    }
-
 }

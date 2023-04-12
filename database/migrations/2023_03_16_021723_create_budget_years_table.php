@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('budget_years', function (Blueprint $table) {
-            $table->id();
+            $table->id('id')->index();
             $table->integer('year');
             $table->timestamps();
         });

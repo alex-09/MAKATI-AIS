@@ -9,24 +9,21 @@ use Illuminate\Database\Eloquent\Model;
 class Allotment extends Model
 {
     protected $table = 'allotments';
-    
-    protected $fillable = [
 
-        'id',
-        'department',
+    protected $fillable = [
+        'allot_id',
         'budget_year_id',
         'fund_source',
         'appropriation_type',
-        'document_date',
         'document_source',
-        'supplemental_budget_no',
+        'program_code_id',
+        'project_code_id',
+        'activity_code_id',
+        'adjustment_type',
         'office_code',
-        'program',
-        'project',
-        'activity',
+        'document_date',
+        'supplemental_budget_no',
         'status',
-        'adjustment_type'
+
     ];
-
-
 }

@@ -25,6 +25,7 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'role_id' => 1,
                 'password' => Hash::make($input['password'])
             ]);
 
@@ -51,63 +52,19 @@ class AuthController extends Controller
     {
         try{
 
-            $input = $request->validate([
-                'name' => 'required',
+            $request->validate([
+                'email' => 'required',
                 'password' => 'required'
             ]);
 
-            if(Auth::attempt($input)) {
-
-                if(Auth::user()->user_role==1){
-
-                    //ADMIN USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Admin'
-                    ]);
-
-                }elseif(Auth::user()->user_role==2){
-
-                    //APPROVER USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Approver'
-                    ]);     
-
-                }elseif(Auth::user()->user_role==3){
-
-                    //RECEIVER USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Receiver'
-                    ]);
-
-                }elseif(Auth::user()->user_role==4){
-
-                    //ENCODER USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Encoder'
-                    ]);    
-
-                }elseif(Auth::user()->user_role==5){
-
-                    //PROCESSOR USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Processor'
-                    ]);  
-
-                }elseif(Auth::user()->user_role==6){
-
-                    //BOOKKEEPER USER
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome Bookkeeper'
-                    ]);       
-                }
+            $input = $request->only('email', 'password');
+            if(Auth::attempt($input)){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Logged In Successfully',
+                    'data' => Auth::user()
+                ]);
             }
-
             return response()->json([
                 'status' => false,
                 'message' => 'Your have entered a wrong name or password!'
@@ -125,9 +82,14 @@ class AuthController extends Controller
 
     }
 
-    // public function logout(Request $request){
+    public function logout(){
 
-    //     // auth()->user()->tokens()->delete();
+        Auth::logout();
 
-    // }
+        return response()->json([
+            'status' => true,
+            'message' => "logout succesfully"
+        ]);
+
+    }
 }

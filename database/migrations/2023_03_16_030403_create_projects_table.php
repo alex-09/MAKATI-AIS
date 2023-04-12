@@ -13,13 +13,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('budget_year_id')->nullable();
-            $table->unsignedBigInteger('department_code_id')->nullable();
-            $table->unsignedBigInteger('program_code_id')->nullable();
+            $table->id('project_id');
+            $table->string('appro_id');
+            $table->integer('program_code_id');
             $table->string('project');
-            $table->string('project_code');
+            $table->integer('project_code')->index();
             $table->timestamps();
+
+            $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('program_code_id')->references('program_code')->on('programs')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
