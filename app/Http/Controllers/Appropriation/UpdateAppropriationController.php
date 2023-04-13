@@ -4,13 +4,48 @@ namespace App\Http\Controllers\Appropriation;
 
 use App\Models\Activity;
 use App\Models\Expenses;
+use App\Models\BudgetYear;
+use App\Models\Department;
+use App\Models\FundSource;
 use Illuminate\Http\Request;
 use App\Models\Appropriation;
+use App\Models\AppropriationType;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class UpdateAppropriationController extends Controller
 {
+    public function dropdownList(){
+
+        // dd(Hash::make(now()->format('H:i:s')));
+        return response()->json(['dropdownList' => BudgetYear::all(),
+            'approType' => AppropriationType::all(),
+            'fundSource' => FundSource::all(),
+            'department' => Department::all(),
+        ]);
+
+    }
+
+    public function getProgram(Request $request){
+
+        $progList = DB::select('CALL getProgram(?)',array($request->deptCode));
+        return response()->json($progList);
+
+    }
+
+    public function getProject(Request $request){
+
+        $progList = DB::select('CALL getProject(?)',array($request->progCode));
+        return response()->json($progList);
+        
+    }
+
+    public function getActivity(Request $request){
+
+        $progList = DB::select('CALL getActivity(?)',array($request->projCode));
+        return response()->json($progList);
+        
+    }
     // FILTER APPROPRIATION FOR UPDATE
     public function FilterAppropriation(Request $request){
 

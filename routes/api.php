@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\COA\AssetsController;
 use App\Http\Controllers\COA\EquityController;
@@ -27,10 +26,6 @@ use App\Http\Controllers\Appropriation\UpdateAppropriationController;
 |
 */
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-
-});
-
 
 Route::prefix('makati')->group(function() {
     
@@ -39,6 +34,10 @@ Route::prefix('makati')->group(function() {
     Route::post('/login', [AuthController::class, 'login']); 
     
     Route::get('/logout', [AuthController::class, 'logout']); 
+
+});
+
+Route::middleware(['auth'])->group(function () {
 
 });
 
@@ -79,7 +78,7 @@ Route::prefix('coa')->group(function() {
 Route::prefix('appropriation')->group(function () {
 
     //ENROLL
-    Route::get('/yearlist', [EnrollAppropriationController::class, 'YearList']); 
+    Route::get('/index', [EnrollAppropriationController::class, 'dropdownList']); 
 
     Route::get('/approtypes', [EnrollAppropriationController::class, 'ApproTypes']); 
 
@@ -90,6 +89,12 @@ Route::prefix('appropriation')->group(function () {
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
 
     //UPDATE
+    Route::get('/filterProg', [UpdateAppropriationController::class, 'getProgram']);
+
+    Route::get('/filterProj', [UpdateAppropriationController::class, 'getProject']);
+
+    Route::get('/filterAct', [UpdateAppropriationController::class, 'getActivity']);
+
     Route::get('/filter', [UpdateAppropriationController::class, 'FilterAppropriation']);
 
     Route::post('/addActivity', [UpdateAppropriationController::class, 'addActivity']);

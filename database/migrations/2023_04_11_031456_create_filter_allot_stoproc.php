@@ -17,7 +17,7 @@ return new class extends Migration
             IN prog int(5), IN proj int(5), IN act int(5))
 
             BEGIN
-                select allot.office_code, allot.appropriation_type, act.activity_id, act.activity, act.activity_code, exp.account_name, 
+                select allot.department_code_id, allot.approType_id, act.activity_id, act.activity, act.activity_code, exp.account_name, 
                 exp.expenses_id, exp.account_code, exp.appro_amount, exp.allot_amount, exp.balance
 
             FROM allotments AS allot
@@ -27,9 +27,9 @@ return new class extends Migration
                 ON exp.activity_code_id = act.activity_code
 
             WHERE allot.budget_year_id = budyear
-                AND allot.appropriation_type = approtype
+                AND allot.approType_id = approtype
                 AND allot.document_source = sourcedocu
-                AND allot.office_code = office
+                AND allot.department_code_id = office
                 AND allot.program_code_id = prog
                 AND allot.project_code_id = proj
                 AND allot.activity_code_id = act;

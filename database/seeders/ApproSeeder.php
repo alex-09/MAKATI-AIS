@@ -17,10 +17,9 @@ class ApproSeeder extends Seeder
         Appropriation::create([
             'appro_id' => 'test',
             'budget_year_id' => 1,
-            'fund_source' => 1,
+            'fundSource_id' => 1,
             'reference_document' => 'test',
-            'appropriation_type_id' => 1,
-            'department' => 'test',
+            'approType_id' => 1,
             'department_code_id' => 1,
             'status' => null
         ]);

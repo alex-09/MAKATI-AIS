@@ -13,11 +13,10 @@ class Appropriation extends Model
     protected $fillable = [
         'appro_id',
         'budget_year_id',
-        'fund_source',
+        'fundSource_id',
         'reference_document',
         'adjustment_type',
-        'appropriation_type_id',
-        'department',
+        'approType_id',
         'department_code_id',
         'supp_budget_num',
         'date_document',

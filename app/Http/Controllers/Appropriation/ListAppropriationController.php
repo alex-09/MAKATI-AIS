@@ -20,23 +20,4 @@ class ListAppropriationController extends Controller
         ]);
     }
 
-    // public function update(Request $request){
-
-    //     try{
-
-    //         $update = Activity::where('appro_id', $request->approid)
-    //                         ->where('activity_code', $request->act_code);
-
-    //         $update->update([
-    //             'status' => ''
-    //         ]);
-
-    //     }catch(\Throwable $th){
-    //         return response()->json([
-    //             'status' => false,
-    //             'message' => 'Something went Wrong',
-    //             'error' => $th->getMessage()
-    //          ]);
-    //     }
-    // }
 }

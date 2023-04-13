@@ -16,15 +16,17 @@ class EnrollAllotmentController extends Controller
             $request->validate([
                 'budyear' => 'required',
                 'fundSource' => 'required',
+                'dept' => 'required',
                 'refdocu' => 'required',
                 'prog_code' => 'required',
                 'proj_code' => 'required',
                 'act_code' => 'required'
             ]);
             
-            $data = DB::select('call searchApproForAllot(?,?,?,?,?,?)',array(
+            $data = DB::select('call searchApproForAllot(?,?,?,?,?,?,?)',array(
                 $request->budyear,
                 $request->fundSource,
+                $request->dept,
                 $request->refdocu,
                 $request->prog_code,
                 $request->proj_code,
@@ -80,6 +82,7 @@ class EnrollAllotmentController extends Controller
                             ->where('activity_code', $request->act_code);
 
             $act->update([
+                    'allot_id' => $allotId,
                     'allot_total' => $request->allot_total,
                     'balance' => $request->bal]);
 

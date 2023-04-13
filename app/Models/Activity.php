@@ -11,21 +11,30 @@ class Activity extends Model
 
     protected $fillable = [
         'appro_id',
+        'budget_year_id',
+        'department_code_id',
         'program_code_id',
         'project_code_id',
-        'activity',
         'activity_code',
+        'AIPCode',
+        'activity',
         'activity_description',
         'appro_total',
         'appro_total_add',
         'appro_total_deduct',
+        'allot_id',
         'allot_total',
-        'balance',
+        'allot_balance',
         'total_allot_add',
         'total_allot_deduct',
         'total_allot_adjust_balance',
         'total_unallot_balance',
+        'obli_id',
         'total_obli',
+        'total_obli_add',
+        'total_obli_deduct',
+        'total_obli_balance',
+        'status'
 
     ];
 
