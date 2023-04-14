@@ -62,13 +62,14 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => true,
                     'message' => 'Logged In Successfully',
-                    'data' => Auth::user()
+                    'data' => Auth::user(),
+                    'isAdmin' => true
                 ]);
             }
             return response()->json([
                 'status' => false,
                 'message' => 'Your have entered a wrong name or password!'
-            ]);
+            ], 401);
         
         }catch(\Throwable $th){
 
@@ -76,7 +77,7 @@ class AuthController extends Controller
                 'status' => false,
                 'message' => 'Something Went Wrong!',
                 'error' => $th->getMessage()
-            ]);   
+            ], 500);   
 
         }
 
