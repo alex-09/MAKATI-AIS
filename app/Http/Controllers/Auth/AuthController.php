@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Throwable;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Throwable;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -52,24 +54,31 @@ class AuthController extends Controller
     {
         try{
 
-            $request->validate([
-                'email' => 'required',
-                'password' => 'required'
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email',
+                'password' => 'required|string|min:8'
             ]);
 
-            $input = $request->only('email', 'password');
-            if(Auth::attempt($input)){
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Logged In Successfully',
-                    'data' => Auth::user(),
-                    'isAdmin' => true
-                ]);
+            if ($validator->fails()) {
+                return response()->json(
+                    $validator->messages(), 
+                    400);
             }
+            
+            $user = User::where('email', $request->email)->first();
+
+            if (! $user || ! Hash::check($request->password, $user->password)) {
+
+                return response()->json([
+                    'error'=>'The email or password is incorrect, please try again'], 401);
+            }
+
+            $token = $user->createToken(Str::random(40));
+
             return response()->json([
-                'status' => false,
-                'message' => 'Your have entered a wrong name or password!'
-            ], 401);
+                'message' => "Logged In Successfully",
+                'token'=> $token->plainTextToken
+            ], 200);
         
         }catch(\Throwable $th){
 
@@ -83,14 +92,32 @@ class AuthController extends Controller
 
     }
 
-    public function logout(){
+    public function logout(Request $request)
+    {
+        try {
 
-        Auth::logout();
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|exists:users,email'
+            ]);
 
-        return response()->json([
-            'status' => true,
-            'message' => "logout succesfully"
-        ]);
+            if ($validator->fails()) {
+                return response()->json(
+                    $validator->messages(), 
+                    400);
+            }
 
+            $user = User::where('email', $request->email)->first();
+
+            $user->tokens()->delete();
+
+            return response()->json([
+                'success'=>'Logged Out Successfully!'
+            ]);
+
+        } catch ( \Exception $e ) {
+            return response()->json([
+                'error'=>$e->getMessage()
+            ], 500);
+        }
     }
 }

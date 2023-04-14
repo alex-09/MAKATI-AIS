@@ -16,17 +16,19 @@ return new class extends Migration
             $table->id();
             $table->string('appro_id')->index();
             $table->unsignedBigInteger('budget_year_id');
-            $table->integer('fund_source');
-            $table->string('reference_document');
+            $table->integer('department_code_id');
+            $table->unsignedBigInteger('fundSource_id');
             $table->string('adjustment_type')->nullable();
-            $table->unsignedBigInteger('appropriation_type_id');
-            $table->string('department');
-            $table->unsignedBigInteger('department_code_id');
+            $table->unsignedBigInteger('approType_id');
             $table->string('supp_budget_num')->nullable();
             $table->string('date_document')->nullable();
+            $table->string('reference_document');
             $table->string('status')->nullable();
 
             $table->foreign('budget_year_id')->references('id')->on('budget_years')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('approType_id')->references('approType_id')->on('appropriation_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('fundSource_id')->references('fundSource_id')->on('fund_sources')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('department_code_id')->references('department_code')->on('departments')->onUpdate('cascade')->onDelete('cascade');
             
 
             $table->timestamps();

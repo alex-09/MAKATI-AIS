@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AppropriationType extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'appro_type'
+    ];
 }

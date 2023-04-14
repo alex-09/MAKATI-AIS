@@ -12,6 +12,9 @@ class Expenses extends Model
     protected $fillable = [
 
         'appro_id',
+        'budget_year_id',
+        'department_code_id',
+        'AIPCode',
         'program_code_id',
         'project_code_id',
         'activity_code_id',
@@ -20,6 +23,7 @@ class Expenses extends Model
         'appro_amount',
         'appro_add',
         'appro_deduct',
+        'allot_id',
         'allot_amount',
         'balance',
         'allot_add',
@@ -27,6 +31,9 @@ class Expenses extends Model
         'allot_adjust_balance',
         'unallot_balance',
         'obli_ammount',
+        'obli_add',
+        'obli_deduct',
+        'obli_adjust_balance',
     ];
 
     public function activities(){

@@ -14,10 +14,10 @@ return new class extends Migration
     {
         $procedure = " DROP PROCEDURE IF EXISTS `searchApproForAllot`;
         CREATE PROCEDURE `searchApproForAllot`(IN budYear int(2), IN fundSrc int(2), 
-        IN refDocu varchar(50), IN program int(5), 
+        IN dept int(5), IN refDocu varchar(50), IN program int(5), 
         IN project int(5), IN activity int(5))
         BEGIN
-                    SELECT ap.appro_id, ap.reference_document, ap.appropriation_type_id, 
+                    SELECT ap.appro_id, ap.reference_document, ap.approType_id, 
                     prog.program_id, prog.program, prog.program_code, 
                     proj.project_id, proj.project, proj.project_code,
                     act.activity_id, act.activity, act.activity_code, act.activity_description, 
@@ -34,7 +34,7 @@ return new class extends Migration
                     ON act.activity_code = exp.activity_code_id
 
                     WHERE ap.budget_year_id = budYear 
-                    AND ap.fund_source = fundSrc
+                    AND ap.fundSource_id = fundSrc
                     AND ap.reference_document = refDocu
 
                     AND prog.appro_id = ap.appro_id

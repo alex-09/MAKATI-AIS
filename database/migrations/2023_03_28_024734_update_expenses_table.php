@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\BudgetYear;
 
 return new class extends Migration
 {
@@ -12,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appropriation_types', function (Blueprint $table) {
-            $table->id('approType_id');
-            $table->string('appro_type');
-            $table->timestamps();
+        Schema::table('espenses', function (Blueprint $table) {
+            //
         });
     }
 
@@ -24,6 +21,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appropriation_types');
+        Schema::table('expenses', function (Blueprint $table) {
+            
+            $table->bigInteger('allotment_amount')->after('appropriation_amount');
+
+        });
     }
 };

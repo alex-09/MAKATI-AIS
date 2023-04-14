@@ -15,9 +15,12 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id('project_id');
             $table->string('appro_id');
+            $table->integer('budget_year_id');
+            $table->integer('department_code_id');
+            $table->string('AIPCode');
             $table->integer('program_code_id');
-            $table->string('project');
             $table->integer('project_code')->index();
+            $table->string('project');
             $table->timestamps();
 
             $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');

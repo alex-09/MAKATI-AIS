@@ -2,24 +2,27 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Allotment\EnrollAllotmentController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Allotment extends Model
 {
-    use HasFactory;
+    protected $table = 'allotments';
 
     protected $fillable = [
+        'appro_id',
         'allot_id',
         'budget_year_id',
-        'fund_source',
-        'appropriation_type',
+        'fundSource_id',
+        'approType_id',
         'document_source',
         'program_code_id',
         'project_code_id',
         'activity_code_id',
+        'AIPCode',
         'adjustment_type',
-        'office_code',
+        'department_code_id',
         'document_date',
         'supplemental_budget_no',
         'status',

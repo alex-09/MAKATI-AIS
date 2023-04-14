@@ -49,7 +49,7 @@ class UpdateAllotmentController extends Controller
 
             $allot_act = Activity::where('activity_id', $request->activity_id);
             $allot_act->update(['total_allot_add' => $request->total_allot_add,
-                            'appro_total_deduct'=> $request->appro_total_deduct,
+                            'total_allot_deduct'=> $request->appro_total_deduct,
                             'total_allot_adjust_balance' => $request->total_allot_adjust_balance,
                             'total_unallot_balance' => $request->total_unallot_balance]);
 
@@ -59,7 +59,13 @@ class UpdateAllotmentController extends Controller
                                 'allot_adjust_balance' => $request->allot_adjust_balance,
                                 'unallot_balance' => $request->unallot_balance]);
 
+            return response()->json([
+                'status' => true,
+                'message' => "Updated"
+            ]);
+
         }catch (\Throwable $th){
+    
             return response()->json([
                 'status' => false,
                 'message' => 'Something went wrong',

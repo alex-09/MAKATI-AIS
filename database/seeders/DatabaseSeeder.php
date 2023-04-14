@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Department;
+use App\Models\FundSource;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,12 +17,16 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             
+            ApproTypesSeeder::class,
+            FundSourceSeeder::class,
+            DeptSeeder::class,
             user_roles::class,
             ReceiveCommunicationType::class,
             ReceiveCommunicationAssign::class,
             BudgetYearSeeder::class,
             UserSeed::class,
-            ApproSeeder::class
+            ApproSeeder::class,
+            // AllotSeeder::class,
 
         ]);
 
