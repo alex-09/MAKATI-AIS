@@ -11,7 +11,10 @@ class Project extends Model
 
     protected $fillable = [
         'appro_id',
+        'budget_year_id',
+        'department_code_id',
         'program_code_id',
+        'AIPCode',
         'project',
         'project_code',
         ];

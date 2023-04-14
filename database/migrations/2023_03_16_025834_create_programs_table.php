@@ -14,12 +14,16 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id('program_id');
-            $table->string('appro_id');
-            $table->string('program');
+            $table->string('appro_id')->index();
+            $table->integer('budget_year_id');
+            $table->integer('department_code_id');
+            $table->string('AIPCode');
             $table->integer('program_code')->index();
+            $table->string('program');
             $table->timestamps();
 
             $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('department_code_id')->references('department_code')->on('departments')->onUpdate('cascade');
         });
     }
 

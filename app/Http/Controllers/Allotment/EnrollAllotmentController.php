@@ -84,6 +84,7 @@ class EnrollAllotmentController extends Controller
                             ->where('activity_code', $request->act_code);
 
             $act->update([
+                    'allot_id' => $allotId,
                     'allot_total' => $request->allot_total,
                     'balance' => $request->bal]);
 

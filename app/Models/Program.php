@@ -11,6 +11,9 @@ class Program extends Model
 
     protected $fillable = [
         'appro_id',
+        'budget_year_id',
+        'department_code_id',
+        'AIPCode',
         'program',
         'program_code',
     ];
