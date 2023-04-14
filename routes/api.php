@@ -48,6 +48,7 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollAssets', [AssetsController::class, 'enrollAssets']); 
     Route::post('/updateAssetStatus/{id}', [AssetsController::class, 'UpdateAssetStatus']); 
     Route::post('/addAssetDescription/{id}', [AssetsController::class, 'AddAssetDescription']); 
+    Route::get('/getIdvalue/{id}', [AssetsController::class, 'getIdvalue']); 
 
     //ROUTES FOR EQUITY
     Route::get('/showEquity', [EquityController::class, 'showEquity']); 
