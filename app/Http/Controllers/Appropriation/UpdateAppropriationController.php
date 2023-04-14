@@ -93,7 +93,6 @@ class UpdateAppropriationController extends Controller
     }
 
     // number_format("1000000",2)."<br>";
-
     public function addActivity(Request $request){
          
         try{

@@ -33,7 +33,7 @@ Route::prefix('makati')->group(function() {
 
     Route::post('/login', [AuthController::class, 'login']); 
     
-    Route::get('/logout', [AuthController::class, 'logout']); 
+    Route::post('/logout', [AuthController::class, 'logout']); 
 
 });
 
