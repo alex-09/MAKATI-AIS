@@ -48,31 +48,40 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollAssets', [AssetsController::class, 'enrollAssets']); 
     Route::post('/updateAssetStatus/{id}', [AssetsController::class, 'UpdateAssetStatus']); 
     Route::post('/addAssetDescription/{id}', [AssetsController::class, 'AddAssetDescription']); 
-    Route::get('/getIdvalue/{id}', [AssetsController::class, 'getIdvalue']); 
+    Route::post('/approveAssetAccount/{id}', [AssetsController::class, 'approveAccount']); 
+    Route::post('/disApproveAssetAccount/{id}', [AssetsController::class, 'disApproveAccount']); 
 
     //ROUTES FOR EQUITY
     Route::get('/showEquity', [EquityController::class, 'showEquity']); 
     Route::post('/enrollEquity', [EquityController::class, 'enrollEquity']); 
     Route::post('/updateEquityStatus/{id}', [EquityController::class, 'UpdateEquityStatus']); 
     Route::post('/addEquityDescription/{id}', [EquityController::class, 'AddEquityDescription']);
+    Route::post('/approveEquityAccount/{id}', [EquityController::class, 'approveAccount']); 
+    Route::post('/disApproveEquityAccount/{id}', [EquityController::class, 'disApproveAccount']); 
 
     //ROUTES FOR EXPENSES
     Route::get('/showExpenses', [ExpensesController::class, 'showExpenses']);
     Route::post('/enrollExpenses', [ExpensesController::class, 'enrollExpenses']);  
     Route::post('/updateExpensesStatus/{id}', [ExpensesController::class, 'UpdateExpensesStatus']); 
     Route::post('/addExpensesDescription/{id}', [ExpensesControllers::class, 'AddExpensesDescription']);
+    Route::post('/approveExpensesAccount/{id}', [ExpensesControllers::class, 'approveAccount']); 
+    Route::post('/disApproveExpensesAccount/{id}', [ExpensesControllers::class, 'disApproveAccount']); 
 
     //ROUTES FOR INCOME
     Route::get('/showIncome', [IncomeController::class, 'showIncome']); 
     Route::post('/enrollIncome', [IncomeController::class, 'enrollIncome']); 
     Route::post('/updateIncomeStatus/{id}', [IncomeController::class, 'UpdateIncomeStatus']);
     Route::post('/addIncomeDescription/{id}', [IncomeControllers::class, 'AddIncomeDescription']);
+    Route::post('/approveIncomeAccount/{id}', [IncomeControllers::class, 'approveAccount']); 
+    Route::post('/disApproveIncomeAccount/{id}', [IncomeControllers::class, 'disApproveAccount']); 
 
     //ROUTES FOR LIABILITIES
     Route::get('/showLiabilities', [LiabilitiesController::class, 'showLiabilities']); 
     Route::post('/enrollLiabilities', [LiabilitiesController::class, 'enrollLiabilities']); 
     Route::post('/updateLiabilitiesStatus/{id}', [LiabilitiesController::class, 'UpdateLiabilitiesStatus']);
     Route::post('/addLiabilitiesDescription/{id}', [LiabilitiesController::class, 'AddLiabilitiestion']);
+    Route::post('/approveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'approveAccount']); 
+    Route::post('/disApproveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'disApproveAccount']); 
 
 });
 

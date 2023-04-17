@@ -9,7 +9,7 @@ use App\Models\Expenses;
 use App\Models\Appropriation;
 use App\Http\Requests\EnrollApproRequest;
 
-class ApproService 
+class EnrollApproService 
 {
     public function EnrollAppro(EnrollApproRequest $request){
 
