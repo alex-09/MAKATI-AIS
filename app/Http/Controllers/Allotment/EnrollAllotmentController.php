@@ -21,6 +21,7 @@ class EnrollAllotmentController extends Controller
                 'prog_code' => 'required',
                 'proj_code' => 'required',
                 'act_code' => 'required'
+                
             ]);
             
             $data = DB::select('call searchApproForAllot(?,?,?,?,?,?,?)',array(
@@ -30,7 +31,8 @@ class EnrollAllotmentController extends Controller
                 $request->refdocu,
                 $request->prog_code,
                 $request->proj_code,
-                $request->act_code));
+                $request->act_code
+            ));
 
             return response()->json([
                 'status' => true,

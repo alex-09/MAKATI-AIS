@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Allotment\EnrollAllotmentController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Allotment extends Model
 {
-    use HasFactory;
+    protected $table = 'allotments';
 
     protected $fillable = [
         'appro_id',

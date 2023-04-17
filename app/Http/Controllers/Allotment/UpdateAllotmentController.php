@@ -59,7 +59,13 @@ class UpdateAllotmentController extends Controller
                                 'allot_adjust_balance' => $request->allot_adjust_balance,
                                 'unallot_balance' => $request->unallot_balance]);
 
+            return response()->json([
+                'status' => true,
+                'message' => "Updated"
+            ]);
+
         }catch (\Throwable $th){
+    
             return response()->json([
                 'status' => false,
                 'message' => 'Something went wrong',
