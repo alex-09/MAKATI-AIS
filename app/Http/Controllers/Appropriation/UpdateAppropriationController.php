@@ -12,6 +12,7 @@ use App\Models\Appropriation;
 use App\Models\AppropriationType;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateApproRequest;
 
 class UpdateAppropriationController extends Controller
 {
@@ -61,28 +62,17 @@ class UpdateAppropriationController extends Controller
                     'act_code' => 'required'
                 ]);
                 
-                $data = DB::select('call searchAppro(?,?,?,?,?,?,?)',array(
-                    $request->budyear,
-                    $request->fundSource,
-                    $request->dept_code,
-                    $request->refdocu,
-                    $request->prog_code,
-                    $request->proj_code,
-                    $request->act_code));
+                $data = DB::select('call searchAppro(?,?,?,?,?,?,?)',array($request->all()));
     
                 return response()->json([
-    
                     'status' => true,
                     'message' => 'Successfully fetch',
                     'data' => $data,
-    
-    
                 ]);
     
             } catch(\Throwable $th){
     
                 return response()->json([
-    
                     'status' => false,
                     'message' => "Something went wrong!",
                     'error' => $th->getMessage()
@@ -93,7 +83,7 @@ class UpdateAppropriationController extends Controller
     }
 
     // number_format("1000000",2)."<br>";
-    public function addActivity(Request $request){
+    public function addActivity(UpdateApproRequest $request, ){
          
         try{
 

@@ -7,7 +7,7 @@ use App\Models\Department;
 use App\Models\FundSource;
 use Illuminate\Http\Request;
 use App\Models\Appropriation;
-use App\Services\ApproService;
+use App\Services\EnrollApproService;
 use App\Models\AppropriationType;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +28,7 @@ class EnrollAppropriationController extends Controller
     }
 
 
-    public function EnrollAppro(EnrollApproRequest $request, ApproService $services){
+    public function EnrollAppro(EnrollApproRequest $request, EnrollApproService $services){
         try{
 
             $services->EnrollAppro($request);
@@ -43,7 +43,7 @@ class EnrollAppropriationController extends Controller
     }
 
 
-    public function addProgram(EnrollApproRequest $request, ApproService $services){
+    public function addProgram(EnrollApproRequest $request, EnrollApproService $services){
 
         try{
 
@@ -85,7 +85,6 @@ class EnrollAppropriationController extends Controller
 
         ], 500);
     }
-
     
 }
 
