@@ -16,7 +16,8 @@ return new class extends Migration
             CREATE PROCEDURE `coa_liabilities` ()
             BEGIN
             SELECT * FROM coa_liabilities
-            WHERE status != 'pending';
+            WHERE status != 'pending'
+            order by  account_code ASC;
             END;";
 
             DB::unprepared($procedure);

@@ -6,6 +6,7 @@ use App\Http\Controllers\COA\AssetsController;
 use App\Http\Controllers\COA\EquityController;
 use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
+use App\Http\Controllers\COA\SelectDateController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\Allotment\ListAllotmentController;
 use App\Http\Controllers\Allotment\EnrollAllotmentController;
@@ -42,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::prefix('coa')->group(function() {
+
+    Route::get('/index', [SelectDateController::class, 'coaDates']); 
     
     //ROUTES FOR ASSETS
     Route::get('/showAssets', [AssetsController::class, 'showAssets']); 
