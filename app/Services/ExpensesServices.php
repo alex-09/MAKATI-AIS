@@ -14,7 +14,7 @@ class ExpensesServices
 
         $pending = COAExpenses::where('status', 'pending')->get();
 
-        $yearslist = DB::select('CALL coa_assets()');
+        $yearslist = DB::select('CALL coa_expenses()');
         return response()->json([
 
             'status' => True,
@@ -24,7 +24,7 @@ class ExpensesServices
         ]);
     }
 
-    public function enrollEquity(COARequest $request){
+    public function enrollExpenses(COARequest $request){
             
         COAExpenses::create([
             'date_effectivity' => Carbon::now(),
@@ -42,7 +42,7 @@ class ExpensesServices
 
     public function updateStatus($id){
 
-        $status = COAExpenses::find($id)->first();
+        $status = COAExpenses::find($id);
 
         if($status['status'] == 'enable'){
             $status->update([
@@ -67,7 +67,7 @@ class ExpensesServices
 
     public function updateDesc(Request $request, $id){
 
-        $assetDescrip = COAExpenses::find($id)->first();
+        $assetDescrip = COAExpenses::find($id);
         $assetDescrip->update([
             
             'description' => $request->description

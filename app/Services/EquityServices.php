@@ -14,11 +14,11 @@ class EquityServices
 
         $pending = COAEquity::where('status', 'pending')->get();
 
-        $yearslist = DB::select('CALL coa_assets()');
+        $yearslist = DB::select('CALL coa_equity()');
         return response()->json([
 
             'status' => True,
-            'message' => 'Assets Display Successfully',
+            'message' => 'Equity Display Successfully',
             'list' => $yearslist,
             'pending' => $pending
         ]);
@@ -42,7 +42,7 @@ class EquityServices
 
     public function updateStatus($id){
 
-        $status = COAEquity::find($id)->first();
+        $status = COAEquity::find($id);
 
         if($status['status'] == 'enable'){
             $status->update([

@@ -14,7 +14,7 @@ class LiabilitiesServices
 
         $pending = COALiabilities::where('status', 'pending')->get();
 
-        $yearslist = DB::select('CALL coa_assets()');
+        $yearslist = DB::select('CALL coa_liabilities()');
         return response()->json([
 
             'status' => True,
@@ -24,7 +24,7 @@ class LiabilitiesServices
         ]);
     }
 
-    public function enrollEquity(COARequest $request){
+    public function enrollLiabilities(COARequest $request){
             
         COALiabilities::create([
             'date_effectivity' => Carbon::now(),
@@ -67,7 +67,7 @@ class LiabilitiesServices
 
     public function updateDesc(Request $request, $id){
 
-        $assetDescrip = COALiabilities::find($id)->first();
+        $assetDescrip = COALiabilities::find($id);
         $assetDescrip->update([
             
             'description' => $request->description

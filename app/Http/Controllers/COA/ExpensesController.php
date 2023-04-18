@@ -16,7 +16,7 @@ class ExpensesController extends Controller
     //ENROLL NEW EXPENSES
     public function EnrollExpenses(COARequest $request, ExpensesServices $services){
         try{
-            return $services->enrollEquity($request);
+            return $services->enrollExpenses($request);
         }catch (\Throwable $th){
             return $services->error($th);
         }

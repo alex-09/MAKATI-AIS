@@ -14,7 +14,7 @@ class IncomeServices
 
         $pending = COAIncome::where('status', 'pending')->get();
 
-        $yearslist = DB::select('CALL coa_assets()');
+        $yearslist = DB::select('CALL coa_income()');
         return response()->json([
 
             'status' => True,
@@ -24,7 +24,7 @@ class IncomeServices
         ]);
     }
 
-    public function enrollEquity(COARequest $request){
+    public function enrollIncome(COARequest $request){
             
         COAIncome::create([
             'date_effectivity' => Carbon::now(),
@@ -42,7 +42,7 @@ class IncomeServices
 
     public function updateStatus($id){
 
-        $status = COAIncome::find($id)->first();
+        $status = COAIncome::find($id);
 
         if($status['status'] == 'enable'){
             $status->update([
@@ -67,7 +67,7 @@ class IncomeServices
 
     public function updateDesc(Request $request, $id){
 
-        $assetDescrip = COAIncome::find($id)->first();
+        $assetDescrip = COAIncome::find($id);
         $assetDescrip->update([
             
             'description' => $request->description

@@ -56,15 +56,4 @@ class AssetsController extends Controller
         }
     }
 
-    public function getIdvalue($id){
-
-        $coaspi = COAAssets::find($id)->first();
-
-        return response()->json([
-            'status' => true, 
-            'data' => $coaspi
-        ]);
-
-    }
-    
 }
