@@ -6,14 +6,13 @@ use App\Models\COAAssets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\COARequest;
-use App\Models\COAEquity;
 use Illuminate\Support\Facades\DB;
 
 class AssetsServices 
 {
     public function show(){
 
-        $pending = COAEquity::where('status', 'pending')->get();
+        $pending = COAAssets::where('status', 'pending')->get();
 
         $yearslist = DB::select('CALL coa_assets()');
         return response()->json([
@@ -33,7 +32,6 @@ class AssetsServices
         ] +
             $request->validated(),
         );
-
         return response()->json([
             'status' => true,
             'message' => 'Account Enrolled Successfully',
@@ -70,7 +68,6 @@ class AssetsServices
 
         $assetDescrip = COAAssets::find($id)->first();
         $assetDescrip->update([
-            
             'description' => $request->description
         ]);
 
@@ -85,7 +82,6 @@ class AssetsServices
         $app->update([
             'status' => 'enable'
         ]);
-
         return response()->json([
             'status' => true,
             'message' => 'Approved Account',
