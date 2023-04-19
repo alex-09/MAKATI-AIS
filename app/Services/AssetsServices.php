@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\COAAssets;
 use Illuminate\Http\Request;
+
 use App\Http\Requests\COARequest;
 use Illuminate\Support\Facades\DB;
 
@@ -45,7 +46,7 @@ class AssetsServices
 
     public function updateStatus($id){
 
-        $status = COAAssets::find($id)->first();
+        $status = COAAssets::find($id);
 
         if($status['status'] == 'enable'){
             $status->update([
@@ -69,7 +70,7 @@ class AssetsServices
 
     public function updateDesc(Request $request, $id){
 
-        $assetDescrip = COAAssets::find($id)->first();
+        $assetDescrip = COAAssets::find($id);
         $assetDescrip->update([
             'description' => $request->description
         ]);

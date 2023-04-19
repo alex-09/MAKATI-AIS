@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\AssetsServices;
 use App\Http\Requests\COARequest;
 use App\Http\Controllers\Controller;
+use App\Models\COAAssets;
 
 class AssetsController extends Controller
 {
