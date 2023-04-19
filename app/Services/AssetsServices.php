@@ -4,30 +4,34 @@ namespace App\Services;
 
 use App\Models\COAAssets;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use App\Http\Requests\COARequest;
 use Illuminate\Support\Facades\DB;
 
 class AssetsServices 
 {
-    public function show(){
+    public function show($request){
 
-        $pending = COAAssets::where('status', 'pending')->get();
+        if ($request->search != NULL){
 
-        $yearslist = DB::select('CALL coa_assets()');
+            $search = $request->search;
+            $list = COAAssets::where(function ($q) use ($search) {
+                $q->orWhere('account_title', 'like', "%{$search}%")
+                  ->orWhere('account_code', 'like', "%{$search}%");
+            })->get();
+
+        } else {
+            $list = DB::select('CALL get_CurrYear()');
+        }
+
         return response()->json([
-
             'status' => True,
-            'message' => 'Assets Display Successfully',
-            'list' => $yearslist,
-            'pending' => $pending
+            'list' => $list,
         ]);
     }
 
     public function enrollAssets(COARequest $request){
             
         COAAssets::create([
-            'date_effectivity' => Carbon::now(),
             'status' => 'pending'
         ] +
             $request->validated(),
@@ -50,7 +54,6 @@ class AssetsServices
             return response()->json([
                 'status' => true,
                 'message' => 'Account disabled successfully',
-                'data' => 'disable'
             ]);
         }else{
             $status->update([
@@ -59,7 +62,7 @@ class AssetsServices
             return response()->json([
                 'status' => true,
                 'message' => 'Account Enabled successfully',
-                'data' => 'enable'
+
             ]);
         }
     }

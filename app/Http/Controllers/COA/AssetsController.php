@@ -10,8 +10,8 @@ use App\Http\Controllers\Controller;
 class AssetsController extends Controller
 {
     //DISPLAY ASSETS
-    public function showAssets(AssetsServices $services){
-        return $services->show();
+    public function showAssets(Request $request, AssetsServices $services){
+        return $services->show($request);
     }
 
     //ENROLL NEW ASSETS
