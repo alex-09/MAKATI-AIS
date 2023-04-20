@@ -6,6 +6,7 @@ use App\Http\Controllers\COA\AssetsController;
 use App\Http\Controllers\COA\EquityController;
 use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
+use App\Http\Controllers\COA\Import\AssetImport;
 use App\Http\Controllers\COA\SelectDateController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\Allotment\ListAllotmentController;
@@ -55,6 +56,7 @@ Route::prefix('coa')->group(function() {
     Route::post('/addAssetDescription/{id}', [AssetsController::class, 'AddAssetDescription']); 
     Route::post('/approveAssetAccount/{id}', [AssetsController::class, 'approveAccount']); 
     Route::post('/disApproveAssetAccount/{id}', [AssetsController::class, 'disApproveAccount']); 
+    Route::post('/import', [AssetImport::class, 'import']); 
 
     //ROUTES FOR EQUITY
     Route::get('/showEquity', [EquityController::class, 'showEquity']); 
