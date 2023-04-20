@@ -23,7 +23,7 @@ return new class extends Migration
                     ON prog.program_code = act.program_code_id AND prog.appro_id = act.appro_id
                     INNER JOIN projects as proj
                     ON proj.project_code = act.project_code_id AND proj.appro_id = act.appro_id
-                    GROUP BY act.activity_id
+                    GROUP BY act.activity_id;
             
             END;";
             
