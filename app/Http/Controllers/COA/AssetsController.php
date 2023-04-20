@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Services\AssetsServices;
 use App\Http\Requests\COARequest;
 use App\Http\Controllers\Controller;
+use App\Models\COAAssets;
 
 class AssetsController extends Controller
 {
     //DISPLAY ASSETS
-    public function showAssets(AssetsServices $services){
-        return $services->show();
+    public function showAssets(Request $request, AssetsServices $services){
+        return $services->show($request);
     }
 
     //ENROLL NEW ASSETS

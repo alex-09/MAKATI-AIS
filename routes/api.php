@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('coa')->group(function() {
 
     Route::get('/index', [SelectDateController::class, 'coaDates']); 
+
+    Route::get('/previousAccounts', [SelectDateController::class, 'prevAccount']); 
     
     //ROUTES FOR ASSETS
     Route::get('/showAssets', [AssetsController::class, 'showAssets']); 
