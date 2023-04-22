@@ -31,6 +31,8 @@ class AssetsServices
     }
 
     public function enrollAssets(COARequest $request){
+
+        try{
             
         COAAssets::create([
             'status' => 'pending'
@@ -41,6 +43,9 @@ class AssetsServices
             'status' => true,
             'message' => 'Account Enrolled Successfully',
         ]);
+    }catch(\Throwable $th){
+        return $this->error($th);
+    }
 
     }
 
@@ -103,7 +108,7 @@ class AssetsServices
 
     public function error($th){
         return response()->json([ 
-            'status' => true,
+            'status' => false,
             'message' => 'something went wrong',
             'error' => $th->getMessage()
         ]);
