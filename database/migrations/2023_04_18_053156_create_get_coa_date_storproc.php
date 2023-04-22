@@ -15,7 +15,7 @@ return new class extends Migration
         $procedure = " DROP PROCEDURE IF EXISTS `get_selectDate`;
         CREATE PROCEDURE `get_selectDate` (IN slctdate VARCHAR(15))
         BEGIN
-            select id, account_title, account_code, date_effectivity, status
+            select *
             from coa_assets AS coa
             where coa.date_effectivity = slctdate
             order by  account_code ASC;
