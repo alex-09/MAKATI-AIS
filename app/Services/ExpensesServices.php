@@ -10,17 +10,23 @@ use Illuminate\Support\Facades\DB;
 
 class ExpensesServices 
 {
-    public function show(){
+    public function show(Request $request){
 
-        $pending = COAExpenses::where('status', 'pending')->get();
+        if ($request->search != NULL){
 
-        $yearslist = DB::select('CALL coa_expenses()');
+            $search = $request->search;
+            $list = COAExpenses::where(function ($q) use ($search) {
+                $q->orWhere('account_title', 'like', "%{$search}%")
+                  ->orWhere('account_code', 'like', "%{$search}%");
+            })->get();
+
+        } else {
+            $list = DB::select('CALL get_expensesCurrYear()');
+        }
+
         return response()->json([
-
             'status' => True,
-            'message' => 'Assets Display Successfully',
-            'list' => $yearslist,
-            'pending' => $pending
+            'list' => $list,
         ]);
     }
 

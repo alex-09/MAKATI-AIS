@@ -10,8 +10,8 @@ use App\Services\LiabilitiesServices;
 class LiabilitiesController extends Controller
 {
     //DISPLAY LIABILITIES
-    public function showLiabilities(LiabilitiesServices $services){
-        return $services->show();
+    public function showLiabilities(Request $request, LiabilitiesServices $services){
+        return $services->show($request);
     }
 
     //ENROLL NEW LIABILITIES

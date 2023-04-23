@@ -10,8 +10,8 @@ use App\Http\Controllers\Controller;
 class IncomeController extends Controller
 {
     //DISPLAY INCOME
-    public function showIncome(IncomeServices $services){
-        return $services->show();
+    public function showIncome(Request $request, IncomeServices $services){
+        return $services->show($request);
     }
 
     //ENROLL NEW INCOME

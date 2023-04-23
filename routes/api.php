@@ -10,9 +10,13 @@ use App\Http\Controllers\COA\Import\AssetImport;
 use App\Http\Controllers\COA\SelectDateController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\Allotment\ListAllotmentController;
+use App\Http\Controllers\COA\Import\EquityImportController;
+use App\Http\Controllers\COA\Import\IncomeImportController;
 use App\Http\Controllers\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\Allotment\UpdateAllotmentController;
+use App\Http\Controllers\COA\Import\ExpensesImportController;
 use App\Http\Controllers\Communication\CommunicationController;
+use App\Http\Controllers\COA\Import\LiabilitiesImportController;
 use App\Http\Controllers\Appropriation\ListAppropriationController;
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\Appropriation\UpdateAppropriationController;
@@ -46,7 +50,6 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('coa')->group(function() {
 
     Route::get('/index', [SelectDateController::class, 'coaDates']); 
-
     Route::get('/previousAccounts', [SelectDateController::class, 'prevAccount']); 
     
     //ROUTES FOR ASSETS
@@ -56,7 +59,6 @@ Route::prefix('coa')->group(function() {
     Route::post('/addAssetDescription/{id}', [AssetsController::class, 'AddAssetDescription']); 
     Route::post('/approveAssetAccount/{id}', [AssetsController::class, 'approveAccount']); 
     Route::post('/disApproveAssetAccount/{id}', [AssetsController::class, 'disApproveAccount']); 
-    Route::post('/import', [AssetImport::class, 'import']); 
 
     //ROUTES FOR EQUITY
     Route::get('/showEquity', [EquityController::class, 'showEquity']); 
@@ -90,32 +92,30 @@ Route::prefix('coa')->group(function() {
     Route::post('/approveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'approveAccount']); 
     Route::post('/disApproveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'disApproveAccount']); 
 
+    //IMPORT ACCOUNTS   
+    Route::post('/importAsset', [AssetImportController::class, 'import']); 
+    Route::post('/importLiability', [LiabilitiesImportController::class, 'import']); 
+    Route::post('/importEquity', [EquityImportController::class, 'import']); 
+    Route::post('/importExpenses', [ExpensesImportController::class, 'import']); 
+    Route::post('/importIncome', [IncomeImportController::class, 'import']); 
+
 });
 
 Route::prefix('appropriation')->group(function () {
 
     //ENROLL
     Route::get('/index', [EnrollAppropriationController::class, 'dropdownList']); 
-
     Route::get('/approtypes', [EnrollAppropriationController::class, 'ApproTypes']); 
-
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
-
     Route::post('/addProgram', [EnrollAppropriationController::class, 'addProgram']); 
-
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
 
     //UPDATE
     Route::get('/filterProg', [UpdateAppropriationController::class, 'getProgram']);
-
     Route::get('/filterProj', [UpdateAppropriationController::class, 'getProject']);
-
     Route::get('/filterAct', [UpdateAppropriationController::class, 'getActivity']);
-
     Route::get('/filter', [UpdateAppropriationController::class, 'FilterAppropriation']);
-
     Route::post('/addActivity', [UpdateAppropriationController::class, 'addActivity']);
-
     Route::post('/updateAppro', [UpdateAppropriationController::class, 'updateAppro']);
 
     //LIST 
@@ -127,12 +127,10 @@ Route::prefix('allotment')->group(function () {
 
     //ENROLL
     Route::get('/filter', [EnrollAllotmentController::class, 'filterAllot']);
-
     Route::post('/enroll', [EnrollAllotmentController::class, 'enrollAllotment']);
 
     //UPDATE
     Route::get('/filterAllot', [UpdateAllotmentController::class, 'filter']);
-
     Route::get('/updateAllot', [UpdateAllotmentController::class, 'update']);
 
     //LIST
@@ -144,21 +142,13 @@ Route::prefix('allotment')->group(function () {
 Route::prefix('ReceiveCommunication')->group(function () {
 
     Route::post('/insert', [CommunicationController::class, 'receive_comms']); 
-
     Route::get('/showRecComm', [CommunicationController::class, 'showRecComm']); 
-
     Route::get('/filterBearer', [CommunicationController::class, 'filterBearer']);
-
     Route::post('/update/{id}', [CommunicationController::class, 'updateComm']); 
-
     Route::get('/search', [CommunicationController::class, 'searchComm']); 
-
     Route::post('/actionHistory/{id}', [CommunicationController::class, 'createActionHistory']); 
-
     Route::get('/frs', [CommunicationController::class, 'commFrs']); 
-
     Route::get('/aics', [CommunicationController::class, 'commAics']);
-
     Route::get('/viewPdf', [CommunicationController::class, 'viewPdf']);
 
 });

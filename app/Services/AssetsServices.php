@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\COAAssets;
 use Illuminate\Http\Request;
-
 use App\Http\Requests\COARequest;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +20,7 @@ class AssetsServices
             })->get();
 
         } else {
-            $list = DB::select('CALL get_CurrYear()');
+            $list = DB::select('CALL get_assetCurrYear()');
         }
 
         return response()->json([

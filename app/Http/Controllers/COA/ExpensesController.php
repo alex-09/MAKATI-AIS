@@ -10,8 +10,8 @@ use App\Http\Controllers\Controller;
 class ExpensesController extends Controller
 {
     //DISPLAY EXPENSES
-    public function showExpenses(ExpensesServices $services){
-        return $services->show();
+    public function showExpenses(Request $request, ExpensesServices $services){
+        return $services->show($request);
     }
     //ENROLL NEW EXPENSES
     public function EnrollExpenses(COARequest $request, ExpensesServices $services){
