@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `getActivity`;
+        $procedure = "DROP PROCEDURE IF EXISTS `getActivity`;
         CREATE PROCEDURE `getActivity`(IN projCode int(5))
         BEGIN
             select act.activity, act.activity_code

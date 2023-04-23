@@ -2,11 +2,11 @@
 
 namespace App\Imports\COA;
 
-use App\Models\COALiabilities;
+use App\Models\COAAssets;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class LiabilitiesCollection implements ToModel, WithHeadingRow
+class AssetsImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,7 +15,7 @@ class LiabilitiesCollection implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return new COALiabilities([
+        return new COAAssets([
             'account_group' => $row['account_group'],
             'major_account_group' => $row['major_account_group'],
             'sub_major_account_group' => $row['sub_major_account_group'],
@@ -26,7 +26,7 @@ class LiabilitiesCollection implements ToModel, WithHeadingRow
             'account_title' => $row['account_title'],
             'description' => $row['description'],
             'status' => $row['status'],
-            'date_effectivity' => $row['date_effectivity'],
+            'date_effectivity' => date('Y-m-d', strtotime($row['date_effectivity'])),
         ]);
     }
 }

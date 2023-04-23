@@ -12,12 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `get_assetCurrYear`;
-        CREATE PROCEDURE `get_assetCurrYear`()
+        $procedure = " DROP PROCEDURE IF EXISTS `get_liabilityCurrYear`;
+        CREATE PROCEDURE `get_liabilityCurrYear`()
         BEGIN
             select *
-            from coa_assets
-            where date_effectivity = ( select max(date_effectivity) from coa_assets );
+            from coa_liabilities
+            where date_effectivity = ( select max(date_effectivity) from coa_liabilities );
         END
         ";
         
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('get_assetCurrYear');
+        Schema::dropIfExists('get_liabilityCurrYear');
     }
 };

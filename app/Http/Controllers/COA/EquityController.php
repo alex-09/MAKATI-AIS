@@ -10,8 +10,8 @@ use App\Services\EquityServices;
 class EquityController extends Controller
 {
     //DISPLAY EQUITY
-    public function showEquity(EquityServices $services){
-        return $services->show();
+    public function showEquity(Request $request, EquityServices $services){
+        return $services->show($request);
     }
 
     //ENROLL NEW EQUITY
