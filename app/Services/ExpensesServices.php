@@ -22,11 +22,13 @@ class ExpensesServices
 
         } else {
             $list = DB::select('CALL get_expensesCurrYear()');
+            $date = DB::select('CALL get_expensesSetYear()');
         }
 
         return response()->json([
             'status' => True,
             'list' => $list,
+            'date' => $date
         ]);
     }
 

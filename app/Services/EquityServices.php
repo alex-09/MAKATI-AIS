@@ -22,11 +22,13 @@ class EquityServices
 
         } else {
             $list = DB::select('CALL get_equityCurrYear()');
+            $date = DB::select('CALL get_equitySetYear()');
         }
 
         return response()->json([
             'status' => True,
             'list' => $list,
+            'date' => $date
         ]);
     }
 

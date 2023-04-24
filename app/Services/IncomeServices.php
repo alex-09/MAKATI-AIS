@@ -22,11 +22,13 @@ class IncomeServices
 
         } else {
             $list = DB::select('CALL get_incomeCurrYear()');
+            $date = DB::select('CALL get_incomeSetYear()');
         }
 
         return response()->json([
             'status' => True,
             'list' => $list,
+            'date' => $date
         ]);
     }
 

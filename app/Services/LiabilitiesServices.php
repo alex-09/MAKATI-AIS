@@ -21,11 +21,13 @@ class LiabilitiesServices
 
         } else {
             $list = DB::select('CALL get_liabilityCurrYear()');
+            $date = DB::select('CALL get_liabilitySetYear()');
         }
 
         return response()->json([
             'status' => True,
             'list' => $list,
+            'date' => $date
         ]);
     }
 
