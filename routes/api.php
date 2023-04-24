@@ -15,6 +15,9 @@ use App\Http\Controllers\Communication\CommunicationController;
 use App\Http\Controllers\Appropriation\ListAppropriationController;
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\Appropriation\UpdateAppropriationController;
+use App\Http\Controllers\TrustFunds\LGUCounterPartController;
+use App\Http\Controllers\TrustFunds\UnexpendedController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -158,5 +161,13 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/aics', [CommunicationController::class, 'commAics']);
 
     Route::get('/viewPdf', [CommunicationController::class, 'viewPdf']);
+
+});
+
+Route::prefix('trustfunds')->group(function () {
+
+    Route::post('/unexpended', [UnexpendedController::class, 'insertData']); 
+    Route::post('/counterpart', [LGUCounterPartController::class, 'insertData']); 
+
 
 });
