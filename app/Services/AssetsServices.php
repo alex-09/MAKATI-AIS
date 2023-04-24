@@ -13,6 +13,7 @@ class AssetsServices
 
         if ($request->search != NULL){
 
+            $list = DB::select('CALL get_assetCurrYear()');
             $search = $request->search;
             $list = COAAssets::where(function ($q) use ($search) {
                 $q->orWhere('account_title', 'like', "%{$search}%")
@@ -21,11 +22,13 @@ class AssetsServices
 
         } else {
             $list = DB::select('CALL get_assetCurrYear()');
+            $date = DB::select('CALL get_assetSetYear()');
         }
 
         return response()->json([
             'status' => True,
             'list' => $list,
+            'date' => $date
         ]);
     }
 
