@@ -8,6 +8,8 @@ use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\COA\PreviousAccController;
+use App\Http\Controllers\COA\export\AssetExportController;
+use App\Http\Controllers\COA\Import\AssetImportController;
 use App\Http\Controllers\Allotment\ListAllotmentController;
 use App\Http\Controllers\COA\Import\EquityImportController;
 use App\Http\Controllers\COA\Import\IncomeImportController;
@@ -103,6 +105,12 @@ Route::prefix('coa')->group(function() {
     Route::post('/importEquity', [EquityImportController::class, 'import']); 
     Route::post('/importExpenses', [ExpensesImportController::class, 'import']); 
     Route::post('/importIncome', [IncomeImportController::class, 'import']); 
+
+    Route::get('/exportAsset', [AssetExportController::class, 'export']); 
+    Route::post('/exportLiability', [LiabilityExportController::class, 'export']); 
+    Route::post('/exportEquity', [EquityExportController::class, 'export']); 
+    Route::post('/exportExpenses', [ExpensesExportController::class, 'export']); 
+    Route::post('/exportIncome', [IncomeExportController::class, 'export']); 
 
 });
 
