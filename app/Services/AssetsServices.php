@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\COAAssets;
 use Illuminate\Http\Request;
-
 use App\Http\Requests\COARequest;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +13,7 @@ class AssetsServices
 
         if ($request->search != NULL){
 
+            $list = DB::select('CALL get_assetCurrYear()');
             $search = $request->search;
             $list = COAAssets::where(function ($q) use ($search) {
                 $q->orWhere('account_title', 'like', "%{$search}%")
@@ -21,16 +21,20 @@ class AssetsServices
             })->get();
 
         } else {
-            $list = DB::select('CALL get_CurrYear()');
+            $list = DB::select('CALL get_assetCurrYear()');
+            $date = DB::select('CALL get_assetSetYear()');
         }
 
         return response()->json([
             'status' => True,
             'list' => $list,
+            'date' => $date
         ]);
     }
 
     public function enrollAssets(COARequest $request){
+
+        try{
             
         COAAssets::create([
             'status' => 'pending'
@@ -41,6 +45,9 @@ class AssetsServices
             'status' => true,
             'message' => 'Account Enrolled Successfully',
         ]);
+    }catch(\Throwable $th){
+        return $this->error($th);
+    }
 
     }
 
@@ -103,7 +110,7 @@ class AssetsServices
 
     public function error($th){
         return response()->json([ 
-            'status' => true,
+            'status' => false,
             'message' => 'something went wrong',
             'error' => $th->getMessage()
         ]);

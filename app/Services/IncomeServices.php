@@ -10,17 +10,25 @@ use Illuminate\Support\Facades\DB;
 
 class IncomeServices 
 {
-    public function show(){
+    public function show(Request $request){
 
-        $pending = COAIncome::where('status', 'pending')->get();
+        if ($request->search != NULL){
 
-        $yearslist = DB::select('CALL coa_income()');
+            $search = $request->search;
+            $list = COAIncome::where(function ($q) use ($search) {
+                $q->orWhere('account_title', 'like', "%{$search}%")
+                  ->orWhere('account_code', 'like', "%{$search}%");
+            })->get();
+
+        } else {
+            $list = DB::select('CALL get_incomeCurrYear()');
+            $date = DB::select('CALL get_incomeSetYear()');
+        }
+
         return response()->json([
-
             'status' => True,
-            'message' => 'Assets Display Successfully',
-            'list' => $yearslist,
-            'pending' => $pending
+            'list' => $list,
+            'date' => $date
         ]);
     }
 

@@ -12,16 +12,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `get_selectDate`;
-        CREATE PROCEDURE `get_selectDate` (IN slctdate VARCHAR(15))
+        $procedure = " DROP PROCEDURE IF EXISTS `slct_expensesSelectDate`;
+        CREATE PROCEDURE `slct_expensesSelectDate` (IN slctdate VARCHAR(15))
         BEGIN
-            select id, account_title, account_code, date_effectivity, status
-            from coa_assets AS coa
+            select *
+            from coa_expenses AS coa
             where coa.date_effectivity = slctdate
             order by  account_code ASC;
         END
         ";
         
         DB::unprepared($procedure);
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        //
     }
 };

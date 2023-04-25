@@ -10,17 +10,25 @@ use Illuminate\Support\Facades\DB;
 
 class EquityServices 
 {
-    public function show(){
+    public function show(Request $request){
 
-        $pending = COAEquity::where('status', 'pending')->get();
+        if ($request->search != NULL){
 
-        $yearslist = DB::select('CALL coa_equity()');
+            $search = $request->search;
+            $list = COAEquity::where(function ($q) use ($search) {
+                $q->orWhere('account_title', 'like', "%{$search}%")
+                  ->orWhere('account_code', 'like', "%{$search}%");
+            })->get();
+
+        } else {
+            $list = DB::select('CALL get_equityCurrYear()');
+            $date = DB::select('CALL get_equitySetYear()');
+        }
+
         return response()->json([
-
             'status' => True,
-            'message' => 'Equity Display Successfully',
-            'list' => $yearslist,
-            'pending' => $pending
+            'list' => $list,
+            'date' => $date
         ]);
     }
 

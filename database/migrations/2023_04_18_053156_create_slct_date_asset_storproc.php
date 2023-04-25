@@ -12,23 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `get_assetCurrYear`;
-        CREATE PROCEDURE `get_assetCurrYear`()
+        $procedure = " DROP PROCEDURE IF EXISTS `get_selectDate`;
+        CREATE PROCEDURE `get_selectDate` (IN slctdate VARCHAR(15))
         BEGIN
             select *
-            from coa_assets
-            where date_effectivity = ( select max(date_effectivity) from coa_assets );
+            from coa_assets AS coa
+            where coa.date_effectivity = slctdate
+            order by  account_code ASC;
         END
         ";
         
         DB::unprepared($procedure);
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('get_assetCurrYear');
     }
 };

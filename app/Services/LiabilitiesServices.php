@@ -3,31 +3,37 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use App\Http\Requests\COARequest;
 use App\Models\COALiabilities;
 use Illuminate\Support\Facades\DB;
 
 class LiabilitiesServices 
 {
-    public function show(){
+    public function show(Request $request){
 
-        $pending = COALiabilities::where('status', 'pending')->get();
+        if ($request->search != NULL){
 
-        $yearslist = DB::select('CALL coa_liabilities()');
+            $search = $request->search;
+            $list = COALiabilities::where(function ($q) use ($search) {
+                $q->orWhere('account_title', 'like', "%{$search}%")
+                  ->orWhere('account_code', 'like', "%{$search}%");
+            })->get();
+
+        } else {
+            $list = DB::select('CALL get_liabilityCurrYear()');
+            $date = DB::select('CALL get_liabilitySetYear()');
+        }
+
         return response()->json([
-
             'status' => True,
-            'message' => 'Assets Display Successfully',
-            'list' => $yearslist,
-            'pending' => $pending
+            'list' => $list,
+            'date' => $date
         ]);
     }
 
     public function enrollLiabilities(COARequest $request){
             
         COALiabilities::create([
-            'date_effectivity' => Carbon::now(),
             'status' => 'pending'
         ] +
             $request->validated(),
