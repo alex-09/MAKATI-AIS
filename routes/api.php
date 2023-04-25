@@ -21,6 +21,7 @@ use App\Http\Controllers\COA\Import\LiabilitiesImportController;
 use App\Http\Controllers\Appropriation\ListAppropriationController;
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\Appropriation\UpdateAppropriationController;
+use App\Http\Controllers\TrustReceipts\EnrollTransReceiptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -165,3 +166,11 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/viewPdf', [CommunicationController::class, 'viewPdf']);
 
 });
+
+
+ Route::prefix('trustreceipts')->group(function () {
+
+    
+    Route::post('/enrolltransfer', [EnrollTransReceiptController::class, 'enrollNew']); 
+
+ });
