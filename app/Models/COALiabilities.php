@@ -23,7 +23,8 @@ class COALiabilities extends Model
         'account_title',
         'description',
         'status',
-        'date_effectivity'
+        'date_effectivity',
+        'coa_title'
         
     ];
 }
