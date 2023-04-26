@@ -12,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `get_selectDate`;
-        CREATE PROCEDURE `get_selectDate` (IN slctdate VARCHAR(15))
+        $procedure = " DROP PROCEDURE IF EXISTS `slct_AssetselectDate`;
+        CREATE PROCEDURE `slct_AssetselectDate` (IN slctdate VARCHAR(15))
         BEGIN
             select *
             from coa_assets AS coa
