@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('account_title');
             $table->string('description')->nullable();
             $table->string('status');
-            $table->date('date_effectivity')->format('Y-m-d');
+            $table->string('date_effectivity');
+            $table->string('coa_title');
             $table->timestamps();
         });
     }

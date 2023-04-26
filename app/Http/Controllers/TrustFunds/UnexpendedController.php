@@ -4,6 +4,7 @@ namespace App\Http\Controllers\TrustFunds;
 
 use App\Http\Controllers\Controller;
 use App\Models\UnexpendedBalance;
+use App\Models\File;
 use Illuminate\Http\Request;
 
 class UnexpendedController extends Controller
@@ -45,5 +46,29 @@ class UnexpendedController extends Controller
                 'error' => $th->getMessage()
             ]);
         }
+    }
+
+    public function upload(Request $request)
+    {
+ 
+    
+       $upload = new UnexpendedBalance();
+
+       $upload->file = $request->file->hashName();
+
+       $result = $upload->save();
+       if($result){
+
+        return response()->json([
+
+            'result' => 'File Added'
+        ]);
+
+       }else{
+        return response()->json([
+            'result' => 'File Not Added'
+        ]);
+       }
+
     }
 }

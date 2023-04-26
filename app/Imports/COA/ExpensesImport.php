@@ -26,7 +26,8 @@ class ExpensesImport implements ToModel, WithHeadingRow
             'account_title' => $row['account_title'],
             'description' => $row['description'],
             'status' => $row['status'],
-            'date_effectivity' => date('Y-m-d', strtotime($row['date_effectivity'])),
+            'date_effectivity' => $row['date_effectivity'],
+            'coa_title' => $row['coa_title']
         ]);
     }
 }

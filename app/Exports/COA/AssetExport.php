@@ -33,7 +33,8 @@ class AssetExport implements FromCollection, WithHeadings
             'account_title',
             'description',
             'status',
-            'date_effectivity'
+            'date_effectivity',
+            'coa_title'
         )->get();
     }
 
@@ -50,7 +51,8 @@ class AssetExport implements FromCollection, WithHeadings
             'account_title',
             'description',
             'status',
-            'date_effectivity'
+            'date_effectivity',
+            'coa_title'
         ];
     }
 }
