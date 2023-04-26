@@ -25,6 +25,7 @@ use App\Http\Controllers\TrustFunds\LGUCounterPartController;
 use App\Http\Controllers\TrustFunds\UnexpendedController;
 
 use App\Http\Controllers\TrustReceipts\EnrollTransReceiptController;
+use App\Http\Controllers\TrustReceipts\DonationPrivateSectorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,8 +180,8 @@ Route::prefix('trustfunds')->group(function () {
 });
 
  Route::prefix('trustreceipts')->group(function () {
-
-    
+ 
     Route::post('/enrolltransfer', [EnrollTransReceiptController::class, 'enrollNew']); 
+    Route::post('/enrollDonation', [DonationPrivateSectorController::class, 'enrollDonate']); 
 
  });
