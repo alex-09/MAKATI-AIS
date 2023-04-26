@@ -44,22 +44,22 @@ class EnrollTransReceiptController extends Controller
             ]);
 
             $enrollTransferGov = TransferFromOtherGovernmentAgencies::create([
-                'main_fund_id' => $request->main_id,
-                'sub_fund_id' => $request->sub_id,
-                'government_type' => $request->gov_type,
-                'agency_name' => $request->agen_name,
-                'document_source' => $request->refdocu,
-                'general_description' => $request->gen_desc,
-                'nadai_no' => $request->nad_no,
-                'official_receipt_no' => $request->offic_rec_no,
-                'official_receipt_date' => $request->offic_rec_date,
-                'official_receipt_amount' => $request->offic_rec_amount,
-                'nadai_date' => $request->nad_date,
-                'main_fund_title'  => $request->main_title,
-                'sub_fund_title' => $request->sub_title,
-                'specific_purpose' => $request->spec_purpose,
-                'amount_allocated' => $request->amount_alloc,
-                'implementing_office' => $request->implem_office
+                'main_fund_id' => $request->main_fund_id,
+                'sub_fund_id' => $request->sub_fund_id,
+                'government_type' => $request->government_type,
+                'agency_name' => $request->agency_name,
+                'document_source' => $request->document_source,
+                'general_description' => $request->general_description,
+                'nadai_no' => $request->nadai_no,
+                'official_receipt_no' => $request->official_receipt_no,
+                'official_receipt_date' => $request->official_receipt_date,
+                'official_receipt_amount' => $request->official_receipt_amount,
+                'nadai_date' => $request->nadai_date,
+                'main_fund_title'  => $request->main_fund_title,
+                'sub_fund_title' => $request->sub_fund_title,
+                'specific_purpose' => $request->specific_purpose,
+                'amount_allocated' => $request->amount_allocated,
+                'implementing_office' => $request->implementing_office
 
             ]);
 

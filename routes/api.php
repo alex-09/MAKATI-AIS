@@ -22,6 +22,7 @@ use App\Http\Controllers\Appropriation\ListAppropriationController;
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\Appropriation\UpdateAppropriationController;
 use App\Http\Controllers\TrustReceipts\EnrollTransReceiptController;
+use App\Http\Controllers\TrustReceipts\DonationPrivateSectorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,5 +173,5 @@ Route::prefix('ReceiveCommunication')->group(function () {
 
     
     Route::post('/enrolltransfer', [EnrollTransReceiptController::class, 'enrollNew']); 
-
+    Route::post('/enrollDonation', [DonationPrivateSectorController::class, 'enrollDonate']); 
  });
