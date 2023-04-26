@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('trustfunds_lgu_counterpart', function (Blueprint $table) {
             $table->id();
+            $table->integer('main_fund_id')->unique();
+            $table->integer('sub_find_id')->unique();
+            $table->string('general_descript');
+            $table->string('legal_basis');
+            $table->string('main_fund_title');
+            $table->string('sub_fund_title');
+            $table->string('specific_purpose');
+            $table->integer('amount_allocated');
+            $table->string('implementing_office');
+            $table->string('remarks');
             $table->timestamps();
         });
     }

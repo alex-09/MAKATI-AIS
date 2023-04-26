@@ -174,6 +174,7 @@ Route::prefix('trustfunds')->group(function () {
 
     Route::post('/unexpended', [UnexpendedController::class, 'insertData']); 
     Route::post('/counterpart', [LGUCounterPartController::class, 'insertData']); 
+    Route::post('upload-file', [UnexpendedController::class, 'upload']);
 
 
 });
