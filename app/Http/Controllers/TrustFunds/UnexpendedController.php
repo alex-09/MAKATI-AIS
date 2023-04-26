@@ -18,6 +18,8 @@ class UnexpendedController extends Controller
             $unexpended = UnexpendedBalance::create([
 
 
+                'main_fund_id'=>$request->main_fund_id,
+                'sub_fund_id'=>$request->sub_fund_id,
                 'budget_year_id'=>$request->budget_year,
                 'document_source'=>$request->docu_source,
                 'general_descript'=>$request->general_descript,
@@ -33,10 +35,12 @@ class UnexpendedController extends Controller
             ]);
             $unexpended->save();
 
+
             return response()->json([
                 'status' => true,
                 'message' => 'Success',
-                'data' => $unexpended
+                'unexpended' => $unexpended,
+               
             ]);
 
         }catch (\Throwable $th){
