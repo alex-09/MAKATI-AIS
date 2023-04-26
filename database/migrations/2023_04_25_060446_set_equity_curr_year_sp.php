@@ -12,15 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `get_prevYear`;
-        CREATE PROCEDURE `get_prevYear`()
+        $procedure = " DROP PROCEDURE IF EXISTS `get_equitySetYear`;
+        CREATE PROCEDURE `get_equitySetYear` ()
         BEGIN
-            SELECT date_effectivity, coa_title 
-            FROM coa_assets
-            group by date_effectivity DESC LIMIT 1, 10;
-        END
-        ";
-        
+
+            SELECT date_effectivity FROM coa_equity AS curr
+            group by curr.date_effectivity DESC limit 1;
+
+        END";
+
         DB::unprepared($procedure);
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('get_prevyearr_sp');
+        //
     }
 };

@@ -29,7 +29,7 @@ class EnrollTransReceiptController extends Controller
                 'sub_fund_id' => 'required',
                 'government_type' => 'required',
                 'agency_name' => 'required',
-                'document_source' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'document_source' => 'required|mimes:pdf,doc,docx|max:2048',
                 'general_description' => 'required',
                 'nadai_no' => 'required',
                 'official_receipt_no' => 'required',
@@ -63,11 +63,16 @@ class EnrollTransReceiptController extends Controller
 
             ]);
 
-            if ($image = $request->file('document_source')) {
-                $destinationPath = 'image/';
-                $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-                $image->move($destinationPath, $profileImage);
-                $input['document_source'] = "$profileImage";
+            if ($request->hasFile('document_source')) {
+                $file = $request->file('document_source');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('public/files', $filename);
+                
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No file uploaded'
+                ]);
             }
 
             return response()->json([

@@ -30,7 +30,8 @@ class COARequest extends FormRequest
             'sub_sub_ledger_accounts' => ['required','max:3','min:3'],
             'account_title' => 'required',
             'account_code' => 'string',
-            'date_effectivity' => 'string'
+            'date_effectivity' => 'string',
+            'coa_title' => 'string'
         ];
     }
 }
