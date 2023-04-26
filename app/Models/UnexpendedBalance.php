@@ -11,6 +11,8 @@ class UnexpendedBalance extends Model
 
     protected $fillable = [
 
+    'main_fund_id',
+    'sub_fund_id',
     'budget_year_id',
     'document_source',
     'general_descript',
