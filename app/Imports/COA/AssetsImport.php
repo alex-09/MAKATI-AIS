@@ -3,16 +3,29 @@
 namespace App\Imports\COA;
 
 use App\Models\COAAssets;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Throwable;
 
-class AssetsImport implements ToModel, WithHeadingRow
+class AssetsImport implements ToModel, WithHeadingRow, WithValidation
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    use Importable, SkipsErrors;
+
+    public function rules(): array
+    {
+        return [
+            '*.date_effectivity' => 'required|unique:coa_assets,date_effectivity',
+        ];
+    }
+
     public function model(array $row)
     {
         return new COAAssets([
@@ -30,4 +43,5 @@ class AssetsImport implements ToModel, WithHeadingRow
             'coa_title' => $row['coa_title']
         ]);
     }
+
 }
