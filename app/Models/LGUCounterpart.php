@@ -11,6 +11,8 @@ class LGUCounterpart extends Model
 
     protected $fillable = [
         
+        "main_fund_id",
+        "sub_fund_id",
         'general_descript',
         'legal_basis',
         'journal_voucher_no',
