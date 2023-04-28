@@ -8,23 +8,22 @@ use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
-use Throwable;
 
-class AssetsImport implements ToModel, WithHeadingRow, WithValidation
+class AssetsImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    use Importable, SkipsErrors;
+    // use Importable, SkipsErrors;
 
-    public function rules(): array
-    {
-        return [
-            '*.date_effectivity' => 'required|unique:coa_assets,date_effectivity',
-        ];
-    }
+    // public function rules(): array
+    // {
+    //     return [
+    //         'date_effectivity' => 'required|unique:coa_assets,date_effectivity',
+    //     ];
+    // }
 
     public function model(array $row)
     {

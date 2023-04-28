@@ -3,8 +3,8 @@
 namespace App\Exports\COA;
 
 use App\Models\COAAssets;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class AssetExport implements FromCollection, WithHeadings
 {
