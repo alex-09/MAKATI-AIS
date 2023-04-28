@@ -15,14 +15,22 @@ try{
 
     $request->validate([
 
-
-
-
+        'docu_type_id'=>'required',
+        'transaction_id'=>'required',
+        'department'=>'required',
+        'processing_slip_number'=>'required',
+        'description'=>'required',
+        'amount'=>'required',
+        'current_bearer'=>'required',
+        'current_bearer_dept'=>'required',
+        'current_bearer_contact_number'=>'required',
+        'current_bearer_email'=>'required',
+        'status'=>'required'
 
      ]);
 
-     
-    $insertNew = DMBudgetaryObligationsTransac::create([
+
+    $insertNewTransac = DMBudgetaryObligationsTransac::create([
 
     'docu_type_id'=>$request->docu_type_id,
     'transaction_id'=>$request->transaction_id,
@@ -36,7 +44,15 @@ try{
     'current_bearer_email'=>$request->current_bearer_email,
     'status'=>$request->status
 
+    ]);
 
+    $insertNewTransac->save();
+
+    
+    return response()->json([
+        'status' => true,
+        'message' => 'Success',
+        'data' => $insertNewTransac
     ]);
 
 }catch (\Throwable $th){

@@ -26,7 +26,9 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\UpdateAllotmentController
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
-
+use App\Http\Controllers\BudgetaryObligationsTransac\NewTransactionsController;
+use App\Http\Controllers\BudgetaryObligationsTransac\PreviousTransactionsController;
+use App\Http\Controllers\BudgetaryObligationsTransac\PrintReceivingReceiptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -187,3 +189,16 @@ Route::prefix('trustfunds')->group(function () {
     Route::post('/enrollDonation', [DonationPrivateSectorController::class, 'enrollDonate']); 
 
  });
+
+
+ Route::prefix('BOT')->group(function () {
+
+    Route::post('/insertNewTransac', [NewTransactionsController::class, 'insertNewTransac']); 
+    Route::get('/previousTransac', [PreviousTransactionsController::class, 'previousList']);
+    Route::get('/listReceiver', [PrintReceivingReceiptController::class, 'listPrintReceiver']);
+    Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
+   
+
+
+ });
+ 
