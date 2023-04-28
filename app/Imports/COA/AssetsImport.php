@@ -3,8 +3,6 @@
 namespace App\Imports\COA;
 
 use App\Models\COAAssets;
-use Maatwebsite\Excel\Concerns\Importable;
-use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
@@ -16,7 +14,6 @@ class AssetsImport implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    // use Importable, SkipsErrors;
 
     // public function rules(): array
     // {
