@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Allotment;
+namespace App\Http\Controllers\BAT\ExecutiveBudget\Allotment;
 
 use App\Models\Activity;
 use App\Models\Expenses;

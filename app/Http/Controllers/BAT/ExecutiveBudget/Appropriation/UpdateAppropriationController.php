@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Appropriation;
+namespace App\Http\Controllers\BAT\ExecutiveBudget\Appropriation;
 
 use App\Models\Activity;
 use App\Models\Expenses;

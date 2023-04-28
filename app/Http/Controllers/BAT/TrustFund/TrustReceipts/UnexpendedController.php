@@ -1,25 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\TrustFunds;
+namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
 
 use App\Http\Controllers\Controller;
-use App\Models\LGUCounterpart;
+use App\Models\UnexpendedBalance;
+use App\Models\File;
 use Illuminate\Http\Request;
 
-class LGUCounterPartController extends Controller
+class UnexpendedController extends Controller
 {
     public function insertData(Request $request){
         try{
 
+        
+            // $approId = "test";
 
-            $enrollAllot = LGUCounterpart::create([
-           
+            $unexpended = UnexpendedBalance::create([
+
+
                 'main_fund_id'=>$request->main_fund_id,
                 'sub_fund_id'=>$request->sub_fund_id,
-                'general_descript'=>$request->gereral_descript,
+                'budget_year_id'=>$request->budget_year,
+                'document_source'=>$request->docu_source,
+                'general_descript'=>$request->general_descript,
                 'legal_basis'=>$request->legal_basis,
                 'journal_voucher_no'=>$request->journal_voucher_no,
-                'journal_voucher_date'=>$request->journal_voucher_data,
+                'journal_voucher_date'=>$request->journal_voucher_date,
                 'main_fund_title'=>$request->main_fund_title,
                 'sub_fund_title'=>$request->sub_fund_title,
                 'specific_purpose'=>$request->specific_purpose,
@@ -27,12 +33,14 @@ class LGUCounterPartController extends Controller
                 'implementing_office'=>$request->implementing_office,
                 'remarks'=>$request->remarks
             ]);
+            $unexpended->save();
 
-        
+
             return response()->json([
                 'status' => true,
                 'message' => 'Success',
-                'data' => $enrollAllot
+                'unexpended' => $unexpended,
+               
             ]);
 
         }catch (\Throwable $th){
@@ -42,5 +50,29 @@ class LGUCounterPartController extends Controller
                 'error' => $th->getMessage()
             ]);
         }
+    }
+
+    public function upload(Request $request)
+    {
+ 
+    
+       $upload = new UnexpendedBalance();
+
+       $upload->file = $request->file->hashName();
+
+       $result = $upload->save();
+       if($result){
+
+        return response()->json([
+
+            'result' => 'File Added'
+        ]);
+
+       }else{
+        return response()->json([
+            'result' => 'File Not Added'
+        ]);
+       }
+
     }
 }
