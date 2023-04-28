@@ -11,6 +11,6 @@ class IncomeExportController extends Controller
 {
     public function export(Request $request){
         
-        return Excel::download(new IncomeExport($request->date), 'INCOME-'.$request->date.'.csv',);
+        return Excel::download(new IncomeExport($request->date), 'INCOME-'.$request->date.'.xlsx',);
     }
 }

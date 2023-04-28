@@ -11,6 +11,6 @@ class EquityExportController extends Controller
 {
     public function export(Request $request){
         
-        return Excel::download(new EquityExport($request->date), 'EQUITY-'.$request->date.'.csv',);
+        return Excel::download(new EquityExport($request->date), 'EQUITY-'.$request->date.'.xlsx',);
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
         $procedure = " DROP PROCEDURE IF EXISTS `get_prevYear`;
         CREATE PROCEDURE `get_prevYear`()
         BEGIN
-            SELECT *
+            SELECT date_effectivity, coa_title
             FROM coa_assets
             group by date_effectivity DESC LIMIT 1, 10;
         END

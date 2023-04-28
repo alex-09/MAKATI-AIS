@@ -33,6 +33,7 @@ class LiabilityExport implements FromCollection, WithHeadings
             'account_title',
             'description',
             'status',
+            'date_effect_index',
             'date_effectivity',
             'coa_title'
         )->get();
@@ -51,6 +52,7 @@ class LiabilityExport implements FromCollection, WithHeadings
             'account_title',
             'description',
             'status',
+            'date_effect_index',
             'date_effectivity',
             'coa_title'
             

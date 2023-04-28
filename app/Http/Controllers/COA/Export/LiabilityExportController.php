@@ -11,6 +11,6 @@ class LiabilityExportController extends Controller
 {
     public function export(Request $request){
         
-        return Excel::download(new LiabilityExport($request->date), 'LIABILITY-'.$request->date.'.csv',);
+        return Excel::download(new LiabilityExport($request->date), 'LIABILITY-'.$request->date.'.xlsx',);
     }
 }

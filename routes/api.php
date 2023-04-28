@@ -8,23 +8,27 @@ use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\COA\PreviousAccController;
+use App\Http\Controllers\TrustFunds\UnexpendedController;
 use App\Http\Controllers\COA\export\AssetExportController;
 use App\Http\Controllers\COA\Import\AssetImportController;
 use App\Http\Controllers\Allotment\ListAllotmentController;
+use App\Http\Controllers\COA\Export\EquityExportController;
+use App\Http\Controllers\COA\Export\IncomeExportController;
 use App\Http\Controllers\COA\Import\EquityImportController;
 use App\Http\Controllers\COA\Import\IncomeImportController;
 use App\Http\Controllers\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\Allotment\UpdateAllotmentController;
+use App\Http\Controllers\COA\Export\ExpensesExportController;
 use App\Http\Controllers\COA\Import\ExpensesImportController;
+use App\Http\Controllers\TrustFunds\LGUCounterPartController;
+use App\Http\Controllers\COA\Export\LiabilityExportController;
 use App\Http\Controllers\Communication\CommunicationController;
+
 use App\Http\Controllers\COA\Import\LiabilitiesImportController;
 use App\Http\Controllers\Appropriation\ListAppropriationController;
+use App\Http\Controllers\TrustReceipts\EnrollTransReceiptController;
 use App\Http\Controllers\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\Appropriation\UpdateAppropriationController;
-use App\Http\Controllers\TrustFunds\LGUCounterPartController;
-use App\Http\Controllers\TrustFunds\UnexpendedController;
-
-use App\Http\Controllers\TrustReceipts\EnrollTransReceiptController;
 use App\Http\Controllers\TrustReceipts\DonationPrivateSectorController;
 
 /*
@@ -112,10 +116,10 @@ Route::prefix('coa')->group(function() {
     Route::post('/importIncome', [IncomeImportController::class, 'import']); 
 
     Route::get('/exportAsset', [AssetExportController::class, 'export']); 
-    Route::post('/exportLiability', [LiabilityExportController::class, 'export']); 
-    Route::post('/exportEquity', [EquityExportController::class, 'export']); 
-    Route::post('/exportExpenses', [ExpensesExportController::class, 'export']); 
-    Route::post('/exportIncome', [IncomeExportController::class, 'export']); 
+    Route::get('/exportLiability', [LiabilityExportController::class, 'export']); 
+    Route::get('/exportEquity', [EquityExportController::class, 'export']); 
+    Route::get('/exportExpenses', [ExpensesExportController::class, 'export']); 
+    Route::get('/exportIncome', [IncomeExportController::class, 'export']); 
 
 });
 
