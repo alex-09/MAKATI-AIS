@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Obligation;
+namespace App\Http\Controllers\BAT\ExecutiveBudget\Obligation;
 
 use App\Http\Controllers\Controller;
 use App\Models\BudgetYear;
