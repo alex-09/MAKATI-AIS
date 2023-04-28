@@ -14,6 +14,8 @@ class LGUCounterPartController extends Controller
 
             $enrollAllot = LGUCounterpart::create([
            
+                'main_fund_id'=>$request->main_fund_id,
+                'sub_fund_id'=>$request->sub_fund_id,
                 'general_descript'=>$request->gereral_descript,
                 'legal_basis'=>$request->legal_basis,
                 'journal_voucher_no'=>$request->journal_voucher_no,
