@@ -3,12 +3,9 @@
 namespace App\Imports\COA;
 
 use App\Models\COAAssets;
-use Maatwebsite\Excel\Concerns\Importable;
-use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
-use Throwable;
 
 class AssetsImport implements ToModel, WithHeadingRow, WithValidation
 {
@@ -17,14 +14,6 @@ class AssetsImport implements ToModel, WithHeadingRow, WithValidation
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    use Importable, SkipsErrors;
-
-    public function rules(): array
-    {
-        return [
-            '*.date_effectivity' => 'required|unique:coa_assets,date_effectivity',
-        ];
-    }
 
     public function model(array $row)
     {
@@ -39,9 +28,24 @@ class AssetsImport implements ToModel, WithHeadingRow, WithValidation
             'account_title' => $row['account_title'],
             'description' => $row['description'],
             'status' => $row['status'],
+            'date_effect_index' => $row['date_effect_index'],
             'date_effectivity' => $row['date_effectivity'],
             'coa_title' => $row['coa_title']
         ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            'date_effect_index' => 'nullable|sometimes|unique:coa_assets,date_effect_index',
+        ];
+    }
+
+    public function customValidationMessages()
+    {
+        return [
+            'date_effect_index' => 'Effectivity date already exist in the previous effectivity dates',
+        ];
     }
 
 }

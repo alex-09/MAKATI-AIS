@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('account_title');
             $table->string('description')->nullable();
             $table->string('status');
+            $table->string('date_effect_index')->nullable();
             $table->string('date_effectivity');
             $table->string('coa_title');
             $table->timestamps();

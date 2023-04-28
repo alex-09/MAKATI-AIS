@@ -11,6 +11,6 @@ class AssetExportController extends Controller
 {
     public function export(Request $request){
         
-        return Excel::download(new AssetExport($request->date), 'ASSETS-'.$request->date.'.csv',);
+        return Excel::download(new AssetExport($request->date), 'ASSETS-'.$request->date.'.xlsx',);
     }
 }

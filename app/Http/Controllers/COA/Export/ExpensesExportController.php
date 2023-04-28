@@ -11,6 +11,6 @@ class ExpensesExportController extends Controller
 {
     public function export(Request $request){
         
-        return Excel::download(new ExpensesExport($request->date), 'EXPENSES-'.$request->date.'.csv',);
+        return Excel::download(new ExpensesExport($request->date), 'EXPENSES-'.$request->date.'.xlsx',);
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\TrustReceipts;
+namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\TransferFromOtherGovernmentAgencies;
+use App\Models\DonationPrivateSector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
-class EnrollTransReceiptController extends Controller
+class DonationPrivateSectorController extends Controller
 {
     public function srcTrustReceipt()
     {
@@ -21,21 +21,17 @@ class EnrollTransReceiptController extends Controller
     }
 
 
-    public function enrollNew(Request $request){
+    public function enrollDonate(Request $request){
         try{
 
             $request->validate([
+                'company_name' => 'required',
                 'main_fund_id' => 'required',
                 'sub_fund_id' => 'required',
-                'government_type' => 'required',
-                'agency_name' => 'required',
                 'document_source' => 'required|mimes:pdf,doc,docx|max:2048',
                 'general_description' => 'required',
-                'nadai_no' => 'required',
                 'official_receipt_no' => 'required',
                 'official_receipt_date' => 'required',
-                'official_receipt_amount' => 'required',
-                'nadai_date' => 'required',
                 'main_fund_title' => 'required',
                 'sub_fund_title' => 'required',
                 'specific_purpose' => 'required',
@@ -43,18 +39,14 @@ class EnrollTransReceiptController extends Controller
                 'implementing_office' => 'required',
             ]);
 
-            $enrollTransferGov = TransferFromOtherGovernmentAgencies::create([
+            $enrollDonationPriv = DonationPrivateSector::create([
+                'company_name' => $request->company_name,
                 'main_fund_id' => $request->main_fund_id,
                 'sub_fund_id' => $request->sub_fund_id,
-                'government_type' => $request->government_type,
-                'agency_name' => $request->agency_name,
                 'document_source' => $request->document_source,
                 'general_description' => $request->general_description,
-                'nadai_no' => $request->nadai_no,
                 'official_receipt_no' => $request->official_receipt_no,
                 'official_receipt_date' => $request->official_receipt_date,
-                'official_receipt_amount' => $request->official_receipt_amount,
-                'nadai_date' => $request->nadai_date,
                 'main_fund_title'  => $request->main_fund_title,
                 'sub_fund_title' => $request->sub_fund_title,
                 'specific_purpose' => $request->specific_purpose,
@@ -78,7 +70,7 @@ class EnrollTransReceiptController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Success',
-                'data' =>  $enrollTransferGov
+                'data' =>  $enrollDonationPriv
             ]);
 
         }catch (\Throwable $th){
@@ -90,5 +82,4 @@ class EnrollTransReceiptController extends Controller
         }
 
     }
-
 }

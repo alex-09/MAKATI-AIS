@@ -23,6 +23,7 @@ class COALiabilities extends Model
         'account_title',
         'description',
         'status',
+        'date_effect_index',
         'date_effectivity',
         'coa_title'
         

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\TrustFunds;
+namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
 
 use App\Http\Controllers\Controller;
 use App\Models\LGUCounterpart;

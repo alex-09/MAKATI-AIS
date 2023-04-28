@@ -26,8 +26,23 @@ class LiabilitiesImport implements ToModel, WithHeadingRow
             'account_title' => $row['account_title'],
             'description' => $row['description'],
             'status' => $row['status'],
+            'date_effect_index' => $row['date_effect_index'],
             'date_effectivity' => $row['date_effectivity'],
             'coa_title' => $row['coa_title']
         ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            'date_effect_index' => 'nullable|sometimes|unique:coa_liabilities,date_effect_index',
+        ];
+    }
+
+    public function customValidationMessages()
+    {
+        return [
+            'date_effect_index' => 'Effectivity date already exist in the previous effectivity dates',
+        ];
     }
 }
