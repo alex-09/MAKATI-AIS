@@ -21,14 +21,15 @@ use App\Http\Controllers\Communication\CommunicationController;
 use App\Http\Controllers\COA\Import\LiabilitiesImportController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\UnexpendedController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
+use App\Http\Controllers\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\UpdateAllotmentController;
+use App\Http\Controllers\BAT\TrustFund\TrustReceipts\EnrollTransReceiptController;
+use App\Http\Controllers\BudgetaryObligationsTransac\PreviousTransactionsController;
+use App\Http\Controllers\BudgetaryObligationsTransac\PrintReceivingReceiptController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
-use App\Http\Controllers\BudgetaryObligationsTransac\NewTransactionsController;
-use App\Http\Controllers\BudgetaryObligationsTransac\PreviousTransactionsController;
-use App\Http\Controllers\BudgetaryObligationsTransac\PrintReceivingReceiptController;
 
 /*
 |--------------------------------------------------------------------------

@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('transfer_other_government_agencies', function (Blueprint $table) {
             $table->id();
-            $table->integer('main_fund_id');
-            $table->integer('sub_fund_id');
+            $table->string('tf_id');
             $table->string('government_type');
             $table->string('agency_name');
             $table->string('document_source');
@@ -24,11 +23,7 @@ return new class extends Migration
             $table->string('official_receipt_date');
             $table->integer('official_receipt_amount');
             $table->string('nadai_date');
-            $table->string('main_fund_title');
-            $table->string('sub_fund_title');
-            $table->string('specific_purpose');
-            $table->string('amount_allocated');
-            $table->string('implementing_office');
+            $table->integer('remarks');
             $table->timestamps();
         });
     }

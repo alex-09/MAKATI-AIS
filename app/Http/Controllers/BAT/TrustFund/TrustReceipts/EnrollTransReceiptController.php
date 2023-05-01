@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
 
 use App\Http\Controllers\Controller;
+use App\Models\tfFundDetails;
 use Illuminate\Http\Request;
 use App\Models\TransferFromOtherGovernmentAgencies;
 use Illuminate\Support\Facades\DB;
@@ -25,8 +26,6 @@ class EnrollTransReceiptController extends Controller
         try{
 
             $request->validate([
-                'main_fund_id' => 'required',
-                'sub_fund_id' => 'required',
                 'government_type' => 'required',
                 'agency_name' => 'required',
                 'document_source' => 'required|mimes:pdf,doc,docx|max:2048',
@@ -43,9 +42,17 @@ class EnrollTransReceiptController extends Controller
                 'implementing_office' => 'required',
             ]);
 
-            $enrollTransferGov = TransferFromOtherGovernmentAgencies::create([
-                'main_fund_id' => $request->main_fund_id,
-                'sub_fund_id' => $request->sub_fund_id,
+            $tfoga = TransferFromOtherGovernmentAgencies::all();
+            if($tfoga->isEmpty()){
+                $tfid = "TF_"."1";
+            }else{
+                $getId = TransferFromOtherGovernmentAgencies::latest('id')->first();
+                $idinc = $getId['id'];
+                $tfid = "TF_".++$idinc;
+            }
+
+            TransferFromOtherGovernmentAgencies::create([
+                'tf_id' => $tfid,
                 'government_type' => $request->government_type,
                 'agency_name' => $request->agency_name,
                 'document_source' => $request->document_source,
@@ -55,13 +62,19 @@ class EnrollTransReceiptController extends Controller
                 'official_receipt_date' => $request->official_receipt_date,
                 'official_receipt_amount' => $request->official_receipt_amount,
                 'nadai_date' => $request->nadai_date,
+                'remarks' => 1
+            ]);
+
+            tfFundDetails::create([
+                'tf_id' => $tfid,
                 'main_fund_title'  => $request->main_fund_title,
                 'sub_fund_title' => $request->sub_fund_title,
                 'specific_purpose' => $request->specific_purpose,
                 'amount_allocated' => $request->amount_allocated,
                 'implementing_office' => $request->implementing_office
-
             ]);
+
+
 
             if ($request->hasFile('document_source')) {
                 $file = $request->file('document_source');
@@ -78,7 +91,7 @@ class EnrollTransReceiptController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Success',
-                'data' =>  $enrollTransferGov
+                // 'data' =>  $enrollTransferGov
             ]);
 
         }catch (\Throwable $th){
