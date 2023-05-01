@@ -12,7 +12,7 @@ class LGUCounterPartController extends Controller
         try{
 
 
-            $enrollAllot = LGUCounterpart::create([
+            $insertLGU = LGUCounterpart::create([
            
                 'main_fund_id'=>$request->main_fund_id,
                 'sub_fund_id'=>$request->sub_fund_id,
@@ -32,7 +32,7 @@ class LGUCounterPartController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Success',
-                'data' => $enrollAllot
+                'data' => $insertLGU
             ]);
 
         }catch (\Throwable $th){
