@@ -11,8 +11,7 @@ class TransferFromOtherGovernmentAgencies extends Model
     protected $table = 'transfer_other_government_agencies';
 
     protected $fillable = [
-        'main_fund_id',
-        'sub_fund_id',
+        'tf_id',
         'government_type',
         'agency_name',
         'document_source',
@@ -22,11 +21,6 @@ class TransferFromOtherGovernmentAgencies extends Model
         'official_receipt_date',
         'official_receipt_amount',
         'nadai_date',
-        'main_fund_title',
-        'sub_fund_title',
-        'specific_purpose',
-        'amount_allocated',
-        'implementing_office',
-
+        'remarks'
     ];
 }

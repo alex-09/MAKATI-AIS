@@ -12,11 +12,7 @@ class UnexpendedController extends Controller
     public function insertData(Request $request){
         try{
 
-        
-            // $approId = "test";
-
             $unexpended = UnexpendedBalance::create([
-
 
                 'main_fund_id'=>$request->main_fund_id,
                 'sub_fund_id'=>$request->sub_fund_id,
@@ -33,8 +29,6 @@ class UnexpendedController extends Controller
                 'implementing_office'=>$request->implementing_office,
                 'remarks'=>$request->remarks
             ]);
-            $unexpended->save();
-
 
             return response()->json([
                 'status' => true,
