@@ -12,15 +12,20 @@ class PreviousTransactionsController extends Controller
 public function previousList(Request $request){
 
 
-   $listData = DMBudgetaryObligationsTransac::select('transaction_id', 'department', 
-   'amount', 'department_type_id', 'amount')->get();
+        $listData = DMBudgetaryObligationsTransac::select(
+            'transaction_id',
+            'department',
+            'amount',
+            'department_type_id',
+            'amount'
+        )->get();
 
-   return response()->json([
-    'status' => true,
-    'message' => 'Success',
-    'data' => $listData,
-    
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'data' => $listData,
 
-]);
-}
+
+        ]);
+    }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transfer_other_government_agencies', function (Blueprint $table) {
             $table->id();
-            $table->string('tf_id');
+            $table->string('tf_toga_id');
             $table->string('government_type');
             $table->string('agency_name');
             $table->string('document_source');
