@@ -77,7 +77,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => "Logged In Successfully",
-                'token'=> $token->plainTextToken
+                'token'=> $token->plainTextToken,
+                'email' => $user->email
             ], 200);
         
         }catch(\Throwable $th){

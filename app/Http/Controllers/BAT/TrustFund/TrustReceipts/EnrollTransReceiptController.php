@@ -44,15 +44,15 @@ class EnrollTransReceiptController extends Controller
 
             $tfoga = TransferFromOtherGovernmentAgencies::all();
             if($tfoga->isEmpty()){
-                $tfid = "TF_"."1";
+                $tfid = "tf_toga_"."1";
             }else{
                 $getId = TransferFromOtherGovernmentAgencies::latest('id')->first();
                 $idinc = $getId['id'];
-                $tfid = "TF_".++$idinc;
+                $tfid = "tf_toga_".++$idinc;
             }
 
             TransferFromOtherGovernmentAgencies::create([
-                'tf_id' => $tfid,
+                'tf_toga_id' => $tfid,
                 'government_type' => $request->government_type,
                 'agency_name' => $request->agency_name,
                 'document_source' => $request->document_source,
@@ -73,8 +73,6 @@ class EnrollTransReceiptController extends Controller
                 'amount_allocated' => $request->amount_allocated,
                 'implementing_office' => $request->implementing_office
             ]);
-
-
 
             if ($request->hasFile('document_source')) {
                 $file = $request->file('document_source');

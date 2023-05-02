@@ -11,7 +11,7 @@ class TransferFromOtherGovernmentAgencies extends Model
     protected $table = 'transfer_other_government_agencies';
 
     protected $fillable = [
-        'tf_id',
+        'tf_toga_id',
         'government_type',
         'agency_name',
         'document_source',

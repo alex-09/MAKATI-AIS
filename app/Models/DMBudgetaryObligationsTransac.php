@@ -15,7 +15,7 @@ class DMBudgetaryObligationsTransac extends Model
 
         'docu_type_id',
         'transaction_id',
-        'department',
+        'department_id',
         'processing_slip_number',
         'description',
         'amount',

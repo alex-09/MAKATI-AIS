@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
 
+use Illuminate\Http\Request;
+use App\Models\tfFundDetails;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\DonationPrivateSector;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
 class DonationPrivateSectorController extends Controller
 {
@@ -26,8 +27,6 @@ class DonationPrivateSectorController extends Controller
 
             $request->validate([
                 'company_name' => 'required',
-                'main_fund_id' => 'required',
-                'sub_fund_id' => 'required',
                 'document_source' => 'required|mimes:pdf,doc,docx|max:2048',
                 'general_description' => 'required',
                 'official_receipt_no' => 'required',
@@ -39,20 +38,32 @@ class DonationPrivateSectorController extends Controller
                 'implementing_office' => 'required',
             ]);
 
+            $tfoga = DonationPrivateSector::all();
+            if($tfoga->isEmpty()){
+                $tfid = "tf_dps_"."1";
+            }else{
+                $getId = DonationPrivateSector::latest('id')->first();
+                $idinc = $getId['id'];
+                $tfid = "tf_dps_".++$idinc;
+            }
+
             $enrollDonationPriv = DonationPrivateSector::create([
+                'tf_dps_id' => $tfid,
                 'company_name' => $request->company_name,
-                'main_fund_id' => $request->main_fund_id,
-                'sub_fund_id' => $request->sub_fund_id,
                 'document_source' => $request->document_source,
                 'general_description' => $request->general_description,
                 'official_receipt_no' => $request->official_receipt_no,
                 'official_receipt_date' => $request->official_receipt_date,
+                'remarks' => 1
+            ]);
+
+            tfFundDetails::create([
+                'tf_id' => $tfid,
                 'main_fund_title'  => $request->main_fund_title,
                 'sub_fund_title' => $request->sub_fund_title,
                 'specific_purpose' => $request->specific_purpose,
                 'amount_allocated' => $request->amount_allocated,
                 'implementing_office' => $request->implementing_office
-
             ]);
 
             if ($request->hasFile('document_source')) {

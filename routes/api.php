@@ -20,16 +20,18 @@ use App\Http\Controllers\Communication\CommunicationController;
 
 use App\Http\Controllers\COA\Import\LiabilitiesImportController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\UnexpendedController;
+use App\Http\Controllers\BAT\TrustFund\TrustReceipts\LGUCounterPartController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
-use App\Http\Controllers\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\UpdateAllotmentController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\EnrollTransReceiptController;
-use App\Http\Controllers\BudgetaryObligationsTransac\PreviousTransactionsController;
-use App\Http\Controllers\BudgetaryObligationsTransac\PrintReceivingReceiptController;
+use App\Http\Controllers\BAT\TrustFund\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
+use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
+use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
+use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -180,26 +182,19 @@ Route::prefix('trustfunds')->group(function () {
     Route::post('/unexpended', [UnexpendedController::class, 'insertData']); 
     Route::post('/counterpart', [LGUCounterPartController::class, 'insertData']); 
     Route::post('upload-file', [UnexpendedController::class, 'upload']);
-
-
-});
-
- Route::prefix('trustreceipts')->group(function () {
- 
     Route::post('/enrolltransfer', [EnrollTransReceiptController::class, 'enrollNew']); 
     Route::post('/enrollDonation', [DonationPrivateSectorController::class, 'enrollDonate']); 
 
- });
-
+});
 
  Route::prefix('BOT')->group(function () {
 
     Route::post('/insertNewTransac', [NewTransactionsController::class, 'insertNewTransac']); 
     Route::get('/previousTransac', [PreviousTransactionsController::class, 'previousList']);
+    Route::get('/viewTransac/{id}', [PreviousTransactionsController::class, 'viewdata']);
+    Route::post('/editTransac/{id}', [PreviousTransactionsController::class, 'editData']);
     Route::get('/listReceiver', [PrintReceivingReceiptController::class, 'listPrintReceiver']);
-    Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
-   
-
+    // Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
 
  });
  

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('dm_bot', function (Blueprint $table) {
             $table->id();
-            $table->integer('docu_type_id')->unique();
-            $table->integer('transaction_id');
-            $table->integer('department')->unique();
+            $table->integer('docu_type_id');
+            $table->string('transaction_id');
+            $table->integer('department_id');
             $table->integer('processing_slip_number');
             $table->string('description');
             $table->integer('amount');

@@ -13,21 +13,14 @@ return new class extends Migration
     {
         Schema::create('trustfunds_unexpended_balance', function (Blueprint $table) {
             $table->id();
-            $table->integer('main_fund_id')->unique();
-            $table->integer('sub_fund_id')->unique();
+            $table->string('tf_tub_id');
             $table->unsignedBigInteger('budget_year_id');
             $table->string('document_source');
             $table->string('general_descript');
             $table->string('legal_basis');
             $table->integer('journal_voucher_no');
-            $table->date('journal_voucher_date')->nullable();
-            $table->string('main_fund_title');
-            $table->string('sub_fund_title');
-            $table->string('specific_purpose');
-            $table->integer('amount_allocated');
-            $table->string('implementing_office');
+            $table->string('journal_voucher_date')->nullable();
             $table->string('remarks'); 
-            $table->string('file', 255)->nullable(); 
             $table->timestamps();
         });
     }
