@@ -21,9 +21,9 @@ class PrintReceivingReceiptController extends Controller
     }
 
 
-    public function searchBearer($bearer)
-    {
-        return $this->printRepository->searchBearer($bearer);
-    }
+    // public function searchBearer($bearer)
+    // {
+    //     return $this->printRepository->searchBearer($bearer);
+    // }
     
 }

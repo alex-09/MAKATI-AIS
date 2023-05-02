@@ -24,16 +24,16 @@ class PrintTransactionRepository
     }
     
 
-    public function searchBearer($bearer){
+    // public function searchBearer($bearer){
 
-        // $searchResult = DMBudgetaryObligationsTransac::select('created_at', 'transaction_id', 'processing_slip_number', 'current_bearer')
-        // ->where('current_bearer', 'LIKE', '%' . $bearer . '%')
-        // ->get();
+    //     // $searchResult = DMBudgetaryObligationsTransac::select('created_at', 'transaction_id', 'processing_slip_number', 'current_bearer')
+    //     // ->where('current_bearer', 'LIKE', '%' . $bearer . '%')
+    //     // ->get();
 
-        // if (count($searchResult)) {
-        //     return Response()->json($searchResult);
-        // } else {
-        //     return response()->json(['Result' => 'No Data not found'], 404);
-        // }
-    }
+    //     // if (count($searchResult)) {
+    //     //     return Response()->json($searchResult);
+    //     // } else {
+    //     //     return response()->json(['Result' => 'No Data not found'], 404);
+    //     // }
+    // }
 }
