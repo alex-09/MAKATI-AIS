@@ -25,10 +25,13 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\UpdateAllotmentController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\EnrollTransReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrevRecController;
+use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrintRecController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
+use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
@@ -187,13 +190,24 @@ Route::prefix('trustfunds')->group(function () {
 
 });
 
- Route::prefix('BOT')->group(function () {
+Route::prefix('BOT')->group(function () {
 
     Route::post('/insertNewTransac', [NewTransactionsController::class, 'insertNewTransac']); 
     Route::get('/previousTransac', [PreviousTransactionsController::class, 'previousList']);
     Route::get('/viewTransac/{id}', [PreviousTransactionsController::class, 'viewdata']);
     Route::post('/editTransac/{id}', [PreviousTransactionsController::class, 'editData']);
     Route::get('/listReceiver', [PrintReceivingReceiptController::class, 'listPrintReceiver']);
+    // Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
+
+});
+
+Route::prefix('ContractPO')->group(function () {
+
+    Route::get('/listType', [RecContractPOController::class, 'listType']); 
+    Route::post('/insertRec', [RecContractPOController::class, 'receiveCP']); 
+    Route::get('/previousCP', [PrevRecController::class, 'list']);
+    Route::post('/updatePrev/{id}', [PrevRecController::class, 'update']);
+    Route::get('/listTransac', [PrintRecController::class, 'listTransac']);
     // Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
 
  });

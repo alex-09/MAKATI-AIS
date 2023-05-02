@@ -18,8 +18,7 @@ class PreviousTransactionsController extends Controller
 
     public function previousList(){
 
-        $listData = DMBudgetaryObligationsTransac::all();
-        return response()->json(['data' => $listData]);
+        return response()->json(['data' => DMBudgetaryObligationsTransac::all()]);
     }
     
 
