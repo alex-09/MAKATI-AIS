@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             BudgetYearSeeder::class,
             UserSeed::class,
             ApproSeeder::class,
-            STRSeeder::class
+            STRSeeder::class,
+            CPTypeSeeder::class
             // AllotSeeder::class,
 
         ]);

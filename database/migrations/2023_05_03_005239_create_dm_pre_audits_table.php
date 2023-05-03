@@ -11,25 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dm_contractpos', function (Blueprint $table) {
+        Schema::create('dm_pre_audits', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cotract_po_id');
-            $table->string('transaction_id')->index();
-            $table->string('contract_no')->nullable();
-            $table->string('po_no')->nullable();
+            $table->string('transaction_id');
             $table->string('payee_name');
-            $table->integer('department_id');
+            $table->string('particulars');
             $table->integer('amount');
-            $table->string('description');
             $table->string('current_bearer');
             $table->string('current_bearer_dept');
             $table->integer('current_bearer_contact_number');
-            $table->string('current_bearer_email');
             $table->integer('status');
             $table->timestamps();
 
-            $table->foreign('cotract_po_id')->references('id')->on('dm_contractpo_types');
-            $table->foreign('department_id')->references('department_code')->on('departments');
+            $table->foreign('transaction_id')->references('transaction_id')->on('dm_contractpos');
         });
     }
 
@@ -38,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dm_contractpos');
+        Schema::dropIfExists('dm_pre_audits');
     }
 };
