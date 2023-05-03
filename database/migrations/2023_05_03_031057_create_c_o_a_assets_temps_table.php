@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('status');
             $table->string('date_effect_index')->nullable();
-            $table->string('date_effectivity');
-            $table->string('coa_title');
+            $table->string('date_effectivity')->nullable();
+            $table->string('coa_title')->nullable();
             $table->timestamps();
         });
     }

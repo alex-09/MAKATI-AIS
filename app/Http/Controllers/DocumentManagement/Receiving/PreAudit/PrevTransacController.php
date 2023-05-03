@@ -19,13 +19,29 @@ class PrevTransacController extends Controller
 
 
     public function search(Request $request){
-
-        return $this->prevPreAudit->searchTransac($request);
+        try{
+            
+            return $this->prevPreAudit->searchTransac($request);
+        }catch (\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
     }
 
     
     public function save(PreAudRequest $request){
-        
-        return $this->prevPreAudit->savePreAud($request);
+        try{
+
+            return $this->prevPreAudit->savePreAud($request);
+        }catch (\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
     }
 }

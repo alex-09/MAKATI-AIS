@@ -16,8 +16,8 @@ use App\Http\Controllers\COA\Import\EquityImportController;
 use App\Http\Controllers\COA\Import\IncomeImportController;
 use App\Http\Controllers\COA\Export\ExpensesExportController;
 use App\Http\Controllers\COA\Export\LiabilityExportController;
-use App\Http\Controllers\Communication\CommunicationController;
 
+use App\Http\Controllers\Communication\CommunicationController;
 use App\Http\Controllers\COA\Import\LiabilitiesImportController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\UnexpendedController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\LGUCounterPartController;
@@ -85,6 +85,7 @@ Route::prefix('coa')->group(function() {
     Route::get('/listTemp', [AssetsController::class, 'listTemp']); 
     Route::post('/transferAsset', [AssetsController::class, 'move']); 
     Route::post('/cancelAsset', [AssetsController::class, 'disapprove']); 
+    Route::post('/addTitle', [AssetsController::class, 'insertDT']); 
 
     //ROUTES FOR EQUITY
     Route::get('/showEquity', [EquityController::class, 'showEquity']); 
@@ -225,3 +226,10 @@ Route::prefix('ContractPO')->group(function () {
 
  });
  
+ Route::prefix('Payment-Transaction')->group(function () {
+
+    Route::get('/storePT', [NewPayTransacController::class, 'store']); 
+    // Route::post('/save', [NewPayTransacController::class, 'save']); 
+    // Route::get('/list', [NewPayTransacController::class, 'listAll']);
+
+ });
