@@ -2,7 +2,7 @@
 
 namespace App\Imports\COA;
 
-use App\Models\COAAssets;
+use App\Models\COAAssetsTemp;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
@@ -17,7 +17,7 @@ class AssetsImport implements ToModel, WithHeadingRow, WithValidation
 
     public function model(array $row)
     {
-        return new COAAssets([
+        return new COAAssetsTemp([
             'account_group' => $row['account_group'],
             'major_account_group' => $row['major_account_group'],
             'sub_major_account_group' => $row['sub_major_account_group'],
