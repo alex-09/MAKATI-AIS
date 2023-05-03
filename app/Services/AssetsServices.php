@@ -127,7 +127,7 @@ class AssetsServices
     }
 
     public function cancelUplaod(){
-        DB::table('coa_assets_temps')->delete();
+        COAAssetsTemp::truncate();
 
         return response()->json([
             'status' => true,
