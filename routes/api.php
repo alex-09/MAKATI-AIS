@@ -28,6 +28,8 @@ use App\Http\Controllers\BAT\TrustFund\TrustReceipts\EnrollTransReceiptControlle
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrevRecController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrintRecController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\DonationPrivateSectorController;
+use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\PrevTransacController;
+use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\printPreAudController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
@@ -209,6 +211,14 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/updatePrev/{id}', [PrevRecController::class, 'update']);
     Route::get('/listTransac', [PrintRecController::class, 'listTransac']);
     // Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
+
+ });
+
+ Route::prefix('Pre-Audit')->group(function () {
+
+    Route::get('/search', [PrevTransacController::class, 'search']); 
+    Route::post('/save', [PrevTransacController::class, 'save']); 
+    Route::get('/list', [printPreAudController::class, 'listAll']);
 
  });
  
