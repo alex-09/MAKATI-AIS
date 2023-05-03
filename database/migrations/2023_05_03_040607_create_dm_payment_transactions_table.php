@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dm_pre_audits', function (Blueprint $table) {
+        Schema::create('dm_payment_transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('transaction_id');
-            $table->string('payee_name')->index();
+            $table->string('payee_name');
             $table->string('particulars');
             $table->integer('amount');
             $table->string('current_bearer');
@@ -24,7 +23,7 @@ return new class extends Migration
             $table->integer('status');
             $table->timestamps();
 
-            $table->foreign('transaction_id')->references('transaction_id')->on('dm_contractpos');
+            $table->foreign('payee_name')->references('payee_name')->on('dm_pre_audits');
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dm_pre_audits');
+        Schema::dropIfExists('dm_payment_transactions');
     }
 };

@@ -65,4 +65,8 @@ class AssetsController extends Controller
         return $services->move();
     }
 
+    public function disapprove(AssetsServices $services){
+        return $services->cancelUplaod();
+    }
+
 }

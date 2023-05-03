@@ -126,6 +126,15 @@ class AssetsServices
         ]);
     }
 
+    public function cancelUplaod(){
+        DB::table('coa_assets_temps')->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Disapproved',
+        ]);
+    }
+
     public function error($th){
         return response()->json([ 
             'status' => false,
