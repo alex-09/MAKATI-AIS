@@ -62,11 +62,19 @@ class AssetsController extends Controller
     }
 
     public function move(AssetsServices $services){
-        return $services->move();
+        try{
+            return $services->move();
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
     }
 
     public function disapprove(AssetsServices $services){
-        return $services->cancelUplaod();
+        try{
+            return $services->cancelUplaod();
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
     }
 
 }

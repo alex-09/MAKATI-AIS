@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('status');
             $table->timestamps();
 
-            $table->foreign('payee_name')->references('payee_name')->on('dm_pre_audits');
+            // $table->foreign('payee_name')->references('payee_name')->on('payee');
         });
     }
 

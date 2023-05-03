@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class AssetsImport implements ToModel, WithHeadingRow, WithValidation
+class AssetsImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -28,24 +28,21 @@ class AssetsImport implements ToModel, WithHeadingRow, WithValidation
             'account_title' => $row['account_title'],
             'description' => $row['description'],
             'status' => $row['status'],
-            'date_effect_index' => $row['date_effect_index'],
-            'date_effectivity' => $row['date_effectivity'],
-            'coa_title' => $row['coa_title']
         ]);
     }
 
-    public function rules(): array
-    {
-        return [
-            'date_effect_index' => 'nullable|sometimes|unique:coa_assets,date_effect_index',
-        ];
-    }
+    // public function rules(): array
+    // {
+    //     return [
+    //         'date_effect_index' => 'nullable|sometimes|unique:coa_assets,date_effect_index',
+    //     ];
+    // }
 
-    public function customValidationMessages()
-    {
-        return [
-            'date_effect_index' => 'Effectivity date already exist in the previous effectivity dates',
-        ];
-    }
+    // public function customValidationMessages()
+    // {
+    //     return [
+    //         'date_effect_index' => 'Effectivity date already exist in the previous effectivity dates',
+    //     ];
+    // }
 
 }
