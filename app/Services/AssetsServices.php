@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\COAAssets;
 use Illuminate\Http\Request;
 use App\Http\Requests\COARequest;
+use App\Models\COAAssetsTemp;
 use Illuminate\Support\Facades\DB;
 
 class AssetsServices 
@@ -105,6 +106,23 @@ class AssetsServices
         return response()->json([
             'status' => true,
             'message' => 'Account Disapproved',
+        ]);
+    }
+
+    public function displayTemp(){
+        $list = COAAssetsTemp::all();
+        return response()->json(['list' => $list ]);
+    }
+
+    public function move(){
+        COAAssetsTemp::all()->each(function ($newRecord){
+            $newRecord->replicate()->setTable('coa_assets')->save();
+            $newRecord->delete();
+        });
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Succes, Already move to current',
         ]);
     }
 

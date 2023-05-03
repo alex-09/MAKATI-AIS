@@ -57,4 +57,12 @@ class AssetsController extends Controller
         }
     }
 
+    public function listTemp(AssetsServices $services){
+        return $services->displayTemp();
+    }
+
+    public function move(AssetsServices $services){
+        return $services->move();
+    }
+
 }
