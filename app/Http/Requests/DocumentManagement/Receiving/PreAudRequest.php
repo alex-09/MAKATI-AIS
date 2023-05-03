@@ -29,6 +29,7 @@ class PreAudRequest extends FormRequest
             'current_bearer' => 'required',
             'current_bearer_dept' => 'required',
             'current_bearer_contact_number' => 'required',
+            'current_bearer_email' => 'required',
         ];
     }
 }

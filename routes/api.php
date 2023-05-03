@@ -84,6 +84,7 @@ Route::prefix('coa')->group(function() {
     Route::post('/disApproveAssetAccount/{id}', [AssetsController::class, 'disApproveAccount']); 
     Route::get('/listTemp', [AssetsController::class, 'listTemp']); 
     Route::post('/transferAsset', [AssetsController::class, 'move']); 
+    Route::post('/cancelAsset', [AssetsController::class, 'disapprove']); 
 
     //ROUTES FOR EQUITY
     Route::get('/showEquity', [EquityController::class, 'showEquity']); 
