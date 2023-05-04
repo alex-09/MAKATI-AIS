@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\COA\Import;
 
-use Illuminate\Http\Request;
 use App\Imports\COA\AssetsImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\COAUploadRequest;
 
 class AssetImportController extends Controller
 {
-    public function Import(Request $request){
+    public function Import(COAUploadRequest $request){
         
         try{
             Excel::import(new AssetsImport, $request->file);
@@ -22,11 +22,11 @@ class AssetImportController extends Controller
                 'message' => 'successfully imported!'
             ]);
 
-            }catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
-                return response()->json([
-                    'status' => true,
-                    'error' => $e->failures()
-                ]);
+        }catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            return response()->json([
+                'status' => true,
+                'error' => $e->failures()
+            ]);
         }
     }
 }

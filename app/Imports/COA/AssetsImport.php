@@ -31,18 +31,18 @@ class AssetsImport implements ToModel, WithHeadingRow
         ]);
     }
 
-    // public function rules(): array
-    // {
-    //     return [
-    //         'date_effect_index' => 'nullable|sometimes|unique:coa_assets,date_effect_index',
-    //     ];
-    // }
+    public function rules(): array
+    {
+        return [
+            'date_effect_index' => 'nullable|sometimes|unique:coa_assets,date_effect_index',
+        ];
+    }
 
-    // public function customValidationMessages()
-    // {
-    //     return [
-    //         'date_effect_index' => 'Effectivity date already exist in the previous effectivity dates',
-    //     ];
-    // }
+    public function customValidationMessages()
+    {
+        return [
+            'date_effect_index' => 'Effectivity date already exist in the previous effectivity dates',
+        ];
+    }
 
 }

@@ -14,9 +14,9 @@ use App\Http\Controllers\COA\Export\EquityExportController;
 use App\Http\Controllers\COA\Export\IncomeExportController;
 use App\Http\Controllers\COA\Import\EquityImportController;
 use App\Http\Controllers\COA\Import\IncomeImportController;
+
 use App\Http\Controllers\COA\Export\ExpensesExportController;
 use App\Http\Controllers\COA\Export\LiabilityExportController;
-
 use App\Http\Controllers\Communication\CommunicationController;
 use App\Http\Controllers\COA\Import\LiabilitiesImportController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\UnexpendedController;
@@ -37,6 +37,7 @@ use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOCo
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,10 +83,10 @@ Route::prefix('coa')->group(function() {
     Route::post('/addAssetDescription/{id}', [AssetsController::class, 'AddAssetDescription']); 
     Route::post('/approveAssetAccount/{id}', [AssetsController::class, 'approveAccount']); 
     Route::post('/disApproveAssetAccount/{id}', [AssetsController::class, 'disApproveAccount']); 
-    Route::get('/listTemp', [AssetsController::class, 'listTemp']); 
+    Route::get('/listTempAsset', [AssetsController::class, 'listTemp']); 
     Route::post('/transferAsset', [AssetsController::class, 'move']); 
-    Route::post('/cancelAsset', [AssetsController::class, 'disapprove']); 
-    Route::post('/addTitle', [AssetsController::class, 'insertDT']); 
+    Route::post('/disapproveAsset', [AssetsController::class, 'disapprove']); 
+    Route::post('/addTitleAsset', [AssetsController::class, 'insertDT']); 
 
     //ROUTES FOR EQUITY
     Route::get('/showEquity', [EquityController::class, 'showEquity']); 
@@ -228,7 +229,7 @@ Route::prefix('ContractPO')->group(function () {
  
  Route::prefix('Payment-Transaction')->group(function () {
 
-    Route::get('/storePT', [NewPayTransacController::class, 'store']); 
+    Route::post('/storePT', [NewPayTransacController::class, 'store']); 
     // Route::post('/save', [NewPayTransacController::class, 'save']); 
     // Route::get('/list', [NewPayTransacController::class, 'listAll']);
 

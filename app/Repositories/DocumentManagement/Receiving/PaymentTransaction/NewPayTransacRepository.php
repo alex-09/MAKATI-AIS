@@ -3,7 +3,6 @@
 namespace App\Repositories\DocumentManagement\Receiving\PaymentTransaction;
 
 use Carbon\Carbon;
-use App\Models\DmContractpo;
 use App\Models\DmPaymentTransaction;
 
 class NewPayTransacRepository
