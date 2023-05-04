@@ -27,112 +27,82 @@ class AssetsServices
         }
 
         return response()->json([
-            'status' => True,
             'list' => $list,
             'date' => $date
         ]);
     }
 
-    public function enrollAssets(COARequest $request){
+    public function enrollAssets(COARequest $request)
+    {
+        try {
+            COAAssets::create(
+                [
+                    'status' => 'pending'
+                ] +
+                    $request->validated(),
+            );
 
-        try{
-            
-        COAAssets::create([
-            'status' => 'pending'
-        ] +
-            $request->validated(),
-        );
-        return response()->json([
-            'status' => true,
-            'message' => 'Account Enrolled Successfully',
-        ]);
-    }catch(\Throwable $th){
-        return $this->error($th);
-    }
+            return response()->json(['message' => 'Account Enrolled Successfully']);
 
+        }catch (\Throwable $th) {
+            return $this->error($th);
+        }
     }
 
     public function updateStatus($id){
 
         $status = COAAssets::find($id);
-
         if($status['status'] == 'enable'){
-            $status->update([
-                'status' => 'disable'
-            ]);
-            return response()->json([
-                'status' => true,
-                'message' => 'Account disabled successfully',
-            ]);
-        }else{
-            $status->update([
-                'status' => 'enable'
-            ]);
-            return response()->json([
-                'status' => true,
-                'message' => 'Account Enabled successfully',
 
-            ]);
+            $status->update(['status' => 'disable']);
+            return response()->json(['message' => 'Account disabled successfully']);
+
+        }else{
+
+            $status->update(['status' => 'enable']);
+            return response()->json(['message' => 'Account Enabled successfully']);
+
         }
     }
 
     public function updateDesc(Request $request, $id){
-
         $assetDescrip = COAAssets::find($id);
-        $assetDescrip->update([
-            'description' => $request->description
-        ]);
+        $assetDescrip->update(['description' => $request->description]);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Description Updated Success',
-        ]);
+        return response()->json(['message' => 'Description Updated Success']);
     }
 
     public function approve($id){
         $app = COAAssets::find($id);
-        $app->update([
-            'status' => 'enable'
-        ]);
-        return response()->json([
-            'status' => true,
-            'message' => 'Approved Account',
-        ]);
+        $app->update(['status' => 'enable']);
+
+        return response()->json(['message' => 'Approved Account']);
     }
 
     public function disApprove($id){
         COAAssets::find($id)->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Account Disapproved',
-        ]);
+        return response()->json(['message' => 'Account Disapproved']);
     }
 
     public function displayTemp(){
         $list = COAAssetsTemp::all();
-        return response()->json(['list' => $list ]);
+        return response()->json(['list' => $list]);
     }
 
-    public function move(){
-        COAAssetsTemp::all()->each(function ($newRecord){
+    public function move($request){
+        COAAssetsTemp::whereIn('id', $request->id)->each(function ($newRecord){
             $newRecord->replicate()->setTable('coa_assets')->save();
-            $newRecord->delete();
         });
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Succes, Already move to current',
-        ]);
-    }
-
-    public function cancelUplaod(){
         COAAssetsTemp::truncate();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Disapproved',
-        ]);
+        return response()->json(['message' => 'Successfully moved to current']);
+    }
+
+    public function cancelUplaod($request){
+        COAAssetsTemp::whereIn('id', $request->id)->delete();
+
+        return response()->json(['message' => 'Account Disapprove']);
     }
 
     public function error($th){

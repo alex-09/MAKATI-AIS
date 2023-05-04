@@ -61,17 +61,17 @@ class AssetsController extends Controller
         return $services->displayTemp();
     }
 
-    public function move(AssetsServices $services){
+    public function move(AssetsServices $services, Request $request){
         try{
-            return $services->move();
+            return $services->move($request);
         }catch (\Throwable $th) {
             return $services->error($th);
         }
     }
 
-    public function disapprove(AssetsServices $services){
+    public function disapprove(AssetsServices $services, Request $request){
         try{
-            return $services->cancelUplaod();
+            return $services->cancelUplaod($request);
         }catch (\Throwable $th) {
             return $services->error($th);
         }

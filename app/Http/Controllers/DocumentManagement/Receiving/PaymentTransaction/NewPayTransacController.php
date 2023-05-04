@@ -1,7 +1,9 @@
 <?php
-    
+
+namespace App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction;
+
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PayTransacRequest;
+use App\Http\Requests\DocumentManagement\Receiving\PayTransacRequest;
 use App\Repositories\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacRepository;
 
 class NewPayTransacController extends Controller
@@ -15,7 +17,6 @@ class NewPayTransacController extends Controller
 
     public function store(PayTransacRequest $request){
         try{
-            
             return $this->newPayTransac->storetransac($request);
         }catch (\Throwable $th){
             return response()->json([

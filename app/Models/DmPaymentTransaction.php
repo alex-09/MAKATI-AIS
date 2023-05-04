@@ -12,7 +12,7 @@ class DmPaymentTransaction extends Model
     protected $fillable = [
         'payee_name',
         'amount',
-        'description',
+        'particulars',
         'current_bearer',
         'current_bearer_dept',
         'current_bearer_contact_number',

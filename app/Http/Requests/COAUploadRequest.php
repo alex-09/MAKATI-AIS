@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\DocumentManagement\Receiving;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PayTransacRequest extends FormRequest
+class COAUploadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,9 @@ class PayTransacRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'payee_name' => 'string',
-            'particulars' => 'string',
-            'amount' => 'integer',
-            'current_bearer' => 'required',
-            'current_bearer_dept' => 'required',
-            'current_bearer_contact_number' => 'required',
-            'current_bearer_email' => 'required',
+            'date' => ['required'],
+            'title' => ['required'],
+            'file' => ['required', 'mimes:csv', 'unique:coa_assets,date_effect_index'],
         ];
     }
 }
