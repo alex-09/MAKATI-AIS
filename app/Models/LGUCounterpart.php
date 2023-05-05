@@ -11,7 +11,7 @@ class LGUCounterpart extends Model
 
     protected $fillable = [
         'tf_tlc_id',
-        'general_descript',
+        'general_description',
         'legal_basis',
         'remarks'
 

@@ -11,9 +11,7 @@ class PreviousAccController extends Controller
     public function coaDates(){
         $date = DB::select('CALL get_prevYear()');
 
-        return response()->json([
-            'data' => $date
-        ]);
+        return response()->json(['data' => $date]);
     }
     
     public function prevAsset(Request $request){ 
@@ -21,9 +19,7 @@ class PreviousAccController extends Controller
             $request->date  
         ));
 
-        return response()->json([
-            'data' => $list
-        ]);
+        return response()->json(['data' => $list]);
     }
 
     public function prevLiability(Request $request){ 
@@ -31,9 +27,7 @@ class PreviousAccController extends Controller
             $request->date  
         ));
 
-        return response()->json([
-            'data' => $list
-        ]);
+        return response()->json(['data' => $list]);
     }
 
     public function prevEquity(Request $request){ 
@@ -41,9 +35,7 @@ class PreviousAccController extends Controller
             $request->date  
         ));
 
-        return response()->json([
-            'data' => $list
-        ]);
+        return response()->json(['data' => $list]);
     }
 
     public function prevExpenses(Request $request){ 
@@ -51,9 +43,7 @@ class PreviousAccController extends Controller
             $request->date  
         ));
 
-        return response()->json([
-            'data' => $list
-        ]);
+        return response()->json(['data' => $list]);
     }
 
     public function prevIncome(Request $request){ 

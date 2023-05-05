@@ -7,6 +7,7 @@ use App\Models\tfFundDetails;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\DonationPrivateSector;
+use App\Http\Requests\BAT\TrustFund\TrustReceipt\DPSRequest;
 
 class DonationPrivateSectorController extends Controller
 {
@@ -21,22 +22,8 @@ class DonationPrivateSectorController extends Controller
         return response()->json($list);
     }
 
-
-    public function enrollDonate(Request $request){
+    public function enrollDonate(DPSRequest $request){
         try{
-
-            $request->validate([
-                'company_name' => 'required',
-                'document_source' => 'required|mimes:pdf,doc,docx|max:2048',
-                'general_description' => 'required',
-                'official_receipt_no' => 'required',
-                'official_receipt_date' => 'required',
-                'main_fund_title' => 'required',
-                'sub_fund_title' => 'required',
-                'specific_purpose' => 'required',
-                'amount_allocated' => 'required',
-                'implementing_office' => 'required',
-            ]);
 
             $tfoga = DonationPrivateSector::all();
             if($tfoga->isEmpty()){
@@ -49,22 +36,12 @@ class DonationPrivateSectorController extends Controller
 
             $enrollDonationPriv = DonationPrivateSector::create([
                 'tf_dps_id' => $tfid,
-                'company_name' => $request->company_name,
-                'document_source' => $request->document_source,
-                'general_description' => $request->general_description,
-                'official_receipt_no' => $request->official_receipt_no,
-                'official_receipt_date' => $request->official_receipt_date,
                 'remarks' => 1
-            ]);
+            ] + $request->validated());
 
             tfFundDetails::create([
                 'tf_id' => $tfid,
-                'main_fund_title'  => $request->main_fund_title,
-                'sub_fund_title' => $request->sub_fund_title,
-                'specific_purpose' => $request->specific_purpose,
-                'amount_allocated' => $request->amount_allocated,
-                'implementing_office' => $request->implementing_office
-            ]);
+            ] + $request->validated());
 
             if ($request->hasFile('document_source')) {
                 $file = $request->file('document_source');

@@ -14,7 +14,7 @@ class UnexpendedBalance extends Model
     'tf_tub_id',
     'budget_year_id',
     'document_source',
-    'general_descript',
+    'general_description',
     'legal_basis',
     'journal_voucher_no',
     'journal_voucher_date',
