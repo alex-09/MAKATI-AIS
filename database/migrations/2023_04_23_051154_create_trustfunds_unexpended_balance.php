@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('trustfunds_unexpended_balance', function (Blueprint $table) {
             $table->id();
             $table->string('tf_tub_id');
+            $table->string('tr_type')->default('3');
             $table->unsignedBigInteger('budget_year_id');
             $table->string('document_source');
             $table->string('general_description');

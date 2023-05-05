@@ -19,6 +19,13 @@ return new class extends Migration
             $table->float('amount_allocated', 17, 6)->nullable();
             $table->string('specific_purpose');
             $table->string('implementing_office');
+            $table->string('reference')->nullable(); 
+            $table->string('update_reasons')->nullable(); 
+            $table->float('latest_balance', 17, 6)->nullable(); 
+            $table->float('addition', 17, 6)->nullable(); 
+            $table->float('deduction', 17, 6)->nullable(); 
+            $table->float('updated_balance', 17, 6)->nullable(); 
+            $table->string('status')->default('1'); 
             $table->timestamps();
         });
     }

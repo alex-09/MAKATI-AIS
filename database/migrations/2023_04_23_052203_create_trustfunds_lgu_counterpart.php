@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('trustfunds_lgu_counterpart', function (Blueprint $table) {
             $table->id();
             $table->string('tf_tlc_id');
+            $table->string('tr_type')->default('4');
             $table->string('general_description');
             $table->string('legal_basis');
             $table->string('remarks');

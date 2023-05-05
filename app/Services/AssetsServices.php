@@ -91,9 +91,12 @@ class AssetsServices
     }
 
     public function move($request){
-        COAAssetsTemp::whereIn('id', $request->id)->each(function ($newRecord){
-            $newRecord->replicate()->setTable('coa_assets')->save();
-        });
+        // $coa = $request->input();
+        // foreach($coa as $key => $value){
+            COAAssetsTemp::whereIn('id', $request->id)->each(function ($newRecord){
+                $newRecord->replicate()->setTable('coa_assets')->save();
+            });
+        // }
         COAAssetsTemp::truncate();
 
         return response()->json(['message' => 'Successfully moved to current']);
