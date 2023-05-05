@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('donation_private_sector', function (Blueprint $table) {
             $table->id();
             $table->string('tf_dps_id');
+            $table->string('tr_type')->default('2');
             $table->string('company_name');
             $table->string('document_source');
             $table->string('general_description');
