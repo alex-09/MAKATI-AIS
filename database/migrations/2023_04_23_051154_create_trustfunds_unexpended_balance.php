@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('tf_tub_id');
             $table->unsignedBigInteger('budget_year_id');
             $table->string('document_source');
-            $table->string('general_descript');
+            $table->string('general_description');
             $table->string('legal_basis');
             $table->integer('journal_voucher_no');
             $table->string('journal_voucher_date')->nullable();

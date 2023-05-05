@@ -7,25 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\tfFundDetails;
 use App\Models\UnexpendedBalance;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BAT\TrustFund\TrustReceipt\UnexpendedRequest;
 
 class UnexpendedController extends Controller
 {
-    public function insertData(Request $request){
+    public function insertData(UnexpendedRequest $request){
         try{
-
-            $request->validate([
-                'budget_year_id' => 'required',
-                'general_descript' => 'required',
-                'document_source' => 'required|mimes:pdf,doc,docx|max:2048',
-                'legal_basis' => 'required',
-                'journal_voucher_no' => 'required',
-                'journal_voucher_date' => 'required',
-                'main_fund_title' => 'required',
-                'sub_fund_title' => 'required',
-                'specific_purpose' => 'required',
-                'amount_allocated' => 'required',
-                'implementing_office' => 'required',
-            ]);
 
             $tfoga = UnexpendedBalance::all();
             if($tfoga->isEmpty()){
@@ -38,23 +25,12 @@ class UnexpendedController extends Controller
 
             $unexpended = UnexpendedBalance::create([
                 'tf_tub_id' => $tfid,
-                'budget_year_id' => $request->budget_year_id,
-                'document_source' => $request->document_source,
-                'legal_basis' => $request->legal_basis,
-                'general_descript' => $request->general_descript,
-                'journal_voucher_no' => $request->journal_voucher_no,
-                'journal_voucher_date' => $request->journal_voucher_date,
                 'remarks' => 1
-            ]);
+            ] + $request->validated());
 
             tfFundDetails::create([
                 'tf_id' => $tfid,
-                'main_fund_title'  => $request->main_fund_title,
-                'sub_fund_title' => $request->sub_fund_title,
-                'specific_purpose' => $request->specific_purpose,
-                'amount_allocated' => $request->amount_allocated,
-                'implementing_office' => $request->implementing_office
-            ]);
+            ] + $request->validated());
 
             return response()->json([
                 'status' => true,
