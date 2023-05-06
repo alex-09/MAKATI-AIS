@@ -36,11 +36,12 @@ class DonationPrivateSectorController extends Controller
 
             $enrollDonationPriv = DonationPrivateSector::create([
                 'tf_dps_id' => $tfid,
-                'remarks' => 1
+                'remarks' => 1,
             ] + $request->validated());
 
             tfFundDetails::create([
                 'tf_id' => $tfid,
+                'tr_type' => 2
             ] + $request->validated());
 
             if ($request->hasFile('document_source')) {

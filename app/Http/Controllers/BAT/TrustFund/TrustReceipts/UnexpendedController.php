@@ -25,11 +25,12 @@ class UnexpendedController extends Controller
 
             $unexpended = UnexpendedBalance::create([
                 'tf_tub_id' => $tfid,
-                'remarks' => 1
+                'remarks' => 1,
             ] + $request->validated());
 
             tfFundDetails::create([
                 'tf_id' => $tfid,
+                'tr_type' => 3
             ] + $request->validated());
 
             return response()->json([

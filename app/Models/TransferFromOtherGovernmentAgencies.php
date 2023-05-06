@@ -21,6 +21,7 @@ class TransferFromOtherGovernmentAgencies extends Model
         'official_receipt_date',
         'official_receipt_amount',
         'nadai_date',
-        'remarks'
+        'remarks',
+        'tr_type'
     ];
 }

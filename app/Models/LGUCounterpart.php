@@ -13,7 +13,8 @@ class LGUCounterpart extends Model
         'tf_tlc_id',
         'general_description',
         'legal_basis',
-        'remarks'
+        'remarks',
+        'tr_type',
 
     ];
 }
