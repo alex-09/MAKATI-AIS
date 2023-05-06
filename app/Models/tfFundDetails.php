@@ -15,6 +15,17 @@ class tfFundDetails extends Model
         'sub_fund_title',
         'amount_allocated',
         'specific_purpose',
-        'implementing_office'
+        'implementing_office',
+        'tr_type',
+        'reference', 
+        'update_reasons',
+        'latest_balance',
+        'addition',
+        'deduction',
+        'updated_balance',
+        'processor',
+        'reviewer',
+        'type',
+        'status',
     ];
 }

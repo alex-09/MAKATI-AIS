@@ -18,7 +18,8 @@ class UnexpendedBalance extends Model
     'legal_basis',
     'journal_voucher_no',
     'journal_voucher_date',
-    'remarks'
+    'remarks',
+    'tr_type'
     
     ];
 }

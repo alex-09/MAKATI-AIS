@@ -24,11 +24,12 @@ class LGUCounterPartController extends Controller
 
             $insertLGU = LGUCounterpart::create([
                 'tf_tlc_id' => $tfid,
-                'remarks' => 1
+                'remarks' => 1,
             ] + $request->validated());
 
             tfFundDetails::create([
                 'tf_id' => $tfid,
+                'tr_type' => 4
             ] + $request->validated());
         
             return response()->json([

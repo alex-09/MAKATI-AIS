@@ -13,12 +13,10 @@ class EnrollTransReceiptController extends Controller
 {
     public function srcTrustReceipt()
     {
-        // Retrieve data from the database
         $list = DB::table('src_trust_receipt')
                     ->select('id', 'str_name')
                     ->get();
-    
-        // Convert the list to a JSON response
+
         return response()->json($list);
     }
 
@@ -37,11 +35,12 @@ class EnrollTransReceiptController extends Controller
 
             $enrollTransferGov = TransferFromOtherGovernmentAgencies::create([
                 'tf_toga_id' => $tfid,
-                'remarks' => 1
+                'remarks' => 1,
             ] + $request->validated());
 
             tfFundDetails::create([
                 'tf_id' => $tfid,
+                'tr_type' => 1
             ] + $request->validated());
 
             if ($request->hasFile('document_source')) {

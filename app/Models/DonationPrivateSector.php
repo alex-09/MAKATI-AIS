@@ -17,6 +17,7 @@ class DonationPrivateSector extends Model
         'general_description',
         'official_receipt_no',
         'official_receipt_date',
-        'remarks'
+        'remarks',
+        'tr_type'
     ];
 }
