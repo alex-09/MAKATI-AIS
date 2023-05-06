@@ -38,6 +38,10 @@ use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransa
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -232,5 +236,13 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/storePT', [NewPayTransacController::class, 'store']); 
     // Route::post('/save', [NewPayTransacController::class, 'save']); 
     // Route::get('/list', [NewPayTransacController::class, 'listAll']);
+
+ });
+
+ Route::prefix('Payee-Enroll')->group(function () {
+
+    Route::post('/individual', [PEIndividualController::class, 'storeIndividual']); 
+    Route::post('/business', [PEBusinessController::class, 'storeBusiness']); 
+    Route::post('/government-agency', [PEGovernementAgencyController::class, 'storeAgency']); 
 
  });
