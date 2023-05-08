@@ -8,17 +8,19 @@ use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\COA\PreviousAccController;
+use App\Http\Controllers\BAT\TrustFund\ListTRController;
 use App\Http\Controllers\COA\export\AssetExportController;
 use App\Http\Controllers\COA\Import\AssetImportController;
 use App\Http\Controllers\COA\Export\EquityExportController;
 use App\Http\Controllers\COA\Export\IncomeExportController;
 use App\Http\Controllers\COA\Import\EquityImportController;
-use App\Http\Controllers\COA\Import\IncomeImportController;
 
+use App\Http\Controllers\COA\Import\IncomeImportController;
 use App\Http\Controllers\COA\Export\ExpensesExportController;
 use App\Http\Controllers\COA\Export\LiabilityExportController;
 use App\Http\Controllers\Communication\CommunicationController;
 use App\Http\Controllers\COA\Import\LiabilitiesImportController;
+use App\Http\Controllers\BAT\TrustFund\UpdateTR\UpdateTRController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\UnexpendedController;
 use App\Http\Controllers\BAT\TrustFund\TrustReceipts\LGUCounterPartController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
@@ -34,14 +36,13 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationCont
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
+use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
-use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
-use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
-use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
-use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -193,11 +194,14 @@ Route::prefix('ReceiveCommunication')->group(function () {
 
 Route::prefix('trustfunds')->group(function () {
 
+    route::get('/listsrcs', [ListTRController::class, 'list']);
     Route::post('/unexpended', [UnexpendedController::class, 'insertData']); 
     Route::post('/counterpart', [LGUCounterPartController::class, 'insertData']); 
-    Route::post('upload-file', [UnexpendedController::class, 'upload']);
     Route::post('/enrolltransfer', [EnrollTransReceiptController::class, 'enrollNew']); 
     Route::post('/enrollDonation', [DonationPrivateSectorController::class, 'enrollDonate']); 
+
+    Route::get('/searchTr', [UpdateTRController::class, 'search']);
+    Route::get('/updateTr', [UpdateTRController::class, 'update']);
 
 });
 

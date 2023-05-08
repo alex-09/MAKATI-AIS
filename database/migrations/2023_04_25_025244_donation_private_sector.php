@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('general_description');
             $table->integer('official_receipt_no');
             $table->string('official_receipt_date');
-            $table->string('remarks');
+            $table->string('remarks')->default('1');
             $table->timestamps();
         });
     }

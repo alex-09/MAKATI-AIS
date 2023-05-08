@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('official_receipt_date');
             $table->integer('official_receipt_amount');
             $table->string('nadai_date');
-            $table->integer('remarks');
+            $table->integer('remarks')->default('1');
             $table->timestamps();
         });
     }
