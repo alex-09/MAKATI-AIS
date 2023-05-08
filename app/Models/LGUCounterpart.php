@@ -10,11 +10,12 @@ class LGUCounterpart extends Model
     protected $table = 'trustfunds_lgu_counterpart';
 
     protected $fillable = [
-        'tf_tlc_id',
+        'tf_id',
         'general_description',
         'legal_basis',
         'remarks',
         'tr_type',
+        'status'
 
     ];
 }

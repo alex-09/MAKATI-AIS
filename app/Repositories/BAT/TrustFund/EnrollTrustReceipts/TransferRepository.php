@@ -21,7 +21,7 @@ class TransferRepository{
         // $request->document->move(public_path('uploads'), $docuFile);
 
         $enrollTransferGov = TransferFromOtherGovernmentAgencies::create([
-            'tf_toga_id' => $tfid,
+            'tf_id' => $tfid,
             'document_source' => $docuFile
         ] + $request->validated());
 

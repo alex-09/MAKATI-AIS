@@ -24,7 +24,7 @@ class DonationRepository{
         // $request->document->move(public_path('uploads'), $docuFile);
 
         $enrollDonationPriv = DonationPrivateSector::create([
-            'tf_dps_id' => $tfid,
+            'tf_id' => $tfid,
             'document_source' => $docuFile
         ] + $request->validated());
 

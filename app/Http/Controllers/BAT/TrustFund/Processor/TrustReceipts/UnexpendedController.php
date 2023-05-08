@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
+namespace App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts;
 
 use Illuminate\Http\Request;
 use App\Models\UnexpendedBalance;
