@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\BAT\TrustFund\UpdateTR;
+namespace App\Http\Controllers\BAT\TrustFund\Processor\UpdateTR;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Repositories\BAT\TrustFund\UpdateTrustReceipts\UpdateTRRepository;
+
 class UpdateTRController extends Controller
 {
 

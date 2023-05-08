@@ -11,7 +11,7 @@ class UnexpendedBalance extends Model
 
     protected $fillable = [
 
-    'tf_tub_id',
+    'tf_id',
     'budget_year_id',
     'document_source',
     'general_description',
@@ -19,7 +19,8 @@ class UnexpendedBalance extends Model
     'journal_voucher_no',
     'journal_voucher_date',
     'remarks',
-    'tr_type'
+    'tr_type',
+    'status'
     
     ];
 }

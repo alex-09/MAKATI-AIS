@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\BAT\TrustFund;
+namespace App\Http\Controllers\BAT\TrustFund\Processor;
 
 use App\Http\Controllers\Controller;
 use App\Models\SRCTrustReceipt;
 use Illuminate\Http\Request;
 
-class ListTRController extends Controller
+class ListsrcTRController extends Controller
 {
     public function list(){
         return response()->json([

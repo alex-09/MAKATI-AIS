@@ -8,36 +8,42 @@ use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\COA\PreviousAccController;
-use App\Http\Controllers\BAT\TrustFund\ListTRController;
 use App\Http\Controllers\COA\export\AssetExportController;
 use App\Http\Controllers\COA\Import\AssetImportController;
 use App\Http\Controllers\COA\Export\EquityExportController;
 use App\Http\Controllers\COA\Export\IncomeExportController;
 use App\Http\Controllers\COA\Import\EquityImportController;
-
 use App\Http\Controllers\COA\Import\IncomeImportController;
+
 use App\Http\Controllers\COA\Export\ExpensesExportController;
 use App\Http\Controllers\COA\Export\LiabilityExportController;
-use App\Http\Controllers\Communication\CommunicationController;
+use App\Http\Controllers\BAT\TrustFund\ListTr\ListTRController;
 use App\Http\Controllers\COA\Import\LiabilitiesImportController;
-use App\Http\Controllers\BAT\TrustFund\UpdateTR\UpdateTRController;
-use App\Http\Controllers\BAT\TrustFund\TrustReceipts\UnexpendedController;
-use App\Http\Controllers\BAT\TrustFund\TrustReceipts\LGUCounterPartController;
+use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewTRController;
+use App\Http\Controllers\BAT\TrustFund\Processor\ListsrcTRController;
+use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHToApproveController;
+use App\Http\Controllers\BAT\TrustFund\CityAccountant\CAToApproveController;
+use App\Http\Controllers\BAT\TrustFund\Processor\UpdateTR\UpdateTRController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\UpdateAllotmentController;
-use App\Http\Controllers\BAT\TrustFund\TrustReceipts\EnrollTransReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrevRecController;
+use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\UnexpendedController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrintRecController;
-use App\Http\Controllers\BAT\TrustFund\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\PrevTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\printPreAudController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
+use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\LGUCounterPartController;
+use App\Http\Controllers\DocumentManagement\Receiving\Communication\PrintCommController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
+use App\Http\Controllers\DocumentManagement\Receiving\Communication\CreateCommController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
+use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\Communication\CommunicationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
+use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
@@ -192,7 +198,9 @@ Route::prefix('allotment')->group(function () {
 Route::prefix('ReceiveCommunication')->group(function () {
 
     Route::post('/insert', [CommunicationController::class, 'receive_comms']); 
-    Route::get('/showRecComm', [CommunicationController::class, 'showRecComm']); 
+    Route::get('/showRecComm', [PrintCommController::class, 'display']); 
+    Route::post('/createComm', [CreateCommController::class, 'store']);
+
     Route::get('/filterBearer', [CommunicationController::class, 'filterBearer']);
     Route::post('/update/{id}', [CommunicationController::class, 'updateComm']); 
     Route::get('/search', [CommunicationController::class, 'searchComm']); 
@@ -205,15 +213,33 @@ Route::prefix('ReceiveCommunication')->group(function () {
 
 Route::prefix('trustfunds')->group(function () {
 
-    route::get('/listsrcs', [ListTRController::class, 'list']);
+    //PROCESSOR
+    route::get('/listsrcs', [ListsrcTRController::class, 'list']);
     Route::post('/unexpended', [UnexpendedController::class, 'insertData']); 
     Route::post('/counterpart', [LGUCounterPartController::class, 'insertData']); 
     Route::post('/enrolltransfer', [EnrollTransReceiptController::class, 'enrollNew']); 
     Route::post('/enrollDonation', [DonationPrivateSectorController::class, 'enrollDonate']); 
 
+    Route::get('/forReviewTr', [ListTRController::class, 'listforReview']);
+    Route::get('/approvedTr', [ListTRController::class, 'listapproved']);
+    
     Route::get('/searchTr', [UpdateTRController::class, 'search']);
-    Route::get('/updateTr', [UpdateTRController::class, 'update']);
+    Route::post('/updateTr', [UpdateTRController::class, 'update']);
 
+    //VIEW TRUST RECEIPT
+    Route::post('/viewTr', [ListTRController::class, 'view']);
+
+    //REVIEWER
+    Route::post('/toDiviHead', [ReviewTRController::class, 'reviewed']);
+    Route::post('/revReject', [ReviewTRController::class, 'reject']);
+
+    //DIVISION HEAD
+    Route::post('/forCATr', [DHToApproveController::class, 'reviewed']);
+    Route::post('/DHReject', [DHToApproveController::class, 'reject']);
+
+    //CITYACCOUNTANT
+    Route::post('/CAApproveTr', [CAToApproveController::class, 'reviewed']);
+    Route::post('/CAReject', [CAToApproveController::class, 'reject']);
 });
 
 Route::prefix('BOT')->group(function () {

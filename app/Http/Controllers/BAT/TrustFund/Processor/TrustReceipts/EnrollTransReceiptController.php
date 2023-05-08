@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
+namespace App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BAT\TrustFund\TrustReceipt\TRRequest;
