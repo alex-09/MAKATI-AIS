@@ -35,6 +35,7 @@ use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\printPreAudContro
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
+use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
@@ -259,5 +260,10 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/individual', [PEIndividualController::class, 'storeIndividual']); 
     Route::post('/business', [PEBusinessController::class, 'storeBusiness']); 
     Route::post('/government-agency', [PEGovernementAgencyController::class, 'storeAgency']); 
+ });
 
+ Route::prefix('Check-Transac')->group(function () {
+
+    Route::post('/receive-checks', [ReceiveChecksController::class, 'storeReceiveChecks']); 
+ 
  });
