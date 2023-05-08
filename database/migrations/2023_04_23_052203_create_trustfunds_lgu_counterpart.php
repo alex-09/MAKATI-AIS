@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('tr_type')->default('4');
             $table->string('general_description');
             $table->string('legal_basis');
-            $table->string('remarks');
+            $table->string('remarks')->default('1');
             $table->timestamps();
         });
     }

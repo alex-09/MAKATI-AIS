@@ -56,4 +56,25 @@ class EquityController extends Controller
             return $services->error($th);
         }
     }
+
+    public function listTemp(EquityServices $services){
+        return $services->displayTemp();
+    }
+
+    public function move(EquityServices $services, Request $request){
+        try{
+            return $services->move($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function disapprove(EquityServices $services, Request $request){
+        try{
+            return $services->cancelUplaod($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+    
 }

@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
 
-use Illuminate\Http\Request;
-use App\Models\tfFundDetails;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\DonationPrivateSector;
 use App\Http\Requests\BAT\TrustFund\TrustReceipt\DPSRequest;
+use App\Repositories\BAT\TrustFund\EnrollTrustReceipts\DonationRepository;
 
 class DonationPrivateSectorController extends Controller
 {
+
+    private $donationRepo;
+
+    public function __construct(DonationRepository $donationRepo)
+    {
+        $this->donationRepo = $donationRepo;
+    }
+
     public function srcTrustReceipt()
     {
         // Retrieve data from the database
@@ -25,42 +31,7 @@ class DonationPrivateSectorController extends Controller
     public function enrollDonate(DPSRequest $request){
         try{
 
-            $tfoga = DonationPrivateSector::all();
-            if($tfoga->isEmpty()){
-                $tfid = "tf_dps_"."1";
-            }else{
-                $getId = DonationPrivateSector::latest('id')->first();
-                $idinc = $getId['id'];
-                $tfid = "tf_dps_".++$idinc;
-            }
-
-            $enrollDonationPriv = DonationPrivateSector::create([
-                'tf_dps_id' => $tfid,
-                'remarks' => 1,
-            ] + $request->validated());
-
-            tfFundDetails::create([
-                'tf_id' => $tfid,
-                'tr_type' => 2
-            ] + $request->validated());
-
-            if ($request->hasFile('document_source')) {
-                $file = $request->file('document_source');
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('public/files', $filename);
-                
-            } else {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No file uploaded'
-                ]);
-            }
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Success',
-                'data' =>  $enrollDonationPriv
-            ]);
+            return $this->donationRepo->enroll($request);
 
         }catch (\Throwable $th){
             return response()->json([

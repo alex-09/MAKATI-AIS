@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coa_assets_temps', function (Blueprint $table) {
+        Schema::create('coa_liabilities_temps', function (Blueprint $table) {
             $table->id();
             $table->string('account_group');
             $table->string('major_account_group');
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('c_o_a_assets_temps');
+        Schema::dropIfExists('c_o_a_liabilities_temps');
     }
 };

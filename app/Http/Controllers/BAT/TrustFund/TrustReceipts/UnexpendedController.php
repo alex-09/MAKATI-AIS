@@ -2,43 +2,26 @@
 
 namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
 
-use App\Models\File;
 use Illuminate\Http\Request;
-use App\Models\tfFundDetails;
 use App\Models\UnexpendedBalance;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BAT\TrustFund\TrustReceipt\UnexpendedRequest;
+use App\Repositories\BAT\TrustFund\EnrollTrustReceipts\UnexpendedRepository;
 
 class UnexpendedController extends Controller
 {
+
+    private $unexRepo;
+
+    public function __construct(UnexpendedRepository $unexRepo)
+    {
+        $this->unexRepo = $unexRepo;
+    }
+    
     public function insertData(UnexpendedRequest $request){
         try{
 
-            $tfoga = UnexpendedBalance::all();
-            if($tfoga->isEmpty()){
-                $tfid = "tf_tub_"."1";
-            }else{
-                $getId = UnexpendedBalance::latest('id')->first();
-                $idinc = $getId['id'];
-                $tfid = "tf_tub_".++$idinc;
-            }
-
-            $unexpended = UnexpendedBalance::create([
-                'tf_tub_id' => $tfid,
-                'remarks' => 1,
-            ] + $request->validated());
-
-            tfFundDetails::create([
-                'tf_id' => $tfid,
-                'tr_type' => 3
-            ] + $request->validated());
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Success',
-                'unexpended' => $unexpended,
-               
-            ]);
+            return $this->unexRepo->enroll($request);
 
         }catch (\Throwable $th){
             return response()->json([

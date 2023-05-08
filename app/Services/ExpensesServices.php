@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\COAExpenses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Models\COAExpensesTemp;
 use App\Http\Requests\COARequest;
-use App\Models\COAExpenses;
 use Illuminate\Support\Facades\DB;
 
 class ExpensesServices 
@@ -26,7 +27,6 @@ class ExpensesServices
         }
 
         return response()->json([
-            'status' => True,
             'list' => $list,
             'date' => $date
         ]);
@@ -35,7 +35,6 @@ class ExpensesServices
     public function enrollExpenses(COARequest $request){
             
         COAExpenses::create([
-            'date_effectivity' => Carbon::now(),
             'status' => 'pending'
         ] +
             $request->validated(),
@@ -106,6 +105,30 @@ class ExpensesServices
             'status' => true,
             'message' => 'Account Disapproved',
         ]);
+    }
+
+    
+    public function displayTemp(){
+        $list = COAExpensesTemp::all();
+        return response()->json(['list' => $list]);
+    }
+
+    public function move($request){
+        // $coa = $request->input();
+        // foreach($coa as $key => $value){
+            COAExpensesTemp::whereIn('id', $request->id)->each(function ($newRecord){
+                $newRecord->replicate()->setTable('coa_expenses')->save();
+            });
+        // }
+        COAExpensesTemp::truncate();
+
+        return response()->json(['message' => 'Successfully moved to current']);
+    }
+
+    public function cancelUplaod($request){
+        COAExpensesTemp::whereIn('id', $request->id)->delete();
+
+        return response()->json(['message' => 'Account Disapprove']);
     }
 
     public function error($th){

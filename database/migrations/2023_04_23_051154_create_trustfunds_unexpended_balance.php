@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('legal_basis');
             $table->integer('journal_voucher_no');
             $table->string('journal_voucher_date')->nullable();
-            $table->string('remarks'); 
+            $table->string('remarks')->default('1'); 
             $table->timestamps();
         });
     }

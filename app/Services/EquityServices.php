@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\COAEquity;
 use Illuminate\Http\Request;
+use App\Models\COAEquityTemp;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\COARequest;
-use App\Models\COAEquity;
 use Illuminate\Support\Facades\DB;
 
 class EquityServices 
@@ -26,25 +27,28 @@ class EquityServices
         }
 
         return response()->json([
-            'status' => True,
             'list' => $list,
             'date' => $date
         ]);
     }
 
     public function enrollEquity(COARequest $request){
-            
-        COAEquity::create([
-            'date_effectivity' => Carbon::now(),
-            'status' => 'pending'
-        ] +
-            $request->validated(),
-        );
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Account Enrolled Successfully',
-        ]);
+        try {
+            COAEquity::create(
+                [
+                    'status' => 'pending'
+                ] +
+                    $request->validated(),
+            );
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Account Enrolled Successfully',
+            ]);
+        } catch (\Throwable $th) {
+            return $this->error($th);
+        }
 
     }
 
@@ -76,8 +80,7 @@ class EquityServices
     public function updateDesc(Request $request, $id){
 
         $assetDescrip = COAEquity::find($id)->first();
-        $assetDescrip->update([
-            
+        $assetDescrip->update([ 
             'description' => $request->description
         ]);
 
@@ -106,6 +109,29 @@ class EquityServices
             'status' => true,
             'message' => 'Account Disapproved',
         ]);
+    }
+
+    public function displayTemp(){
+        $list = COAEquityTemp::all();
+        return response()->json(['list' => $list]);
+    }
+
+    public function move($request){
+        // $coa = $request->input();
+        // foreach($coa as $key => $value){
+            COAEquityTemp::whereIn('id', $request->id)->each(function ($newRecord){
+                $newRecord->replicate()->setTable('coa_equity')->save();
+            });
+        // }
+        COAEquityTemp::truncate();
+
+        return response()->json(['message' => 'Successfully moved to current']);
+    }
+
+    public function cancelUplaod($request){
+        COAEquityTemp::whereIn('id', $request->id)->delete();
+
+        return response()->json(['message' => 'Account Disapprove']);
     }
 
     public function error($th){

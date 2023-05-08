@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class COAAssetsTemp extends Model
+class COALiabilitiesTemp extends Model
 {
     use HasFactory;
 
-    protected $table = 'coa_assets_temps';
+    protected $table = 'coa_liabilities_temps';
 
     protected $fillable = [
 
@@ -26,7 +26,7 @@ class COAAssetsTemp extends Model
         'date_effect_index',
         'date_effectivity',
         'coa_title',
-        'approval_status',
+        'approval_status'
 
     ];
 }
