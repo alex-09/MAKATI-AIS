@@ -56,5 +56,25 @@ class LiabilitiesController extends Controller
             return $services->error($th);
         }
     }
+
+    public function listTemp(LiabilitiesServices $services){
+        return $services->displayTemp();
+    }
+
+    public function move(LiabilitiesServices $services, Request $request){
+        try{
+            return $services->move($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function disapprove(LiabilitiesServices $services, Request $request){
+        try{
+            return $services->cancelUplaod($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
     
 }

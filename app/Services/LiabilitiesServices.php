@@ -3,8 +3,9 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\COARequest;
 use App\Models\COALiabilities;
+use App\Http\Requests\COARequest;
+use App\Models\COALiabilitiesTemp;
 use Illuminate\Support\Facades\DB;
 
 class LiabilitiesServices 
@@ -104,6 +105,29 @@ class LiabilitiesServices
             'status' => true,
             'message' => 'Account Disapproved',
         ]);
+    }
+
+    public function displayTemp(){
+        $list = COALiabilitiesTemp::all();
+        return response()->json(['list' => $list]);
+    }
+
+    public function move($request){
+        // $coa = $request->input();
+        // foreach($coa as $key => $value){
+            COALiabilitiesTemp::whereIn('id', $request->id)->each(function ($newRecord){
+                $newRecord->replicate()->setTable('coa_liabilities')->save();
+            });
+        // }
+        COALiabilitiesTemp::truncate();
+
+        return response()->json(['message' => 'Successfully moved to current']);
+    }
+
+    public function cancelUplaod($request){
+        COALiabilitiesTemp::whereIn('id', $request->id)->delete();
+
+        return response()->json(['message' => 'Account Disapprove']);
     }
 
     public function error($th){

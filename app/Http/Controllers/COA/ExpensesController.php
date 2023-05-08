@@ -54,4 +54,24 @@ class ExpensesController extends Controller
             return $services->error($th);
         }
     }
+
+    public function listTemp(ExpensesServices $services){
+        return $services->displayTemp();
+    }
+
+    public function move(ExpensesServices $services, Request $request){
+        try{
+            return $services->move($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function disapprove(ExpensesServices $services, Request $request){
+        try{
+            return $services->cancelUplaod($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
 }

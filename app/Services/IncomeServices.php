@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\COAIncome;
 use Illuminate\Http\Request;
+use App\Models\COAIncomeTemp;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\COARequest;
-use App\Models\COAIncome;
 use Illuminate\Support\Facades\DB;
 
 class IncomeServices 
@@ -35,7 +36,6 @@ class IncomeServices
     public function enrollIncome(COARequest $request){
             
         COAIncome::create([
-            'date_effectivity' => Carbon::now(),
             'status' => 'pending'
         ] +
             $request->validated(),
@@ -106,6 +106,29 @@ class IncomeServices
             'status' => true,
             'message' => 'Account Disapproved',
         ]);
+    }
+
+    public function displayTemp(){
+        $list = COAIncomeTemp::all();
+        return response()->json(['list' => $list]);
+    }
+
+    public function move($request){
+        // $coa = $request->input();
+        // foreach($coa as $key => $value){
+            COAIncomeTemp::whereIn('id', $request->id)->each(function ($newRecord){
+                $newRecord->replicate()->setTable('coa_income')->save();
+            });
+        // }
+        COAIncomeTemp::truncate();
+
+        return response()->json(['message' => 'Successfully moved to current']);
+    }
+
+    public function cancelUplaod($request){
+        COAIncomeTemp::whereIn('id', $request->id)->delete();
+
+        return response()->json(['message' => 'Account Disapprove']);
     }
 
     public function error($th){

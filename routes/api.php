@@ -91,7 +91,6 @@ Route::prefix('coa')->group(function() {
     Route::get('/listTempAsset', [AssetsController::class, 'listTemp']); 
     Route::post('/transferAsset', [AssetsController::class, 'move']); 
     Route::post('/disapproveAsset', [AssetsController::class, 'disapprove']); 
-    Route::post('/addTitleAsset', [AssetsController::class, 'insertDT']); 
 
     //ROUTES FOR EQUITY
     Route::get('/showEquity', [EquityController::class, 'showEquity']); 
@@ -100,6 +99,9 @@ Route::prefix('coa')->group(function() {
     Route::post('/addEquityDescription/{id}', [EquityController::class, 'AddEquityDescription']);
     Route::post('/approveEquityAccount/{id}', [EquityController::class, 'approveAccount']); 
     Route::post('/disApproveEquityAccount/{id}', [EquityController::class, 'disApproveAccount']); 
+    Route::get('/listTempEquity', [EquityController::class, 'listTemp']); 
+    Route::post('/transferEquity', [EquityController::class, 'move']); 
+    Route::post('/disapproveEquity', [EquityController::class, 'disapprove']); 
 
     //ROUTES FOR EXPENSES
     Route::get('/showExpenses', [ExpensesController::class, 'showExpenses']);
@@ -108,6 +110,9 @@ Route::prefix('coa')->group(function() {
     Route::post('/addExpensesDescription/{id}', [ExpensesController::class, 'AddExpensesDescription']);
     Route::post('/approveExpensesAccount/{id}', [ExpensesController::class, 'approveAccount']); 
     Route::post('/disApproveExpensesAccount/{id}', [ExpensesController::class, 'disApproveAccount']); 
+    Route::get('/listTempExpenses', [ExpensesController::class, 'listTemp']); 
+    Route::post('/transferExpenses', [ExpensesController::class, 'move']); 
+    Route::post('/disapproveExpenses', [ExpensesController::class, 'disapprove']); 
 
     //ROUTES FOR INCOME
     Route::get('/showIncome', [IncomeController::class, 'showIncome']); 
@@ -116,6 +121,9 @@ Route::prefix('coa')->group(function() {
     Route::post('/addIncomeDescription/{id}', [IncomeController::class, 'AddIncomeDescription']);
     Route::post('/approveIncomeAccount/{id}', [IncomeController::class, 'approveAccount']); 
     Route::post('/disApproveIncomeAccount/{id}', [IncomeController::class, 'disApproveAccount']); 
+    Route::get('/listTempIncome', [IncomeController::class, 'listTemp']); 
+    Route::post('/transferIncome', [IncomeController::class, 'move']); 
+    Route::post('/disapproveIncome', [IncomeController::class, 'disapprove']); 
 
     //ROUTES FOR LIABILITIES
     Route::get('/showLiabilities', [LiabilitiesController::class, 'showLiabilities']); 
@@ -124,6 +132,9 @@ Route::prefix('coa')->group(function() {
     Route::post('/addLiabilitiesDescription/{id}', [LiabilitiesController::class, 'AddLiabilitiesDescription']);
     Route::post('/approveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'approveAccount']); 
     Route::post('/disApproveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'disApproveAccount']); 
+    Route::get('/listTempLiabilities', [LiabilitiesController::class, 'listTemp']); 
+    Route::post('/transferLiabilities', [LiabilitiesController::class, 'move']); 
+    Route::post('/disapproveLiabilities', [LiabilitiesController::class, 'disapprove']); 
 
     //IMPORT ACCOUNTS   
     Route::post('/importAsset', [AssetImportController::class, 'import']); 

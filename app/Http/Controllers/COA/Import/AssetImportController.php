@@ -10,9 +10,10 @@ use App\Http\Requests\COAUploadRequest;
 
 class AssetImportController extends Controller
 {
-    public function Import(COAUploadRequest $request){
-        
-        try{
+    public function Import(COAUploadRequest $request)
+    {
+
+        try {
             Excel::import(new AssetsImport, $request->file);
 
             DB::table('coa_assets_temps')->update(array('coa_title' => $request->title, 'date_effectivity' => $request->date));
@@ -21,8 +22,7 @@ class AssetImportController extends Controller
                 'status' => true,
                 'message' => 'successfully imported!'
             ]);
-
-        }catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             return response()->json([
                 'status' => true,
                 'error' => $e->failures()

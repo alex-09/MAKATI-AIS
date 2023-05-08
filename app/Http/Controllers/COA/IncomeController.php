@@ -55,4 +55,24 @@ class IncomeController extends Controller
             return $services->error($th);
         }
     }
+
+    public function listTemp(IncomeServices $services){
+        return $services->displayTemp();
+    }
+
+    public function move(IncomeServices $services, Request $request){
+        try{
+            return $services->move($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function disapprove(IncomeServices $services, Request $request){
+        try{
+            return $services->cancelUplaod($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
 }
