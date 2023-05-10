@@ -22,6 +22,10 @@ class TfObligationDetatils extends Model
         'amount_obligated',
         'balance',
         'remarks',
-        'status'
+        'status',
+        'latest_balance',
+        'addition',
+        'deduction',
+        'updated_balance'
     ];
 }

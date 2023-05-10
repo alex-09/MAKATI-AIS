@@ -20,7 +20,6 @@ class CityAccountantRepository{
 
         $updated = tfFundDetails::where('tf_id', $request->tf_id);
         $updated->update([
-            "reviewer" => "qwerty",
             "status" => "Approved"
         ]);
 
@@ -59,7 +58,6 @@ class CityAccountantRepository{
 
         $updated = tfFundDetails::where('tf_id', $request->tf_id);
         $updated->update([
-            "reviewer" => "qwerty",
             "status" => "Rejected - CA"
         ]);
 

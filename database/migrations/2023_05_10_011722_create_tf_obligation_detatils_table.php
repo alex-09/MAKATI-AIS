@@ -19,13 +19,16 @@ return new class extends Migration
             $table->string('main_fund_title');
             $table->string('company');
             $table->string('sub_fund_title')->nullable();
-            $table->string('latest_bal_tf')->nullable();
+            $table->float('latest_bal_tf', 17, 6)->nullable();
             $table->string('account_title')->nullable();
             $table->string('account_code')->nullable();
-            $table->string('amount_obligated')->nullable();
-            $table->string('balance')->nullable();
+            $table->float('amount_obligated', 17, 6)->nullable();
+            $table->float('balance', 17, 6)->nullable();
             $table->string('remarks')->nullable();
             $table->string('status')->default('For Review');
+            $table->float('addition', 17, 6)->nullable(); 
+            $table->float('deduction', 17, 6)->nullable(); 
+            $table->float('adjusted_balance', 17, 6)->nullable(); 
             $table->timestamps();
         });
     }

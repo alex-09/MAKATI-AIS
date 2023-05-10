@@ -13,17 +13,23 @@ return new class extends Migration
     {
         Schema::create('dm_bot', function (Blueprint $table) {
             $table->id();
-            $table->integer('docu_type_id');
+            $table->string('docu_type_id');
             $table->string('transaction_id');
             $table->integer('department_id');
             $table->integer('processing_slip_number');
             $table->string('description');
+            $table->string('number')->nullable();
             $table->integer('amount');
             $table->string('current_bearer');
             $table->string('current_bearer_dept');
             $table->integer('current_bearer_contact_number');
             $table->string('current_bearer_email');
-            $table->string('status');
+            $table->string('type')->default('New');
+            $table->string('furs_id')->nullable();
+            $table->string('cafoa_id')->nullable();
+            $table->string('processer')->nullable();
+            $table->string('reviewer')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

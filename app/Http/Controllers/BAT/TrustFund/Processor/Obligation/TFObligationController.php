@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\BAT\TrustFund\Processor\Obligation;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DMBudgetaryObligationsTransac;
 use App\Http\Requests\BAT\TrustFund\TrustReceipt\TRObligationRequest;
 use App\Repositories\BAT\TrustFund\ObligationTrustReceipts\NewObligationTRRepository;
 
@@ -14,6 +14,10 @@ class TFObligationController extends Controller
     public function __construct(NewObligationTRRepository $obliRepo)
     {
         $this->obliRepo = $obliRepo;
+    }
+
+    public function view(DMBudgetaryObligationsTransac $id){
+        return response()->json(['data' => $id]);
     }
 
     public function store(TRObligationRequest $request){
