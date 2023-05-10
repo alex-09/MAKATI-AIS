@@ -20,7 +20,7 @@ class TFObligationController extends Controller
         try{
             return $this->obliRepo->store($request);
         }catch(\Throwable $th){
-            return response()->josn([
+            return response()->json([
                 'status' => false,
                 'message' => 'Something went wrong',
                 'error' => $th->getMessage()

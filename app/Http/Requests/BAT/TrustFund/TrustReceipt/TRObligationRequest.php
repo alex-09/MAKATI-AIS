@@ -11,7 +11,7 @@ class TRObligationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -31,6 +31,17 @@ class TRObligationRequest extends FormRequest
             'purchase_req_date' => 'required',
             'payee' => 'required',
             'requesting_official' => 'required', 
+
+            'src_of_tf' => 'required',
+            'main_fund_title' => 'required',
+            'company' => 'required',
+            'sub_fund_title' => 'required',
+            'latest_bal_tf' => 'required',
+            'account_title' => 'required',
+            'account_code' => 'required',
+            'amount_obligated' => 'required',
+            'balance' => 'required',
+            'remarks' => 'required',
         ];
     }
 }
