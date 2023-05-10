@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Communication;
-
-use Carbon\Carbon;
+namespace App\Http\Controllers\DocumentManagement\Receiving\Communication;
 
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
@@ -10,74 +8,25 @@ use App\Models\ActionHistory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ReceiveCommunications;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\DocumentManagement\Receiving\CommRequest;
+use App\Repositories\DocumentManagement\Receiving\Communications\ReceiveCommRepository;
 
 class CommunicationController extends Controller
 {
+
+    private $receiveCommRepo;
+
+    public function __construct(ReceiveCommRepository $receiveCommRepo)
+    {
+        return $this->receiveCommRepo = $receiveCommRepo;
+    }
+
     //CREATE RECEIVE COMMUNICATION
-    public function receive_comms(Request $request){
-
-        try{
-
-            $validator = Validator::make($request->all(),
-                [
-                    'type_id' => 'required',
-                    'subject' => 'required',
-                    'department' => 'required',
-                    'bearer_name' => 'required',
-                    'document' => 'mimes:jpeg,jpg,JPG,doc,docx,pdf|max:2048'
-                ]);
-
-            if ($validator->fails()) {
-                return response()->json($validator->errors(), 422);
-            }
-
-            // //GET YEAR AND MONTH 
-            $date = Carbon::now()->format('Y-M');
-
-                // $transac_id = "COM-" . $date . "-" . str_pad('0', 7, '0', STR_PAD_LEFT);
-
-                 //GET THE LAST ID INSERTED IN TABLE
-                $lastId = ReceiveCommunications::latest('id')->first();
-
-                $commId = $lastId['id'];
-
-                $transac_id = "COM-" . $date . "-" . str_pad(++$commId, 7, '0', STR_PAD_LEFT);
-
-                // $docuName = $request->file('document')->getClientOriginalName();
-
-                $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
-
-                $request->document->move(public_path('uploads'), $docuFile);
-
-                $insertRecCom = ReceiveCommunications::create([
-
-                    'transaction_id_num' => $transac_id,
-                    'receive_comm_type_id' => $request->type_id,
-                    'subject' => $request->subject,
-                    'department' => $request->department,
-                    'email' => $request->email,
-                    'DRN' => $request->drn,
-                    'reply_to' => $request->reply_to,
-                    'sender' => $request->sender,
-                    'contact_no' => $request->contact_no,
-                    'bearer_name' => $request->bearer_name,
-                    'bearer_address' => $request->bearer_address,
-                    'bearer_contact_no' => $request->bearer_contact_no,
-                    'bearer_department' => $request->bearer_department,
-                    'document' => $docuFile,
-                    'remarks' => $request->remarks
-
-                ]);
-
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Inserted Successfully',
-                    'data' => $insertRecCom
-                ]);
-
+    public function receive_comms(CommRequest $request)
+    {
+        try{    
+            return $this->receiveCommRepo->receive($request);
         }catch (\Throwable $th){
-
             return response()->json([
                 'status' => false,
                 'message' => 'Something went wrong!',
@@ -86,39 +35,21 @@ class CommunicationController extends Controller
         }
     }
 
-    //FILTER AND DISPLAY BEARERS NAME AND TRANSACTIONS
-    public function filterBearer(Request $request){
+    // public function filterBearer(Request $request){
+    //     try{
+    //         $filterBearer = ReceiveCommunications::where('bearer_name', 'LIKE', '%'.$request->bearer.'%')->get();
+    //         return response()->json([
+    //             'status' => true,
+    //             'message' => 'Success',
+    //             'data' => $filterBearer
+    //         ]);
 
-        try{
-
-            $filterBearer = ReceiveCommunications::where('bearer_name', 'LIKE', '%'.$request->bearer.'%')->get();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Success',
-                'data' => $filterBearer
-            ]);
-
-        }catch (\Throwable $th) {
-
-            return response()->json([
-                'status' => false,
-
-            ]);
-        }
-    }
-
-    //DISPLAY ALL RECEIVED COMMUNICATION
-    public function showRecComm(){
-        $getRecCom = DB::select('CALL receive_comm()');
-
-        return response()->json([
-
-            'status' => True,
-            'message' => 'Receive Comms Display Successfully',
-            'data' => $getRecCom
-        ]);
-    }
+    //     }catch (\Throwable $th) {
+    //         return response()->json([
+    //             'status' => false,
+    //         ]);
+    //     }
+    // }
 
     //UPDATE COMMUNICATION (ASSINED_TO, ACTION, STATUS...)
     public function updateComm(Request $request, $id){

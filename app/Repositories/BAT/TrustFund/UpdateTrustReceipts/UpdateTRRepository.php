@@ -19,16 +19,15 @@ class UpdateTRRepository{
 
     public function update($request){
         
-        $update = tfFundDetails::where('id', $request->id)->get();
+        $update = tfFundDetails::where('id', $request->id)->first();
         $update->update([
-            'sub_fund_title' => $request->sub_fund_title, 
             'reference' => $request->reference, 
             'update_reasons' => $request->update_reasons, 
-            'latest_balance' => $request->latest_balance, 
+            'latest_balance' => $request->updated_balance, 
             'addition' => $request->addition, 
             'deduction' => $request->deduction, 
             'updated_balance' => $request->updated_balance,
-            'type' => "Updated"
+            'type' => "Update"
         ]);
 
         return response()->json(['message' => "Updated Successfully"]);

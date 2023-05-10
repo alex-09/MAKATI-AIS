@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\TrustReceipts\EnrollTransReceiptController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +10,7 @@ class TransferFromOtherGovernmentAgencies extends Model
     protected $table = 'transfer_other_government_agencies';
 
     protected $fillable = [
-        'tf_toga_id',
+        'tf_id',
         'government_type',
         'agency_name',
         'document_source',
@@ -22,6 +21,7 @@ class TransferFromOtherGovernmentAgencies extends Model
         'official_receipt_amount',
         'nadai_date',
         'remarks',
+        'status',
         'tr_type'
     ];
 }

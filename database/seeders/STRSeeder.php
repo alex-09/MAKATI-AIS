@@ -14,7 +14,7 @@ class STRSeeder extends Seeder
     public function run(): void
     {
         SRCTrustReceipt::create([
-            'str_name' => 'Transfer from Other Government Agencies"', 
+            'str_name' => 'Transfer from Other Government Agencies', 
         ]);
         SRCTrustReceipt::create([
             'str_name' => 'Donation from Private Sector', 

@@ -22,7 +22,7 @@ class UnexpendedRepository{
         // $request->document->move(public_path('uploads'), $docuFile);
 
         $unexpended = UnexpendedBalance::create([
-            'tf_tub_id' => $tfid,
+            'tf_id' => $tfid,
             'document_source' => $docuFile
         ] + $request->validated());
 

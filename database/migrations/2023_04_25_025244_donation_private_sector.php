@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('donation_private_sector', function (Blueprint $table) {
             $table->id();
-            $table->string('tf_dps_id');
+            $table->string('tf_id');
             $table->string('tr_type')->default('2');
             $table->string('company_name');
             $table->string('document_source');
             $table->string('general_description');
             $table->integer('official_receipt_no');
             $table->string('official_receipt_date');
+            $table->string('status')->default('For Review');
             $table->string('remarks')->default('1');
             $table->timestamps();
         });

@@ -19,7 +19,7 @@ class LGURepository{
         }
 
         $insertLGU = LGUCounterpart::create([
-            'tf_tlc_id' => $tfid,
+            'tf_id' => $tfid,
         ] + $request->validated());
 
         tfFundDetails::create([

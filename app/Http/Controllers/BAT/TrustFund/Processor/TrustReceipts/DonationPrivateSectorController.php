@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\BAT\TrustFund\TrustReceipts;
+namespace App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BAT\TrustFund\TrustReceipt\DPSRequest;
 use App\Repositories\BAT\TrustFund\EnrollTrustReceipts\DonationRepository;
+
 
 class DonationPrivateSectorController extends Controller
 {

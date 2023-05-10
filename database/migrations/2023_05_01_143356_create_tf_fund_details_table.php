@@ -28,8 +28,8 @@ return new class extends Migration
             $table->float('updated_balance', 17, 6)->nullable(); 
             $table->string('processor')->nullable(); 
             $table->string('reviewer')->nullable(); 
-            $table->integer('type')->default('1'); 
-            $table->string('status')->default('1'); 
+            $table->string('type')->default('New'); 
+            $table->string('status')->default('For Review'); 
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transfer_other_government_agencies', function (Blueprint $table) {
             $table->id();
-            $table->string('tf_toga_id');
+            $table->string('tf_id');
             $table->string('tr_type')->default('1');
             $table->string('government_type');
             $table->string('agency_name');
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('official_receipt_date');
             $table->integer('official_receipt_amount');
             $table->string('nadai_date');
+            $table->string('status')->default('For Review');
             $table->integer('remarks')->default('1');
             $table->timestamps();
         });
