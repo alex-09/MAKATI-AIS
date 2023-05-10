@@ -115,7 +115,7 @@ class LiabilitiesServices
     public function move($request){
         // $coa = $request->input();
         // foreach($coa as $key => $value){
-            COALiabilitiesTemp::where('id', $request->id)->each(function ($newRecord){
+            COALiabilitiesTemp::whereIn('id', $request->id)->each(function ($newRecord){
                 $newRecord->replicate()->setTable('coa_liabilities')->save();
             });
         // }
