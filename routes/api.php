@@ -23,7 +23,11 @@ use App\Http\Controllers\COA\Import\LiabilitiesImportController;
 use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewTRController;
 use App\Http\Controllers\BAT\TrustFund\Processor\ListsrcTRController;
 use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHToApproveController;
+use App\Http\Controllers\BAT\TrustFund\ListObli\ListObligationController;
+use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHObligationController;
+use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewObligationController;
 use App\Http\Controllers\BAT\TrustFund\CityAccountant\CAToApproveController;
+use App\Http\Controllers\BAT\TrustFund\CityAccountant\ObligationCAController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateTR\UpdateTRController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\EnrollAllotmentController;
@@ -140,7 +144,7 @@ Route::prefix('coa')->group(function() {
     //ROUTES FOR LIABILITIES
     Route::get('/showLiabilities', [LiabilitiesController::class, 'showLiabilities']); 
     Route::post('/enrollLiabilities', [LiabilitiesController::class, 'enrollLiabilities']); 
-    Route::post('/updateLiabilitiesStatus/{id}', [LiabilitiesController::class, 'UpdateLSiabilitiesStatus']);
+    Route::post('/updateLiabilitiesStatus/{id}', [LiabilitiesController::class, 'UpdateLiabilitiesStatus']);
     Route::post('/addLiabilitiesDescription/{id}', [LiabilitiesController::class, 'AddLiabilitiesDescription']);
     Route::post('/approveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'approveAccount']); 
     Route::post('/disApproveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'disApproveAccount']); 
@@ -223,7 +227,7 @@ Route::prefix('trustfunds')->group(function () {
     Route::post('/counterpart', [LGUCounterPartController::class, 'insertData']); 
     Route::post('/enrolltransfer', [EnrollTransReceiptController::class, 'enrollNew']); 
     Route::post('/enrollDonation', [DonationPrivateSectorController::class, 'enrollDonate']); 
-
+    //LIST TRUST RECEIPT
     Route::get('/forReviewTr', [ListTRController::class, 'listforReview']);
     Route::get('/approvedTr', [ListTRController::class, 'listapproved']);
     
@@ -237,11 +241,26 @@ Route::prefix('trustfunds')->group(function () {
     //DIVISION HEAD
     Route::post('/forCATr', [DHToApproveController::class, 'reviewed']);
     Route::post('/DHReject', [DHToApproveController::class, 'reject']);
-    //CITYACCOUNTANT
+    //CITY ACCOUNTANT
     Route::post('/CAApproveTr', [CAToApproveController::class, 'reviewed']);
     Route::post('/CAReject', [CAToApproveController::class, 'reject']);
     //NEW OBLIGATION
+    Route::get('/viewBot/{id}', [TFObligationController::class, 'view']);
     Route::post('/newObligation', [TFObligationController::class, 'store']);
+    //LIST FURS 
+    Route::get('/forReviewFurs', [ListObligationController::class, 'listforReview']);
+    Route::get('/approvedFurs', [ListObligationController::class, 'listapproved']);
+    Route::get('/viewFurs/{id}', [ListObligationController::class, 'view']);
+    //OBLIGATION REVIEWER
+    Route::post('/ObliToDiviHead', [ReviewObligationController::class, 'reviewed']);
+    Route::post('/ObliRevReject', [ReviewObligationController::class, 'reject']);
+    //OBLIGATION DIVISION HEAD
+    Route::post('/ObliforCA', [DHObligationController::class, 'reviewed']);
+    Route::post('/ObliDHReject', [DHObligationController::class, 'reject']);
+
+    //CITY ACCOUNTANT
+    Route::post('/obliCAApprove', [ObligationCAController::class, 'reviewed']);
+    Route::post('/obliCAReject', [ObligationCAController::class, 'reject']);
 });
 
 Route::prefix('BOT')->group(function () {

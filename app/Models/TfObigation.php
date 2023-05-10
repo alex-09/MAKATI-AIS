@@ -12,7 +12,7 @@ class TfObigation extends Model
     protected $fillable = [
         'tf_obli_id',
         'type',
-        'furs_amount',
+        'furs_number',
         'implemeting_office',
         'particulars',
         'furs_amount',

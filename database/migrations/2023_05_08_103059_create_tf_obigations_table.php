@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('type')->default('New');
             $table->string('implemeting_office');
             $table->string('particulars');
+            $table->string('furs_number')->nullable();
             $table->string('furs_amount')->nullable();
             $table->string('transaction_type')->nullable();
             $table->string('purchase_req_no')->nullable();

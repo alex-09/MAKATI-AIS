@@ -20,7 +20,6 @@ class DivisionHeadRepository{
 
         $updated = tfFundDetails::where('tf_id', $request->tf_id);
         $updated->update([
-            "reviewer" => "qwerty",
             "status" => "For Approval - CA"
         ]);
 
@@ -59,7 +58,6 @@ class DivisionHeadRepository{
 
         $updated = tfFundDetails::where('tf_id', $request->tf_id);
         $updated->update([
-            "reviewer" => "qwerty",
             "status" => "Rejected - DH"
         ]);
 

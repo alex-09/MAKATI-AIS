@@ -3,10 +3,17 @@
 namespace App\Repositories\DocumentManagement\Receiving\BOT;
 
 use Carbon\Carbon;
+use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Facades\DB;
 use App\Models\DMBudgetaryObligationsTransac;
 use App\Http\Requests\DocumentManagement\Receiving\BOTRequest;
 
 class NewTransactionRepository{
+
+    public function list(){
+        $list = DB::select('CALL tf_list_obli_rec()');
+        return response()->json(['list' => $list ]);
+    }
 
     public function store(BOTRequest $request){
 
@@ -23,7 +30,6 @@ class NewTransactionRepository{
 
         DMBudgetaryObligationsTransac::create([
             'transaction_id' => $transac_id,
-            'status' => 1
         ] + $request->validated());
 
         return response()->json([
