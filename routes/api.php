@@ -50,6 +50,9 @@ use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernem
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollAppointmentReceivingController;
+use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollsAndAppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -291,5 +294,13 @@ Route::prefix('ContractPO')->group(function () {
  Route::prefix('Check-Transac')->group(function () {
 
     Route::post('/receive-checks', [ReceiveChecksController::class, 'storeReceiveChecks']); 
+    Route::get('/receiving-print', [PrintRecivingReceiptController::class, 'listPrintReceiving']); 
+ 
+ });
+
+ Route::prefix('Payroll-Appointment')->group(function () {
+
+    Route::post('/payroll-appointment', [PayrollsAndAppointmentController::class, 'payrollAppointment']); 
+    Route::get('/receiving', [PayrollAppointmentReceivingController::class, 'payrollListReceiving']); 
  
  });
