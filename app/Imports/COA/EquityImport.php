@@ -3,6 +3,7 @@
 namespace App\Imports\COA;
 
 use App\Models\COAEquity;
+use App\Models\COAEquityTemp;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -15,7 +16,7 @@ class EquityImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return new COAEquity([
+        return new COAEquityTemp([
             'account_group' => $row['account_group'],
             'major_account_group' => $row['major_account_group'],
             'sub_major_account_group' => $row['sub_major_account_group'],

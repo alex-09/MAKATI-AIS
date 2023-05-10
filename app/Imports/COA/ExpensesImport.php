@@ -3,6 +3,7 @@
 namespace App\Imports\COA;
 
 use App\Models\COAExpenses;
+use App\Models\COAExpensesTemp;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -15,7 +16,7 @@ class ExpensesImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return new COAExpenses([
+        return new COAExpensesTemp([
             'account_group' => $row['account_group'],
             'major_account_group' => $row['major_account_group'],
             'sub_major_account_group' => $row['sub_major_account_group'],

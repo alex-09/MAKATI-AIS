@@ -3,6 +3,7 @@
 namespace App\Imports\COA;
 
 use App\Models\COAIncome;
+use App\Models\COAIncomeTemp;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -15,7 +16,7 @@ class IncomeImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return new COAIncome([
+        return new COAIncomeTemp([
             'account_group' => $row['account_group'],
             'major_account_group' => $row['major_account_group'],
             'sub_major_account_group' => $row['sub_major_account_group'],
