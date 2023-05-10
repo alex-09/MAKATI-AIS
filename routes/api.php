@@ -37,6 +37,7 @@ use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\LGUCounterPartCon
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\PrintCommController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
+use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CreateCommController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
@@ -285,5 +286,10 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/individual', [PEIndividualController::class, 'storeIndividual']); 
     Route::post('/business', [PEBusinessController::class, 'storeBusiness']); 
     Route::post('/government-agency', [PEGovernementAgencyController::class, 'storeAgency']); 
+ });
 
+ Route::prefix('Check-Transac')->group(function () {
+
+    Route::post('/receive-checks', [ReceiveChecksController::class, 'storeReceiveChecks']); 
+ 
  });
