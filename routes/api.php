@@ -58,6 +58,11 @@ use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRec
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
+use App\Http\Controllers\DocumentManagement\Receiving\OD\ODReceivingReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\OD\PreviousTransacController;
+use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollsAndAppointmentController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollAppointmentReceivingController;
 
@@ -323,5 +328,21 @@ Route::prefix('ContractPO')->group(function () {
 
     Route::post('/payroll-appointment', [PayrollsAndAppointmentController::class, 'payrollAppointment']); 
     Route::get('/receiving', [PayrollAppointmentReceivingController::class, 'payrollListReceiving']); 
+ 
+ });
+
+ Route::prefix('Collection-Deposit')->group(function () {
+
+    Route::post('/collection-deposit', [CollectionDepositController::class, 'insertCollectionDeposit']); 
+    Route::get('/cd-receiving', [CollectionDepositReceiptController::class, 'collectionDepostReceipt']); 
+ 
+ });
+
+ Route::prefix('OD')->group(function () {
+
+    Route::post('/new-transac', [NewTransacController::class, 'insertNewTransac']); 
+    Route::post('/prev-transac', [PreviousTransacController::class, 'insertPrevTransac']); 
+    Route::get('/newtransac-receipt', [ODReceivingReceiptController::class, 'newTransacReceipt']);
+    Route::get('/prevtransac-receipt', [ODReceivingReceiptController::class, 'prevTransacReceipt']);
  
  });
