@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\COA\AssetsController;
 use App\Http\Controllers\COA\EquityController;
@@ -13,8 +14,8 @@ use App\Http\Controllers\COA\Import\AssetImportController;
 use App\Http\Controllers\COA\Export\EquityExportController;
 use App\Http\Controllers\COA\Export\IncomeExportController;
 use App\Http\Controllers\COA\Import\EquityImportController;
-use App\Http\Controllers\COA\Import\IncomeImportController;
 
+use App\Http\Controllers\COA\Import\IncomeImportController;
 use App\Http\Controllers\COA\Export\ExpensesExportController;
 use App\Http\Controllers\COA\Import\ExpensesImportController;
 use App\Http\Controllers\COA\Export\LiabilityExportController;
@@ -88,8 +89,8 @@ Route::prefix('makati')->group(function() {
 
 });
 
-Route::middleware(['auth'])->group(function () {
-
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
 Route::prefix('coa')->group(function() {
