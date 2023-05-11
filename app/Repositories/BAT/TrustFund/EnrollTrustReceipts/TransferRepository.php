@@ -25,11 +25,20 @@ class TransferRepository{
             'document_source' => $docuFile
         ] + $request->validated());
 
-        tfFundDetails::create([
-            'tf_id' => $tfid,
-            'tr_type' => 1,
-            'latest_balance' => $request->amount_allocated
-        ] + $request->validated());
+        for($i=0; $i<count($request->main_fund_title); $i++){
+            for($x=0; $x<count($request->sub_fund_title); $x++){
+                tfFundDetails::create([
+                    'tf_id' => $tfid,
+                    'tr_type' => 1,
+                    'main_fund_title' => $request->main_fund_title[$i],
+                    'sub_fund_title' => $request->sub_fund_title[$x],
+                    'specific_purpose' => $request->specific_purpose[$x],
+                    'amount_allocated' => $request->amount_allocated[$x],
+                    'latest_balance' => $request->amount_allocated[$x],
+                    'implementing_office' => $request->implementing_office[$x]
+                ]);
+            }
+        }
 
 
         return response()->json([
