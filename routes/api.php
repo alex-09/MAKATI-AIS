@@ -48,17 +48,18 @@ use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOCo
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CommunicationController;
+use App\Http\Controllers\BAT\TrustFund\Processor\UpdateObligation\UpdateObligationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
+use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
-use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
-use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollAppointmentReceivingController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollsAndAppointmentController;
+use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollAppointmentReceivingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -257,10 +258,13 @@ Route::prefix('trustfunds')->group(function () {
     //OBLIGATION DIVISION HEAD
     Route::post('/ObliforCA', [DHObligationController::class, 'reviewed']);
     Route::post('/ObliDHReject', [DHObligationController::class, 'reject']);
-
     //CITY ACCOUNTANT
     Route::post('/obliCAApprove', [ObligationCAController::class, 'reviewed']);
     Route::post('/obliCAReject', [ObligationCAController::class, 'reject']);
+
+    //SEARCH AND UPDATE FURS
+    Route::get('/searchObli/{id}', [UpdateObligationController::class, 'search']);
+    Route::post('/updateObli', [UpdateObligationController::class, 'update']);
 });
 
 Route::prefix('BOT')->group(function () {

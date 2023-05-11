@@ -15,10 +15,10 @@ class UpdateObligationController extends Controller
         $this->updateObliRepo = $updateObliRepo;
     }
     
-    public function search(Request $request){
+    public function search($id){
         try{
             
-            return $this->updateObliRepo->search($request);
+            return $this->updateObliRepo->search($id);
 
         }catch (\Throwable $th){
             return response()->json([
