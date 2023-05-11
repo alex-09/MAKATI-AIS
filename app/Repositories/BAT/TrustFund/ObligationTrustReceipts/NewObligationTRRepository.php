@@ -10,6 +10,7 @@ use App\Models\TfObligationDetatils;
 class NewObligationTRRepository{
 
     public function store($request){
+
         $tfobli = TfObigation::all();
         if($tfobli->isEmpty()){
 
@@ -34,7 +35,8 @@ class NewObligationTRRepository{
             'furs_id' => $tf_ob_id
         ]);
 
-        for($i=0; $i<count($request->sub_fund_title); $i++){
+        for($i=0; $i<count($request->main_fund_title); $i++){
+            for($x=0; $x<count($request->account_title); $x++){
             TfObligationDetatils::create([
                 'tf_obli_id' => $tf_ob_id,
                 'src_of_tf' => $request->src_of_tf[$i],
@@ -42,13 +44,15 @@ class NewObligationTRRepository{
                 'company' => $request->company[$i],
                 'sub_fund_title' => $request->sub_fund_title[$i],
                 'latest_bal_tf' => $request->latest_bal_tf[$i],
-                'account_title' => $request->account_title[$i],
-                'account_code' => $request->account_code[$i],
-                'amount_obligated' => $request->amount_obligated[$i],
-                'latest_balance' => $request->amount_obligated[$i],
-                'balance' => $request->balance[$i],
-                'remarks' => $request->remarks[$i],
+                'tf_count_id' => 'counter_'.$x,
+                'account_title' => $request->account_title[$x],
+                'account_code' => $request->account_code[$x],
+                'amount_obligated' => $request->amount_obligated[$x],
+                'latest_balance' => $request->amount_obligated[$x],
+                'balance' => $request->balance[$x],
+                'remarks' => $request->remarks[$x],
             ]);
+        }
         }
 
         return response()->json([

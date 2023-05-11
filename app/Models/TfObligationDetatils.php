@@ -26,6 +26,7 @@ class TfObligationDetatils extends Model
         'latest_balance',
         'addition',
         'deduction',
-        'updated_balance'
+        'updated_balance',
+        'tf_count_id'
     ];
 }

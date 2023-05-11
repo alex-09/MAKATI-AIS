@@ -19,8 +19,7 @@ return new class extends Migration
         SELECT DATE_FORMAT(created_at, '%M %d %Y ') AS date, DATE_FORMAT(created_at, '%h:%i:%s') AS time, type, number, department_id,
         description, amount, transaction_id, processer, reviewer, status
         FROM dm_bot
-        WHERE status != 'Approved'
-        and docu_type_id = 'FURS';
+        WHERE docu_type_id = 'FURS';
         END";
 
         DB::unprepared($procedure);
