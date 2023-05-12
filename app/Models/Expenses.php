@@ -9,6 +9,8 @@ class Expenses extends Model
 {
     use HasFactory;
 
+    protected $table = "exec_expenses";
+
     protected $fillable = [
 
         'appro_id',

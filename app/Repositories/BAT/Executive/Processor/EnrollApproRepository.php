@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Services;
+namespace App\Repositories\BAT\Executive\Processor;
 
 use App\Models\Program;
 use App\Models\Project;
@@ -9,13 +9,19 @@ use App\Models\Expenses;
 use App\Models\Appropriation;
 use App\Http\Requests\EnrollApproRequest;
 
-class EnrollApproService 
-{
+class EnrollApproRepository{
+
     public function EnrollAppro(EnrollApproRequest $request){
 
-        $getApproId = Appropriation::latest('id')->first();
-        $approIdInc = $getApproId['id'];
-        $approId = "APPRO_".$approIdInc;
+        $getApproId = Appropriation::all();
+        if($getApproId->isEmpty()){
+            $approId = "appro_"."1";
+
+        }else{
+            $getApproId = Appropriation::latest('id')->first();
+            $approIdInc = $getApproId['id'];
+            $approId = "appro_".++$approIdInc;
+        }
 
         Appropriation::create([
             'appro_id' => $approId, 
@@ -95,7 +101,5 @@ class EnrollApproService
         return response()->json([
             'message' => 'Appropriation Successfully Enrolled!'
         ]);
-    }
-    
-    
+}
 }

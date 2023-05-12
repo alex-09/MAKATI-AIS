@@ -88,17 +88,15 @@ Route::prefix('makati')->group(function() {
     Route::post('/register', [AuthController::class, 'register']); 
 
     Route::post('/login', [AuthController::class, 'login']); 
-    
-    Route::post('/logout', [AuthController::class, 'logout']); 
 
-    Route::post('/userImport', [UserImportController::class, 'import']); 
-    
-    Route::get('/getUser', [UserController::class, 'getDetails']); 
+    // Route::get('/getUser', [UserController::class, 'getDetails']); 
 
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware'=>'auth:sanctum'], function () {
+
+    Route::get('/me', [UserController::class, 'me']);
+
 });
 
 Route::prefix('Dropdowns')->group(function() {

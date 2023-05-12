@@ -9,6 +9,8 @@ class Activity extends Model
 {
     use HasFactory;
 
+    protected $table = "exec_activities";
+
     protected $fillable = [
         'appro_id',
         'budget_year_id',

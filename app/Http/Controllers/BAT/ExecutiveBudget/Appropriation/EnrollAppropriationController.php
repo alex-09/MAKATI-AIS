@@ -7,18 +7,24 @@ use App\Models\Department;
 use App\Models\FundSource;
 use Illuminate\Http\Request;
 use App\Models\Appropriation;
-use App\Services\EnrollApproService;
 use App\Models\AppropriationType;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
+use App\Services\EnrollApproService;
 use App\Http\Requests\EnrollApproRequest;
+use App\Repositories\BAT\Executive\Processor\EnrollApproRepository;
 
 class EnrollAppropriationController extends Controller
 {
-    //RETRIEVE BUDGET YEAR LIST
+
+    private $enrollApproRepo;
+
+    public function __construct(EnrollApproRepository $enrollApproRepo)
+    {
+        return $this->enrollApproRepo = $enrollApproRepo;
+    }
+
     public function dropdownList(){
 
-        // dd(Hash::make(now()->format('H:i:s')));
         return response()->json(['dropdownList' => BudgetYear::all(),
             'approType' => AppropriationType::all(),
             'fundSource' => FundSource::all(),
@@ -27,11 +33,10 @@ class EnrollAppropriationController extends Controller
 
     }
 
-
-    public function EnrollAppro(EnrollApproRequest $request, EnrollApproService $services){
+    public function EnrollAppro(EnrollApproRequest $request){
         try{
 
-            $services->EnrollAppro($request);
+            return $this->enrollApproRepo->EnrollAppro($request);
             return response()->json([
                 'message' => 'Appropriation Successfully Enrolled!'
             ]);
@@ -43,11 +48,11 @@ class EnrollAppropriationController extends Controller
     }
 
 
-    public function addProgram(EnrollApproRequest $request, EnrollApproService $services){
+    public function addProgram(EnrollApproRequest $request){
 
         try{
 
-            $services->addPrograms($request);
+            $this->enrollApproRepo->addPrograms($request);
             return response()->json([
                 'status' => true,
                 'message' => "Add program Successfully!",

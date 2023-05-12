@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Obligation extends Model
 {
     use HasFactory;
+
+    protected $table = "exec_obligations";
 }
