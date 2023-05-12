@@ -31,7 +31,7 @@ class User extends Authenticatable
         'barangay',     
         'city',  
         'province',  
-        'emailaddress',    
+        'email',    
         'contactnumber',    
         "alternative_contactnumber",
         'module',

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Imports\User\UsersImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserImportController extends Controller
@@ -14,6 +15,8 @@ class UserImportController extends Controller
     {
         try {
             Excel::import(new UsersImport, $request->file);
+
+            DB::table('users')->update(array('password' => Hash::make('qwerty')));
 
             return response()->json([
                 'status' => true,   
