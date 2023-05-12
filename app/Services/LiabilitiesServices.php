@@ -49,7 +49,7 @@ class LiabilitiesServices
 
     public function updateStatus($id){
 
-        $status = COALiabilities::find($id)->first();
+        $status = COALiabilities::find($id);
 
         if($status['status'] == 'enable'){
             $status->update([
