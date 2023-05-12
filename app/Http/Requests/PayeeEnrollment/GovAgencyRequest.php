@@ -4,14 +4,14 @@ namespace App\Http\Requests\PayeeEnrollment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BusinessRequest extends FormRequest
+class GovAgencyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,7 +23,7 @@ class BusinessRequest extends FormRequest
     {
         return [
             'type_of_payee_id' => 'required',
-            'business_name' => 'required',
+            'agency_name' => 'required',
             'building_no' => 'required',
             'lot_no' => 'required',
             'street' => 'required',
@@ -33,9 +33,6 @@ class BusinessRequest extends FormRequest
             'country' => 'required',
             'zip_code' => 'required',
             'tax_id_no' => 'required',
-            'dti_no' => 'required',
-            'section_no' => 'required',
-            'cda_no' => 'required',
             'authorized_rep' => 'required',
             'contact_no' => 'required',
             'email' => 'required',

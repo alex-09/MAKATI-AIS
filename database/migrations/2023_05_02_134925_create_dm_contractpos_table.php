@@ -28,8 +28,6 @@ return new class extends Migration
             $table->integer('status');
             $table->timestamps();
 
-            $table->foreign('cotract_po_id')->references('id')->on('dm_contractpo_types');
-            $table->foreign('department_id')->references('department_code')->on('departments');
         });
     }
 
