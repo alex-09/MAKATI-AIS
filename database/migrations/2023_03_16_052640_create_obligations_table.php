@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->integer('budget_year_id');
             $table->integer('transaction');
-            $table->unsignedBigInteger('department');
+            $table->integer('department');
             $table->integer('fund_source');
             $table->string('processing_slip_no');
             $table->integer('cafoa_amount');

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('exec_allotments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('budget_year_id');
+            $table->integer('budget_year_id');
             $table->string('allot_id');
             $table->string('appro_id');
             $table->string('adjustment_type')->nullable();

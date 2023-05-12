@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class AppropriationDetails extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'appro_id',
+        'budget_year_id',
+        'department_code_id',
+        'AIPCode',
+        'program_code',
+        'program',
+        'project_code',
+        'project',
+        'activity_code',
+        'activity',
+        'activity_description',
+        'appro_total',
+        'appro_total_add',
+        'appro_total_deduct',
+        'status',
+    ];
+}

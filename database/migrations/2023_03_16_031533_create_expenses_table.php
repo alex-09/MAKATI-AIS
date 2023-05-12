@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('department_code_id');
             $table->string('AIPCode');
             $table->integer('program_code_id');
-            $table->integer('project_code_id')->index();
-            $table->integer('activity_code_id')->index();
+            $table->integer('project_code_id');
+            $table->integer('activity_code_id');
             $table->string('account_name');
             $table->integer('account_code');
             $table->string('appro_id');

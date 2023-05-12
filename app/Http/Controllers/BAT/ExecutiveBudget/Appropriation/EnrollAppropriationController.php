@@ -30,17 +30,12 @@ class EnrollAppropriationController extends Controller
             'fundSource' => FundSource::all(),
             'department' => Department::all(),
         ]);
-
     }
 
     public function EnrollAppro(EnrollApproRequest $request){
         try{
 
             return $this->enrollApproRepo->EnrollAppro($request);
-            return response()->json([
-                'message' => 'Appropriation Successfully Enrolled!'
-            ]);
-
         } catch(\Throwable $th){
             return $this->errorResponse($th);
         }
@@ -48,20 +43,20 @@ class EnrollAppropriationController extends Controller
     }
 
 
-    public function addProgram(EnrollApproRequest $request){
+    // public function addProgram(EnrollApproRequest $request){
 
-        try{
+    //     try{
 
-            $this->enrollApproRepo->addPrograms($request);
-            return response()->json([
-                'status' => true,
-                'message' => "Add program Successfully!",
-            ]);
+    //         $this->enrollApproRepo->addPrograms($request);
+    //         return response()->json([
+    //             'status' => true,
+    //             'message' => "Add program Successfully!",
+    //         ]);
 
-        } catch(\Throwable $th) { 
-            return $this->errorResponse($th); 
-        }
-    }
+    //     } catch(\Throwable $th) { 
+    //         return $this->errorResponse($th); 
+    //     }
+    // }
 
 
     public function forReview(Request $request){
