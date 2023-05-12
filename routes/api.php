@@ -7,14 +7,16 @@ use App\Http\Controllers\COA\AssetsController;
 use App\Http\Controllers\COA\EquityController;
 use App\Http\Controllers\COA\IncomeController;
 use App\Http\Controllers\COA\ExpensesController;
+use App\Http\Controllers\Auth\UserImportController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\COA\PreviousAccController;
+use App\Http\Controllers\Dropdown\DeptDropdownController;
 use App\Http\Controllers\COA\export\AssetExportController;
 use App\Http\Controllers\COA\Import\AssetImportController;
 use App\Http\Controllers\COA\Export\EquityExportController;
+
 use App\Http\Controllers\COA\Export\IncomeExportController;
 use App\Http\Controllers\COA\Import\EquityImportController;
-
 use App\Http\Controllers\COA\Import\IncomeImportController;
 use App\Http\Controllers\COA\Export\ExpensesExportController;
 use App\Http\Controllers\COA\Import\ExpensesImportController;
@@ -30,15 +32,19 @@ use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewObligationController;
 use App\Http\Controllers\BAT\TrustFund\CityAccountant\CAToApproveController;
 use App\Http\Controllers\BAT\TrustFund\CityAccountant\ObligationCAController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateTR\UpdateTRController;
+use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\UpdateAllotmentController;
+use App\Http\Controllers\BAT\TrustFund\Report\Dashboard\DashboardReportController;
 use App\Http\Controllers\BAT\TrustFund\Processor\Obligation\TFObligationController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrevRecController;
+use App\Http\Controllers\DocumentManagement\Receiving\OD\PreviousTransacController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\UnexpendedController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrintRecController;
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\PrevTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\printPreAudController;
+use App\Http\Controllers\DocumentManagement\Receiving\OD\ODReceivingReceiptController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\LGUCounterPartController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\PrintCommController;
@@ -56,14 +62,11 @@ use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveC
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
+use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
-use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositReceiptController;
-use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
-use App\Http\Controllers\DocumentManagement\Receiving\OD\ODReceivingReceiptController;
-use App\Http\Controllers\DocumentManagement\Receiving\OD\PreviousTransacController;
-use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollsAndAppointmentController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollAppointmentReceivingController;
 
@@ -87,10 +90,17 @@ Route::prefix('makati')->group(function() {
     
     Route::post('/logout', [AuthController::class, 'logout']); 
 
+    Route::post('/userImport', [UserImportController::class, 'import']); 
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('Dropdowns')->group(function() {
+
+    Route::get('/list', [DeptDropdownController::class, 'list']); 
 });
 
 Route::prefix('coa')->group(function() {
@@ -267,10 +277,11 @@ Route::prefix('trustfunds')->group(function () {
     //CITY ACCOUNTANT
     Route::post('/obliCAApprove', [ObligationCAController::class, 'reviewed']);
     Route::post('/obliCAReject', [ObligationCAController::class, 'reject']);
-
     //SEARCH AND UPDATE FURS
     Route::get('/searchObli/{id}', [UpdateObligationController::class, 'search']);
     Route::post('/updateObli', [UpdateObligationController::class, 'update']);
+    //REPORT DASHBOARD
+    Route::get('/reportPIe', [DashboardReportController::class, 'pieReport']);
 });
 
 Route::prefix('BOT')->group(function () {
