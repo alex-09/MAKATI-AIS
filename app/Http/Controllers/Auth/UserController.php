@@ -10,7 +10,8 @@ class UserController extends Controller
 {
     public function getDetails(Request $request){
         try{
-            $user = User::where('email', $request->email)->first();
+            $user = User::join('personal_access_tokens', 'users.id', 'personal_access_tokens.tokenable_id')
+            ->where('personal_access_tokens.token', $request->token)->first();
             return response()->json(['user' => $user]);
         }catch(\Throwable $th){
             return response()->json([
