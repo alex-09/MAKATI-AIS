@@ -9,6 +9,8 @@ class AppropriationType extends Model
 {
     use HasFactory;
 
+    protected $table = "exec_appropriation_types";
+
     protected $fillable = [
         'appro_type'
     ];

@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('allotments', function (Blueprint $table) {
+        Schema::create('exec_allotments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('budget_year_id');
             $table->string('allot_id');
@@ -31,9 +31,7 @@ return new class extends Migration
             $table->integer('status')->nullable();
             $table->timestamps();
 
-            $table->foreign('budget_year_id')->references('id')->on('budget_years')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('activity_code_id')->references('activity_code')->on('activities')->onUpdate('cascade')->onDelete('cascade');
+
         });
     }
 

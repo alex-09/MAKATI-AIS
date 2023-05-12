@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('exec_projects', function (Blueprint $table) {
             $table->id('project_id');
             $table->string('appro_id');
             $table->integer('budget_year_id');
@@ -23,8 +23,6 @@ return new class extends Migration
             $table->string('project');
             $table->timestamps();
 
-            $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('program_code_id')->references('program_code')->on('programs')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

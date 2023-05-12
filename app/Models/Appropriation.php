@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Appropriation extends Model
 {
     use HasFactory;
+
+    protected $table = "exec_appropriations";
     
     protected $fillable = [
         'appro_id',

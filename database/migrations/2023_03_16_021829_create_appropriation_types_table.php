@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appropriation_types', function (Blueprint $table) {
+        Schema::create('exec_appropriation_types', function (Blueprint $table) {
             $table->id('approType_id');
             $table->string('appro_type');
             $table->timestamps();

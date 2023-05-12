@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Allotment extends Model
 {
-    protected $table = 'allotments';
+    protected $table = 'exec_allotments';
 
     protected $fillable = [
         'appro_id',

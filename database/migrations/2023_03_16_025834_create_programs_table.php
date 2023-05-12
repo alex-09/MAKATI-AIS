@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('programs', function (Blueprint $table) {
+        Schema::create('exec_programs', function (Blueprint $table) {
             $table->id('program_id');
             $table->string('appro_id')->index();
             $table->integer('budget_year_id');
@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('program');
             $table->timestamps();
 
-            $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('department_code_id')->references('department_code')->on('departments')->onUpdate('cascade');
         });
     }
 
