@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
@@ -12,53 +10,54 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `tf_search_furs`;
-        CREATE VIEW `trust_fund_report_1` AS
-        SELECT 
-            `str`.`str_name` AS `str_name`,
-            SUM(`det`.`amount_allocated`) AS `Trust Receipt`,
-            SUM(`det`.`latest_balance`) AS `Obligations`
+        $procedure = " DROP PROCEDURE IF EXISTS `trust_fund_report_1`;
+        CREATE PROCEDURE `trust_fund_report_1` ()
+            BEGIN
+        SELECT str.str_name AS str_name,
+            SUM(tf_fund_details.amount_allocated) AS TrustReceipt,
+            SUM(tf_fund_details.latest_balance) AS Obligations
         FROM
-            (`tf_fund_details` `det`
-            JOIN `src_trust_receipt` `str` ON (`str`.`id` = `det`.`tr_type`))
+            tf_fund_details 
+            JOIN src_trust_receipt AS str ON str.id = tf_fund_details.tr_type
         WHERE
-            `det`.`tr_type` = 1
-                AND `det`.`status` = 'Approved' 
+            tf_fund_details.tr_type = 1
+                AND tf_fund_details.status = 'Approved'
         UNION SELECT 
-            `str`.`str_name` AS `str_name`,
-            SUM(`det`.`amount_allocated`) AS `trust_receipt`,
-            SUM(`det`.`latest_balance`) AS `Obligations`
+            str.str_name AS str_name,
+            SUM(tf_fund_details.amount_allocated) AS trust_receipt,
+            SUM(tf_fund_details.latest_balance) AS Obligations
         FROM
-            (`tf_fund_details` `det`
-            JOIN `src_trust_receipt` `str` ON (`str`.`id` = `det`.`tr_type`))
+            tf_fund_details 
+            JOIN src_trust_receipt str ON str.id = tf_fund_details.tr_type
         WHERE
-            `det`.`tr_type` = 2 
+            tf_fund_details.tr_type = 2 
         UNION SELECT 
-            `str`.`str_name` AS `str_name`,
-            SUM(`det`.`amount_allocated`) AS `trust_receipt`,
-            SUM(`det`.`latest_balance`) AS `Obligations`
+            str.str_name AS str_name,
+            SUM(tf_fund_details.amount_allocated) AS trust_receipt,
+            SUM(tf_fund_details.latest_balance) AS bligations
         FROM
-            (`tf_fund_details` `det`
-            JOIN `src_trust_receipt` `str` ON (`str`.`id` = `det`.`tr_type`))
+            tf_fund_details
+            JOIN src_trust_receipt AS str ON str.id = tf_fund_details.tr_type
         WHERE
-            `det`.`tr_type` = 3 
+            tf_fund_details.tr_type = 3 
         UNION SELECT 
-            `str`.`str_name` AS `str_name`,
-            SUM(`det`.`amount_allocated`) AS `trust_receipt`,
-            SUM(`det`.`latest_balance`) AS `Obligations`
+            str.str_name AS str_name,
+            SUM(tf_fund_details.amount_allocated) AS trust_receipt,
+            SUM(tf_fund_details.latest_balance) AS Obligations
         FROM
-            (`tf_fund_details` `det`
-            JOIN `src_trust_receipt` `str` ON (`str`.`id` = `det`.`tr_type`))
+            tf_fund_details 
+            JOIN src_trust_receipt AS str ON str.id = tf_fund_details.tr_type
         WHERE
-            `det`.`tr_type` = 4 
+            tf_fund_details.tr_type = 4 
         UNION SELECT 
-            'Total:' AS `Total:`,
-            SUM(`tf_fund_details`.`amount_allocated`) AS `SUM(amount_allocated)`,
-            SUM(`tf_fund_details`.`latest_balance`) AS `SUM(latest_balance)`
+            'Total:' AS Total,
+            SUM(tf_fund_details.amount_allocated) AS trust_receipt,
+            SUM(tf_fund_details.latest_balance) AS Obligations
         FROM
-            `tf_fund_details`
+            tf_fund_details
         WHERE
-            `tf_fund_details`.`status` = 'Approved'";
+            tf_fund_details.status = 'Approved';
+    END;";
 
         DB::unprepared($procedure);
     }
