@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\COA\AssetsController;
 use App\Http\Controllers\COA\EquityController;
 use App\Http\Controllers\COA\IncomeController;
@@ -13,8 +14,8 @@ use App\Http\Controllers\COA\PreviousAccController;
 use App\Http\Controllers\Dropdown\DeptDropdownController;
 use App\Http\Controllers\COA\export\AssetExportController;
 use App\Http\Controllers\COA\Import\AssetImportController;
-use App\Http\Controllers\COA\Export\EquityExportController;
 
+use App\Http\Controllers\COA\Export\EquityExportController;
 use App\Http\Controllers\COA\Export\IncomeExportController;
 use App\Http\Controllers\COA\Import\EquityImportController;
 use App\Http\Controllers\COA\Import\IncomeImportController;
@@ -91,6 +92,8 @@ Route::prefix('makati')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout']); 
 
     Route::post('/userImport', [UserImportController::class, 'import']); 
+    
+    Route::get('/getUser', [UserController::class, 'getDetails']); 
 
 });
 

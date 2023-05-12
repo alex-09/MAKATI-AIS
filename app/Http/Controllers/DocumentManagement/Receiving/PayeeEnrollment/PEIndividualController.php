@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PayeeEnrollment\IndividualRequest;
 use App\Models\PEIndividual;
 use Illuminate\Http\Request;
 
 class PEIndividualController extends Controller
 {
 
-    public function storeIndividual(Request $request){
+    public function storeIndividual(IndividualRequest $request){
         try{
-        $individualData = PEIndividual::create($this->validateIndividualData());
+        $individualData = PEIndividual::create($request->validated());
 
         return response()->json([
             'status' => true,

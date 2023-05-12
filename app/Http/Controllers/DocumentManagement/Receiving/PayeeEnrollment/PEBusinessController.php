@@ -10,8 +10,10 @@ use App\Http\Requests\PayeeEnrollment\BusinessRequest;
 class PEBusinessController extends Controller
 {
 
-    public function storeBusiness(BusinessRequest $request){
+    public function storeBusiness(BusinessRequest $request)
+    {
         try {
+
             $businessData = PEBusiness::create($request->validated());
 
             return response()->json([
