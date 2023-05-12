@@ -52,6 +52,12 @@ use App\Http\Controllers\DocumentManagement\Receiving\Communication\Communicatio
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateObligation\UpdateObligationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadActionController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorActionController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
@@ -347,3 +353,22 @@ Route::prefix('ContractPO')->group(function () {
     Route::get('/prevtransac-receipt', [ODReceivingReceiptController::class, 'prevTransacReceipt']);
  
  });
+
+ Route::prefix('Incoming-CPO')->group(function () {
+
+    Route::post('/search{payeename}', [CityAccountantController::class, 'searchCPO']); 
+    Route::get('/city-account', [CityAccountantController::class, 'cityAccountantList']); 
+    Route::get('/division-head', [DivisionHeadController::class, 'divisionHeadList']); 
+    Route::get('/processor', [ProcessorController::class, 'processorlist']); 
+   
+    Route::post('/add-action-city-accountant', [CityAccountantActionController::class, 'entryCityAccountant']); 
+    Route::get('action-history-city-accountant', [CityAccountantActionController::class, 'listCityAccountAction']); 
+    
+    Route::post('/add-action-division-head', [DivisionHeadActionController::class, 'entryHeadDivision']); 
+    Route::get('action-history-division-head', [DivisionHeadActionController::class, 'listDivisionHeadAction']); 
+   
+    Route::post('/add-action-processor', [ProcessorActionController::class, 'entryProcessor']); 
+    Route::get('action-history-processor', [ProcessorActionController::class, 'listProcessorAction']); 
+});
+
+

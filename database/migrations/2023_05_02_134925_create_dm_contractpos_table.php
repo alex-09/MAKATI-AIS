@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('current_bearer_dept');
             $table->integer('current_bearer_contact_number');
             $table->string('current_bearer_email');
+            $table->string('assign_to')->nullable();
             $table->integer('status');
             $table->timestamps();
 
