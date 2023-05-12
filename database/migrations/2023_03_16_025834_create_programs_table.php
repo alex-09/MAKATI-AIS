@@ -14,11 +14,11 @@ return new class extends Migration
     {
         Schema::create('exec_programs', function (Blueprint $table) {
             $table->id('program_id');
-            $table->string('appro_id')->index();
+            $table->string('appro_id');
             $table->integer('budget_year_id');
             $table->integer('department_code_id');
             $table->string('AIPCode');
-            $table->integer('program_code')->index();
+            $table->integer('program_code');
             $table->string('program');
             $table->timestamps();
 

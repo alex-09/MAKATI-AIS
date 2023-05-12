@@ -8,6 +8,7 @@ use App\Models\Activity;
 use App\Models\Expenses;
 use App\Models\Appropriation;
 use App\Http\Requests\EnrollApproRequest;
+use App\Models\AppropriationDetails;
 
 class EnrollApproRepository{
 
@@ -15,91 +16,99 @@ class EnrollApproRepository{
 
         $getApproId = Appropriation::all();
         if($getApproId->isEmpty()){
-            $approId = "appro_"."1";
+            $appro_id = "appro_"."1";
 
         }else{
             $getApproId = Appropriation::latest('id')->first();
             $approIdInc = $getApproId['id'];
-            $approId = "appro_".++$approIdInc;
+            $appro_id = "appro_".++$approIdInc;
         }
 
         Appropriation::create([
-            'appro_id' => $approId, 
-        ] +
-            $request->validated(),
-        );
-        
-        return $this->addPrograms($request);
-        
-    }
-
-
-    public function addPrograms(EnrollApproRequest $request){
+            'appro_id' => $appro_id,
+            'budget_year_id' => $request->budget_year_id,
+            'department_code_id' => $request->department_code_id,
+            'fundSource_id' => $request->fundSource_id,
+            'reference_document' => $request->reference_document,
+            'approType_id' => $request->approType_id,
+            'department_code_id' => $request->department_code_id,
+        ]);
 
         // for ($i=0; $i < count($request->program); $i++){
-            Program::create([
-                'appro_id' => $request->appro_id, 
-                'AIPCode' => $request->program_code
-            ] +
-                $request->validated(),
-            );
+        AppropriationDetails::create([
+            'appro_id' => $appro_id, 
+            'budget_year_id' => $request->budget_year_id,
+            'department_code_id' => $request->department_code_id,
+            'AIPCode' => $request->program_code."-".$request->project_code."-".$request->activity_code,
+            'program' => $request->program,
+            'program_code' => $request->program_code,
+            'project' => $request->project,
+            'project_code' => $request->project_code,
+            'activity' => $request->activity,
+            'activity_code' => $request->activity_code,
+            'activity_description' => $request->activity_description,
+            'appro_total' => $request->appro_total,
+            'account_code' => $request->account_code,
+            'account_name' => $request->account_name,
+            'appro_amount' => $request->appro_amount
+        ]);
+        
+        return response()->json([
+            'status' => true,
+            'message' => "Add program Successfully!",
+        ]);
 
-            return $this->addProjects($request);
         // }
-
-    }
-
-
-    public function addProjects($request){
 
         // for ($i=0; $i < count($request->project); $i++){
-            Project::create([
-                'appro_id' => $request->appro_id, 
-                'AIPCode' => $request->program_code."-".$request->project_code,
-                'program_code_id' => $request->program_code,
-            ] +
-                $request->validated(),
-            );
+        // Project::create([
+        //     'appro_id' => $appro_id, 
+        //     'budget_year_id' => $request->budget_year_id,
+        //     'department_code_id' => $request->department_code_id,
+        //     'AIPCode' => $request->program_code."-".$request->project_code,
+        //     'program_code_id' => $request->program_code,
+        //     'project' => $request->project,
+        //     'project_code' => $request->project_code,
+        //     'activity' => $request->activity,
+        //     'activity_code' => $request->activity_code,
+        //     'activity_description' => $request->activity_description,
+        //     'appro_total' => $request->appro_total,
+        //     'account_code' => $request->account_code,
+        //     'account_name' => $request->account_name,
+        //     'appro_amount' => $request->appro_amount
+        // ]);
+        // // }
 
-            return $this->addActivity($request);
-        // }
+        //         // for ($i=0; $i < count($request->activity); $i++){
+        //  Activity::create([
+        //     'appro_id' => $appro_id, 
+        //     'budget_year_id' => $request->budget_year_id,
+        //     'department_code_id' => $request->department_code_id,
+        //     'AIPCode' => $request->program_code."-".$request->project_code."-".$request->activity_code,
+        //     'program_code_id' => $request->program_code,
+        //     'project_code_id' => $request->project_code,
+        //     'activity' => $request->activity,
+        //     'activity_code' => $request->activity_code,
+        //     'activity_description' => $request->activity_description,
+        //     'appro_total' => $request->appro_total,
+        // ]);
+        // // }
 
+        // // for ($i=0; $i < count($request->account_name); $i++){
+        // Expenses::create([
+        //     'appro_id' => $appro_id, 
+        //     'budget_year_id' => $request->budget_year_id,
+        //     'department_code_id' => $request->department_code_id,
+        //     'AIPCode' => $request->program_code."-".$request->project_code."-".$request->activity_code,
+        //     'program_code_id' => $request->program_code,
+        //     'project_code_id' => $request->project_code, 
+        //     'activity_code_id' => $request->activity_code, 
+        //     'account_code' => $request->account_code,
+        //     'account_name' => $request->account_name,
+        //     'appro_amount' => $request->appro_amount
+        // ]);
+        // // }
+        
     }
 
-
-    public function addActivity($request){
-
-        // for ($i=0; $i < count($request->activity); $i++){
-            Activity::create([
-                'appro_id' => $request->appro_id, 
-                'AIPCode' => $request->program_code."-".$request->project_code."-".$request->activity_code,
-                'program_code_id' => $request->program_code,
-                'project_code_id' => $request->project_code
-            ] +
-                $request->validated(),
-            );
-
-            return $this->addExpenses($request);
-        // }
-    }
-
-
-    public function addExpenses($request){
-
-        // for ($i=0; $i < count($request->account_name); $i++){
-            Expenses::create([
-                'appro_id' => $request->appro_id, 
-                'AIPCode' => $request->program_code."-".$request->project_code."-".$request->activity_code,
-                'program_code_id' => $request->program_code,
-                'project_code_id' => $request->project_code, 
-                'activity_code_id' => $request->activity_code, 
-            ] +
-                $request->validated(),
-            );
-        // }
-
-        return response()->json([
-            'message' => 'Appropriation Successfully Enrolled!'
-        ]);
-}
 }

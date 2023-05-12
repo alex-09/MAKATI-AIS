@@ -191,7 +191,6 @@ Route::prefix('appropriation')->group(function () {
     Route::get('/index', [EnrollAppropriationController::class, 'dropdownList']); 
     Route::get('/approtypes', [EnrollAppropriationController::class, 'ApproTypes']); 
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
-    Route::post('/addProgram', [EnrollAppropriationController::class, 'addProgram']); 
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
 
     //UPDATE
