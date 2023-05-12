@@ -29,7 +29,7 @@ class UsersImport implements ToModel, WithHeadingRow
             'barangay' => $row['barangay'],
             'city' => $row['city'],
             'province' => $row['province'],
-            'emailaddress' => $row['emailaddress'],
+            'email' => $row['emailaddress'],
             'contactnumber' => $row['contactnumber'],
             'alternative_contactnumber' => $row['alternative_contactnumber'],
             'module' => $row['module'],

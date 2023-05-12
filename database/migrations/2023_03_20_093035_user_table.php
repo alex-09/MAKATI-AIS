@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('barangay');     
             $table->string('city');  
             $table->string('province');  
-            $table->string('emailaddress');    
+            $table->string('email');    
             $table->string('contactnumber');    
             $table->string("alternative_contactnumber");
             $table->string('module');
