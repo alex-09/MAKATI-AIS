@@ -15,11 +15,11 @@ return new class extends Migration
         Schema::create('exec_appropriations', function (Blueprint $table) {
             $table->id();
             $table->string('appro_id')->index();
-            $table->unsignedBigInteger('budget_year_id');
+            $table->integer('budget_year_id');
             $table->integer('department_code_id');
-            $table->unsignedBigInteger('fundSource_id');
+            $table->string('fundSource_id');
             $table->string('adjustment_type')->nullable();
-            $table->unsignedBigInteger('approType_id');
+            $table->string('approType_id');
             $table->string('supp_budget_num')->nullable();
             $table->string('date_document')->nullable();
             $table->string('reference_document');

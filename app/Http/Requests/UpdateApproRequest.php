@@ -11,7 +11,7 @@ class UpdateApproRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,13 +22,12 @@ class UpdateApproRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'activity' => ['required', 'string'],
-            'activity_code' => ['required', 'integer'],
-            'activity_description' => ['required', 'string'],
-            'appro_total' => ['required', 'numeric'],   
-            'account_code' => ['required', 'integer '],
-            'account_name' => ['required', 'string'],
-            'appro_amount' => ['required', 'numeric'],
+            'budyear' => 'required',
+            'dept_code' => 'required',
+            'fundSource' => 'required',
+            'program' => 'required',
+            'project' => 'required',
+            'activity' => 'required'
         ];
     }
 }

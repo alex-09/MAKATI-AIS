@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\BudgetYear;
 
 return new class extends Migration
 {
@@ -14,24 +13,19 @@ return new class extends Migration
     {
         Schema::create('exec_allotments', function (Blueprint $table) {
             $table->id();
-            $table->integer('budget_year_id');
-            $table->string('allot_id');
             $table->string('appro_id');
-            $table->string('adjustment_type')->nullable();
-            $table->unsignedBigInteger('department_code_id')->nullable();
-            $table->integer('fundSource_id');
-            $table->unsignedBigInteger('approType_id');
-            $table->string('document_date')->nullable();
-            $table->string('document_source');
-            $table->string('supplemental_budget_no')->nullable();
-            $table->integer('program_code_id');
-            $table->integer('project_code_id');
-            $table->integer('activity_code_id');
+            $table->integer('budget_year_id');
+            $table->integer('department_code_id');
             $table->string('AIPCode');
-            $table->integer('status')->nullable();
+            $table->string('account_name');
+            $table->integer('account_code');
+            $table->float('allot_amount', 17, 6);
+            $table->float('balance', 17, 6);
+            $table->float('latest_balance', 17, 6);
+            $table->float('unalloted_balance', 17, 6);
+            $table->string('type')->default('New');
+            $table->string('status')->nullable();
             $table->timestamps();
-
-
         });
     }
 

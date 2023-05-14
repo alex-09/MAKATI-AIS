@@ -9,6 +9,8 @@ class AppropriationDetails extends Model
 {
     use HasFactory;
 
+    protected $table = "exec_appropriation_details";
+
     protected $fillable = [
         'appro_id',
         'budget_year_id',
@@ -22,8 +24,12 @@ class AppropriationDetails extends Model
         'activity',
         'activity_description',
         'appro_total',
-        'appro_total_add',
-        'appro_total_deduct',
+        'latest_appro_total',
+        'account_name',
+        'account_code',
+        'appro_amount',
+        'latest_appro_amount',
+        'type',
         'status',
     ];
 }

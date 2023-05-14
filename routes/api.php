@@ -33,6 +33,7 @@ use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewObligationController;
 use App\Http\Controllers\BAT\TrustFund\CityAccountant\CAToApproveController;
 use App\Http\Controllers\BAT\TrustFund\CityAccountant\ObligationCAController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateTR\UpdateTRController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Dropdwons\ExecDropdwonController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\EnrollAllotmentController;
@@ -188,15 +189,13 @@ Route::prefix('coa')->group(function() {
 Route::prefix('appropriation')->group(function () {
 
     //ENROLL
-    Route::get('/index', [EnrollAppropriationController::class, 'dropdownList']); 
-    Route::get('/approtypes', [EnrollAppropriationController::class, 'ApproTypes']); 
+    Route::get('/dropdown', [ExecDropdwonController::class, 'execDropdown']); 
+    Route::get('/dropdown2', [ExecDropdwonController::class, 'execDropdown2']); 
+
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
 
     //UPDATE
-    Route::get('/filterProg', [UpdateAppropriationController::class, 'getProgram']);
-    Route::get('/filterProj', [UpdateAppropriationController::class, 'getProject']);
-    Route::get('/filterAct', [UpdateAppropriationController::class, 'getActivity']);
     Route::get('/filter', [UpdateAppropriationController::class, 'FilterAppropriation']);
     Route::post('/addActivity', [UpdateAppropriationController::class, 'addActivity']);
     Route::post('/updateAppro', [UpdateAppropriationController::class, 'updateAppro']);
