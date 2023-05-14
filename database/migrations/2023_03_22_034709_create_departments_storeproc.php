@@ -14,8 +14,8 @@ return new class extends Migration
     {
         $procedure = "DROP PROCEDURE IF EXISTS `departments`;
             CREATE PROCEDURE `departments` ()
-            BEGIN
-            SELECT * FROM departments;
+            SELECT department_name, department_code
+            FROM departments
             END;";
 
             DB::unprepared($procedure);

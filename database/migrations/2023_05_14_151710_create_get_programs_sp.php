@@ -12,19 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `getProgram`;
-        CREATE PROCEDURE `getProgram`(IN deptCode int(5))
-        
+        $procedure = " DROP PROCEDURE IF EXISTS `exec_programs`;
+        CREATE PROCEDURE `exec_programs` ()
         BEGIN
-            select prog.program, prog.program_code
-        
-            from departments as dept
-            INNER JOIN programs as prog
-            WHERE prog.department_code_id = department_code
-            GROUP BY  program;
 
+        select exec_appropriation_details.program, exec_appropriation_details.program_code
+        from exec_appropriation_details
+        group by program;
         END";
-        
+
         DB::unprepared($procedure);
     }
 
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('getprogram_storproc');
+        Schema::dropIfExists('get_programs_sp');
     }
 };

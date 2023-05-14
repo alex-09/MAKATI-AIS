@@ -14,11 +14,11 @@ class FundSourceSeeder extends Seeder
     public function run(): void
     {
         FundSource::create([
-            'fund_Source' => 'gen_fund'
+            'fund_Source' => 'General Fund'
         ]);
 
         FundSource::create([
-            'fund_Source' => 'speEdu_fund'
+            'fund_Source' => 'Special Education Fund'
         ]);
     }
 }

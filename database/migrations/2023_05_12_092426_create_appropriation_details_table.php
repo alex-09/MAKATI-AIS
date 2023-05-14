@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appropriation_details', function (Blueprint $table) {
+        Schema::create('exec_appropriation_details', function (Blueprint $table) {
             $table->id();
             $table->string('appro_id');
             $table->integer('budget_year_id');
@@ -25,9 +25,13 @@ return new class extends Migration
             $table->string('activity');
             $table->string('activity_description');
             $table->float('appro_total', 17, 3)->nullable();
-            $table->float('appro_total_add', 17, 6)->nullable();
-            $table->float('appro_total_deduct', 17, 6)->nullable();
-            $table->string('status');
+            $table->float('latest_appro_total', 17, 3)->nullable();
+            $table->string('account_name');
+            $table->integer('account_code');
+            $table->float('appro_amount', 17, 6);
+            $table->float('latest_appro_amount', 17, 6);
+            $table->string('type')->default('New');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
