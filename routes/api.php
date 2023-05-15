@@ -56,6 +56,7 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationCo
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CreateCommController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
+use App\Http\Controllers\DocumentManagement\Incoming\Communication\ListClustersController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
@@ -68,6 +69,7 @@ use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSe
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
+use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositController;
@@ -234,8 +236,21 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::post('/insert', [CommunicationController::class, 'receive_comms']); 
     Route::get('/showRecComm', [PrintCommController::class, 'display']); 
     Route::post('/createComm', [CreateCommController::class, 'store']);
+    //CITY ACCOUNTANT
+    Route::get('/listCA', [CommCAController::class, 'list']);
+    Route::post('/updateCA/{id}', [CommCAController::class, 'update']);
 
-    Route::get('/filterBearer', [CommunicationController::class, 'filterBearer']);
+    Route::get('/getBK', [ListClustersController::class, 'getBK']);
+    Route::get('/getBAM', [ListClustersController::class, 'getBAM']);
+    Route::get('/getFrd', [ListClustersController::class, 'getFrd']);
+    Route::get('/getPRD', [ListClustersController::class, 'getPRD']);
+    Route::get('/getPCIC', [ListClustersController::class, 'getPCIC']);
+    Route::get('/getDivision', [ListClustersController::class, 'getDivision']);
+    Route::get('/getAD', [ListClustersController::class, 'getAD']);
+    Route::get('/getFRS', [ListClustersController::class, 'getFRS']);
+    Route::get('/getAICS', [ListClustersController::class, 'getAICS']);
+
+    
     Route::post('/update/{id}', [CommunicationController::class, 'updateComm']); 
     Route::get('/search', [CommunicationController::class, 'searchComm']); 
     Route::post('/actionHistory/{id}', [CommunicationController::class, 'createActionHistory']); 

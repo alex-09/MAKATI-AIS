@@ -12,20 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `pe_get_payee_name`;
-        CREATE PROCEDURE `pe_get_payee_name` ()
+        $procedure = " DROP PROCEDURE IF EXISTS `get_ca_communication`;
+        CREATE PROCEDURE `get_ca_communication` ()
         BEGIN
 
-        select business_name as payee_name 
-        from pe_business 
+        select id, DATE_FORMAT(created_at, '%M %d %Y ') as data, transaction_id_num, sender, type, subject, drn, reply_to,
+        receive_comm_assignto_id as assign_to, cluster, restriction, action, no_of_days, status
     
-        union 
-        select agency_name as payee_name
-        from pe_government_agency 
-    
-        union 
-        select CONCAT(first_name, ' ',last_name) as payee_name
-        from pe_individual;
+        from receive_communications;
         END";
 
         DB::unprepared($procedure);
@@ -36,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('get_payee_name_sp');
+        Schema::dropIfExists('get_ca_comm_sp');
     }
 };

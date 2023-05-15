@@ -13,8 +13,6 @@ class ReceiveChecksController extends Controller
     public function storeReceiveChecks(CheckTransacRequest $request){
 
         try{
-
-           
             $payeeinfo = CTReceiveChecks::create($request->validated());
         
             return response()->json([
