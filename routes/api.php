@@ -11,10 +11,10 @@ use App\Http\Controllers\COA\ExpensesController;
 use App\Http\Controllers\Auth\UserImportController;
 use App\Http\Controllers\COA\LiabilitiesController;
 use App\Http\Controllers\COA\PreviousAccController;
-use App\Http\Controllers\Dropdown\DeptDropdownController;
+use App\Http\Controllers\Dropdown\DropdownController;
 use App\Http\Controllers\COA\export\AssetExportController;
-use App\Http\Controllers\COA\Import\AssetImportController;
 
+use App\Http\Controllers\COA\Import\AssetImportController;
 use App\Http\Controllers\COA\Export\EquityExportController;
 use App\Http\Controllers\COA\Export\IncomeExportController;
 use App\Http\Controllers\COA\Import\EquityImportController;
@@ -44,28 +44,28 @@ use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrevRecControll
 use App\Http\Controllers\DocumentManagement\Receiving\OD\PreviousTransacController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\UnexpendedController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrintRecController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorController;
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\PrevTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\printPreAudController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\ODReceivingReceiptController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\LGUCounterPartController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\PrintCommController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CreateCommController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CommunicationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateObligation\UpdateObligationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
+use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadActionController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
-use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantController;
-use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadActionController;
-use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadController;
-use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorActionController;
-use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
@@ -96,6 +96,10 @@ Route::prefix('makati')->group(function() {
 
     Route::post('/login', [AuthController::class, 'login']); 
 
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::post('/login', [UserImportController::class, 'Import']);
+
     // Route::get('/getUser', [UserController::class, 'getDetails']); 
 
 });
@@ -108,7 +112,7 @@ Route::group(['middleware'=>'auth:sanctum'], function () {
 
 Route::prefix('Dropdowns')->group(function() {
 
-    Route::get('/list', [DeptDropdownController::class, 'list']); 
+    Route::get('/department', [DropdownController::class, 'departmentlist']); 
 });
 
 Route::prefix('coa')->group(function() {
@@ -302,7 +306,7 @@ Route::prefix('BOT')->group(function () {
 
 Route::prefix('ContractPO')->group(function () {
 
-    Route::get('/listType', [RecContractPOController::class, 'listType']); 
+    Route::get('/listDropdown', [RecContractPOController::class, 'list']); 
     Route::post('/insertRec', [RecContractPOController::class, 'receiveCP']); 
     Route::get('/previousCP', [PrevRecController::class, 'list']);
     Route::post('/updatePrev/{id}', [PrevRecController::class, 'update']);

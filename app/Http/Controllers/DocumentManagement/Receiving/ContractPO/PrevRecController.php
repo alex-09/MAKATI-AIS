@@ -16,14 +16,14 @@ class PrevRecController extends Controller
         $this->prevreContractPoRepo = $prevreContractPoRepo;
     }
 
-    public function list(){
+    public function view(Request $request){
 
-        return response()->json(['listAll' => DmContractpo::all()]);
+        return $this->prevreContractPoRepo->view($request);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request){
         try {
-            return $this->prevreContractPoRepo->update($id, $request);
+            return $this->prevreContractPoRepo->update($request);
         }catch (\Throwable $th) {
             return response()->json([
                 'status' => false,

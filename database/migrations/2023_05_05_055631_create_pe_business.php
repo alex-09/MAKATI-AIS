@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pe_business', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_of_payee_id')->unique();
+            $table->integer('type_of_payee_id');
             $table->string('business_name');
             $table->integer('building_no');
             $table->integer('lot_no');
