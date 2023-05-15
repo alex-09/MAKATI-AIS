@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\DocumentManagement\Receiving\ContractPO;
 
+use App\Models\DMContractPOTypes;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DocumentManagement\Receiving\CPRequest;
-use App\Models\DMContractPOTypes;
 use App\Repositories\DocumentManagement\Receiving\CONTRACTPO\RecContractPORepository;
 
 class RecContractPOController extends Controller
@@ -16,9 +17,12 @@ class RecContractPOController extends Controller
         $this->reContractPoRepo = $reContractPoRepo;
     }
 
-    public function listType(){
+    public function list(){
 
-        return response()->json(['list' => DMContractPOTypes::all()]);
+        return response()->json([
+            'list' => DMContractPOTypes::all(),
+            'department' => DB::select('CALL departments()'),
+            'payee' => DB::select('CALL pe_get_payee_name()')]);
     }
 
     public function receiveCP(CPRequest $request){

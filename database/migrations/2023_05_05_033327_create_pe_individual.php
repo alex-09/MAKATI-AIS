@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pe_individual', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_of_payee_id')->unique();
+            $table->integer('type_of_payee_id');
             $table->string('client_type');
             $table->string('last_name');
             $table->string('first_name');
