@@ -67,6 +67,9 @@ use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividu
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadActionController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
+use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptContractController;
+use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptOthersController;
+use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptPOController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ListAppropriationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
@@ -405,6 +408,22 @@ Route::prefix('ContractPO')->group(function () {
    
     Route::post('/add-action-processor', [ProcessorActionController::class, 'entryProcessor']); 
     Route::get('action-history-processor', [ProcessorActionController::class, 'listProcessorAction']); 
+});
+
+Route::prefix('Outgoing-CPO')->group(function () {
+
+
+    Route::get('/receipt-contract', [ReceiptContractController::class, 'receiptContract']); 
+    Route::get('/receipt-po', [ReceiptPOController::class, 'receiptPO']); 
+    Route::get('/receipt-others', [ReceiptOthersController::class, 'receiptOthers']); 
+
+    Route::get('/transmittal-contract', [ReceiptContractController::class, 'transmittalContractList']); 
+    Route::get('/transmittal-po', [ReceiptPOController::class, 'transmittalPOList']); 
+    Route::get('/transmittal-others', [ReceiptOthersController::class, 'transmittalOthersList']); 
+
+
+
+    
 });
 
 
