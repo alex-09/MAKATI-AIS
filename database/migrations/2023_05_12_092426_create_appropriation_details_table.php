@@ -32,6 +32,7 @@ return new class extends Migration
             $table->float('latest_appro_amount', 17, 6);
             $table->string('type')->default('New');
             $table->string('status')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

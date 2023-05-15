@@ -35,7 +35,7 @@ class EnrollApproRepository{
                     'project' => $request->project[$x],
                     'project_code' => $request->project_code[$x],
                     'activity' => $request->activity[$x],
-                    'activity_code' => $request->activity_code[$i][$x],
+                    'activity_code' => $request->activity_code[$x],
                     'activity_description' => $request->activity_description[$x],
                     'appro_total' => $request->appro_total[$x],
                     'latest_appro_total' => $request->appro_total[$x],

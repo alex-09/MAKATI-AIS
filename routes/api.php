@@ -30,10 +30,13 @@ use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHToApproveController;
 use App\Http\Controllers\BAT\TrustFund\ListObli\ListObligationController;
 use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHObligationController;
 use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewObligationController;
+use App\Http\Controllers\BAT\ExecutiveBudget\DivisionHead\ApproDHController;
 use App\Http\Controllers\BAT\TrustFund\CityAccountant\CAToApproveController;
 use App\Http\Controllers\BAT\TrustFund\CityAccountant\ObligationCAController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateTR\UpdateTRController;
+use App\Http\Controllers\BAT\ExecutiveBudget\CityAccountant\ApproCAController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Dropdwons\ExecDropdwonController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ApproReviewerController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\EnrollAllotmentController;
@@ -48,12 +51,9 @@ use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorContro
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\PrevTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\printPreAudController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\ODReceivingReceiptController;
-use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\LGUCounterPartController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\PrintCommController;
-use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\EnrollAppropriationController;
-use App\Http\Controllers\BAT\ExecutiveBudget\Appropriation\UpdateAppropriationController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CreateCommController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\ListClustersController;
@@ -68,7 +68,10 @@ use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadAct
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ListAppropriationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\EnrollAppropriationController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\UpdateAppropriationController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
@@ -203,18 +206,22 @@ Route::prefix('appropriation')->group(function () {
     //ENROLL
     Route::get('/dropdown', [ExecDropdwonController::class, 'execDropdown']); 
     Route::get('/dropdown2', [ExecDropdwonController::class, 'execDropdown2']); 
-
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
-
-    //UPDATE
-    Route::get('/filter', [UpdateAppropriationController::class, 'FilterAppropriation']);
-    Route::post('/addActivity', [UpdateAppropriationController::class, 'addActivity']);
-    Route::post('/updateAppro', [UpdateAppropriationController::class, 'updateAppro']);
-
     //LIST 
     Route::get('/listAppro', [ListAppropriationController::class, 'index']);
 
+    //REVIEWER
+    Route::get('/listApproForReview', [ApproReviewerController::class, 'list']);
+    Route::get('/viewApproForReview/{id}/{aipcode}', [ApproReviewerController::class, 'view']);
+
+    //DIVISION HEAD
+    Route::get('/listApproDivisionHead', [ApproDHController::class, 'list']);
+    Route::get('/viewApproDH/{id}/{aipcode}', [ApproDHController::class, 'view']);
+
+    //City Accountant
+    Route::get('/listApproCA', [ApproCAController::class, 'list']);
+    Route::get('/viewApproAC/{id}/{aipcode}', [ApproCAController::class, 'view']);
 });
 
 Route::prefix('allotment')->group(function () {
