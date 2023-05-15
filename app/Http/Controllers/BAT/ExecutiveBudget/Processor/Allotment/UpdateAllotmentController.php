@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\BAT\ExecutiveBudget\Allotment;
+namespace App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

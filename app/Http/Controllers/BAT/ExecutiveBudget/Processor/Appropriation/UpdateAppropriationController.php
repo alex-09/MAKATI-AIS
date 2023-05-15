@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\BAT\ExecutiveBudget\Appropriation;
+namespace App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation;
 
 use Illuminate\Http\Request;
 use App\Models\Appropriation;

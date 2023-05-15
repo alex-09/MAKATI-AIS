@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\BAT\ExecutiveBudget\Appropriation;
+namespace App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;

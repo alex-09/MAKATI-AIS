@@ -31,5 +31,6 @@ class AppropriationDetails extends Model
         'latest_appro_amount',
         'type',
         'status',
+        'remarks'
     ];
 }
