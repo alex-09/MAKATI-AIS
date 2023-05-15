@@ -5,7 +5,7 @@ namespace App\Repositories\DocumentManagement\Receiving\PreAudit;
 use App\Models\DmContractpo;
 use App\Models\DmPreAudit;
 
-class PrevPreAudRepository
+class   PrevPreAudRepository
 {
     public function searchTransac($request){
 

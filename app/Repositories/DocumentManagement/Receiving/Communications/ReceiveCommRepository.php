@@ -21,18 +21,17 @@ class ReceiveCommRepository
             $transac_id = "COM-" . $date . "-" . str_pad(++$ptId, 7, '0', STR_PAD_LEFT);
         }
 
-        $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
-        $request->document->move(public_path('uploads'), $docuFile);
+        // $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
+        // $request->document->move(public_path('uploads'), $docuFile);
 
-        $insertRecCom = ReceiveCommunications::create([
+            ReceiveCommunications::create([
             "transaction_id_num" => $transac_id,
-            "document" => $docuFile
+            // "document" => $docuFile
             ] + $request->validated());
 
         return response()->json([
             'status' => true,
             'message' => 'Inserted Successfully',
-            'data' => $insertRecCom
         ]);
 
     }

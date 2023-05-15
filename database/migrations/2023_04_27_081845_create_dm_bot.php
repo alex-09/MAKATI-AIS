@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('docu_type_id');
             $table->string('transaction_id');
             $table->integer('department_id');
-            $table->integer('processing_slip_number');
+            $table->string('processing_slip_number');
             $table->string('description');
             $table->string('number')->nullable();
             $table->integer('amount');
