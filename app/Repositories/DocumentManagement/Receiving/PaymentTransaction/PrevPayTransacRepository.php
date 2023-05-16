@@ -8,13 +8,21 @@ class PrevPayTransacRepository
 {
     public function searchTransac($request){
 
-        $result = DmPaymentTransaction::where('transaction_id', $request->transaction_id)->first();
+        $result = DmPaymentTransaction::where('transac_id', $request->transaction_id)->first();
         return response()->json(['result' => $result]);
     }
 
-    public function savePreAud($request){
+    public function saveTransac($request){
+        $request->validate([
+            'current_bearer' => 'required',
+            'current_bearer_dept' => 'required',
+            'current_bearer_contact_number' => 'required',
+            'current_bearer_email' => 'required',
+        ]);
 
-        DmPaymentTransaction::create($request->all());
+        $update = DmPaymentTransaction::where('transac_id', $request->transac_id)->first();
+
+        $update->update($request->all());
         return response()->json(['message' => 'Your entry has been successfully saved under the same Transaction ID Number.']);
     }
 }

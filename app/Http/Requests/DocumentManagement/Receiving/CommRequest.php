@@ -30,7 +30,7 @@ class CommRequest extends FormRequest
             'DRN' => 'required',
             'reply_to' => 'required',
             'sender' => 'required',
-            'contact_no' => 'integer',
+            'contact_no' => 'string',
             'bearer_name' => 'required',
             'bearer_address' => 'required',
             'bearer_contact_no' => 'required',

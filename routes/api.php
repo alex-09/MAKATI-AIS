@@ -46,6 +46,7 @@ use App\Http\Controllers\BAT\TrustFund\Processor\Obligation\TFObligationControll
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrevRecController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\PreviousTransacController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\UnexpendedController;
+use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptPOController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrintRecController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorController;
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\PrevTransacController;
@@ -53,11 +54,14 @@ use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\printPreAudContro
 use App\Http\Controllers\DocumentManagement\Receiving\OD\ODReceivingReceiptController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\LGUCounterPartController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadController;
+use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptOthersController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\PrintCommController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CreateCommController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\ListClustersController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantController;
+use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptContractController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PayeeListController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceiptController;
@@ -67,12 +71,11 @@ use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividu
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadActionController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
-use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptContractController;
-use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptOthersController;
-use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptPOController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ListAppropriationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
+use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\ListPayTransacController;
+use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\PrevPayTransacCOntroller;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\UpdateAppropriationController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
@@ -340,7 +343,7 @@ Route::prefix('ContractPO')->group(function () {
 
     Route::get('/listDropdown', [RecContractPOController::class, 'list']); 
     Route::post('/insertRec', [RecContractPOController::class, 'receiveCP']); 
-    Route::get('/previousCP', [PrevRecController::class, 'list']);
+    Route::get('/previousCP', [PrevRecController::class, 'view']);
     Route::post('/updatePrev/{id}', [PrevRecController::class, 'update']);
     Route::get('/listTransac', [PrintRecController::class, 'listTransac']);
     // Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
@@ -358,8 +361,9 @@ Route::prefix('ContractPO')->group(function () {
  Route::prefix('Payment-Transaction')->group(function () {
 
     Route::post('/storePT', [NewPayTransacController::class, 'store']); 
-    // Route::post('/save', [NewPayTransacController::class, 'save']); 
-    // Route::get('/list', [NewPayTransacController::class, 'listAll']);
+    Route::get('/searchPT', [PrevPayTransacCOntroller::class, 'search']); 
+    Route::post('/updatePT', [PrevPayTransacCOntroller::class, 'update']);
+    Route::get('/listPT', [ListPayTransacController::class, 'list']);
 
  });
 
@@ -368,6 +372,7 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/individual', [PEIndividualController::class, 'storeIndividual']); 
     Route::post('/business', [PEBusinessController::class, 'storeBusiness']); 
     Route::post('/government-agency', [PEGovernementAgencyController::class, 'storeAgency']); 
+    Route::get('/listPayee', [PayeeListController::class, 'list']); 
  });
 
  Route::prefix('Check-Transac')->group(function () {

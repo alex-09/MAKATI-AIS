@@ -31,7 +31,7 @@ class ReceiveCommRepository
 
         return response()->json([
             'status' => true,
-            'message' => 'Inserted Successfully',
+            'message' => 'Your entry has been successfully saved under Transaction ID Number '.$transac_id,
         ]);
 
     }
