@@ -217,14 +217,20 @@ Route::prefix('appropriation')->group(function () {
     //REVIEWER
     Route::get('/listApproForReview', [ApproReviewerController::class, 'list']);
     Route::get('/viewApproForReview/{id}/{aipcode}', [ApproReviewerController::class, 'view']);
+    Route::post('/updateApproForReview', [ApproReviewerController::class, 'update']);
+    Route::post('/rejectApproForReview', [ApproReviewerController::class, 'reject']);
 
     //DIVISION HEAD
     Route::get('/listApproDivisionHead', [ApproDHController::class, 'list']);
     Route::get('/viewApproDH/{id}/{aipcode}', [ApproDHController::class, 'view']);
+    Route::post('/updateApproDH', [ApproDHController::class, 'update']);
+    Route::post('/rejectApproDH', [ApproDHController::class, 'reject']);
 
     //City Accountant
     Route::get('/listApproCA', [ApproCAController::class, 'list']);
     Route::get('/viewApproAC/{id}/{aipcode}', [ApproCAController::class, 'view']);
+    Route::post('/updateApproCA', [ApproCAController::class, 'update']);
+    Route::post('/rejectApproCA', [ApproCAController::class, 'reject']);
 });
 
 Route::prefix('allotment')->group(function () {

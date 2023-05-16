@@ -23,9 +23,9 @@ return new class extends Migration
             $table->string('province');
             $table->string('country');
             $table->integer('zip_code');
-            $table->integer('tax_id_no');
+            $table->string('tax_id_no');
             $table->string('authorized_rep');
-            $table->integer('contact_no');
+            $table->string('contact_no');
             $table->string('email');
             $table->date('date_registered');
             $table->string('status');
