@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('section_no');
             $table->string('cda_no');
             $table->string('authorized_rep');
-            $table->integer('contact_no', 50);
+            $table->bigInteger('contact_no');
             $table->string('email');
             $table->date('date_registered');
             $table->string('status');

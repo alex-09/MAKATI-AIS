@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('processing_slip_number');
             $table->string('description');
             $table->string('number')->nullable();
-            $table->integer('amount', 50);
+            $table->float('amount', 17, 3);
             $table->string('current_bearer');
             $table->string('current_bearer_dept');
-            $table->integer('current_bearer_contact_number', 50);
+            $table->bigInteger('current_bearer_contact_number');
             $table->string('current_bearer_email');
             $table->string('type')->default('New');
             $table->string('furs_id')->nullable();
