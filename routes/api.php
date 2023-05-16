@@ -106,7 +106,7 @@ Route::prefix('makati')->group(function() {
 
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::post('/login', [UserImportController::class, 'Import']);
+    Route::post('/userImport', [UserImportController::class, 'Import']);
 
     // Route::get('/getUser', [UserController::class, 'getDetails']); 
 
@@ -249,6 +249,7 @@ Route::prefix('allotment')->group(function () {
 
 Route::prefix('ReceiveCommunication')->group(function () {
 
+    Route::get('/commtype', [CommunicationController::class, 'commType']); 
     Route::post('/insert', [CommunicationController::class, 'receive_comms']); 
     Route::get('/showRecComm', [PrintCommController::class, 'display']); 
     Route::post('/createComm', [CreateCommController::class, 'store']);
