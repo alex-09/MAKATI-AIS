@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('creator');
             $table->timestamps();
 
-            $table->foreign('receive_communication_id')->references('transaction_id_num')->on('receive_communications');
         });
     }
 
