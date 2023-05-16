@@ -75,6 +75,8 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ListAppropr
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\UpdateAppropriationController;
+use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDActionHistoryController;
+use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDForProcessController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
@@ -389,6 +391,8 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/collection-deposit', [CollectionDepositController::class, 'insertCollectionDeposit']); 
     Route::get('/cd-receiving', [CollectionDepositReceiptController::class, 'collectionDepostReceipt']); 
  
+    Route::get('/cd-for-process', [CDForProcessController::class, 'cdForProcess']); 
+    Route::get('/cd-action-history', [CDActionHistoryController::class, 'cdActionHistory']); 
  });
 
  Route::prefix('OD')->group(function () {
