@@ -31,7 +31,7 @@ class NewPayTransacRepository
         }
     
         DmPaymentTransaction::create([
-            'transaction_id' => $transac_id, 
+            'transac_id' => $transac_id, 
             'status' => 1
         ] + $request->validated());
     

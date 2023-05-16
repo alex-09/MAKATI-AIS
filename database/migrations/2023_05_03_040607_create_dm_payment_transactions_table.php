@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('dm_payment_transactions', function (Blueprint $table) {
             $table->id();
             $table->string('payee_name');
+            $table->string('transac_id');
             $table->string('particulars');
             $table->float('amount', 17, 3);
             $table->string('current_bearer');
