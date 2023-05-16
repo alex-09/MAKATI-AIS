@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('transaction_id');
             $table->string('payee_name')->index();
             $table->string('particulars');
-            $table->integer('amount');
+            $table->integer('amount', 50);
             $table->string('current_bearer');
             $table->string('current_bearer_dept');
-            $table->integer('current_bearer_contact_number');
-            $table->integer('current_bearer_email');
-            $table->integer('status');
+            $table->integer('current_bearer_contact_number', 50);
+            $table->string('current_bearer_email');
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('transaction_id')->references('transaction_id')->on('dm_contractpos');

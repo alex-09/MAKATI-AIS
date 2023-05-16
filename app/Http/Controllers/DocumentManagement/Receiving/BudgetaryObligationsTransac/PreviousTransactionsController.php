@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\DMBudgetaryObligationsTransac;
 use App\Repositories\DocumentManagement\Receiving\BOT\PrevTransactionRepository;
@@ -18,7 +19,7 @@ class PreviousTransactionsController extends Controller
 
     public function previousList(){
 
-        return response()->json(['data' => DMBudgetaryObligationsTransac::all()]);
+        return response()->json(['data' => DB::select('CALL get_dm_bot()')]);
     }
     
 

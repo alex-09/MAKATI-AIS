@@ -19,14 +19,14 @@ return new class extends Migration
             $table->string('po_no')->nullable();
             $table->string('payee_name');
             $table->integer('department_id');
-            $table->integer('amount');
+            $table->integer('amount', 50);
             $table->string('description');
             $table->string('current_bearer');
             $table->string('current_bearer_dept');
-            $table->integer('current_bearer_contact_number');
+            $table->integer('current_bearer_contact_number', 50);
             $table->string('current_bearer_email');
             $table->string('assign_to')->nullable();
-            $table->integer('status');
+            $table->string('status');
             $table->timestamps();
 
         });
