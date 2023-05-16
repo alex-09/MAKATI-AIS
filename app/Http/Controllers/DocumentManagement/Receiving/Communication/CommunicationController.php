@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DocumentManagement\Receiving\Communication;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Models\ActionHistory;
+use App\Models\ReceiveCommType;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ReceiveCommunications;
@@ -19,6 +20,11 @@ class CommunicationController extends Controller
     public function __construct(ReceiveCommRepository $receiveCommRepo)
     {
         return $this->receiveCommRepo = $receiveCommRepo;
+    }
+
+    public function commType(){
+
+        return response()->json(['list' => ReceiveCommType::all()]);
     }
 
     //CREATE RECEIVE COMMUNICATION
@@ -156,40 +162,6 @@ class CommunicationController extends Controller
 
             ]);
         }
-    }
-
-    public function commFrs(){
-
-        $frs = ReceiveCommunications::whereIn('assign_to', 
-        ['Financial Reporting Division', 
-        'Bookkeeping Division',
-        'Barangay Account Division'])
-        ->get();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'RFS cluster',
-            'data' => $frs
-        ]);
-
-
-    }
-
-    public function commAics(){
-
-        $frs = ReceiveCommunications::whereIn('assign_to', 
-        ['Administrative Division', 
-        'Payroll Processing and Remittances Division',
-        'Processing of Claims and Internal Control Division'])
-        ->get();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'AICS cluster',
-            'data' => $frs
-        ]);
-
-
     }
 
     // public function viewPdf($id){

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\DocumentManagement\Receiving\Communication;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DocumentManagement\Receiving\CreateCommRequest;
+use App\Models\ReceiveCommType;
 use App\Repositories\DocumentManagement\Receiving\Communications\CreateCommRepository;
+use Database\Seeders\ReceiveCommunicationType;
 
 class CreateCommController extends Controller
 {
