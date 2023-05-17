@@ -20,17 +20,17 @@ class CreateCommRepository
             $transac_id = "M/C-" . $date . "-" . str_pad(++$ptId, 5, '0', STR_PAD_LEFT);
         }
 
-        $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
-        $request->document->move(public_path('uploads'), $docuFile);
+        // $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
+        // $request->document->move(public_path('uploads'), $docuFile);
 
         $insertRecCom = CreateCommunication::create([
-            "transac_id" => $transac_id,
-            "document" => $docuFile
+            'transac_id' => $transac_id,
+            // "document" => $docuFile
             ] + $request->validated());
 
         return response()->json([
             'status' => true,
-            'message' => 'Inserted Successfully',
+            'message' => 'Your entry has been successfully saved under M/C No. '.$transac_id,
             'data' => $insertRecCom
         ]);
     }

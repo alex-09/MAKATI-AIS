@@ -22,11 +22,12 @@ class CreateCommRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required',
+            'receive_comm_type_id' => 'required',
             'sender' => 'required',
             'subject' => 'required',
             'reply_to' => 'required',
             'creator' => 'required',
+            'mc_number' => '',
             'document' => 'mimes:jpeg,jpg,JPG,doc,docx,pdf|max:2048'
         ];
     }
