@@ -256,6 +256,7 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::post('/insert', [CommunicationController::class, 'receive_comms']); 
     Route::get('/showRecComm', [PrintCommController::class, 'display']); 
     Route::post('/createComm', [CreateCommController::class, 'store']);
+    Route::get('/printComm', [PrintCommController::class, 'forPrint']);
     //CITY ACCOUNTANT
     Route::get('/listCA', [CommCAController::class, 'list']);
     Route::post('/updateCA/{id}', [CommCAController::class, 'update']);

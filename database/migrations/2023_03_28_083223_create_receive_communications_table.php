@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('action')->nullable();
             $table->string('no_of_days')->nullable();
             $table->string('status')->nullable();
-            $table->timestamps();;
+            $table->timestamps();
         });
     }
 

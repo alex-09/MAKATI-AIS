@@ -47,7 +47,7 @@ class PreviousAccController extends Controller
     }
 
     public function prevIncome(Request $request){ 
-        $list = DB::select('CALL slct_AssetselectDate(?)',array(
+        $list = DB::select('CALL slct_incomSelectDate(?)',array(
             $request->date  
         ));
 

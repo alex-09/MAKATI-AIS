@@ -11,11 +11,12 @@ class CreateCommunication extends Model
 
     protected $fillable = [
         'transac_id',
-        'type',
+        'receive_comm_type_id',
         'sender',
         'subject',
         'reply_to',
         'creator',
+        'mc_number',
         'document'
     ];
 }
