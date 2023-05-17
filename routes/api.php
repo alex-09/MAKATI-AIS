@@ -347,6 +347,7 @@ Route::prefix('ContractPO')->group(function () {
     Route::get('/previousCP', [PrevRecController::class, 'view']);
     Route::post('/updatePrev/{id}', [PrevRecController::class, 'update']);
     Route::get('/listTransac', [PrintRecController::class, 'listTransac']);
+    Route::get('/listPrint', [PrintRecController::class, 'print']);
     // Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
 
  });
@@ -356,6 +357,7 @@ Route::prefix('ContractPO')->group(function () {
     Route::get('/search', [PrevTransacController::class, 'search']); 
     Route::post('/save', [PrevTransacController::class, 'save']); 
     Route::get('/list', [printPreAudController::class, 'listAll']);
+    Route::get('/print', [printPreAudController::class, 'print']);
 
  });
  
@@ -365,6 +367,7 @@ Route::prefix('ContractPO')->group(function () {
     Route::get('/searchPT', [PrevPayTransacCOntroller::class, 'search']); 
     Route::post('/updatePT', [PrevPayTransacCOntroller::class, 'update']);
     Route::get('/listPT', [ListPayTransacController::class, 'list']);
+    Route::get('/printPT', [ListPayTransacController::class, 'print']);
 
  });
 
@@ -379,7 +382,8 @@ Route::prefix('ContractPO')->group(function () {
  Route::prefix('Check-Transac')->group(function () {
 
     Route::post('/receive-checks', [ReceiveChecksController::class, 'storeReceiveChecks']); 
-    Route::get('/receiving-print', [PrintRecivingReceiptController::class, 'listPrintReceiving']); 
+    Route::get('/receiving-list', [PrintRecivingReceiptController::class, 'listPrintReceiving']); 
+    Route::get('/receiving-print', [PrintRecivingReceiptController::class, 'forPrint']); 
  
  });
 

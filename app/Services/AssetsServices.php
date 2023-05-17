@@ -97,7 +97,7 @@ class AssetsServices
                 $newRecord->replicate()->setTable('coa_assets')->save();
             });
         // }
-        COAAssetsTemp::truncate();
+        // COAAssetsTemp::truncate();
 
         return response()->json(['message' => 'Successfully moved to current']);
     }

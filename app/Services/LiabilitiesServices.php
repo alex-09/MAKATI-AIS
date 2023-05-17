@@ -119,7 +119,7 @@ class LiabilitiesServices
                 $newRecord->replicate()->setTable('coa_liabilities')->save();   
             });
         // }
-        COALiabilitiesTemp::truncate();
+        // COALiabilitiesTemp::truncate();
 
         return response()->json(['message' => 'Successfully moved to current']);
     }

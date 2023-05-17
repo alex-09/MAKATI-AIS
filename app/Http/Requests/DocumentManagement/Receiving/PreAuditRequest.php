@@ -4,14 +4,14 @@ namespace App\Http\Requests\DocumentManagement\Receiving;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CPRequest extends FormRequest
+class PreAuditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,13 +23,12 @@ class CPRequest extends FormRequest
     {
         return [
             'payee_name' => 'required',
-            'department_id' => 'required',
-            'description' => 'required',
-            'amount' => 'required',
-            'current_bearer' => 'required',
-            'current_bearer_dept' => 'required',
-            'current_bearer_contact_number' => 'required',
-            'current_bearer_email' => 'required',
+            'particulars'=> 'required',
+            'amount'=> 'required',
+            'current_bearer'=> 'required',
+            'current_bearer_dept'=> 'required',
+            'current_bearer_contact_number'=> 'required',
+            'current_bearer_email'=> 'required',
         ];
     }
 }

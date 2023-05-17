@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\DocumentManagement\Receiving\PreAudit;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\DocumentManagement\Receiving\PreAudit\PrintPreAudRepository;
 
@@ -17,5 +18,10 @@ class printPreAudController extends Controller
     public function listAll(){
 
         return $this->printPreAudit->list();
+    }
+
+    public function print(Request $request)
+    {
+        return $this->printPreAudit->print($request);
     }
 }

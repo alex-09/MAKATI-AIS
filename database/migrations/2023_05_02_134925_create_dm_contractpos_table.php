@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('dm_contractpos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cotract_po_id');
             $table->string('transaction_id')->index();
             $table->string('contract_no')->nullable();
             $table->string('po_no')->nullable();
@@ -23,7 +22,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('current_bearer');
             $table->string('current_bearer_dept');
-            $table->bigInteger('current_bearer_contact_number');
+            $table->string('current_bearer_contact_number');
             $table->string('current_bearer_email');
             $table->string('assign_to')->nullable();
             $table->string('status');

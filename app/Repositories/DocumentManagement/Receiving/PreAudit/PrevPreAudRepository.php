@@ -2,10 +2,10 @@
 
 namespace App\Repositories\DocumentManagement\Receiving\PreAudit;
 
-use App\Models\DmContractpo;
 use App\Models\DmPreAudit;
+use App\Models\DmContractpo;
 
-class   PrevPreAudRepository
+class PrevPreAudRepository
 {
     public function searchTransac($request){
 
@@ -16,7 +16,7 @@ class   PrevPreAudRepository
 
     public function savePreAud($request){
 
-        DmPreAudit::create(['status' => 1 ] + $request->all());
+        DmPreAudit::create(['status' => 1 ] + $request->validated());
         return response()->json(['message' => 'Your entry has been successfully saved under the same Transaction ID Number.']);
     }
 }
