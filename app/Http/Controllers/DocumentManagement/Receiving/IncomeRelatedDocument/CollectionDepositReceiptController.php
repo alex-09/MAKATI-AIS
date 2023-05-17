@@ -16,8 +16,8 @@ class CollectionDepositReceiptController extends Controller
             'incom_transaction_id_no',
             'transaction_type',
             'fund_source',
-            'date_of_collection AS RCD Date',
-            'amount',
+            'rcd_date AS RCD Date',
+            'amount_collection',
             'bearer_name',
         )->get();
 

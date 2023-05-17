@@ -13,17 +13,24 @@ class DMCollectionDeposit extends Model
 
     protected $fillable = [
 
-        'incom_transaction_id_no',
-        'transaction_type',
-        'period_covered',
-        'date_of_collection',
-        'fund_source',
-        'amount',
-        'description',
-        'bearer_name',
-        'bearer_dept',
-        'bearer_contact_no',
-        'status'
+            'incom_transaction_id_no',
+            'transaction_type',
+            'sender',
+            'fund_source',
+            'rcd_date',
+            'report_no',
+            'cashbook_ref_no',
+            'subject',
+            'amount_collection',
+            'amount_deposit',
+            'cash',
+            'check',
+            'online',
+            'bearer_name',
+            'address',
+            'department_office',
+            'bearer_contact_no',
+            'status'
 
     ];
 }
