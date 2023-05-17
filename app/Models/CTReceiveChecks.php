@@ -14,6 +14,7 @@ class CTReceiveChecks extends Model
 
     protected $fillable = [
 
+        'transaction_id_num',
         'payee_name',
         'tin_no',
         'dv_no',

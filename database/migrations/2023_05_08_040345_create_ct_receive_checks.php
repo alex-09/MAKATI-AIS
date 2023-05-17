@@ -13,20 +13,21 @@ return new class extends Migration
     {
         Schema::create('ct_receive_checks', function (Blueprint $table) {
             $table->id();
+            $table->string('transaction_id_num');
             $table->string('payee_name');
-            $table->integer('tin_no');
-            $table->integer('dv_no');
+            $table->string('tin_no');
+            $table->string('dv_no');
             $table->string('particulars');
             $table->integer('amount');
             $table->string('fund_source');
-            $table->integer('cafoa_furs_no');
-            $table->integer('check_no');
-            $table->integer('account_no');
-            $table->date('date_of_check');
+            $table->string('cafoa_furs_no');
+            $table->string('check_no');
+            $table->string('account_no');
+            $table->string('date_of_check');
             $table->integer('check_amount');
             $table->string('bearer_name');
             $table->string('department_office');
-            $table->integer('contact_no');
+            $table->string('contact_no');
             $table->string('email');
             $table->timestamps();
         });

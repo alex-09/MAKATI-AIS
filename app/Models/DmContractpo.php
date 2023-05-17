@@ -10,7 +10,6 @@ class DmContractpo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'cotract_po_id',
         'transaction_id',
         'contract_no',
         'po_no',
