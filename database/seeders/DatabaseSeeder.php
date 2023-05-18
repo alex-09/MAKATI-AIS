@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Department;
 use App\Models\FundSource;
 use Illuminate\Database\Seeder;
+use Database\Seeders\PayrollDocuTypeSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,8 +28,12 @@ class DatabaseSeeder extends Seeder
             // UserSeed::class,
             ApproSeeder::class,
             STRSeeder::class,
-            CPTypeSeeder::class
+            CPTypeSeeder::class,
             // AllotSeeder::class,
+            PayrollDocuTypeSeeder::class,
+            PayrollEmpTypeSeeder::class,
+            PayrollFundTypeSeeder::class,
+            PayrollTransacTypeSeeder::class
 
         ]);
 

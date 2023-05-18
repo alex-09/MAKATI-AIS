@@ -20,7 +20,7 @@ class CreateCommRepository
             $transac_id = "M/C-" . $date . "-" . str_pad(++$ptId, 5, '0', STR_PAD_LEFT);
         }
 
-        // $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
+        // $docuFile = $transac_id.'.'.$request->file('document')->getClientOriginalExtension();
         // $request->document->move(public_path('uploads'), $docuFile);
 
         $insertRecCom = CreateCommunication::create([

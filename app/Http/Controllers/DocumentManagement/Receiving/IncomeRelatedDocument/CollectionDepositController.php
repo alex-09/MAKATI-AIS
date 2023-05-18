@@ -24,7 +24,7 @@ class CollectionDepositController extends Controller
                 $transac_id = "RCD-" . $date . "-" . str_pad(++$ptId, 7, '0', STR_PAD_LEFT);
             }
     
-            // $docuFile = time().'.'.$request->file('document')->getClientOriginalExtension();
+            // $docuFile = $transac_id.'.'.$request->file('document')->getClientOriginalExtension();
             // $request->document->move(public_path('uploads'), $docuFile);
     
             $collectiondeposit = DMCollectionDeposit::create([

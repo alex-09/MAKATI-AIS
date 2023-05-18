@@ -24,7 +24,7 @@ class PayrollAndAppointment extends FormRequest
         return [
         'transaction_type' => 'required',
         'fund_source' => 'required',
-        'cafoa-obr' => 'required',
+        'cafoa_obr' => 'required',
         'caf' => 'required',
         'department' => 'required',
         'payroll_type' => 'required',
@@ -37,7 +37,7 @@ class PayrollAndAppointment extends FormRequest
         'bearer_name' => 'required',
         'bearer_address' => 'required',
         'bearer_contact' => 'required',
-        'bearer_email' => 'required',
+        'bearer_dept' => 'required',
         'document' => 'required',
         ];
     }

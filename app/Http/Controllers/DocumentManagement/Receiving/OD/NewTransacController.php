@@ -25,7 +25,6 @@ class NewTransacController extends Controller
             }
     
             $odnewtransac = DMODNewTransac::create(['transaction_id_no' => $transac_id] + $request->validated());
-        
             return response()->json([
                 'status' => true,
                 'message' => 'Your entry has been successfully saved under Transaction ID Number '.$transac_id,

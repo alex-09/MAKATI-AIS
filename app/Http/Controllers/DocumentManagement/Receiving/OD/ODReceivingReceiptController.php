@@ -12,26 +12,12 @@ class ODReceivingReceiptController extends Controller
 {
     public function list(){
 
-        $newTransacList = DMODNewTransac::select('id',
-            DB::raw('DATE(created_at) AS Date'),
-            DB::raw('DATE_FORMAT(created_at, "%H:%i:%s") AS Time'),
-            'transaction_id_no',
-            'particulars',
-        )->get();
-
-        return response()->json(['data' => $newTransacList]);
+        return response()->json(['data' => DB::select('CALL get_dm_do_transacs()')]);
     }
 
     public function print(Request $request){
 
-        $prevTransacList = DMODNewTransac::select(
-            DB::raw('DATE(created_at) AS Date'),
-            DB::raw('DATE_FORMAT(created_at, "%H:%i:%s") AS Time'),
-            'transaction_id_no',
-            'particulars',
-        )->whereIn('id', $request->id)
-        ->get();;
-
-        return response()->json(['data' => $prevTransacList]);
+        $ids = implode(",", $request->id);
+        return response()->json(['data' => DB::select('CALL dm_print_do(?)',array($ids))]);
     }
 }

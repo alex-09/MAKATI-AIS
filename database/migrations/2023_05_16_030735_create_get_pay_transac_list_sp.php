@@ -16,9 +16,11 @@ return new class extends Migration
         CREATE PROCEDURE `get_pay_transac` ()
         BEGIN
 
-        SELECT id, DATE_FORMAT(created_at, '%M %d %Y ') AS date, DATE_FORMAT(created_at, '%h:%i:%s') AS time, transac_id, payee_name,
-		particulars, amount, current_bearer
-        FROM `makati-ais`.dm_payment_transactions;
+        SELECT id, DATE_FORMAT(dm_payment_transactions.created_at, '%M %d %Y ') AS date, DATE_FORMAT(dm_payment_transactions.created_at, '%h:%i:%s') AS time, transac_id, payee_name,
+		particulars, amount, current_bearer, departments.department_name, current_bearer_contact_number, current_bearer_email
+        FROM dm_payment_transactions
+        join departments
+        on departments.department_code = dm_payment_transactions.current_bearer_dept;
         END";
 
         DB::unprepared($procedure);

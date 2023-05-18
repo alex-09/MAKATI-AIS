@@ -15,14 +15,9 @@ class PrintRecContractPORepository
     }
 
     public function print($request){
-        $data = DmContractpo::select('transaction_id_num', 'department_id', 'payee_name', 'description', 
-                                    'amount', 'current_bearer')
-                                    ->whereIn('id', $request->id)
-                                    ->first();
 
-        return response()->json([
-            'list' => $data
-        ]);
+        $ids = implode(",", $request->id);
+        return response()->json(['list' => DB::select('CALL dm_print_contractpo(?)',array($ids))]);
     }
 
 }
