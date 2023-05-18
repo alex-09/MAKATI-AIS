@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\COA\AssetsController;
@@ -68,23 +67,23 @@ use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceip
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CommunicationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateObligation\UpdateObligationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
+use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDForProcessController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadActionController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ListAppropriationController;
+use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDActionHistoryController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\ListPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\PrevPayTransacCOntroller;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\EnrollAppropriationController;
-use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\UpdateAppropriationController;
-use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDActionHistoryController;
-use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDForProcessController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
+use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayAppDropdownController;
 use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
@@ -391,6 +390,7 @@ Route::prefix('ContractPO')->group(function () {
 
  Route::prefix('Payroll-Appointment')->group(function () {
 
+    Route::get('/dropdown', [PayAppDropdownController::class, 'dropdown']); 
     Route::post('/receive-appointment', [PayrollsAndAppointmentController::class, 'payrollAppointment']); 
     Route::get('/list', [PayrollAppointmentReceivingController::class, 'list']); 
     Route::get('/print', [PayrollAppointmentReceivingController::class, 'print']); 
