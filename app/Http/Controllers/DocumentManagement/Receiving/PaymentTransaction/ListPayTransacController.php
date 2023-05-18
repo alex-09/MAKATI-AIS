@@ -14,12 +14,8 @@ class ListPayTransacController extends Controller
     }
 
     public function print(Request $request){
-        $data = DmPaymentTransaction::select('id', 'transac_id', 'payee_name', 'particulars', 'amount', 'current_bearer')
-                                    ->whereIn('id', $request->id)
-                                    ->get();
-
-        return response()->json([
-            'list' => $data
-        ]);
+        
+        $ids = implode(",", $request->id);
+        return response()->json(['list' => DB::select('CALL dm_print_paytransac(?)', array($ids))]);
     }
 }

@@ -338,7 +338,7 @@ Route::prefix('BOT')->group(function () {
     Route::get('/viewTransac/{id}', [PreviousTransactionsController::class, 'viewdata']);
     Route::post('/editTransac/{id}', [PreviousTransactionsController::class, 'editData']);
     Route::get('/listReceiver', [PrintReceivingReceiptController::class, 'listPrintReceiver']);
-    // Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
+    Route::get('/print', [PrintReceivingReceiptController::class, 'print']);
 
 });
 
@@ -401,7 +401,7 @@ Route::prefix('ContractPO')->group(function () {
 
     Route::post('/collection-deposit', [CollectionDepositController::class, 'insertCollectionDeposit']); 
     Route::get('/list', [CollectionDepositReceiptController::class, 'collectionDepostReceipt']); 
-    Route::get('/print', [CollectionDepositReceiptController::class, 'print']); 
+    Route::get('/print', [CollectionDepositReceiptController::class, 'collectionDepostReceipt']); 
  
     Route::get('/cd-for-process', [CDForProcessController::class, 'cdForProcess']); 
     Route::get('/cd-action-history', [CDActionHistoryController::class, 'cdActionHistory']); 

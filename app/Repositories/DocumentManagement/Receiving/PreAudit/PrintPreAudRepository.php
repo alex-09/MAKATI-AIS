@@ -8,19 +8,12 @@ use Illuminate\Support\Facades\DB;
 class PrintPreAudRepository
 {
     public function list(){
-        $listPrintReceiver = DB::select('CALL get_dm_preaudit()');
 
-        return response()->json(['data' => $listPrintReceiver]);
+        return response()->json(['data' => DB::select('CALL get_dm_preaudit()')]);
     }
 
     public function print($request){
-        $data = DmPreAudit::select('transaction_id', 'payee_name', 'particulars', 
-                                    'amount', 'current_bearer')
-                                    ->whereIn('id', $request->id)
-                                    ->get();
-
-        return response()->json([
-            'list' => $data
-        ]);
+        $ids = implode(",", $request->id);
+        return response()->json(['list' => DB::select('CALL dm_print_preaudit_sp(?)', array($ids))]);
     }
 }

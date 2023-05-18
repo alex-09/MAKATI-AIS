@@ -17,7 +17,7 @@ class DMPaymentAppointment extends Model
         'transaction_id_no',
         'transaction_type',
         'fund_source',
-        'cafoa-obr',
+        'cafoa_obr',
         'caf',
         'department',
         'payroll_type',
@@ -30,7 +30,7 @@ class DMPaymentAppointment extends Model
         'bearer_name',
         'bearer_address',
         'bearer_contact',
-        'bearer_email',
+        'bearer_dept',
         'document',
         'status'
 

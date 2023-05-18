@@ -18,8 +18,7 @@ return new class extends Migration
 
         select dm_contractpos.id, DATE_FORMAT(dm_contractpos.created_at, '%M %d %Y ') AS date, DATE_FORMAT(dm_contractpos.created_at, '%h:%i:%s') AS time, 
         transaction_id, contract_dept.department_name, payee_name, description, amount, current_bearer, current_bearer_dept.department_name AS current_bearer_dept_name,
-
-		current_bearer_contact_number, current_bearer_contact_number
+		current_bearer_contact_number, current_bearer_email
             
         from dm_contractpos
         join 

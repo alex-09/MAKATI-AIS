@@ -3,37 +3,16 @@
 namespace App\Repositories\DocumentManagement\Receiving\BOT;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\DMBudgetaryObligationsTransac;
 
 class PrintTransactionRepository
 {
-    public function displayList(){
+    public function List(){
 
-        $listPrintReceiver = DMBudgetaryObligationsTransac::select(
-            DB::raw('DATE(created_at) AS Date'),
-            DB::raw('DATE_FORMAT(created_at, "%H:%i:%s") AS Time'),
-            'transaction_id',
-            'processing_slip_number',
-            'department_id',
-            'description',
-            'amount',
-            'current_bearer'
-        )->get();
-
-        return response()->json(['data' => $listPrintReceiver]);
+        return response()->json(['data' => DB::select('CALL get_dm_bot_for_print()')]);
     }
     
-
-    // public function searchBearer($bearer){
-
-    //     // $searchResult = DMBudgetaryObligationsTransac::select('created_at', 'transaction_id', 'processing_slip_number', 'current_bearer')
-    //     // ->where('current_bearer', 'LIKE', '%' . $bearer . '%')
-    //     // ->get();
-
-    //     // if (count($searchResult)) {
-    //     //     return Response()->json($searchResult);
-    //     // } else {
-    //     //     return response()->json(['Result' => 'No Data not found'], 404);
-    //     // }
-    // }
+    public function print($request){
+        $ids = implode(",", $request->id);
+        return response()->json(['data' => DB::select('CALL dm_print_bot(?)', array($ids))]);
+    }
 }

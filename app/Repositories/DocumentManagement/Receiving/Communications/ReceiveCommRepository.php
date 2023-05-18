@@ -3,7 +3,6 @@
 namespace App\Repositories\DocumentManagement\Receiving\Communications;
 
 use Carbon\Carbon;
-use App\Models\DmContractpo;
 use App\Models\ReceiveCommunications;
 
 class ReceiveCommRepository

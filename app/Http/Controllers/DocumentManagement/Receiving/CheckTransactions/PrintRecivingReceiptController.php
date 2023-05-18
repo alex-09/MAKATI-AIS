@@ -11,20 +11,12 @@ class PrintRecivingReceiptController extends Controller
 {
     public function listPrintReceiving(){
 
-        $listReceipt = DB::select('CALL get_dm_check_payments()');
-
-        return response()->json(['data' => $listReceipt]);
+        return response()->json(['data' => DB::select('CALL get_dm_check_payments()')]);
     }
 
     public function forPrint(Request $request){
-        $data = CTReceiveChecks::select(DB::raw('DATE(created_at) AS Date'), 'transaction_id_num', 'department_office', 'dv_no', 
-        'dv_no', 'check_no', 'date_of_check', 'payee_name', 'particulars', 'amount')
-        ->whereIn('id', $request->id)
-        ->get();
-
-        return response()->json([
-        'list' => $data
-        ]);
+        $ids = implode(",", $request->id);
+        return response()->json(['list' => DB::select('CALL dm_print_check_payment(?)', array($ids))]);
     }   
 }
 

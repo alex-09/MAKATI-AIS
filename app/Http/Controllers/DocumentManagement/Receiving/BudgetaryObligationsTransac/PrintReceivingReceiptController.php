@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\DocumentManagement\Receiving\BOT\PrintTransactionRepository;
 
@@ -17,13 +18,13 @@ class PrintReceivingReceiptController extends Controller
 
     public function listPrintReceiver()
     {
-        return $this->printRepository->displayList();
+        return $this->printRepository->List();
     }
 
 
-    // public function searchBearer($bearer)
-    // {
-    //     return $this->printRepository->searchBearer($bearer);
-    // }
+    public function print(Request $request)
+    {
+        return $this->printRepository->print($request);
+    }
     
 }
