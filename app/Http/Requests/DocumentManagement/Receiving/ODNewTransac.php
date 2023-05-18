@@ -23,7 +23,6 @@ class ODNewTransac extends FormRequest
     {
         return [
 
-            'transaction_id_no' => 'required',
             'particulars' => 'required',
             'date' => 'required',
             'fund_source' => 'required',

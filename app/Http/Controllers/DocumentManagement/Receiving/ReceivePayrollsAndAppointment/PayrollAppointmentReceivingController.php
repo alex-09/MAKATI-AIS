@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 
 class PayrollAppointmentReceivingController extends Controller
 {
-    public function payrollListReceiving(){
+    public function list(){
 
-        $listReceipt = DMPaymentAppointment::select(
+        $listReceipt = DMPaymentAppointment::select('id',
             DB::raw('DATE(created_at) AS Date'),
             'transaction_id_no',
             'transaction_type',
@@ -20,8 +20,34 @@ class PayrollAppointmentReceivingController extends Controller
             'caf',
             'personnel_number',
             'department',
+            'payroll_type',
+            'employment_type',
+            'covered_from',
+            'covered_to',
+            'subject',
             'amount'
         )->get();
+
+        return response()->json(['data' => $listReceipt]);
+    }
+
+    public function print(Request $request){
+
+        $listReceipt = DMPaymentAppointment::select('id',
+            DB::raw('DATE(created_at) AS Date'),
+            'transaction_id_no',
+            'transaction_type',
+            'cafoa-obr',
+            'caf',
+            'personnel_number',
+            'amount',
+            'department',
+            'employment_type',
+            'payroll_type',
+            'covered_from',
+            'covered_to',
+            'bearer_name',
+        )->whereIn('id', $request->id)->get();
 
         return response()->json(['data' => $listReceipt]);
     }

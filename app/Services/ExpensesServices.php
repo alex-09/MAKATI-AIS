@@ -120,7 +120,7 @@ class ExpensesServices
                 $newRecord->replicate()->setTable('coa_expenses')->save();
             });
         // }
-        // COAExpensesTemp::truncate();
+        // COAExpensesTemp::whereIn('id', $request->id)->delete();
 
         return response()->json(['message' => 'Successfully moved to current']);
     }

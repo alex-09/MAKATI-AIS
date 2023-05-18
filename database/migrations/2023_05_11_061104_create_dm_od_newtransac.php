@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('dm_od_newtransac', function (Blueprint $table) {
             $table->id();
-            $table->integer('transaction_id_no')->unique();
+            $table->string('transaction_id_no');
             $table->string('particulars');
-            $table->date('date');
+            $table->string('date');
             $table->string('fund_source');
             $table->string('bearer_name');
             $table->string('department_office');
-            $table->integer('contact_no');
+            $table->string('contact_no');
             $table->string('email');
             $table->timestamps();
         });

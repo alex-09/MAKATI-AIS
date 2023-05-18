@@ -27,7 +27,6 @@ class CreateCommRequest extends FormRequest
             'subject' => 'required',
             'reply_to' => 'required',
             'creator' => 'required',
-            'mc_number' => '',
             'document' => 'mimes:jpeg,jpg,JPG,doc,docx,pdf|max:2048'
         ];
     }

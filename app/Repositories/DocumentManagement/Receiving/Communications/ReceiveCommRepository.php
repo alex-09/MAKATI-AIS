@@ -10,7 +10,7 @@ class ReceiveCommRepository
 {
     public function receive($request){
 
-        $date = Carbon::now()->format('Y-M');
+        $date = Carbon::now()->format('Y-m');
 
         $table = ReceiveCommunications::all();
         if($table->isEmpty()){

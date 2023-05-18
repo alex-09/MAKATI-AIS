@@ -23,7 +23,6 @@ class CollectionDeposit extends FormRequest
     {
         return [
 
-            'incom_transaction_id_no' => 'required',
             'transaction_type' => 'required',
             'sender' => 'required',
             'fund_source' => 'required',
@@ -40,7 +39,6 @@ class CollectionDeposit extends FormRequest
             'address' => 'required',
             'department_office' => 'required',
             'bearer_contact_no' => 'required',
-            'status' => 'required'
         ];
     }
 }

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('subject');
             $table->string('reply_to');
             $table->string('creator');
-            $table->string('mc_number');
             $table->string('document')->nullable();
             $table->longText('remarks')->nullable();
             $table->longText('reviewer_remarks')->nullable();
