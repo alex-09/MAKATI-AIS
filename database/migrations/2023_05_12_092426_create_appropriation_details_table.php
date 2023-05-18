@@ -26,10 +26,6 @@ return new class extends Migration
             $table->string('activity_description');
             $table->float('appro_total', 17, 3)->nullable();
             $table->float('latest_appro_total', 17, 3)->nullable();
-            $table->string('account_name');
-            $table->integer('account_code');
-            $table->float('appro_amount', 17, 3);
-            $table->float('latest_appro_amount', 17, 3);
             $table->string('type')->default('New');
             $table->string('status')->nullable();
             $table->string('remarks')->nullable();

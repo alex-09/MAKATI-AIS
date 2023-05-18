@@ -12,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `exec_projects`;
-        CREATE PROCEDURE `exec_projects` ()
+        $procedure = " DROP PROCEDURE IF EXISTS `exec_activity`;
+        CREATE PROCEDURE `exec_activity` ()
         BEGIN
 
         select exec_appropriation_details.activity, exec_appropriation_details.activity_code
         from exec_appropriation_details
-        group by activity;
+        group by activity, activity_code;
         END";
 
         DB::unprepared($procedure);

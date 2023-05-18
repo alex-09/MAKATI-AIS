@@ -25,10 +25,6 @@ class AppropriationDetails extends Model
         'activity_description',
         'appro_total',
         'latest_appro_total',
-        'account_name',
-        'account_code',
-        'appro_amount',
-        'latest_appro_amount',
         'type',
         'status',
         'remarks'

@@ -24,11 +24,9 @@ return new class extends Migration
     
         from exec_appropriations 
         join exec_appropriation_details
+		on exec_appropriations.appro_id = exec_appropriation_details.appro_id
         join departments
-    
-        where exec_appropriations.appro_id = exec_appropriation_details.appro_id
-        and departments.department_code = exec_appropriations.department_code_id
-        group by exec_appropriation_details.budget_year_id, exec_appropriation_details.AIPCode, exec_appropriation_details.department_code_id;
+		on exec_appropriations.department_code_id = departments.department_code;
         END";
 
         DB::unprepared($procedure);

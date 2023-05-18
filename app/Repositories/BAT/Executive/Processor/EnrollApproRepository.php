@@ -3,8 +3,9 @@
 namespace App\Repositories\BAT\Executive\Processor;
 
 use App\Models\Appropriation;
-use App\Http\Requests\EnrollApproRequest;
 use App\Models\AppropriationDetails;
+use App\Models\AppropriationExpenses;
+use App\Http\Requests\EnrollApproRequest;
 
 class EnrollApproRepository{
 
@@ -23,36 +24,37 @@ class EnrollApproRepository{
             'appro_id' => $appro_id,
         ] + $request->validated());
 
-        for ($i=0; $i < count($request->program); $i++){
-            for ($x=$i; $x < count($request->project); $x++){
-                AppropriationDetails::create([
-                    'appro_id' => $appro_id, 
-                    'budget_year_id' => $request->budget_year_id,
-                    'department_code_id' => $request->department_code_id,
-                    'AIPCode' => $request->program_code[$i]."-".$request->project_code[$x]."-".$request->activity_code[$x],
-                    'program' => $request->program[$i],
-                    'program_code' => $request->program_code[$i],
-                    'project' => $request->project[$x],
-                    'project_code' => $request->project_code[$x],
-                    'activity' => $request->activity[$x],
-                    'activity_code' => $request->activity_code[$x],
-                    'activity_description' => $request->activity_description[$x],
-                    'appro_total' => $request->appro_total[$x],
-                    'latest_appro_total' => $request->appro_total[$x],
-                    'account_code' => $request->account_code[$x],
-                    'account_name' => $request->account_name[$x],
-                    'appro_amount' => $request->appro_amount[$x],
-                    'latest_appro_amount' => $request->appro_amount[$x]   
-                ]);
-            }
-        }
+        $aipcode = $request->program_code."-".$request->project_code."-".$request->activity_code;
+        AppropriationDetails::create([
+            'appro_id' => $appro_id, 
+            'AIPCode' => $aipcode
+        ] + $request->validated());
+
+        AppropriationExpenses::create([
+            'appro_id' => $appro_id, 
+            'AIPCode' => $aipcode,
+        ] + $request->validated());
         
         return response()->json([
             'status' => true,
-            'message' => "Add program Successfully!",
-            'appro_id' => $appro_id
+            'message' => "Added Successfully!",
+            'appro_id' => $appro_id,
+            'aipcode' => $aipcode
         ]);
-        
+    }
+
+    public function addExpenses($request){
+        AppropriationExpenses::create([
+            'appro_id' => $request->appro_id, 
+            'AIPCode' => $request->aipcode,
+        ] + $request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Added Successfully!",
+            'appro_id' => $request->appro_id,
+            'aipcode' => $request->aipcode
+        ]);
     }
 
     public function forReview($request){

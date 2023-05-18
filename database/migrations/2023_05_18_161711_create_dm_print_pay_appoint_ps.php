@@ -16,7 +16,7 @@ return new class extends Migration
         CREATE PROCEDURE `dm_print_pay_appoint` (IN ids varchar(1000))
         BEGIN
 
-        select id, transaction_id_no, transaction_type, cafoa_obr, caf, personnel_number, amount, payroll_type,
+        select id, DATE_FORMAT(dm_payment_appointment.created_at, '%M %d %Y ') AS date, transaction_id_no, transaction_type, cafoa_obr, caf, personnel_number, amount, payroll_type,
         employment_type, covered_from, covered_to, departments.department_name
         
         from dm_payment_appointment

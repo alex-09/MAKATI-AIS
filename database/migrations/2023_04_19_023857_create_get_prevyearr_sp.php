@@ -17,7 +17,7 @@ return new class extends Migration
         BEGIN
             SELECT date_effectivity, coa_title
             FROM coa_assets
-            group by date_effectivity DESC LIMIT 1, 10;
+            group by date_effectivity, coa_title DESC LIMIT 1, 10;
         END
         ";
         
