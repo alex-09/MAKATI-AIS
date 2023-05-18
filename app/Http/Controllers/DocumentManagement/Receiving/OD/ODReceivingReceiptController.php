@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 
 class ODReceivingReceiptController extends Controller
 {
-    public function newTransacReceipt(){
+    public function list(){
 
-        $newTransacList = DMODNewTransac::select(
+        $newTransacList = DMODNewTransac::select('id',
             DB::raw('DATE(created_at) AS Date'),
             DB::raw('DATE_FORMAT(created_at, "%H:%i:%s") AS Time'),
             'transaction_id_no',
@@ -22,14 +22,15 @@ class ODReceivingReceiptController extends Controller
         return response()->json(['data' => $newTransacList]);
     }
 
-    public function prevTransacReceipt(){
+    public function print(Request $request){
 
-        $prevTransacList = DMODPreviousTransac::select(
+        $prevTransacList = DMODNewTransac::select(
             DB::raw('DATE(created_at) AS Date'),
             DB::raw('DATE_FORMAT(created_at, "%H:%i:%s") AS Time'),
             'transaction_id_no',
             'particulars',
-        )->get();
+        )->whereIn('id', $request->id)
+        ->get();;
 
         return response()->json(['data' => $prevTransacList]);
     }

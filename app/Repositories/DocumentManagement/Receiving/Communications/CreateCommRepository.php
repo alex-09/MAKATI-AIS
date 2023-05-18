@@ -9,7 +9,7 @@ use App\Models\CreateCommunication;
 class CreateCommRepository
 {
     public function store($request){
-        $date = Carbon::now()->format('Y-M');
+        $date = Carbon::now()->format('Y-m');
 
         $table = CreateCommunication::all();
         if($table->isEmpty()){

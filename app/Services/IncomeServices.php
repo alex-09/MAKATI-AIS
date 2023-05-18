@@ -120,7 +120,7 @@ class IncomeServices
                 $newRecord->replicate()->setTable('coa_income')->save();
             });
         // }
-        // COAIncomeTemp::truncate();
+        // COAIncomeTemp::whereIn('id', $request->id)->delete();
 
         return response()->json(['message' => 'Successfully moved to current']);
     }

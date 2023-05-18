@@ -16,7 +16,7 @@ class NewTransactionRepository{
 
     public function store(BOTRequest $request){
 
-        $date = Carbon::now()->format('Y-M');
+        $date = Carbon::now()->format('Y-m');
 
         $table = DMBudgetaryObligationsTransac::all();
         if($table->isEmpty()){

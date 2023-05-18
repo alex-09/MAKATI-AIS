@@ -391,26 +391,29 @@ Route::prefix('ContractPO')->group(function () {
 
  Route::prefix('Payroll-Appointment')->group(function () {
 
-    Route::post('/payroll-appointment', [PayrollsAndAppointmentController::class, 'payrollAppointment']); 
-    Route::get('/receiving', [PayrollAppointmentReceivingController::class, 'payrollListReceiving']); 
+    Route::post('/receive-appointment', [PayrollsAndAppointmentController::class, 'payrollAppointment']); 
+    Route::get('/list', [PayrollAppointmentReceivingController::class, 'list']); 
+    Route::get('/print', [PayrollAppointmentReceivingController::class, 'print']); 
  
  });
 
  Route::prefix('Collection-Deposit')->group(function () {
 
     Route::post('/collection-deposit', [CollectionDepositController::class, 'insertCollectionDeposit']); 
-    Route::get('/cd-receiving', [CollectionDepositReceiptController::class, 'collectionDepostReceipt']); 
+    Route::get('/list', [CollectionDepositReceiptController::class, 'collectionDepostReceipt']); 
+    Route::get('/print', [CollectionDepositReceiptController::class, 'print']); 
  
     Route::get('/cd-for-process', [CDForProcessController::class, 'cdForProcess']); 
     Route::get('/cd-action-history', [CDActionHistoryController::class, 'cdActionHistory']); 
  });
 
- Route::prefix('OD')->group(function () {
+ Route::prefix('DO')->group(function () {
 
     Route::post('/new-transac', [NewTransacController::class, 'insertNewTransac']); 
-    Route::post('/prev-transac', [PreviousTransacController::class, 'insertPrevTransac']); 
-    Route::get('/newtransac-receipt', [ODReceivingReceiptController::class, 'newTransacReceipt']);
-    Route::get('/prevtransac-receipt', [ODReceivingReceiptController::class, 'prevTransacReceipt']);
+    Route::get('/search', [PreviousTransacController::class, 'search']); 
+    Route::post('/update', [PreviousTransacController::class, 'update']); 
+    Route::get('/list', [ODReceivingReceiptController::class, 'list']);
+    Route::get('/print', [ODReceivingReceiptController::class, 'print']);
  
  });
 

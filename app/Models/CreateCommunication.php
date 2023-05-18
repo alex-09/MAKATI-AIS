@@ -16,7 +16,6 @@ class CreateCommunication extends Model
         'subject',
         'reply_to',
         'creator',
-        'mc_number',
         'document'
     ];
 }

@@ -17,7 +17,8 @@ class PrintRecivingReceiptController extends Controller
     }
 
     public function forPrint(Request $request){
-        $data = ReceiveCommunications::select('id', 'transaction_id_num', 'subject', 'sender', 'bearer_name')
+        $data = CTReceiveChecks::select(DB::raw('DATE(created_at) AS Date'), 'transaction_id_num', 'department_office', 'dv_no', 
+        'dv_no', 'check_no', 'date_of_check', 'payee_name', 'particulars', 'amount')
         ->whereIn('id', $request->id)
         ->get();
 

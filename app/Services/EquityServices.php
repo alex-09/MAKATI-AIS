@@ -123,7 +123,7 @@ class EquityServices
                 $newRecord->replicate()->setTable('coa_equity')->save();
             });
         // }
-        // COAEquityTemp::truncate();
+        // COAEquityTemp::whereIn('id', $request->id)->delete();
 
         return response()->json(['message' => 'Successfully moved to current']);
     }

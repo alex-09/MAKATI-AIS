@@ -19,7 +19,7 @@ class NewPayTransacRepository
         
         // }
 
-        $date = Carbon::now()->format('Y-M');
+        $date = Carbon::now()->format('Y-m');
 
         $table = DmPaymentTransaction::all();
         if($table->isEmpty()){

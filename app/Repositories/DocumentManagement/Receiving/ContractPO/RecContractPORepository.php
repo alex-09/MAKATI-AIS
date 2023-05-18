@@ -10,7 +10,7 @@ class RecContractPORepository
 {
     public function receiveCP(CPRequest $request){
 
-        $date = Carbon::now()->format('Y-M');
+        $date = Carbon::now()->format('Y-m');
 
         $table = DmContractpo::all();
         if($table->isEmpty()){

@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('dm_payment_appointment', function (Blueprint $table) {
             $table->id();
-            $table->integer('transaction_id_no')->unique();
+            $table->string('transaction_id_no')->unique();
             $table->string('transaction_type');
             $table->string('fund_source');
             $table->string('cafoa-obr');
             $table->string('caf');
             $table->string('department');
             $table->string('payroll_type');
-            $table->integer('personnel_number');
+            $table->string('personnel_number');
             $table->string('employment_type');
             $table->integer('amount');
             $table->string('covered_from');
@@ -28,10 +28,10 @@ return new class extends Migration
             $table->string('subject');
             $table->string('bearer_name');
             $table->string('bearer_address');
-            $table->integer('bearer_contact');
+            $table->string('bearer_contact');
             $table->string('bearer_email');
             $table->string('document');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
