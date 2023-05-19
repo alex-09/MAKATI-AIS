@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('date');
             $table->string('adjustment_type');
             $table->string('adjustment_no');
+            $table->string('adjustment_no');
+            $table->string('account_name');
+            $table->string('account_code');
             $table->float('addition', 17, 3);
             $table->float('deduction', 17, 3);
             $table->float('latest_balance', 17, 3);

@@ -16,6 +16,11 @@ class AppropriationUpdate extends Model
         'AIPCode',
         'adjustment_type',
         'adjustment_no',
+        'document_source',
+        'date',
+        'account_name',
+        'account_code',
+        'balance',
         'addition', 
         'deduction', 
         'latest_balance'
