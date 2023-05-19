@@ -15,10 +15,10 @@ class ApproReviewerController extends Controller
         return response()->json(['list' => DB::select('CALL get_appro_for_review()')]);
     }
 
-    public function view($id, $aipcode)
+    public function view($id, $aipcode, $status)
     {
 
-        $data = DB::select('CALL exec_view_appro(?,?)', array($id, $aipcode));
+        $data = DB::select('CALL exec_view_appro(?,?,?)', array($id, $aipcode, $status));
         return response()->json(['data' => $data]);
     }
 
@@ -32,7 +32,6 @@ class ApproReviewerController extends Controller
             'status' => 'FOR APPROVAL - DH',
             'remarks' => $request->remarks
         ]);
-
         return response()->json(['message' => 'This entry has been successfully added. The account has been subject for Approval - DH.']);
     }
 

@@ -12,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `get_appro_ca`;
-        CREATE PROCEDURE `get_appro_ca` (IN app_id VARCHAR(20), IN aip_code VARCHAR(20))
+        $procedure = " DROP PROCEDURE IF EXISTS `get_appro_view`;
+        CREATE PROCEDURE `get_appro_view` (IN app_id VARCHAR(20), IN aip_code VARCHAR(20))
         BEGIN
 
         SELECT exec_appropriation_details.id, exec_appropriation_details.appro_id, exec_appropriations.budget_year_id, 
@@ -21,16 +21,19 @@ return new class extends Migration
         exec_appropriations.department_code_id, exec_appropriation_details.program, exec_appropriation_details.program_code, 
         exec_appropriation_details.project, exec_appropriation_details.project_code, 
         exec_appropriation_details.activity, exec_appropriation_details.activity_code, exec_appropriation_details.AIPCode,
-        exec_appropriation_details.activity_description, exec_appropriation_details.account_code, exec_appropriation_details.account_name,
-        exec_appropriation_details.appro_amount, exec_appropriation_details.appro_total
+        exec_appropriation_details.activity_description, exec_appropriation_expenses.account_code, exec_appropriation_expenses.account_name,
+        exec_appropriation_expenses.appro_amount, exec_appropriation_details.appro_total
         
         from exec_appropriations 
         join exec_appropriation_details
+        join exec_appropriation_expenses
         join departments
     
         where exec_appropriations.appro_id = app_id
         and exec_appropriation_details.appro_id = app_id
         and exec_appropriation_details.AIPCode = aip_code
+        and exec_appropriation_expenses.appro_id = app_id
+		and exec_appropriation_expenses.AIPCode = aip_code
         and departments.department_code = exec_appropriations.department_code_id;
         END";
 

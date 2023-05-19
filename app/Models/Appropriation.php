@@ -17,10 +17,8 @@ class Appropriation extends Model
         'budget_year_id',
         'fundSource_id',
         'reference_document',
-        'adjustment_type',
         'approType_id',
         'department_code_id',
-        'supp_budget_num',
         'date_document',
         'status'
     ];

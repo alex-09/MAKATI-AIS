@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exec_appropriation_expenses', function (Blueprint $table) {
+        Schema::create('exec_allotment_expenses', function (Blueprint $table) {
             $table->id();
             $table->string('appro_id');
+            $table->string('allot_id');
             $table->string('AIPCode');
             $table->string('account_name');
             $table->integer('account_code');
             $table->float('appro_amount', 17, 3);
-            $table->float('latest_appro_amount', 17, 3)->nullable();
+            $table->float('allot_amount', 17, 3);
+            $table->float('balance', 17, 3);
+            $table->float('latest_balance', 17, 3);
+            $table->float('unalloted_balance', 17, 3)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appropriation_expenses');
+        Schema::dropIfExists('exec_allotment_expenses');
     }
 };

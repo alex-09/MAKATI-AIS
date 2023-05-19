@@ -220,7 +220,7 @@ Route::prefix('appropriation')->group(function () {
 
     //REVIEWER
     Route::get('/listApproForReview', [ApproReviewerController::class, 'list']);
-    Route::get('/viewApproForReview/{id}/{aipcode}', [ApproReviewerController::class, 'view']);
+    Route::get('/viewApproForReview/{id}/{aipcode}/{status}', [ApproReviewerController::class, 'view']);
     Route::post('/updateApproForReview', [ApproReviewerController::class, 'update']);
     Route::post('/rejectApproForReview', [ApproReviewerController::class, 'reject']);
 

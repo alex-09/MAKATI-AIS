@@ -18,13 +18,10 @@ return new class extends Migration
             $table->integer('budget_year_id');
             $table->integer('department_code_id');
             $table->string('fundSource_id');
-            $table->string('adjustment_type')->nullable();
             $table->string('approType_id');
-            $table->string('supp_budget_num')->nullable();
             $table->string('date_document')->nullable();
             $table->string('reference_document');
             $table->string('status')->nullable();
-
             $table->timestamps();
         });
     }
