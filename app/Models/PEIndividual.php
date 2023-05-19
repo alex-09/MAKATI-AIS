@@ -12,7 +12,6 @@ class PEIndividual extends Model
     protected $fillable = [
 
         'type_of_payee_id',
-        'client_type',
         'last_name',
         'first_name',
         'middle_name',
@@ -30,7 +29,8 @@ class PEIndividual extends Model
         'dti',
         'authorized',
         'contact',
-        'email'
+        'email',
+        'receiver'
 
     ];
 }

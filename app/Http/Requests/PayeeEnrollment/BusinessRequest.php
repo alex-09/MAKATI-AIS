@@ -38,7 +38,7 @@ class BusinessRequest extends FormRequest
             'authorized_rep' => 'string',
             'contact_no' => 'string',
             'email' => 'string',
-            'status' => 'string'
+            'receiver' => 'string'
         ];
     }
 }

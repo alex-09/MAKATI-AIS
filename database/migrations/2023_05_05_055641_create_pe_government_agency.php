@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('authorized_rep');
             $table->string('contact_no');
             $table->string('email');
-            $table->string('date_registered');
-            $table->string('status');
+            $table->string('receiver');
+            $table->string('status')->default('For Approval');  
             $table->timestamps();
         });
     }

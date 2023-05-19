@@ -37,7 +37,10 @@ class IndividualRequest extends FormRequest
             'tax' => 'string',
             'dti' => 'string',
             'authorized' => 'string',
-            'status' => 'string'
+            'status' => 'string',
+            'contact' => 'string',
+            'email' => 'string',
+            'receiver' => 'string'
         ];
     }
 }

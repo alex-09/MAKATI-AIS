@@ -26,7 +26,8 @@ class PEGovernmentAgency extends Model
         'contact_no',
         'email',
         'date_registered',
-        'status'
+        'status',
+        'receiver'
 
     ];
 }

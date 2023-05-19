@@ -31,7 +31,8 @@ return new class extends Migration
             $table->string('authorized');
             $table->string('contact');
             $table->string('email');
-            $table->string('status');
+            $table->string('receiver');
+            $table->string('status')->default('For Approval');
             $table->timestamps();
         });
     }
