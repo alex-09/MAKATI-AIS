@@ -24,14 +24,14 @@ return new class extends Migration
             $table->string('country');
             $table->string('zip_code');
             $table->string('tax_id_no');
-            $table->string('dti_no');
-            $table->string('section_no');
-            $table->string('cda_no');
+            $table->string('dti_no')->nullable();
+            $table->string('section_no')->nullable();
+            $table->string('cda_no')->nullable();
             $table->string('authorized_rep');
             $table->string('contact_no');
             $table->string('email');
-            $table->string('date_registered');
-            $table->string('status');
+            $table->string('receiver');
+            $table->string('status')->default('For Approval');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ class PEIndividualController extends Controller
     public function storeIndividual(IndividualRequest $request){
         try{
         $individualData = PEIndividual::create([
-            'type_of_payee_id' => 'individual'
+            'type_of_payee_id' => 'Individual'
         ] + $request->validated());
 
         return response()->json([

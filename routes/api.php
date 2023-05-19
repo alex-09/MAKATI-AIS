@@ -83,8 +83,10 @@ use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\Coll
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayAppDropdownController;
 use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\DivisionHead\PayeeDivisionHeadController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PreviousTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\PrintReceivingReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\CityAccountant\PayeeCityAccountantController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollsAndAppointmentController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollAppointmentReceivingController;
 
@@ -375,7 +377,17 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/individual', [PEIndividualController::class, 'storeIndividual']); 
     Route::post('/business', [PEBusinessController::class, 'storeBusiness']); 
     Route::post('/government-agency', [PEGovernementAgencyController::class, 'storeAgency']); 
-    Route::get('/listPayee', [PayeeListController::class, 'list']); 
+    Route::get('/listPayeenName', [PayeeListController::class, 'list']); 
+    //DH
+    Route::get('/dhListPayee', [PayeeDivisionHeadController::class, 'list']); 
+    Route::get('/dhViewPayee/{id}/{type}', [PayeeDivisionHeadController::class, 'view']); 
+    Route::get('/dhApproved', [PayeeDivisionHeadController::class, 'forCA']); 
+    Route::get('/dhReject', [PayeeDivisionHeadController::class, 'reject']); 
+    //CA
+    Route::get('/caListPayee', [PayeeCityAccountantController::class, 'list']); 
+    Route::get('/caViewPayee/{id}/{type}', [PayeeCityAccountantController::class, 'view']); 
+    Route::get('/caApproved', [PayeeCityAccountantController::class, 'approved']); 
+    Route::get('/caReject', [PayeeCityAccountantController::class, 'reject']); 
  });
 
  Route::prefix('Check-Transac')->group(function () {
