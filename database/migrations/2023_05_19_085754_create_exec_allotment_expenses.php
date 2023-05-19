@@ -22,7 +22,6 @@ return new class extends Migration
             $table->float('allot_amount', 17, 3);
             $table->float('balance', 17, 3);
             $table->float('latest_balance', 17, 3);
-            $table->float('unalloted_balance', 17, 3)->nullable();
             $table->timestamps();
         });
     }

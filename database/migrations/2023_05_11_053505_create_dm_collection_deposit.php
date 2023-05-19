@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('cashbook_ref_no');
             $table->string('subject');
             $table->integer('amount_collection');
-            $table->integer('amount_deposit');
             $table->integer('cash');
             $table->string('check');
             $table->string('online');

@@ -22,7 +22,6 @@ class BusinessRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type_of_payee_id' => 'required',
             'business_name' => 'required',
             'building_no' => 'required',
             'lot_no' => 'required',

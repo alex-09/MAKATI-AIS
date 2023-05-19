@@ -22,7 +22,6 @@ class DMCollectionDeposit extends Model
             'cashbook_ref_no',
             'subject',
             'amount_collection',
-            'amount_deposit',
             'cash',
             'check',
             'online',

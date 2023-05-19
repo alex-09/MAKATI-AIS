@@ -21,6 +21,5 @@ class AllotmentExpenses extends Model
         'allot_amount',
         'balance',
         'latest_balance',
-        'unalloted_balance'
     ];  
 }

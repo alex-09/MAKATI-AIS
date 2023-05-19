@@ -31,7 +31,6 @@ class CollectionDeposit extends FormRequest
             'cashbook_ref_no' => 'required',
             'subject' => 'required',
             'amount_collection' => 'required',
-            'amount_deposit' => 'required',
             'cash' => 'required',
             'check' => 'required',
             'online' => 'required',

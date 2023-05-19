@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('pe_business', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_of_payee_id');
+            $table->string('type_of_payee_id');
             $table->string('business_name');
-            $table->integer('building_no');
-            $table->integer('lot_no');
+            $table->string('building_no');
+            $table->string('lot_no');
             $table->string('street');
             $table->string('barangay');
             $table->string('municipality_city');
@@ -28,9 +28,9 @@ return new class extends Migration
             $table->string('section_no');
             $table->string('cda_no');
             $table->string('authorized_rep');
-            $table->bigInteger('contact_no');
+            $table->string('contact_no');
             $table->string('email');
-            $table->date('date_registered');
+            $table->string('date_registered');
             $table->string('status');
             $table->timestamps();
         });

@@ -5,9 +5,18 @@ namespace App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BAT\Executive\Allotment\AllotmentRequest;
+use App\Repositories\BAT\Executive\Processor\Allotment\EnrollAllotmentRepository;
 
 class EnrollAllotmentController extends Controller
 {
+    private $enrollAllotRepo;
+
+    public function __construct(EnrollAllotmentRepository $enrollAllotRepo)
+    {
+        return $this->enrollAllotRepo = $enrollAllotRepo;
+    }
+
     public function fundsource(Request $request){
         try{
 
@@ -98,9 +107,9 @@ class EnrollAllotmentController extends Controller
         }
     }
 
-    public function enroll(){
+    public function enroll(AllotmentRequest $request){
         try{
-            
+            return $this->enrollAllotRepo->enroll($request);
         }catch (\Throwable $th){
             return response()->json([
                 'status' => false,

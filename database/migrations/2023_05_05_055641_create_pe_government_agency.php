@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('pe_government_agency', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_of_payee_id')->unique();
+            $table->string('type_of_payee_id');
             $table->string('agency_name');
-            $table->integer('building_no');
-            $table->integer('lot_no');
+            $table->string('building_no');
+            $table->string('lot_no');
             $table->string('street');
             $table->string('barangay');
             $table->string('municipality_city');
             $table->string('province');
             $table->string('country');
-            $table->integer('zip_code');
+            $table->string('zip_code');
             $table->string('tax_id_no');
             $table->string('authorized_rep');
             $table->string('contact_no');
             $table->string('email');
-            $table->date('date_registered');
+            $table->string('date_registered');
             $table->string('status');
             $table->timestamps();
         });

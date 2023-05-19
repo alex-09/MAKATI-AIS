@@ -15,7 +15,7 @@ class AllotmentDetails extends Model
         'appro_id',
         'allot_id',
         'budget_year_id',
-        'department_code_id',
+        // 'department_code_id',
         'AIPCode',
         'program_code',
         'program',

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('appro_id');
             $table->string('allot_id');
             $table->integer('budget_year_id');
-            $table->integer('department_code_id');
+            // $table->integer('department_code_id');
             $table->string('AIPCode');
             $table->integer('program_code');
             $table->string('program');

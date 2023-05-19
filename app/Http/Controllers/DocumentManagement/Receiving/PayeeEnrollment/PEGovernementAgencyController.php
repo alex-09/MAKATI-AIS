@@ -13,7 +13,9 @@ class PEGovernementAgencyController extends Controller
     public function storeAgency(GovAgencyRequest $request)
     {
         try {
-            $agencyData = PEGovernmentAgency::create($request->validated());
+            $agencyData = PEGovernmentAgency::create([
+                'type_of_payee_id' => 'Government'
+            ] + $request->validated());
 
             return response()->json([
                 'status' => true,

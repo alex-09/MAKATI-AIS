@@ -16,7 +16,6 @@ class Allotment extends Model
         'budget_year_id',
         'fundSource_id',
         'approType_id',
-        'department_code_id',
         'status'
     ];
 }

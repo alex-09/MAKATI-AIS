@@ -26,7 +26,10 @@ class PEIndividual extends Model
         'country',
         'zip_code',
         'date_registered',
-        'status'
+        'status',
+        'tax',
+        'dti',
+        'authorized'
 
     ];
 }

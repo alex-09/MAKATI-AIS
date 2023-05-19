@@ -13,20 +13,22 @@ return new class extends Migration
     {
         Schema::create('pe_individual', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_of_payee_id');
-            $table->string('client_type');
+            $table->string('type_of_payee_id');
             $table->string('last_name');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('suffix');
-            $table->integer('building_no');
-            $table->integer('lot_no');
+            $table->string('building_no');
+            $table->string('lot_no');
             $table->string('street');
             $table->string('barangay');
             $table->string('municipality_city');
             $table->string('province');
             $table->string('country');
-            $table->integer('zip_code');
+            $table->string('zip_code');
+            $table->string('tax');
+            $table->string('dti');
+            $table->string('authorized');
             $table->date('date_registered');
             $table->string('status');
             $table->timestamps();
