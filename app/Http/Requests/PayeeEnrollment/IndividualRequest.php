@@ -22,23 +22,22 @@ class IndividualRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'last_name' => 'required',
-            'first_name' => 'required',
-            'middle_name' => 'required',
-            'suffix' => 'required',
-            'building_no' => 'required',
-            'lot_no' => 'required',
-            'street' => 'required',
-            'barangay' => 'required',
-            'municipality_city' => 'required',
-            'province' => 'required',
-            'country' => 'required',
-            'zip_code' => 'required',
-            'tax' => 'required',
-            'dti' => 'required',
-            'authorized' => 'required',
-            'date_registered' => 'required',
-            'status' => 'required'
+            'last_name' => 'string',
+            'first_name' => 'string',
+            'middle_name' => 'string',
+            'suffix' => 'string',
+            'building_no' => 'string',
+            'lot_no' => 'string',
+            'street' => 'string',
+            'barangay' => 'string',
+            'municipality_city' => 'string',
+            'province' => 'string',
+            'country' => 'string',
+            'zip_code' => 'string',
+            'tax' => 'string',
+            'dti' => 'string',
+            'authorized' => 'string',
+            'status' => 'string'
         ];
     }
 }
