@@ -22,24 +22,23 @@ class BusinessRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'business_name' => 'required',
-            'building_no' => 'required',
-            'lot_no' => 'required',
-            'street' => 'required',
-            'barangay' => 'required',
-            'municipality_city' => 'required',
-            'province' => 'required',
-            'country' => 'required',
-            'zip_code' => 'required',
-            'tax_id_no' => 'required',
-            'dti_no' => 'required',
-            'section_no' => 'required',
-            'cda_no' => 'required',
-            'authorized_rep' => 'required',
-            'contact_no' => 'required',
-            'email' => 'required',
-            'date_registered' => 'required',
-            'status' => 'required'
+            'business_name' => 'string',
+            'building_no' => 'string',
+            'lot_no' => 'string',
+            'street' => 'string',
+            'barangay' => 'string',
+            'municipality_city' => 'string',
+            'province' => 'string',
+            'country' => 'string',
+            'zip_code' => 'string',
+            'tax_id_no' => 'string',
+            'dti_no' => 'string',
+            'section_no' => 'string',
+            'cda_no' => 'string',
+            'authorized_rep' => 'string',
+            'contact_no' => 'string',
+            'email' => 'string',
+            'status' => 'string'
         ];
     }
 }
