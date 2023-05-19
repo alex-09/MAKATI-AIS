@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('account_name');
             $table->integer('account_code');
             $table->float('appro_amount', 17, 3);
+            $table->float('latest_appro_amount', 17, 3)->nullable();
             $table->timestamps();
         });
     }

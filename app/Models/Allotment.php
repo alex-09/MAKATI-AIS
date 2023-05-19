@@ -16,16 +16,6 @@ class Allotment extends Model
         'budget_year_id',
         'fundSource_id',
         'approType_id',
-        'document_source',
-        'program_code_id',
-        'project_code_id',
-        'activity_code_id',
-        'AIPCode',
-        'adjustment_type',
-        'department_code_id',
-        'document_date',
-        'supplemental_budget_no',
-        'status',
-
+        'status'
     ];
 }

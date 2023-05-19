@@ -18,7 +18,7 @@ return new class extends Migration
 
         select exec_appropriation_details.program, exec_appropriation_details.program_code
         from exec_appropriation_details
-        group by program;
+        group by program, program_code;
         END";
 
         DB::unprepared($procedure);

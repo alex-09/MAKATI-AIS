@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AppropriationDetails extends Model
+class AllotmentDetails extends Model
 {
     use HasFactory;
 
-    protected $table = "exec_appropriation_details";
+    protected $table = "exec_allotment_details";
 
     protected $fillable = [
         'appro_id',
+        'allot_id',
         'budget_year_id',
-        'department_code_id',
+        // 'department_code_id',
         'AIPCode',
         'program_code',
         'program',
@@ -23,10 +24,10 @@ class AppropriationDetails extends Model
         'activity_code',
         'activity',
         'activity_description',
-        'appro_total',
-        'latest_appro_total',
+        'allot_total', 
+        'latest_allot_total',
         'type',
         'status',
         'remarks'
-    ];
+    ];  
 }

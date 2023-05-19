@@ -22,8 +22,6 @@ class IndividualRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type_of_payee_id' => 'required',
-            'client_type' => 'required',
             'last_name' => 'required',
             'first_name' => 'required',
             'middle_name' => 'required',
@@ -36,6 +34,9 @@ class IndividualRequest extends FormRequest
             'province' => 'required',
             'country' => 'required',
             'zip_code' => 'required',
+            'tax' => 'required',
+            'dti' => 'required',
+            'authorized' => 'required',
             'date_registered' => 'required',
             'status' => 'required'
         ];

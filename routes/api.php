@@ -37,9 +37,6 @@ use App\Http\Controllers\BAT\ExecutiveBudget\CityAccountant\ApproCAController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Dropdwons\ExecDropdwonController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ApproReviewerController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
-use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\ListAllotmentController;
-use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\EnrollAllotmentController;
-use App\Http\Controllers\BAT\ExecutiveBudget\Allotment\UpdateAllotmentController;
 use App\Http\Controllers\BAT\TrustFund\Report\Dashboard\DashboardReportController;
 use App\Http\Controllers\BAT\TrustFund\Processor\Obligation\TFObligationController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrevRecController;
@@ -61,6 +58,7 @@ use App\Http\Controllers\DocumentManagement\Incoming\Communication\ListClustersC
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantController;
 use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptContractController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PayeeListController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceiptController;
@@ -220,7 +218,7 @@ Route::prefix('appropriation')->group(function () {
 
     //REVIEWER
     Route::get('/listApproForReview', [ApproReviewerController::class, 'list']);
-    Route::get('/viewApproForReview/{id}/{aipcode}', [ApproReviewerController::class, 'view']);
+    Route::get('/viewApproForReview/{id}/{aipcode}/{status}', [ApproReviewerController::class, 'view']);
     Route::post('/updateApproForReview', [ApproReviewerController::class, 'update']);
     Route::post('/rejectApproForReview', [ApproReviewerController::class, 'reject']);
 
@@ -241,7 +239,7 @@ Route::prefix('allotment')->group(function () {
 
     //ENROLL
     Route::get('/filter', [EnrollAllotmentController::class, 'filterAllot']);
-    Route::post('/enroll', [EnrollAllotmentController::class, 'enrollAllotment']);
+    Route::post('/enroll', [EnrollAllotmentController::class, 'enroll']);
     //UPDATE
     Route::get('/filterAllot', [UpdateAllotmentController::class, 'filter']);
     Route::get('/updateAllot', [UpdateAllotmentController::class, 'update']);

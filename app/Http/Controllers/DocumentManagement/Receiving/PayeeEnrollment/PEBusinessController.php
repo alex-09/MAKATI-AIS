@@ -14,7 +14,9 @@ class PEBusinessController extends Controller
     {
         try {
 
-            $businessData = PEBusiness::create($request->validated());
+            $businessData = PEBusiness::create([
+                'type_of_payee_id' => 'Business'
+            ] + $request->validated());
 
             return response()->json([
                 'status' => true,
