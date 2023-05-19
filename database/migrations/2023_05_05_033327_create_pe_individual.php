@@ -29,7 +29,8 @@ return new class extends Migration
             $table->string('tax');
             $table->string('dti');
             $table->string('authorized');
-            $table->date('date_registered');
+            $table->string('contact');
+            $table->string('email');
             $table->string('status');
             $table->timestamps();
         });

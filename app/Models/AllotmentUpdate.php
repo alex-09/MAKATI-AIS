@@ -19,6 +19,8 @@ class AllotmentUpdate extends Model
         'date',
         'adjustment_type',
         'adjustment_no',
+        'account_name',
+        'account_code',
         'balance',
         'addition',
         'deduction',

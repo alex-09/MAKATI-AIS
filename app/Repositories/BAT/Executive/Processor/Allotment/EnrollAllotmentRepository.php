@@ -42,8 +42,7 @@ class EnrollAllotmentRepository{
             'appro_amount' => $request->appro_amount[$i],
             'allot_amount' => $request->allot_amount[$i],
             'balance' => $request->balance[$i]
-                ] + $request->validated()
-            );
+            ]);
         }
 
         return response()->json([

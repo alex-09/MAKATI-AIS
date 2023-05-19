@@ -25,11 +25,12 @@ class PEIndividual extends Model
         'province',
         'country',
         'zip_code',
-        'date_registered',
         'status',
         'tax',
         'dti',
-        'authorized'
+        'authorized',
+        'contact',
+        'email'
 
     ];
 }
