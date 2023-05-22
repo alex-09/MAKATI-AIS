@@ -13,6 +13,7 @@ class PEBusiness extends Model
 
         'type_of_payee_id',
         'business_name',
+        'business_type',
         'building_no',
         'lot_no',
         'street',

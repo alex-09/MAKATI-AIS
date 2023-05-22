@@ -23,6 +23,7 @@ class BusinessRequest extends FormRequest
     {
         return [
             'business_name' => 'string',
+            'business_type' => 'string',
             'building_no' => 'string',
             'lot_no' => 'string',
             'street' => 'string',

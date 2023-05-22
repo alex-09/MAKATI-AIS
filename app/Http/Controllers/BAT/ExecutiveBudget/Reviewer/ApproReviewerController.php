@@ -15,10 +15,10 @@ class ApproReviewerController extends Controller
         return response()->json(['list' => DB::select('CALL get_appro_for_review()')]);
     }
 
-    public function view($id, $aipcode, $status)
+    public function view($id, $aipcode)
     {
 
-        $data = DB::select('CALL exec_view_appro(?,?,?)', array($id, $aipcode, $status));
+        $data = DB::select('CALL exec_view_appro(?,?)', array($id, $aipcode));  
         return response()->json(['data' => $data]);
     }
 
