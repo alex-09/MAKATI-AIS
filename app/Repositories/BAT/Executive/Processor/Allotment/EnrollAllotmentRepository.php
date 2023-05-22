@@ -34,6 +34,7 @@ class EnrollAllotmentRepository{
 
         for($i=0; $i<count($request->account_code); $i++){
         AllotmentExpenses::create([
+            'appro_id' => $request->appro_id,
             'allot_id' => $allot_id,
             'AIPCode' => $aipcode,
             'latest_balance' => $request->balance[$i],
