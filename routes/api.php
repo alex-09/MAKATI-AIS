@@ -112,6 +112,9 @@ Route::prefix('makati')->group(function() {
 
     Route::post('/userImport', [UserImportController::class, 'Import']);
 
+    Route::post('/forgot-pass', [AuthController::class, 'forgotPass']);
+    Route::post('/reset-pass', [AuthController::class, 'reset']);
+
     // Route::get('/getUser', [UserController::class, 'getDetails']); 
 
 });
