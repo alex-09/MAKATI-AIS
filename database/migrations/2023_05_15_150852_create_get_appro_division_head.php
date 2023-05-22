@@ -28,8 +28,7 @@ return new class extends Migration
             
         where exec_appropriations.appro_id = exec_appropriation_details.appro_id
             and departments.department_code = exec_appropriations.department_code_id
-            and exec_appropriation_details.status = 'For Approval - DH'
-            group by exec_appropriation_details.budget_year_id, exec_appropriation_details.AIPCode, exec_appropriation_details.department_code_id;
+            and exec_appropriation_details.status = 'For Approval - DH';
         END";
 
         DB::unprepared($procedure);

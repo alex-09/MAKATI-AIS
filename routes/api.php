@@ -215,12 +215,12 @@ Route::prefix('appropriation')->group(function () {
     Route::get('/dropdown2', [ExecDropdwonController::class, 'execDropdown2']); 
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
-    //LIST 
+    //LIST s
     Route::get('/listAppro', [ListAppropriationController::class, 'index']);
 
     //REVIEWER
     Route::get('/listApproForReview', [ApproReviewerController::class, 'list']);
-    Route::get('/viewApproForReview/{id}/{aipcode}/{status}', [ApproReviewerController::class, 'view']);
+    Route::get('/viewApproForReview/{id}/{aipcode}', [ApproReviewerController::class, 'view']);
     Route::post('/updateApproForReview', [ApproReviewerController::class, 'update']);
     Route::post('/rejectApproForReview', [ApproReviewerController::class, 'reject']);
 
