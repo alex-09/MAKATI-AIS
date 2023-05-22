@@ -381,13 +381,13 @@ Route::prefix('ContractPO')->group(function () {
     //DH
     Route::get('/dhListPayee', [PayeeDivisionHeadController::class, 'list']); 
     Route::get('/dhViewPayee/{id}/{type}', [PayeeDivisionHeadController::class, 'view']); 
-    Route::get('/dhApproved', [PayeeDivisionHeadController::class, 'forCA']); 
-    Route::get('/dhReject', [PayeeDivisionHeadController::class, 'reject']); 
+    Route::post('/dhApproved', [PayeeDivisionHeadController::class, 'forCA']); 
+    Route::post('/dhReject', [PayeeDivisionHeadController::class, 'reject']); 
     //CA
     Route::get('/caListPayee', [PayeeCityAccountantController::class, 'list']); 
     Route::get('/caViewPayee/{id}/{type}', [PayeeCityAccountantController::class, 'view']); 
-    Route::get('/caApproved', [PayeeCityAccountantController::class, 'approved']); 
-    Route::get('/caReject', [PayeeCityAccountantController::class, 'reject']); 
+    Route::post('/caApproved', [PayeeCityAccountantController::class, 'approved']); 
+    Route::post('/caReject', [PayeeCityAccountantController::class, 'reject']); 
  });
 
  Route::prefix('Check-Transac')->group(function () {

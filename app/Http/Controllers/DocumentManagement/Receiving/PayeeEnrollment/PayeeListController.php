@@ -10,6 +10,6 @@ class PayeeListController extends Controller
 {
     public function list()
     {
-        return response()->json(['list' => DB::select('pe_get_payee_name()')]);
+        return response()->json(['list' => DB::select('CALL pe_get_payee_name()')]);
     }
 }

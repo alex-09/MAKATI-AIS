@@ -12,20 +12,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `pe_get_payee_name`;
+        $procedure = "DROP PROCEDURE IF EXISTS `pe_get_payee_name`;
         CREATE PROCEDURE `pe_get_payee_name` ()
         BEGIN
 
-        select business_name as payee_name 
-        from pe_business 
-    
-        union 
-        select agency_name as payee_name
-        from pe_government_agency 
-    
-        union 
-        select CONCAT(first_name, ' ',last_name) as payee_name
-        from pe_individual;
+        select payee_name
+        from (
+                select business_name as payee_name 
+                from pe_business 
+            
+                union 
+                select agency_name as payee_name 
+                from pe_government_agency 
+            
+                union 
+                select CONCAT(first_name, ' ',last_name) as payee_name
+                from pe_individual
+                ) payee 
+                order by payee_name;
         END";
 
         DB::unprepared($procedure);

@@ -23,11 +23,11 @@ class PayeeDivisionHeadController extends Controller
 
     public function forCA(Request $request){
         if($request->type == 'Individual'){
-            $approve = PEIndividual::where('id', $request->id);
+            $approve = PEIndividual::where('id', $request->id); 
             $approve->update(['status' => 'FOR APPROVAL - CA']);
 
             return response()->json(['message' => 'Payee has been approved. Pending final approval of the City Accountant']);
-        }elseif($request->type == 'Business'){
+        }elseif($request->type == 'Sole Proprietorship' || $request->type == 'Partnership' || $request->type == 'Corporation' || $request->type == 'Cooperative'){
             $approve = PEBusiness::where('id', $request->id);
             $approve->update(['status' => 'FOR APPROVAL - CA']);
 
@@ -46,7 +46,7 @@ class PayeeDivisionHeadController extends Controller
             $approve->update(['status' => 'Rejected']);
 
             return response()->json(['message' => 'Payee has been Rejected']);
-        }elseif($request->type == 'Business'){
+        }elseif($request->type == 'Sole Proprietorship' || $request->type == 'Partnership' || $request->type == 'Corporation' || $request->type == 'Cooperative'){
             $approve = PEBusiness::where('id', $request->id);
             $approve->update(['status' => 'Rejected']);
 
