@@ -18,7 +18,7 @@ return new class extends Migration
         BEGIN
             SELECT allot.program_code_id, allot.project_code_id, allot.activity_code_id, act.allot_total, allot.status
 
-        FROM allotments AS allot
+        FROM exec_allotments AS allot
             INNER JOIN activities AS act
             USING (allot_id);
 

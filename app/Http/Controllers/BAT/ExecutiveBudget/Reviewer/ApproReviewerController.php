@@ -17,7 +17,6 @@ class ApproReviewerController extends Controller
 
     public function view($id, $aipcode)
     {
-
         $data = DB::select('CALL exec_view_appro(?,?)', array($id, $aipcode));  
         return response()->json(['data' => $data]);
     }

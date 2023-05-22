@@ -36,9 +36,7 @@ class UpdateAppropriationController extends Controller
 
     public function updateAppro(Request $request){
         try {
-            $approRef = AppropriationDetails::where('appro_id', $request->approId)
-                ->where('AIPCode', $request->aipcode);
-            $approRef->update(['status' => 'Update']);
+            AppropriationDetails::create(['status' => 'Update'] + $request->all);
 
             for($i=0; $i<count($request->account_code); $i++){
                 AppropriationUpdate::create([
@@ -50,10 +48,10 @@ class UpdateAppropriationController extends Controller
                     'adjustment_no' => $request->adjustment_no,
                     'account_code' => $request->account_code[$i],
                     'account_name' => $request->account_name[$i],
-                    'balance' => $request->balance,
-                    'addition' => $request->addition,
-                    'deduction' => $request->deduction,
-                    'latest_balance' => $request->balance,
+                    'balance' => $request->balance[$i],
+                    'addition' => $request->addition[$i],
+                    'deduction' => $request->deduction[$i],
+                    'latest_balance' => $request->balance[$i],
                 ]);
             }
 
@@ -64,8 +62,7 @@ class UpdateAppropriationController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Success!',
-                'data' => $approRef
+                'message' => 'Success!'
             ]);
 
 
