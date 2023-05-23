@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('receive_comm_assigntos', function (Blueprint $table) {
+        Schema::create('receive_comm_actions', function (Blueprint $table) {
             $table->id();
-            $table->string('assign_to_type');
+            $table->string('action_type');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('receive_comm_assigntos');
+        Schema::dropIfExists('receive_comm_actions');
     }
 };

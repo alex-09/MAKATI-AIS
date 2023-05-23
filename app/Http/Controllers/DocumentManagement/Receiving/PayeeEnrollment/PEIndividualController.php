@@ -2,19 +2,41 @@
 
 namespace App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\PayeeEnrollment\IndividualRequest;
+use Carbon\Carbon;
 use App\Models\PEIndividual;
 use Illuminate\Http\Request;
+use App\Models\ActionHistory;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\PayeeEnrollment\IndividualRequest;
 
 class PEIndividualController extends Controller
 {
 
     public function storeIndividual(IndividualRequest $request){
         try{
-        $individualData = PEIndividual::create([
-            'type_of_payee_id' => 'Individual'
-        ] + $request->validated());
+
+            $date = Carbon::now()->format('Y-m');
+
+            $table = PEIndividual::all();
+            if($table->isEmpty()) {
+                $payee_id = "PID-" . "IND-" . $date . "-" . str_pad(1, 7, '0', STR_PAD_LEFT);
+            }else {
+                $lastId = PEIndividual::latest('id')->select('id')->first();
+                $botId = $lastId['id'];
+                $payee_id = "PID-" . "IND-" . $date . "-" . str_pad(++$botId, 7, '0', STR_PAD_LEFT);
+            }
+
+            $individualData = PEIndividual::create([
+                'type_of_payee_id' => 'Individual',
+                'payee_id' => $payee_id
+            ] + $request->validated());
+
+            ActionHistory::create([
+                'type_id' => $payee_id,
+                'type' => 'Payee Enrollment',
+                'particulars' => 'Enroll Payee',
+                'user' => $request->user
+            ]);
 
         return response()->json([
             'status' => true,
@@ -22,7 +44,6 @@ class PEIndividualController extends Controller
             'data' => $individualData, 
         ]);
 
-        
     }catch (\Throwable $th){
         return response()->json([
             'status' => false,

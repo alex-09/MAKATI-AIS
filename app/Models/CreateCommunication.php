@@ -10,6 +10,7 @@ class CreateCommunication extends Model
     use HasFactory;
 
     protected $fillable = [
+        'mc_no',
         'transac_id',
         'receive_comm_type_id',
         'sender',

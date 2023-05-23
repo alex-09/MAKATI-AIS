@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('transac_id');
             $table->string('receive_comm_type_id');
+            $table->string('mc_no');
             $table->string('sender');
             $table->string('subject');
             $table->string('reply_to');

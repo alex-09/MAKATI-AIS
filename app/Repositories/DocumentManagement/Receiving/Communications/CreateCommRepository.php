@@ -13,24 +13,25 @@ class CreateCommRepository
 
         $table = CreateCommunication::all();
         if($table->isEmpty()){
-            $transac_id = "M/C-" . $date . "-" . str_pad(1, 5, '0', STR_PAD_LEFT);
+            $transac_id = "MC-" . $date . "-" . str_pad(1, 5, '0', STR_PAD_LEFT);
         }else{
             $lastId = CreateCommunication::latest('id')->select('id')->first();
             $ptId = $lastId['id'];
-            $transac_id = "M/C-" . $date . "-" . str_pad(++$ptId, 5, '0', STR_PAD_LEFT);
+            $transac_id = "MC-" . $date . "-" . str_pad(++$ptId, 5, '0', STR_PAD_LEFT);
         }
 
-        // $docuFile = $transac_id.'.'.$request->file('document')->getClientOriginalExtension();
-        // $request->document->move(public_path('uploads'), $docuFile);
+        $id = $request->mc_no == 0 ? $transac_id : $transac_id. '-'. $request->mc_no;
+        $docuFile = $id.'.'.$request->file('document')->getClientOriginalExtension();
+        $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication'), $docuFile);
 
         $insertRecCom = CreateCommunication::create([
-            'transac_id' => $transac_id,
-            // "document" => $docuFile
+            'transac_id' => $id,
+            "document" => $docuFile
             ] + $request->validated());
 
         return response()->json([
             'status' => true,
-            'message' => 'Your entry has been successfully saved under M/C No. '.$transac_id,
+            'message' => 'Your entry has been successfully saved under M/C No. '.$id,
             'data' => $insertRecCom
         ]);
     }

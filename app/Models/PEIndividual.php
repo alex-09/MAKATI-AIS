@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PEIndividual extends Model
 {
@@ -12,6 +13,7 @@ class PEIndividual extends Model
     protected $fillable = [
 
         'type_of_payee_id',
+        'payee_id',
         'last_name',
         'first_name',
         'middle_name',
@@ -33,4 +35,5 @@ class PEIndividual extends Model
         'receiver'
 
     ];
+
 }

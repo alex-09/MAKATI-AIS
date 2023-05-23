@@ -79,6 +79,7 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\EnrollAppro
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
+use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\DivisionHead\EditPayeeController;
 use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayAppDropdownController;
@@ -383,6 +384,7 @@ Route::prefix('ContractPO')->group(function () {
     Route::get('/dhViewPayee/{id}/{type}', [PayeeDivisionHeadController::class, 'view']); 
     Route::post('/dhApproved', [PayeeDivisionHeadController::class, 'forCA']); 
     Route::post('/dhReject', [PayeeDivisionHeadController::class, 'reject']); 
+    Route::post('/dhUpdate', [EditPayeeController::class, 'update']); 
     //CA
     Route::get('/caListPayee', [PayeeCityAccountantController::class, 'list']); 
     Route::get('/caViewPayee/{id}/{type}', [PayeeCityAccountantController::class, 'view']); 

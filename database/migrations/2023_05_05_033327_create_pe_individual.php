@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pe_individual', function (Blueprint $table) {
             $table->id();
             $table->string('type_of_payee_id');
+            $table->string('payee_id');
             $table->string('last_name');
             $table->string('first_name');
             $table->string('middle_name');

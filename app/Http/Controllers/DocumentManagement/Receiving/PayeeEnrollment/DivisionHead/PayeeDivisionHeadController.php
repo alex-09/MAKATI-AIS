@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\DivisionHead;
 
+use App\Models\PEBusiness;
+use App\Models\PEIndividual;
 use Illuminate\Http\Request;
+use App\Models\ActionHistory;
+use App\Models\PEGovernmentAgency;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\PEBusiness;
-use App\Models\PEGovernmentAgency;
-use App\Models\PEIndividual;
 
 class PayeeDivisionHeadController extends Controller
 {
@@ -38,6 +39,13 @@ class PayeeDivisionHeadController extends Controller
 
             return response()->json(['message' => 'Payee has been approved. Pending final approval of the City Accountant']);
         }
+
+        ActionHistory::create([
+            'type_id' => $request->payee_id,
+            'type' => 'Payee Enrollment',
+            'particulars' => 'For Approval - CA',
+            'user' => $request->user
+        ]);
     }
 
     public function reject(Request $request){
@@ -57,5 +65,12 @@ class PayeeDivisionHeadController extends Controller
 
             return response()->json(['message' => 'Payee has been Rejected']);
         }
+
+        ActionHistory::create([
+            'type_id' => $request->payee_id,
+            'type' => 'Payee Enrollment',
+            'particulars' => 'FRejected By DH',
+            'user' => $request->user
+        ]);
     }
 }

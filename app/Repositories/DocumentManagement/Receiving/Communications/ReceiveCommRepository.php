@@ -20,12 +20,12 @@ class ReceiveCommRepository
             $transac_id = "COM-" . $date . "-" . str_pad(++$ptId, 7, '0', STR_PAD_LEFT);
         }
 
-        // $docuFile =  $transac_id.'.'.$request->file('document')->getClientOriginalExtension();
-        // $request->document->move(public_path('uploads'), $docuFile);
+        $docuFile =  $transac_id.'.'.$request->file('document')->getClientOriginalExtension();
+        $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication'), $docuFile);
 
             ReceiveCommunications::create([
             "transaction_id_num" => $transac_id,
-            // "document" => $docuFile
+            "document" => $docuFile
             ] + $request->validated());
 
         return response()->json([

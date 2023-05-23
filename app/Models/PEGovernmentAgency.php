@@ -12,6 +12,7 @@ class PEGovernmentAgency extends Model
     protected $fillable = [
 
         'type_of_payee_id',
+        'payee_id',
         'agency_name',
         'building_no',
         'lot_no',
