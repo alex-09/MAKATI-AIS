@@ -14,41 +14,26 @@ class UserSeed extends Seeder
      */
     public function run(): void
     {
-        User::create(['name' => 'Admin',
-                'email'=> 'Admin@gmail.com',
-                'role_id' => '1',
-                'isAdmin' => 1,
-                'password' => bcrypt('qwe123')
-    ]);
-        User::create(['name' => 'Approver',
-                'email'=> 'Approver@gmail.com',
-                'role_id' => '2',
-                'isAdmin' => 0,
-                'password' => bcrypt('qwe123')    
-            ]);
-        User::create(['name' => 'Receiver',
-                'email'=> 'Receiver@gmail.com',
-                'role_id' => '3',
-                'isAdmin' => 0,
-                'password' => bcrypt('qwe123')
-            ]);
-        User::create(['name' => 'Encoder',
-                'email'=> 'Encoder@gmail.com',
-                'role_id' => '4',
-                'isAdmin' => 0,
-                'password' => bcrypt('qwe123')
-            ]);
-        User::create(['name' => 'Processor',
-                'email'=> 'Processor@gmail.com',
-                'role_id' => '5',
-                'isAdmin' => 0,
-                'password' => bcrypt('qwe123')   
-            ]);
-        User::create(['name' => 'Bookkeeper',
-                'email'=> 'Bookkeeper@gmail.com',
-                'role_id' => '6',
-                'isAdmin' => 0,
-                'password' => bcrypt('qwe123')   
-            ]);
+        User::create([
+            'surname' => "admin",
+            'firstname' => "admin", 
+            'middlename' => "admin", 
+            'userdesignation' => "City Accountant",  
+            'position' => "City Accountant", 
+            'division' => "admin", 
+            'cluster' => "admin", 
+            'gender' => "admin", 
+            'birthdate' => "admin", 
+            'no_bldg_street' => "admin",           
+            'barangay' => "admin",   
+            'city' => "admin",
+            'province' => "admin",
+            'email' => "admin@gmail.com",  
+            'contactnumber' => "admin",  
+            "alternative_contactnumber" => "admin", 
+            'module' => "admin",
+            'isAdmin'=> null,
+            'password' => bcrypt('qwe123'),
+        ]);
     }
 }
