@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             ReceiveCommunicationType::class,
             ReceiveCommunicationAssign::class,
             BudgetYearSeeder::class,
-            // UserSeed::class,
+            UserSeed::class,
             STRSeeder::class,
             CPTypeSeeder::class,
             // AllotSeeder::class,
