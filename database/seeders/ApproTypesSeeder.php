@@ -14,11 +14,11 @@ class ApproTypesSeeder extends Seeder
     public function run(): void
     {
         AppropriationType::create([
-            'appro_type' => 'current_appro'
+            'appro_type' => 'Current Appropriation'
         ]);
 
         AppropriationType::create([
-            'appro_type' => 'continue_appro'
+            'appro_type' => 'Continuing Appropriation'
         ]);
     }
 }

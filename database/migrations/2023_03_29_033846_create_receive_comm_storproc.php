@@ -15,7 +15,10 @@ return new class extends Migration
         $procedure = "DROP PROCEDURE IF EXISTS `receive_comm`;
         CREATE PROCEDURE `receive_comm` ()
         BEGIN
-        SELECT * FROM receive_communications;
+        SELECT id, DATE_FORMAT(created_at, '%M %d %Y ') as Date, DATE_FORMAT(created_at, '%h:%i:%s') AS time, 
+        transaction_id_num, sender, subject 
+        
+        FROM receive_communications;
         END;";
 
         DB::unprepared($procedure);

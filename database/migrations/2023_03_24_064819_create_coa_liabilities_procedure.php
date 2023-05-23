@@ -15,7 +15,9 @@ return new class extends Migration
         $procedure = "DROP PROCEDURE IF EXISTS `coa_liabilities`;
             CREATE PROCEDURE `coa_liabilities` ()
             BEGIN
-            SELECT * FROM coa_liabilities;
+            SELECT * FROM coa_liabilities
+            WHERE status != 'pending'
+            order by  account_code ASC;
             END;";
 
             DB::unprepared($procedure);

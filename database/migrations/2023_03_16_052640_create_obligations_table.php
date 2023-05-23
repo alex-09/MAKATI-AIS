@@ -12,11 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('obligations', function (Blueprint $table) {
+        Schema::create('exec_obligations', function (Blueprint $table) {
             $table->id();
             $table->integer('budget_year_id');
             $table->integer('transaction');
-            $table->unsignedBigInteger('department');
+            $table->integer('department');
             $table->integer('fund_source');
             $table->string('processing_slip_no');
             $table->integer('cafoa_amount');

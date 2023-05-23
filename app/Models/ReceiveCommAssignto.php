@@ -11,6 +11,5 @@ class ReceiveCommAssignto extends Model
 
     protected $fillable = [
         'assign_to_type',
-        'cluster'
     ];
 }

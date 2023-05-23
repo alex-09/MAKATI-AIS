@@ -30,20 +30,17 @@ class EnrollApproRequest extends FormRequest
             'department_code_id' => ['required'],
             'appro_id' => 'string',
 
-            'program' => ['required', 'string'],
-            'program_code' => ['required', 'integer'],
-
-            'project' => ['required', 'string'],
-            'project_code' => ['required', 'integer'],
-
-            'activity' => ['required', 'string'],
-            'activity_code' => ['required', 'integer'],
-            'activity_description' => ['required', 'string'],
-            'appro_total' => ['required', 'numeric'],
-
-            'account_code' => ['required', 'integer '],
-            'account_name' => ['required', 'string'],
-            'appro_amount' => ['required', 'numeric'],
+            'program' => ['required'],
+            'program_code' => ['required'],
+            'project' => ['required'],
+            'project_code' => ['required'],
+            'activity' => ['required'],
+            'activity_code' => ['required'],
+            'activity_description' => ['required'],
+            'appro_total' => ['required'],
+            'account_code' => ['required'],
+            'account_name' => ['required'],
+            'appro_amount' => ['required'],
 
         ];
     }

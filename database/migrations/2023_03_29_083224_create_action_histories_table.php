@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('action_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('receive_communication_id');
-            $table->string('date');
-            $table->string('time');
+            $table->string('type_id');
+            $table->string('type');
             $table->longText('particulars');
-            $table->string('creator');
+            $table->string('user');
             $table->timestamps();
 
-            $table->foreign('receive_communication_id')->references('transaction_id_num')->on('receive_communications');
         });
     }
 

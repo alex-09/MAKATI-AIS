@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('receive_comm_assigntos', function (Blueprint $table) {
             $table->id();
             $table->string('assign_to_type');
-            $table->string('cluster');
             $table->timestamps();
         });
     }

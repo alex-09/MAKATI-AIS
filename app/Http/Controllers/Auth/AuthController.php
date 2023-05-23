@@ -43,20 +43,20 @@ class AuthController extends Controller
                 'status' => false,
                 'message' => 'Something Went Wrong!',
                 'error' => $th->getMessage()
-            ]);   
+            ], 500);   
 
         }
     }
 
 
     //LOGIN
-    public function login(Request $request)
-    {
+    public function login(Request $request){
+
         try{
 
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email',
-                'password' => 'required|string|min:8'
+                'password' => 'required|string'
             ]);
 
             if ($validator->fails()) {
@@ -77,7 +77,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => "Logged In Successfully",
-                'token'=> $token->plainTextToken
+                'token'=> $token->plainTextToken,
+                'user' => $user
             ], 200);
         
         }catch(\Throwable $th){
@@ -92,8 +93,9 @@ class AuthController extends Controller
 
     }
 
-    public function logout(Request $request)
-    {
+
+    public function logout(Request $request){
+
         try {
 
             $validator = Validator::make($request->all(), [

@@ -9,16 +9,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Appropriation extends Model
 {
     use HasFactory;
+
+    protected $table = "exec_appropriations";
     
     protected $fillable = [
         'appro_id',
         'budget_year_id',
         'fundSource_id',
         'reference_document',
-        'adjustment_type',
         'approType_id',
         'department_code_id',
-        'supp_budget_num',
         'date_document',
         'status'
     ];

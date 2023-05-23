@@ -2,146 +2,77 @@
 
 namespace App\Http\Controllers\COA;
 
-use App\Models\COAIncome;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
+use App\Services\IncomeServices;
+use App\Http\Requests\COARequest;
 use App\Http\Controllers\Controller;
 
 class IncomeController extends Controller
 {
     //DISPLAY INCOME
-    public function showIncome(){
-
-        $yearslist = DB::select('CALL coa_income()');
-
-        return response()->json([
-
-            'status' => True,
-            'message' => 'Income Display Successfully',
-            'data' => $yearslist
-        ]);
+    public function showIncome(Request $request, IncomeServices $services){
+        return $services->show($request);
     }
 
     //ENROLL NEW INCOME
-    public function EnrollIncome(Request $request){
-
+    public function EnrollIncome(COARequest $request, IncomeServices $services){
         try{
-
-            $validateAssets = $request->validate([
-                
-                'account_group' => 'required|max:2|min:2',
-                'major_account_group' => 'required|max:2|min:2',
-                'sub_major_account_group' => 'required|max:2|min:2',
-                'general_ledger_accounts' => 'required|max:3|min:3',
-                'sub_ledger_accounts' => 'required|max:3|min:3',
-                'sub_sub_ledger_accounts' => 'required|max:3|min:3',
-                'account_title' => 'required',
-
-            ]);
-
-            $currDate = Carbon::now()->format('Y');
-
-            $insertedData = COAIncome::create([
-
-                'account_group' => $validateAssets['account_group'],
-                'major_account_group' => $validateAssets['major_account_group'],
-                'sub_major_account_group' => $validateAssets['sub_major_account_group'],
-                'general_ledger_accounts' => $validateAssets['general_ledger_accounts'],
-                'sub_ledger_accounts' => $validateAssets['sub_ledger_accounts'],
-                'sub_sub_ledger_accounts' => $validateAssets['sub_sub_ledger_accounts'],
-                'account_code' => $request->account_code,
-                'account_title' => $validateAssets['account_title'],
-                'status' => 'enable',
-                'date' => $currDate
-
-            ]);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Income Enrolled Successfully',
-                'data' => $insertedData
-            ]);
-
+            return $services->enrollIncome($request);
         }catch (\Throwable $th){
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Something went wrong',
-                'error' => $th->getMessage()
-            ]);
+            return $services->error($th);
         }
-
     }
 
     //UPDATES STATUS
-    public function UpdateIncomeStatus($id){
-
+    public function UpdateIncomeStatus(Request $request, $id, IncomeServices $services){
         try{
-
-            $status = COAIncome::where('id', $id)->first();
-
-            if($status['status'] == 1){
-
-                $status->update([
-                    'status' => 'disable'
-                ]);
-
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Account disabled successfully',
-                    'data' => 'disable'
-                ]);
-
-            }else{
-
-                $status->update([
-                    'status' => 'enable'
-                ]);
-    
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Account Enabled successfully',
-                    'data' => 'enable'
-                ]);
-            }
-
-        }catch (\Throwable $th) {
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Something Went Wrong',
-                'error' => $th->getMessage()
-            ]);
+            return $services->updateDesc($request, $id);
+        }catch (\Throwable $th){
+            return $services->error($th);
         }
     }
 
-    //ADD DESCRIPTION
-    public function AddIncomeDescription(Request $request, $id){
-
+    public function AddIncomeDescription(Request $request, $id, IncomeServices $services){
         try{
-
-            $assetDescrip = COAIncome::where('id', $id)->first();
-
-            $insertDescrip = $assetDescrip->update([
-
-                'description' => $request->description
-            
-            ]);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Description Updated Success',
-                'data' => $insertDescrip
-            ]);
-
+            return $services->updateDesc($request, $id);
         }catch (\Throwable $th){
+            return $services->error($th);
+        }
+    }
 
-            return response()->json([ 
-                'status' => true,
-                'message' => 'something went wrong',
-                'error' => $th->getMessage()
-            ]);
+    public function approveAccount($id, IncomeServices $services){
+        try{
+            return $services->approve($id);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function disApproveAccount($id, IncomeServices $services){
+        try{
+            return $services->disApprove($id);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function listTemp(IncomeServices $services){
+        return $services->displayTemp();
+    }
+
+    public function move(IncomeServices $services, Request $request){
+        try{
+            return $services->move($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function disapprove(IncomeServices $services, Request $request){
+        try{
+            return $services->cancelUplaod($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
         }
     }
 }

@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\BudgetYear;
 
 return new class extends Migration
 {
@@ -12,28 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('allotments', function (Blueprint $table) {
+        Schema::create('exec_allotments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('budget_year_id');
-            $table->string('allot_id');
             $table->string('appro_id');
-            $table->string('adjustment_type')->nullable();
-            $table->unsignedBigInteger('department_code_id')->nullable();
-            $table->integer('fundSource_id');
-            $table->unsignedBigInteger('approType_id');
-            $table->string('document_date')->nullable();
-            $table->string('document_source');
-            $table->string('supplemental_budget_no')->nullable();
-            $table->integer('program_code_id');
-            $table->integer('project_code_id');
-            $table->integer('activity_code_id');
-            $table->string('AIPCode');
-            $table->integer('status')->nullable();
+            $table->string('allot_id');
+            $table->integer('budget_year_id');
+            // $table->integer('department_code_id');
+            $table->string('fundSource_id');
+            $table->string('approType_id');
+            $table->string('status')->nullable();
             $table->timestamps();
-
-            $table->foreign('budget_year_id')->references('id')->on('budget_years')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('appro_id')->references('appro_id')->on('appropriations')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('activity_code_id')->references('activity_code')->on('activities')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
