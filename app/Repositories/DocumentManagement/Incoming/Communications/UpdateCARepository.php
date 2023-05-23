@@ -5,6 +5,7 @@ namespace App\Repositories\DocumentManagement\Incoming\Communications;
 use App\Models\ActionHistory;
 use App\Models\CreateCommunication;
 use App\Models\ReceiveCommunications;
+use Illuminate\Notifications\Action;
 
 class UpdateCARepository
 {
@@ -14,29 +15,41 @@ class UpdateCARepository
             'restriction' => $request->restriction,
             'action' => $request->action,
             'cluster' => $request->cluster,
-            'no_of_days' => $request->no_of_days
+            'no_of_days' => $request->no_of_days,
+            'status' => $request->status
         ]);
     }
 
-    public function update($request, $id){
+    public function update($request){
         if($request->mc_no == null){
-            $update = ReceiveCommunications::where('id', $id);
+            $update = ReceiveCommunications::where('transaction_id_num', $request->transac_id);
+
+            dd($update);
             $this->forUpdate($request, $update);
         }else{
-            $update = CreateCommunication::where('id', $id);
+            $update = CreateCommunication::where('transac_id', $request->transac_id); 
             $this->forUpdate($request, $update); 
         }
 
         ActionHistory::create([
-            'type_id' => $request->transaction_id_num,
-            'type' => 'Payee Enrollment',
-            'particulars' => 'Enroll Payee',
+            'type_id' => $request->transac_id,
+            'type' => 'Communication',
+            'particulars' => 'Assign Communication',
             'user' => $request->user
         ]);
 
         return response()->json([
             'status' => true,
             'message' => 'updated Successfully',
+        ]);
+    }
+
+    public function addAct($request){
+
+        ActionHistory::create([$request->all()]);
+        return response()->json([
+            'status' => true,
+            'message' => 'Added Successfully',
         ]);
     }
         

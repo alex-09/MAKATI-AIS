@@ -261,7 +261,8 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/printComm', [PrintCommController::class, 'forPrint']);
     //CITY ACCOUNTANT
     Route::get('/listCA', [CommCAController::class, 'list']);
-    Route::post('/updateCA/{id}', [CommCAController::class, 'update']);
+    Route::post('/updateCA', [CommCAController::class, 'update']);
+    Route::get('/actionHistory/{id}', [CommCAController::class, 'actionHistory']); 
 
     Route::get('/getBK', [ListClustersController::class, 'getBK']);
     Route::get('/getBAM', [ListClustersController::class, 'getBAM']);
@@ -272,14 +273,6 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/getAD', [ListClustersController::class, 'getAD']);
     Route::get('/getFRS', [ListClustersController::class, 'getFRS']);
     Route::get('/getAICS', [ListClustersController::class, 'getAICS']);
-
-    
-    Route::post('/update/{id}', [CommunicationController::class, 'updateComm']); 
-    Route::get('/search', [CommunicationController::class, 'searchComm']); 
-    Route::post('/actionHistory/{id}', [CommunicationController::class, 'createActionHistory']); 
-    Route::get('/frs', [CommunicationController::class, 'commFrs']); 
-    Route::get('/aics', [CommunicationController::class, 'commAics']);
-    Route::get('/viewPdf', [CommunicationController::class, 'viewPdf']);
 
 });
 
