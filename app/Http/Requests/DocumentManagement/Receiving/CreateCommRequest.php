@@ -22,6 +22,7 @@ class CreateCommRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'mc_no' => 'string',
             'receive_comm_type_id' => 'required',
             'sender' => 'required',
             'subject' => 'required',

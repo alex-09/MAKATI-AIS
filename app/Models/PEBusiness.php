@@ -12,6 +12,7 @@ class PEBusiness extends Model
     protected $fillable = [
 
         'type_of_payee_id',
+        'payee_id',
         'business_name',
         'business_type',
         'building_no',

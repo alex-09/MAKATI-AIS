@@ -41,7 +41,25 @@ return new class extends Migration
         using (appro_id)
 
         JOIN departments
-        on departments.department_code = exec_appropriations.department_code_id;
+        on departments.department_code = exec_appropriations.department_code_id
+        
+        group by exec_allotment_details.id, 
+		exec_allotment_details.appro_id, 
+        exec_allotment_details.allot_id, 
+        DATE_FORMAT(exec_allotment_details.created_at, '%M %d %Y '), 
+        DATE_FORMAT(exec_allotment_details.created_at, '%h:%i:%s'),
+		exec_allotment_details.type, 
+        exec_allotment_details.budget_year_id, 
+        exec_appropriations.fundSource_id, 
+        exec_appropriations.approType_id,
+		departments.department_name, 
+		exec_appropriations.department_code_id, 
+        exec_allotment_details.program, 
+        exec_allotment_details.project,
+		exec_allotment_details.activity, 
+        exec_allotment_details.AIPCode, 
+        exec_allotment_details.allot_total, 
+        exec_allotment_details.status;
         END";
 
         DB::unprepared($procedure); 

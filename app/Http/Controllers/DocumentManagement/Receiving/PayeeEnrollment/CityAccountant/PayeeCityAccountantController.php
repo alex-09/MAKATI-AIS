@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\City
 use App\Models\PEBusiness;
 use App\Models\PEIndividual;
 use Illuminate\Http\Request;
+use App\Models\ActionHistory;
 use App\Models\PEGovernmentAgency;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\DivisionHead\PayeeDivisionHeadController;
@@ -38,6 +39,13 @@ class PayeeCityAccountantController extends Controller
 
             return response()->json(['message' => 'Payee has been approved.']);
         }
+
+        ActionHistory::create([
+            'type_id' => $request->payee_id,
+            'type' => 'Payee Enrollment',
+            'particulars' => 'Approved By CA',
+            'user' => $request->user
+        ]);
     }
 
     public function reject(Request $request)

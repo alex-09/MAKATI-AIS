@@ -13,11 +13,10 @@ class ActionHistory extends Model
 
     protected $fillable = [
 
-        'transaction_id',
-        'date',
-        'time',
+        'type_id',
+        'type',
         'particulars',
-        'creator',
+        'user',
 
     ];
 }

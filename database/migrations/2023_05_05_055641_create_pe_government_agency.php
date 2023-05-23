@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('type_of_payee_id');
             $table->string('agency_name');
+            $table->string('payee_id');
             $table->string('building_no');
             $table->string('lot_no');
             $table->string('street');
