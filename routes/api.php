@@ -81,6 +81,7 @@ use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernem
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\DivisionHead\EditPayeeController;
 use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositController;
+use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CAActionHistoryController;
 use App\Http\Controllers\DocumentManagement\Receiving\BudgetaryObligationsTransac\NewTransactionsController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayAppDropdownController;
 use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositReceiptController;
@@ -262,7 +263,9 @@ Route::prefix('ReceiveCommunication')->group(function () {
     //CITY ACCOUNTANT
     Route::get('/listCA', [CommCAController::class, 'list']);
     Route::post('/updateCA', [CommCAController::class, 'update']);
-    Route::get('/actionHistory/{id}', [CommCAController::class, 'actionHistory']); 
+    
+    Route::get('/actionHistory/{id}', [CAActionHistoryController::class, 'list']); 
+    Route::get('/addActHistory', [CAActionHistoryController::class, 'addActHistory']); 
 
     Route::get('/getBK', [ListClustersController::class, 'getBK']);
     Route::get('/getBAM', [ListClustersController::class, 'getBAM']);

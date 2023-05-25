@@ -43,14 +43,5 @@ class UpdateCARepository
             'message' => 'updated Successfully',
         ]);
     }
-
-    public function addAct($request){
-
-        ActionHistory::create([$request->all()]);
-        return response()->json([
-            'status' => true,
-            'message' => 'Added Successfully',
-        ]);
-    }
         
 }
