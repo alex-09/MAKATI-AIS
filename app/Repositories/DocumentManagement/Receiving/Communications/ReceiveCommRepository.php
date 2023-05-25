@@ -3,6 +3,7 @@
 namespace App\Repositories\DocumentManagement\Receiving\Communications;
 
 use Carbon\Carbon;
+use App\Models\ActionHistory;
 use App\Models\ReceiveCommunications;
 
 class ReceiveCommRepository
@@ -25,8 +26,15 @@ class ReceiveCommRepository
 
             ReceiveCommunications::create([
             "transaction_id_num" => $transac_id,
-            "document" => $docuFile
+            "document" => env('APP_URL').'Document/DocumentManagement/Receiving/Communication/'.$docuFile
             ] + $request->validated());
+
+            ActionHistory::create([
+                'type_id' => $transac_id,
+                'type' => 'Communication',
+                'particulars' => 'Receive Communication',
+                'user' => $request->user
+            ]);
 
         return response()->json([
             'status' => true,
