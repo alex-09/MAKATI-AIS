@@ -18,6 +18,8 @@ class CreateCommunication extends Model
         'reply_to',
         'creator',
         'document',
+        'department',
+        'particulars',
         'assign_to_id',
         'cluster',
         'restriction',

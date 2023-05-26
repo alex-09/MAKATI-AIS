@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('reply_to');
             $table->string('creator');
             $table->string('document')->nullable();
+            $table->string('department')->nullable();
+            $table->string('particulars')->nullable();
             $table->longText('remarks')->nullable();
-            $table->longText('reviewer_remarks')->nullable();
-            $table->longText('approver_remarks')->nullable();
             $table->string('receive_comm_assignto_id')->nullable();
             $table->string('cluster')->nullable();
             $table->string('restriction')->nullable();
