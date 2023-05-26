@@ -52,6 +52,7 @@ use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\LGUCounterPartCon
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadController;
 use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptOthersController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\PrintCommController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\ListAllotmentController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CreateCommController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\RecContractPOController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\ListClustersController;
@@ -59,11 +60,13 @@ use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantC
 use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptContractController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PayeeListController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\EnrollAllotmentController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\UpdateAllotmentController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CommunicationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateObligation\UpdateObligationController;
+use App\Http\Controllers\DocumentManagement\Outgoing\Communication\OGCommunicationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
 use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDForProcessController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadActionController;
@@ -277,6 +280,11 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/getFRS', [ListClustersController::class, 'getFRS']);
     Route::get('/getAICS', [ListClustersController::class, 'getAICS']);
 
+    //OUTGOING 
+    Route::get('/listOutgoing', [OGCommunicationController::class, 'list']);
+    Route::get('/listMc', [OGCommunicationController::class, 'listMc']);
+    Route::get('/searchMc', [OGCommunicationController::class, 'searchMc']);
+    Route::get('/updateMc', [OGCommunicationController::class, 'update']);
 });
 
 Route::prefix('trustfunds')->group(function () {

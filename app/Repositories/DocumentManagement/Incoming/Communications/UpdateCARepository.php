@@ -24,7 +24,6 @@ class UpdateCARepository
         if($request->mc_no == null){
             $update = ReceiveCommunications::where('transaction_id_num', $request->transac_id);
 
-            dd($update);
             $this->forUpdate($request, $update);
         }else{
             $update = CreateCommunication::where('transac_id', $request->transac_id); 
