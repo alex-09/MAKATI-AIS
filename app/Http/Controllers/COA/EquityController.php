@@ -61,9 +61,17 @@ class EquityController extends Controller
         return $services->displayTemp();
     }
 
-    public function move(EquityServices $services, Request $request){
+    public function forApprovalCa(EquityServices $services, Request $request){
         try{
-            return $services->move($request);
+            return $services->forApprovalCa($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function approveByCa(EquityServices $services, Request $request){
+        try{
+            return $services->approveByCa($request);
         }catch (\Throwable $th) {
             return $services->error($th);
         }

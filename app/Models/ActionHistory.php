@@ -16,7 +16,7 @@ class ActionHistory extends Model
         'type_id',
         'type',
         'particulars',
-        'user',
+        'user'
 
     ];
 }

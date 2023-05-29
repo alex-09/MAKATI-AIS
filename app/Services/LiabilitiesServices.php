@@ -112,16 +112,22 @@ class LiabilitiesServices
         return response()->json(['list' => $list]);
     }
 
-    public function move($request){
-        // $coa = $request->input();
-        // foreach($coa as $key => $value){
+    public function forApprovalCa($request){
+        $update = COALiabilitiesTemp::whereIn('id', $request->id);
+        $update->update(['approval_status' => 'For Approval - CA']);
+
+        return response()->json(['message' => 'For Approval - CA']);
+    }
+
+
+    public function approveByCa($request){
             COALiabilitiesTemp::whereIn('id', $request->id)->each(function ($newRecord){
+                $newRecord->update(['approval_status' => 'Approved']);
                 $newRecord->replicate()->setTable('coa_liabilities')->save();   
             });
-        // }
-        // COALiabilitiesTemp::whereIn('id', $request->id)->delete();
+        COALiabilitiesTemp::whereIn('id', $request->id)->delete();
 
-        return response()->json(['message' => 'Successfully moved to current']);
+        return response()->json(['message' => 'Approved and Successfully moved to current']);
     }
 
     public function cancelUplaod($request){

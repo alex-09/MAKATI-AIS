@@ -15,7 +15,7 @@ class LiabilitiesImportController extends Controller
         try {
             Excel::import(new LiabilitiesImport, $request->file);
 
-            DB::table('coa_liabilities_temps')->update(array('coa_title' => $request->title, 'date_effectivity' => $request->date));
+            DB::table('coa_liabilities_temps')->update(array('coa_title' => $request->title, 'date_effectivity' => $request->date, 'approval_status' => 'For Approval - DH'));
 
             return response()->json([
                 'status' => true,

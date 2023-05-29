@@ -90,16 +90,22 @@ class AssetsServices
         return response()->json(['list' => $list]);
     }
 
-    public function move($request){
-        // $coa = $request->input();
-        // foreach($coa as $key => $value){
-            COAAssetsTemp::whereIn('id', $request->id)->each(function ($newRecord){
-                $newRecord->replicate()->setTable('coa_assets')->save();
-            });
-        // }
+    public function forApprovalCa($request){
+        $update = COAAssetsTemp::whereIn('id', $request->id);
+        $update->update(['approval_status' => 'For Approval - CA']);
+
+        return response()->json(['message' => 'For Approval - CA']);
+    }
+
+    public function approveByCa($request){
+        COAAssetsTemp::whereIn('id', $request->id)->each(function ($newRecord){
+            $newRecord->update(['approval_status' => 'Approved']);
+            $newRecord->replicate()->setTable('coa_assets')->save();
+        });
+
         COAAssetsTemp::whereIn('id', $request->id)->delete();
 
-        return response()->json(['message' => 'Successfully moved to current']);
+        return response()->json(['message' => 'Approved and Successfully moved to current']);
     }
 
     public function cancelUplaod($request){
