@@ -16,8 +16,11 @@ return new class extends Migration
         CREATE PROCEDURE `get_prevYear`()
         BEGIN
             SELECT date_effectivity, coa_title
-            FROM coa_assets
-            group by date_effectivity, coa_title DESC LIMIT 1, 10;
+                FROM `makati-ais`.coa_assets
+            group by date_effectivity, 
+                coa_title
+            ORDER BY date_effectivity DESC
+            LIMIT 1, 10;
         END
         ";
         

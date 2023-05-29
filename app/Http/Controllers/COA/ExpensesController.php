@@ -59,9 +59,17 @@ class ExpensesController extends Controller
         return $services->displayTemp();
     }
 
-    public function move(ExpensesServices $services, Request $request){
+    public function forApprovalCa(ExpensesServices $services, Request $request){
         try{
-            return $services->move($request);
+            return $services->forApprovalCa($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function approveByCa(ExpensesServices $services, Request $request){
+        try{
+            return $services->approveByCa($request);
         }catch (\Throwable $th) {
             return $services->error($th);
         }

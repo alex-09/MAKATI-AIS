@@ -60,9 +60,17 @@ class IncomeController extends Controller
         return $services->displayTemp();
     }
 
-    public function move(IncomeServices $services, Request $request){
+    public function forApprovalCa(IncomeServices $services, Request $request){
         try{
-            return $services->move($request);
+            return $services->forApprovalCa($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function approveByCa(IncomeServices $services, Request $request){
+        try{
+            return $services->approveByCa($request);
         }catch (\Throwable $th) {
             return $services->error($th);
         }

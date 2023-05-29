@@ -61,9 +61,17 @@ class AssetsController extends Controller
         return $services->displayTemp();
     }
 
-    public function move(AssetsServices $services, Request $request){
+    public function forApprovalCa(AssetsServices $services, Request $request){
         try{
-            return $services->move($request);
+            return $services->forApprovalCa($request);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function approveByCa(AssetsServices $services, Request $request){
+        try{
+            return $services->approveByCa($request);
         }catch (\Throwable $th) {
             return $services->error($th);
         }
