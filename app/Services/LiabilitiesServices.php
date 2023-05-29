@@ -35,7 +35,7 @@ class LiabilitiesServices
     public function enrollLiabilities(COARequest $request){
             
         COALiabilities::create([
-            'status' => 'pending'
+            'status' => 'For Approval - DH'
         ] +
             $request->validated(),
         );
@@ -86,16 +86,18 @@ class LiabilitiesServices
         ]);
     }
 
-    public function approve($id){
+    public function approveByDh($id){
         $app = COALiabilities::find($id);
-        $app->update([
-            'status' => 'enable'
-        ]);
+        $app->update(['status' => 'For Approval - CA']);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Approved Account',
-        ]);
+        return response()->json(['message' => 'Approved Account']);
+    }
+
+    public function approveByCacc($id){
+        $app = COALiabilities::find($id);
+        $app->update(['status' => 'enable']);
+
+        return response()->json(['message' => 'Approved Account']);
     }
 
     public function disApprove($id){

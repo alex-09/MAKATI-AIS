@@ -35,7 +35,7 @@ class ExpensesServices
     public function enrollExpenses(COARequest $request){
             
         COAExpenses::create([
-            'status' => 'pending'
+            'status' => 'For Approval - DH'
         ] +
             $request->validated(),
         );
@@ -86,16 +86,18 @@ class ExpensesServices
         ]);
     }
 
-    public function approve($id){
+    public function approveByDh($id){
         $app = COAExpenses::find($id);
-        $app->update([
-            'status' => 'enable'
-        ]);
+        $app->update(['status' => 'For Approval - CA']);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Approved Account',
-        ]);
+        return response()->json(['message' => 'Approved Account']);
+    }
+
+    public function approveByCacc($id){
+        $app = COAExpenses::find($id);
+        $app->update(['status' => 'enable']);
+
+        return response()->json(['message' => 'Approved Account']);
     }
 
     public function disApprove($id){

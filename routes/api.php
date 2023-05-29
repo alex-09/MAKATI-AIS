@@ -164,7 +164,8 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollEquity', [EquityController::class, 'enrollEquity']); 
     Route::post('/updateEquityStatus/{id}', [EquityController::class, 'UpdateEquityStatus']); 
     Route::post('/addEquityDescription/{id}', [EquityController::class, 'AddEquityDescription']);
-    Route::post('/approveEquityAccount/{id}', [EquityController::class, 'approveAccount']); 
+    Route::post('/approveAssetAccountDh/{id}', [EquityController::class, 'approveAccountDh']); 
+    Route::post('/approveAssetAccountCa/{id}', [EquityController::class, 'approveAccountCa']);  
     Route::post('/disApproveEquityAccount/{id}', [EquityController::class, 'disApproveAccount']); 
     Route::get('/listTempEquity', [EquityController::class, 'listTemp']); 
     Route::post('/equityforApprovalCa', [EquityController::class, 'forApprovalCa']); 
@@ -176,7 +177,8 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollExpenses', [ExpensesController::class, 'enrollExpenses']);  
     Route::post('/updateExpensesStatus/{id}', [ExpensesController::class, 'UpdateExpensesStatus']); 
     Route::post('/addExpensesDescription/{id}', [ExpensesController::class, 'AddExpensesDescription']);
-    Route::post('/approveExpensesAccount/{id}', [ExpensesController::class, 'approveAccount']); 
+    Route::post('/approveAssetAccountDh/{id}', [ExpensesController::class, 'approveAccountDh']); 
+    Route::post('/approveAssetAccountCa/{id}', [ExpensesController::class, 'approveAccountCa']); 
     Route::post('/disApproveExpensesAccount/{id}', [ExpensesController::class, 'disApproveAccount']); 
     Route::get('/listTempExpenses', [ExpensesController::class, 'listTemp']); 
     Route::post('/expensesforApprovalCa', [ExpensesController::class, 'forApprovalCa']); 
@@ -188,7 +190,8 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollIncome', [IncomeController::class, 'enrollIncome']); 
     Route::post('/updateIncomeStatus/{id}', [IncomeController::class, 'UpdateIncomeStatus']);
     Route::post('/addIncomeDescription/{id}', [IncomeController::class, 'AddIncomeDescription']);
-    Route::post('/approveIncomeAccount/{id}', [IncomeController::class, 'approveAccount']); 
+    Route::post('/approveAssetAccountDh/{id}', [IncomeController::class, 'approveAccountDh']); 
+    Route::post('/approveAssetAccountCa/{id}', [IncomeController::class, 'approveAccountCa']); 
     Route::post('/disApproveIncomeAccount/{id}', [IncomeController::class, 'disApproveAccount']); 
     Route::get('/listTempIncome', [IncomeController::class, 'listTemp']); 
     Route::post('/incomeforApprovalCa', [IncomeController::class, 'forApprovalCa']); 
@@ -200,7 +203,8 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollLiabilities', [LiabilitiesController::class, 'enrollLiabilities']); 
     Route::post('/updateLiabilitiesStatus/{id}', [LiabilitiesController::class, 'UpdateLiabilitiesStatus']);
     Route::post('/addLiabilitiesDescription/{id}', [LiabilitiesController::class, 'AddLiabilitiesDescription']);
-    Route::post('/approveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'approveAccount']); 
+    Route::post('/approveAssetAccountDh/{id}', [LiabilitiesController::class, 'approveAccountDh']); 
+    Route::post('/approveAssetAccountCa/{id}', [LiabilitiesController::class, 'approveAccountCa']); 
     Route::post('/disApproveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'disApproveAccount']); 
     Route::get('/listTempLiabilities', [LiabilitiesController::class, 'listTemp']); 
     Route::post('/liabilityforApprovalCa', [LiabilitiesController::class, 'forApprovalCa']); 
@@ -295,6 +299,7 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/searchMc', [OGCommunicationController::class, 'searchMc']);
     Route::get('/updateMc', [OGCommunicationController::class, 'update']);
     Route::post('/transmital', [OGCommunicationController::class, 'transmital']);
+    Route::post('/updateOutgoing', [OGCommunicationController::class, 'updateOutgoing']);
 });
 
 Route::prefix('trustfunds')->group(function () {

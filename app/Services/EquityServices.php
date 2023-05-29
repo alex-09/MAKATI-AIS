@@ -37,7 +37,7 @@ class EquityServices
         try {
             COAEquity::create(
                 [
-                    'status' => 'pending'
+                    'status' => 'For Approval - DH'
                 ] +
                     $request->validated(),
             );
@@ -90,16 +90,18 @@ class EquityServices
         ]);
     }
 
-    public function approve($id){
+    public function approveByDh($id){
         $app = COAEquity::find($id);
-        $app->update([
-            'status' => 'enable'
-        ]);
+        $app->update(['status' => 'For Approval - CA']);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Approved Account',
-        ]);
+        return response()->json(['message' => 'Approved Account']);
+    }
+
+    public function approveByCacc($id){
+        $app = COAEquity::find($id);
+        $app->update(['status' => 'enable']);
+
+        return response()->json(['message' => 'Approved Account']);
     }
 
     public function disApprove($id){

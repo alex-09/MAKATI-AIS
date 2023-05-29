@@ -41,9 +41,17 @@ class EquityController extends Controller
         }
     }
 
-    public function approveAccount($id, EquityServices $services){
+    public function approveAccountDh($id, EquityServices $services){
         try{
-            return $services->approve($id);
+            return $services->approveByDh($id);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function approveAccountCa($id, EquityServices $services){
+        try{
+            return $services->approveByCacc($id);
         }catch (\Throwable $th) {
             return $services->error($th);
         }
