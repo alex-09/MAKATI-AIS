@@ -41,9 +41,17 @@ class AssetsController extends Controller
         }
     }
 
-    public function approveAccount($id, AssetsServices $services){
+    public function approveAccountDh($id, AssetsServices $services){
         try{
-            return $services->approve($id);
+            return $services->approveByDh($id);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function approveAccountCa($id, AssetsServices $services){
+        try{
+            return $services->approveByCacc($id);
         }catch (\Throwable $th) {
             return $services->error($th);
         }

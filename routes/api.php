@@ -151,7 +151,8 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollAssets', [AssetsController::class, 'enrollAssets']); 
     Route::post('/updateAssetStatus/{id}', [AssetsController::class, 'UpdateAssetStatus']); 
     Route::post('/addAssetDescription/{id}', [AssetsController::class, 'AddAssetDescription']); 
-    Route::post('/approveAssetAccount/{id}', [AssetsController::class, 'approveAccount']); 
+    Route::post('/approveAssetAccountDh/{id}', [AssetsController::class, 'approveAccountDh']); 
+    Route::post('/approveAssetAccountCa/{id}', [AssetsController::class, 'approveAccountCa']); 
     Route::post('/disApproveAssetAccount/{id}', [AssetsController::class, 'disApproveAccount']); 
     Route::get('/listTempAsset', [AssetsController::class, 'listTemp']); 
     Route::post('/AssetforApprovalCa', [AssetsController::class, 'forApprovalCa']); 
@@ -293,7 +294,7 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/listMc', [OGCommunicationController::class, 'listMc']);
     Route::get('/searchMc', [OGCommunicationController::class, 'searchMc']);
     Route::get('/updateMc', [OGCommunicationController::class, 'update']);
-    Route::get('/transmital', [OGCommunicationController::class, 'transmital']);
+    Route::post('/transmital', [OGCommunicationController::class, 'transmital']);
 });
 
 Route::prefix('trustfunds')->group(function () {

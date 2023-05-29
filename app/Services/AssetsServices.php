@@ -37,7 +37,7 @@ class AssetsServices
         try {
             COAAssets::create(
                 [
-                    'status' => 'pending'
+                    'status' => 'For Approval - DH'
                 ] +
                     $request->validated(),
             );
@@ -72,7 +72,14 @@ class AssetsServices
         return response()->json(['message' => 'Description Updated Success']);
     }
 
-    public function approve($id){
+    public function approveByDh($id){
+        $app = COAAssets::find($id);
+        $app->update(['status' => 'For Approval - CA']);
+
+        return response()->json(['message' => 'Approved Account']);
+    }
+
+    public function approveByCacc($id){
         $app = COAAssets::find($id);
         $app->update(['status' => 'enable']);
 
