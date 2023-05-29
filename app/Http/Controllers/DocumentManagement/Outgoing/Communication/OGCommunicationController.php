@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\CreateCommunication;
+use App\Models\ReceiveCommunications;
 
 class OGCommunicationController extends Controller
 {
@@ -37,6 +38,25 @@ class OGCommunicationController extends Controller
             $update->update($request->all());
 
             return response()->json(['message' => 'Your entry has been successfully saved.']);
+
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => true,
+                'message' => 'Something went wrong!',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function transmital(Request $request){
+        try{
+
+            $transmital = 'COM-2023-0001';
+            
+            if(substr($request->transac_id, 0, 3) == 'COM'){
+                $addTransmital = ReceiveCommunications::whereIn('transaction_id_num', $request->transac_id);
+                $addTransmital->update(['og_transmital_no' => $transmital]);
+            }
 
         }catch(\Throwable $th){
             return response()->json([

@@ -290,6 +290,7 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/listMc', [OGCommunicationController::class, 'listMc']);
     Route::get('/searchMc', [OGCommunicationController::class, 'searchMc']);
     Route::get('/updateMc', [OGCommunicationController::class, 'update']);
+    Route::get('/transmital', [OGCommunicationController::class, 'transmital']);
 });
 
 Route::prefix('trustfunds')->group(function () {
