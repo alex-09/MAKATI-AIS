@@ -40,9 +40,17 @@ class IncomeController extends Controller
         }
     }
 
-    public function approveAccount($id, IncomeServices $services){
+    public function approveAccountDh($id, IncomeServices $services){
         try{
-            return $services->approve($id);
+            return $services->approveByDh($id);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function approveAccountCa($id, IncomeServices $services){
+        try{
+            return $services->approveByCacc($id);
         }catch (\Throwable $th) {
             return $services->error($th);
         }

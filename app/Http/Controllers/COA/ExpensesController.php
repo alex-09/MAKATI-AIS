@@ -39,9 +39,17 @@ class ExpensesController extends Controller
         }
     }
 
-    public function approveAccount($id, ExpensesServices $services){
+    public function approveAccountDh($id, ExpensesServices $services){
         try{
-            return $services->approve($id);
+            return $services->approveByDh($id);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function approveAccountCa($id, ExpensesServices $services){
+        try{
+            return $services->approveByCacc($id);
         }catch (\Throwable $th) {
             return $services->error($th);
         }

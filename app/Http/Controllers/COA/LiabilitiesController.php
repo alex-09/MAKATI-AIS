@@ -41,9 +41,17 @@ class LiabilitiesController extends Controller
         }
     }
 
-    public function approveAccount($id, LiabilitiesServices $services){
+    public function approveAccountDh($id, LiabilitiesServices $services){
         try{
-            return $services->approve($id);
+            return $services->approveByDh($id);
+        }catch (\Throwable $th) {
+            return $services->error($th);
+        }
+    }
+
+    public function approveAccountCa($id, LiabilitiesServices $services){
+        try{
+            return $services->approveByCacc($id);
         }catch (\Throwable $th) {
             return $services->error($th);
         }

@@ -36,7 +36,7 @@ class IncomeServices
     public function enrollIncome(COARequest $request){
             
         COAIncome::create([
-            'status' => 'pending'
+            'status' => 'For Approval - DH'
         ] +
             $request->validated(),
         );
@@ -87,16 +87,18 @@ class IncomeServices
         ]);
     }
 
-    public function approve($id){
+    public function approveByDh($id){
         $app = COAIncome::find($id);
-        $app->update([
-            'status' => 'enable'
-        ]);
+        $app->update(['status' => 'For Approval - CA']);
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Approved Account',
-        ]);
+        return response()->json(['message' => 'Approved Account']);
+    }
+
+    public function approveByCacc($id){
+        $app = COAIncome::find($id);
+        $app->update(['status' => 'enable']);
+
+        return response()->json(['message' => 'Approved Account']);
     }
 
     public function disApprove($id){

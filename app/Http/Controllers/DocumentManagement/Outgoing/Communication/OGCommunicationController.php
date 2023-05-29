@@ -84,4 +84,26 @@ class OGCommunicationController extends Controller
             ]);
         }
     }
+
+    public function updateOutgoing(Request $request){
+        try{
+
+            if(substr($request->transac_id, 0, 3) == "COM"){
+                $addTransmital = ReceiveCommunications::whereIn('transaction_id_num', $request->transac_id);
+                $addTransmital->update($request->except('transac_id'));
+            }else{
+                $addTransmital = CreateCommunication::whereIn('transac_id', $request->transac_id);
+                $addTransmital->update($request->except('transac_id'));
+            }
+
+            return response()->json(['message' => 'Your entry has been successfully saved.']);
+
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => true,
+                'message' => 'Something went wrong!',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
 }
