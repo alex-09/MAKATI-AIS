@@ -359,6 +359,10 @@ Route::prefix('BOT')->group(function () {
     Route::get('/listReceiver', [PrintReceivingReceiptController::class, 'listPrintReceiver']);
     Route::get('/print', [PrintReceivingReceiptController::class, 'print']);
 
+    //OUTGOING
+    Route::get('/list', [OGBotController::class, 'list']);
+    Route::get('/botTransmital', [OGBotController::class, 'transmital']);
+    Route::get('/BotUpdateOutgoing', [OGBotController::class, 'updateOutgoing']);
 });
 
 Route::prefix('ContractPO')->group(function () {
