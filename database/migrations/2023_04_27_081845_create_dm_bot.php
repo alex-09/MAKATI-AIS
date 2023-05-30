@@ -30,6 +30,10 @@ return new class extends Migration
             $table->string('processer')->nullable();
             $table->string('reviewer')->nullable();
             $table->string('status')->nullable();
+            $table->string('og_transmital_no')->nullable();
+            $table->string('og_sender')->nullable();
+            $table->string('og_received_by')->nullable();
+            $table->string('og_date')->nullable();
             $table->timestamps();
         });
     }

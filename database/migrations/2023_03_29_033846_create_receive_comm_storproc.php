@@ -16,7 +16,7 @@ return new class extends Migration
         CREATE PROCEDURE `receive_comm` ()
         BEGIN
         SELECT id, DATE_FORMAT(created_at, '%M %d %Y ') as Date, DATE_FORMAT(created_at, '%h:%i:%s') AS time, 
-        transaction_id_num, sender, subject 
+        transaction_id_num, sender, subject, bearer_name, department
         
         FROM receive_communications;
         END;";

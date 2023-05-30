@@ -66,10 +66,10 @@ use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusiness
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CommunicationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateObligation\UpdateObligationController;
-use App\Http\Controllers\DocumentManagement\Outgoing\Communication\OGCommunicationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
 use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDForProcessController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadActionController;
+use App\Http\Controllers\DocumentManagement\Outgoing\Communications\OGCommunicationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
