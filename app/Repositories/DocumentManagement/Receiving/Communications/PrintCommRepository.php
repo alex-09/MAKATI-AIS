@@ -2,12 +2,16 @@
 
 namespace App\Repositories\DocumentManagement\Receiving\Communications;
 
+use App\Models\ReceiveCommAction;
+use App\Models\ReceiveCommunications;
 use Illuminate\Support\Facades\DB;
 
 class PrintCommRepository
 {
     public function list(){
-        return response()->json(['list' => DB::select('CALL receive_comm()')]);
+        $docu = ReceiveCommunications::select('document')->where('id', 7)->get();
+        return response()->json(['list' => DB::select('CALL receive_comm()'),
+        'docu' => $docu]);
     }
 
     public function print($request){

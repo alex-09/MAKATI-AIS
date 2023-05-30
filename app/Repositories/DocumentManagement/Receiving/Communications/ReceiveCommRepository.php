@@ -22,11 +22,11 @@ class ReceiveCommRepository
         }
 
         $docuFile =  $transac_id.'.'.$request->file('document')->getClientOriginalExtension();
-        $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication'), $docuFile);
+        $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication/'), $docuFile);
 
             ReceiveCommunications::create([
             "transaction_id_num" => $transac_id,
-            "document" => public_path('Document/DocumentManagement/Receiving/Communication').$docuFile
+            "document" => 'Document/DocumentManagement/Receiving/Communication/'.$docuFile
             ] + $request->validated());
 
             ActionHistory::create([

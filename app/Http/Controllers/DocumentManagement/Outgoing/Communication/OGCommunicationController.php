@@ -57,21 +57,23 @@ class OGCommunicationController extends Controller
 
             $table = DmComTransmitalCounter::all();
             if($table->isEmpty()){
-                $transmital = "BOT-" . $date . "-" . str_pad(1, 5, '0', STR_PAD_LEFT);
+                $transmital = "COM-" . $date . "-" . str_pad(1, 5, '0', STR_PAD_LEFT);
             }else{
                 $lastId = DmComTransmitalCounter::latest('id')->select('id')->first();
                 $botId = $lastId['id'];
-                $transmital = "BOT-" . $date . "-" . str_pad(++$botId, 5, '0', STR_PAD_LEFT);
+                $transmital = "COM-" . $date . "-" . str_pad(++$botId, 5, '0', STR_PAD_LEFT);
             }
 
             DmComTransmitalCounter::create(['com_transmital' => $transmital]);
-            
-            if(substr($request->transac_id, 0, 3) == "COM"){
-                $addTransmital = ReceiveCommunications::where('transaction_id_num', $request->transac_id);
-                $addTransmital->update(['og_transmital_no' => $transmital]);
-            }else{
-                $addTransmital = CreateCommunication::where('transac_id', $request->transac_id);
-                $addTransmital->update(['og_transmital_no' => $transmital]);
+
+            for($i=0; $i<count($request->transac_id); $i++){  
+                    if(substr($request->transac_id[$i], 0, 3) == "COM"){
+                        $addTransmital = ReceiveCommunications::where('transaction_id_num', $request->transac_id[$i]);
+                        $addTransmital->update(['og_transmital_no' => $transmital]);
+                    }else{
+                        $addTransmital = CreateCommunication::where('transac_id', $request->transac_id[$i]);
+                        $addTransmital->update(['og_transmital_no' => $transmital]);
+                    }
             }
 
             return response()->json(['message' => 'Your entry has been successfully saved under Transmittal ID Number '.$transmital]);
@@ -88,16 +90,23 @@ class OGCommunicationController extends Controller
     public function updateOutgoing(Request $request){
         try{
 
-            if(substr($request->transac_id, 0, 3) == "COM"){
-                $addTransmital = ReceiveCommunications::whereIn('transaction_id_num', $request->transac_id);
-                $addTransmital->update($request->except('transac_id'));
-            }else{
-                $addTransmital = CreateCommunication::whereIn('transac_id', $request->transac_id);
-                $addTransmital->update($request->except('transac_id'));
+            for($i=0; $i<count($request->transac_id); $i++){  
+                echo $request->transac_id[$i].'<br>';
+                if(substr($request->transac_id[$i], 0, 3) == "COM"){
+                    $addTransmital = ReceiveCommunications::where('transaction_id_num', $request->transac_id[$i]);
+                    $addTransmital->update([
+                        'og_sender' => $request->og_sender,
+                        'og_received_by' => $request->og_received_by,
+                        'og_date' => $request->og_date
+                    ]);
+                }else{
+                    $addTransmital = CreateCommunication::where('transac_id', $request->transac_id[$i]);
+                    $addTransmital->update($request->except('transac_id'));
+                }
             }
 
             return response()->json(['message' => 'Your entry has been successfully saved.']);
-
+            
         }catch(\Throwable $th){
             return response()->json([
                 'status' => true,

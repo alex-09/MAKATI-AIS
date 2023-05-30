@@ -23,7 +23,7 @@ class CreateCommRepository
 
         $id = $request->mc_no == 0 ? $transac_id : $transac_id. '-'. $request->mc_no;
         $docuFile = $id.'.'.$request->file('document')->getClientOriginalExtension();
-        $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication'), $docuFile);
+        $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication/'), $docuFile);
 
         $insertRecCom = CreateCommunication::create([
             'transac_id' => $id,
