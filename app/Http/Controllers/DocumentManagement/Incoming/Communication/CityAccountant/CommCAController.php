@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\ReceiveCommAssignto;
 use App\Http\Controllers\Controller;
+use App\Models\ActionHistory;
 use App\Models\ReceiveCommAction;
 use App\Models\ReceiveCommCluster;
 use App\Models\ReceiveCommRestrict;
@@ -47,5 +48,6 @@ class CommCAController extends Controller
             'list' => DB::select('CALL get_actionhistory_id(?)',array($id)),
             'id' => $id
         ]);
+
     }
 }

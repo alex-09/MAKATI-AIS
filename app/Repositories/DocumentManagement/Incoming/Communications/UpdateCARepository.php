@@ -41,6 +41,5 @@ class UpdateCARepository
             'status' => true,
             'message' => 'updated Successfully',
         ]);
-    }
-        
+    }   
 }
