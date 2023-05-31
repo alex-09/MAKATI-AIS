@@ -17,12 +17,12 @@ return new class extends Migration
         BEGIN
 
         select id, null as mc_no, DATE_FORMAT(created_at, '%M %d %Y ') as date, DATE_FORMAT(created_at, '%h:%i:%s') AS time, transaction_id_num, sender, receive_comm_type_id, subject, drn, reply_to,
-        receive_comm_assignto_id as assign_to, cluster, restriction, action, no_of_days, status, sender, department
+        receive_comm_assignto_id as assign_to, cluster, restriction, action, no_of_days, status, sender, document, department
         from receive_communications
         
         UNION 
 		select id, mc_no, DATE_FORMAT(created_at, '%M %d %Y ') as date, DATE_FORMAT(created_at, '%h:%i:%s') AS time, transac_id as transaction_id_num, sender, receive_comm_type_id, subject, null as drn, reply_to,
-        receive_comm_assignto_id as assign_to, cluster, restriction, action, no_of_days, status, document, null as department
+        receive_comm_assignto_id as assign_to, cluster, restriction, action, no_of_days, status, sender, document, null as department
         from create_communications
 	
         order by time DESC;
