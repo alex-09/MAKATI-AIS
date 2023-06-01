@@ -26,7 +26,7 @@ class IncomeController extends Controller
     //UPDATES STATUS
     public function UpdateIncomeStatus(Request $request, $id, IncomeServices $services){
         try{
-            return $services->updateDesc($request, $id);
+            return $services->updateStatus($request, $id);
         }catch (\Throwable $th){
             return $services->error($th);
         }

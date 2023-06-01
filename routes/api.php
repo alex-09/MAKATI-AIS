@@ -84,6 +84,7 @@ use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\ListPay
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\PrevPayTransacCOntroller;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\EnrollAppropriationController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
+use App\Http\Controllers\DocumentManagement\Outgoing\CheckTranscation\OGCheckTransactionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\DivisionHead\EditPayeeController;
@@ -436,6 +437,11 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/receive-checks', [ReceiveChecksController::class, 'storeReceiveChecks']); 
     Route::get('/receiving-list', [PrintRecivingReceiptController::class, 'listPrintReceiving']); 
     Route::get('/receiving-print', [PrintRecivingReceiptController::class, 'forPrint']); 
+
+    //OUTGOING
+    Route::get('/list', [OGCheckTransactionController::class, 'list']);
+    Route::post('/ctTransmital', [OGCheckTransactionController::class, 'transmital']);
+    Route::post('/ctupdateOutgoing', [OGCheckTransactionController::class, 'updateOutgoing']);
  
  });
 
