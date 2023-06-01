@@ -27,12 +27,13 @@ class NewTransactionRepository{
             $transac_id = "BOT-" . $date . "-" . str_pad(++$botId, 7, '0', STR_PAD_LEFT);
         }
 
-        DMBudgetaryObligationsTransac::create([
+        $data = DMBudgetaryObligationsTransac::create([
             'transaction_id' => $transac_id,
         ] + $request->validated());
 
         return response()->json([
-            'message' => 'Your entry has been successfully saved under Transaction ID Number ' . $transac_id
+            'message' => 'Your entry has been successfully saved under Transaction ID Number ' . $transac_id,
+            'data' => $data
         ], 200);
 
     }

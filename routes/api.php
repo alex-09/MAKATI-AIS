@@ -27,6 +27,7 @@ use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewTRController;
 use App\Http\Controllers\BAT\TrustFund\Processor\ListsrcTRController;
 use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHToApproveController;
 use App\Http\Controllers\BAT\TrustFund\ListObli\ListObligationController;
+use App\Http\Controllers\DocumentManagement\Outgoing\BOT\OGBotController;
 use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHObligationController;
 use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewObligationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\DivisionHead\ApproDHController;
@@ -164,8 +165,8 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollEquity', [EquityController::class, 'enrollEquity']); 
     Route::post('/updateEquityStatus/{id}', [EquityController::class, 'UpdateEquityStatus']); 
     Route::post('/addEquityDescription/{id}', [EquityController::class, 'AddEquityDescription']);
-    Route::post('/approveAssetAccountDh/{id}', [EquityController::class, 'approveAccountDh']); 
-    Route::post('/approveAssetAccountCa/{id}', [EquityController::class, 'approveAccountCa']);  
+    Route::post('/approveEquityAccountDh/{id}', [EquityController::class, 'approveAccountDh']); 
+    Route::post('/approveEquityAccountCa/{id}', [EquityController::class, 'approveAccountCa']);  
     Route::post('/disApproveEquityAccount/{id}', [EquityController::class, 'disApproveAccount']); 
     Route::get('/listTempEquity', [EquityController::class, 'listTemp']); 
     Route::post('/equityforApprovalCa', [EquityController::class, 'forApprovalCa']); 
@@ -177,8 +178,8 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollExpenses', [ExpensesController::class, 'enrollExpenses']);  
     Route::post('/updateExpensesStatus/{id}', [ExpensesController::class, 'UpdateExpensesStatus']); 
     Route::post('/addExpensesDescription/{id}', [ExpensesController::class, 'AddExpensesDescription']);
-    Route::post('/approveAssetAccountDh/{id}', [ExpensesController::class, 'approveAccountDh']); 
-    Route::post('/approveAssetAccountCa/{id}', [ExpensesController::class, 'approveAccountCa']); 
+    Route::post('/approveExpensesAccountDh/{id}', [ExpensesController::class, 'approveAccountDh']); 
+    Route::post('/approveExpensesAccountCa/{id}', [ExpensesController::class, 'approveAccountCa']); 
     Route::post('/disApproveExpensesAccount/{id}', [ExpensesController::class, 'disApproveAccount']); 
     Route::get('/listTempExpenses', [ExpensesController::class, 'listTemp']); 
     Route::post('/expensesforApprovalCa', [ExpensesController::class, 'forApprovalCa']); 
@@ -190,8 +191,8 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollIncome', [IncomeController::class, 'enrollIncome']); 
     Route::post('/updateIncomeStatus/{id}', [IncomeController::class, 'UpdateIncomeStatus']);
     Route::post('/addIncomeDescription/{id}', [IncomeController::class, 'AddIncomeDescription']);
-    Route::post('/approveAssetAccountDh/{id}', [IncomeController::class, 'approveAccountDh']); 
-    Route::post('/approveAssetAccountCa/{id}', [IncomeController::class, 'approveAccountCa']); 
+    Route::post('/approveIncomeAccountDh/{id}', [IncomeController::class, 'approveAccountDh']); 
+    Route::post('/approveIncomeAccountCa/{id}', [IncomeController::class, 'approveAccountCa']); 
     Route::post('/disApproveIncomeAccount/{id}', [IncomeController::class, 'disApproveAccount']); 
     Route::get('/listTempIncome', [IncomeController::class, 'listTemp']); 
     Route::post('/incomeforApprovalCa', [IncomeController::class, 'forApprovalCa']); 
@@ -203,8 +204,8 @@ Route::prefix('coa')->group(function() {
     Route::post('/enrollLiabilities', [LiabilitiesController::class, 'enrollLiabilities']); 
     Route::post('/updateLiabilitiesStatus/{id}', [LiabilitiesController::class, 'UpdateLiabilitiesStatus']);
     Route::post('/addLiabilitiesDescription/{id}', [LiabilitiesController::class, 'AddLiabilitiesDescription']);
-    Route::post('/approveAssetAccountDh/{id}', [LiabilitiesController::class, 'approveAccountDh']); 
-    Route::post('/approveAssetAccountCa/{id}', [LiabilitiesController::class, 'approveAccountCa']); 
+    Route::post('/approveLiabilitiesAccountDh/{id}', [LiabilitiesController::class, 'approveAccountDh']); 
+    Route::post('/approveLiabilitiesAccountCa/{id}', [LiabilitiesController::class, 'approveAccountCa']); 
     Route::post('/disApproveLiabilitiesAccount/{id}', [LiabilitiesController::class, 'disApproveAccount']); 
     Route::get('/listTempLiabilities', [LiabilitiesController::class, 'listTemp']); 
     Route::post('/liabilityforApprovalCa', [LiabilitiesController::class, 'forApprovalCa']); 
@@ -361,8 +362,8 @@ Route::prefix('BOT')->group(function () {
 
     //OUTGOING
     Route::get('/list', [OGBotController::class, 'list']);
-    Route::get('/botTransmital', [OGBotController::class, 'transmital']);
-    Route::get('/BotUpdateOutgoing', [OGBotController::class, 'updateOutgoing']);
+    Route::post('/botTransmital', [OGBotController::class, 'transmital']);
+    Route::post('/BotUpdateOutgoing', [OGBotController::class, 'updateOutgoing']);
 });
 
 Route::prefix('ContractPO')->group(function () {
