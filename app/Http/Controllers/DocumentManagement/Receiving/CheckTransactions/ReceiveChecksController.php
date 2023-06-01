@@ -14,7 +14,7 @@ class ReceiveChecksController extends Controller
     public function storeReceiveChecks(CheckTransacRequest $request){
 
         try{
-            $date = Carbon::now()->format('Y-M');
+            $date = Carbon::now()->format('Y-m');
 
             $table = CTReceiveChecks::all();
             if($table->isEmpty()){
