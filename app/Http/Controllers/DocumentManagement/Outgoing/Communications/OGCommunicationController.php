@@ -28,9 +28,9 @@ class OGCommunicationController extends Controller
         return response()->json(['listMc' => CreateCommunication::all('transac_id')]);
     }
 
-    public function searchMc(Request $request)
+    public function searchMc()
     {
-        return $this->outgoingCommRepo->searchMc($request);
+        return $this->outgoingCommRepo->searchMc();
     }
 
     public function update(Request $request)

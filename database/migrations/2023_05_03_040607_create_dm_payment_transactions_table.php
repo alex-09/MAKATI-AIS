@@ -22,6 +22,12 @@ return new class extends Migration
             $table->bigInteger('current_bearer_contact_number');
             $table->string('current_bearer_email');
             $table->string('status');
+            $table->string('department')->nullable();
+            $table->string('pay_status')->nullable();
+            $table->string('og_transmital_no')->nullable();
+            $table->string('og_sender')->nullable();
+            $table->string('og_received_by')->nullable();
+            $table->string('og_date')->nullable();
             $table->timestamps();
 
             // $table->foreign('payee_name')->references('payee_name')->on('payee');
