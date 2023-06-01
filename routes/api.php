@@ -40,6 +40,7 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ApproReviewerController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
 use App\Http\Controllers\BAT\TrustFund\Report\Dashboard\DashboardReportController;
 use App\Http\Controllers\BAT\TrustFund\Processor\Obligation\TFObligationController;
+use App\Http\Controllers\DocumentManagement\Outgoing\PreAudit\OGPreauditController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrevRecController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\PreviousTransacController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\UnexpendedController;
@@ -49,6 +50,7 @@ use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorContro
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\PrevTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\printPreAudController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\ODReceivingReceiptController;
+use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\OGContractPOController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\LGUCounterPartController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadController;
 use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptOthersController;
@@ -376,6 +378,11 @@ Route::prefix('ContractPO')->group(function () {
     Route::get('/listPrint', [PrintRecController::class, 'print']);
     // Route::get('/listReceiver/{bearer}', [PrintReceivingReceiptController::class, 'searchBearer']);
 
+    //OUTGOING
+    Route::get('/list', [OGContractPOController::class, 'list']);
+    Route::post('/CPTransmital', [OGContractPOController::class, 'transmital']);
+    Route::post('/CPUpdateOutgoing', [OGContractPOController::class, 'updateOutgoing']);
+
  });
 
  Route::prefix('Pre-Audit')->group(function () {
@@ -385,6 +392,9 @@ Route::prefix('ContractPO')->group(function () {
     Route::get('/list', [printPreAudController::class, 'listAll']);
     Route::get('/print', [printPreAudController::class, 'print']);
 
+    Route::get('/list', [OGPreauditController::class, 'list']);
+    Route::post('/preaudTransmital', [OGPreauditController::class, 'transmital']);
+    Route::post('/preaudpdateOutgoing', [OGPreauditController::class, 'updateOutgoing']);
  });
  
  Route::prefix('Payment-Transaction')->group(function () {

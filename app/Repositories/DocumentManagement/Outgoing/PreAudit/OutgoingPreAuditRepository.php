@@ -1,33 +1,33 @@
 <?php
 
-namespace App\Repositories\DocumentManagement\Outgoing\BOT;
+namespace App\Repositories\DocumentManagement\Outgoing\PreAudit;
 
 use Carbon\Carbon;
-use App\Models\DmBotTransmitalCounter;
-use App\Models\DMBudgetaryObligationsTransac;
+use App\Models\DmPreAudit;
+use App\Models\DmContractpo;
+use App\Models\DmPreauditCounter;
 
-class OutgoingBotRepository
+class OutgoingPreAuditRepository
 {
     public function transmital($request)
     {
         try {
-
             $date = Carbon::now()->format('Y');
 
-            $table = DmBotTransmitalCounter::all();
+            $table = DmPreauditCounter::all();
             if ($table->isEmpty()) {
-                $transmital = "BOT-" . $date . "-" . str_pad(1, 5, '0', STR_PAD_LEFT);
+                $transmital = "PT-" . $date . "-" . str_pad(1, 5, '0', STR_PAD_LEFT);
             } else {
-                $lastId = DmBotTransmitalCounter::latest('id')->select('id')->first();
+                $lastId = DmPreauditCounter::latest('id')->select('id')->first();
                 $botId = $lastId['id'];
-                $transmital = "BOT-" . $date . "-" . str_pad(++$botId, 5, '0', STR_PAD_LEFT);
+                $transmital = "PT-" . $date . "-" . str_pad(++$botId, 5, '0', STR_PAD_LEFT);
             }
 
-            DmBotTransmitalCounter::create(['bot_transmital' => $transmital]);
+            DmPreauditCounter::create(['preaud_transmital' => $transmital]);
 
             for ($i = 0; $i < count($request->transac_id); $i++) {
 
-                $addTransmital = DMBudgetaryObligationsTransac::where('transaction_id', $request->transac_id[$i]);
+                $addTransmital = DmPreAudit::where('transaction_id', $request->transac_id[$i]);
                 $addTransmital->update(['og_transmital_no' => $transmital]);
             }
 
@@ -47,7 +47,7 @@ class OutgoingBotRepository
 
             for ($i = 0; $i < count($request->transac_id); $i++) {
 
-                $addTransmital = DMBudgetaryObligationsTransac::where('transaction_id', $request->transac_id[$i]);
+                $addTransmital = DmPreAudit::where('transaction_id', $request->transac_id[$i]);
                 $addTransmital->update([
                     'og_sender' => $request->og_sender,
                     'og_received_by' => $request->og_received_by,
