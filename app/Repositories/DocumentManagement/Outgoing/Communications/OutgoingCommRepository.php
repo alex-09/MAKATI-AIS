@@ -9,10 +9,10 @@ use App\Models\DmComTransmitalCounter;
 
 class OutgoingCommRepository
 {
-    public function searchMc($request)
+    public function searchMc()
     {
         try {
-            return response()->json(['data' => CreateCommunication::where('transac_id', $request->mc_no)->first()]);
+            return response()->json(['data' => CreateCommunication::all()]);
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => true,

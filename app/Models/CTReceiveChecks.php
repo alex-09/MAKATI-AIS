@@ -29,6 +29,14 @@ class CTReceiveChecks extends Model
         'bearer_name',
         'department_office',
         'contact_no',
-        'email'
+        'email',
+        'status',
+        'aa_no',
+        'aa_date',
+        'dv_date',
+        'og_transmital_no',
+        'og_sender',
+        'og_received_by',
+        'og_date'
     ];
 }

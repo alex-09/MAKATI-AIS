@@ -19,5 +19,11 @@ class DmPaymentTransaction extends Model
         'current_bearer_contact_number',
         'current_bearer_email',
         'status',
+        'department',
+        'pay_status',
+        'og_transmital_no',
+        'og_sender',
+        'og_received_by',
+        'og_date'
     ];
 }

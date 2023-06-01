@@ -74,6 +74,7 @@ use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDForProc
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadActionController;
 use App\Http\Controllers\DocumentManagement\Outgoing\Communications\OGCommunicationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\DonationPrivateSectorController;
+use App\Http\Controllers\DocumentManagement\Outgoing\PaymentTransaction\OGPaytransacController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ListAppropriationController;
@@ -405,6 +406,10 @@ Route::prefix('ContractPO')->group(function () {
     Route::get('/listPT', [ListPayTransacController::class, 'list']);
     Route::get('/printPT', [ListPayTransacController::class, 'print']);
 
+    //OUTGOING
+    Route::get('/list', [OGPaytransacController::class, 'list']);
+    Route::post('/paytransacTransmital', [OGPaytransacController::class, 'transmital']);
+    Route::post('/paytransacupdateOutgoing', [OGPaytransacController::class, 'updateOutgoing']);
  });
 
  Route::prefix('Payee-Enroll')->group(function () {
