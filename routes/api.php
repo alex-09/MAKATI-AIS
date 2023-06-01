@@ -302,7 +302,7 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/listOutgoing', [OGCommunicationController::class, 'list']);
     Route::get('/listMc', [OGCommunicationController::class, 'listMc']);
     Route::get('/searchMc', [OGCommunicationController::class, 'searchMc']);
-    Route::get('/updateMc', [OGCommunicationController::class, 'update']);
+    Route::post('/updateMc', [OGCommunicationController::class, 'update']);
     Route::post('/transmital', [OGCommunicationController::class, 'transmital']);
     Route::post('/updateOutgoing', [OGCommunicationController::class, 'updateOutgoing']);
 });
