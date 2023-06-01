@@ -11,8 +11,10 @@ class DmContractpo extends Model
 
     protected $fillable = [
         'transaction_id',
+        'type',
         'contract_no',
         'po_no',
+        'po_date',
         'payee_name',
         'department_id',
         'amount',
@@ -23,5 +25,9 @@ class DmContractpo extends Model
         'current_bearer_email',
         'assign_to',
         'status',
+        'og_transmital_no',
+        'og_sender',
+        'og_received_by',
+        'og_date'
     ];
 }

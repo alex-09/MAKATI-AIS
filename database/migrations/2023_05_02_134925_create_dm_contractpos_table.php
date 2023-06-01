@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('dm_contractpos', function (Blueprint $table) {
             $table->id();
             $table->string('transaction_id')->index();
+            $table->string('type')->nullable();
             $table->string('contract_no')->nullable();
             $table->string('po_no')->nullable();
+            $table->string('po_date')->nullable();
             $table->string('payee_name');
             $table->integer('department_id');
             $table->float('amount', 17, 3);
@@ -26,6 +28,10 @@ return new class extends Migration
             $table->string('current_bearer_email');
             $table->string('assign_to')->nullable();
             $table->string('status');
+            $table->string('og_transmital_no')->nullable();
+            $table->string('og_sender')->nullable();
+            $table->string('og_received_by')->nullable();
+            $table->string('og_date')->nullable();
             $table->timestamps();
 
         });

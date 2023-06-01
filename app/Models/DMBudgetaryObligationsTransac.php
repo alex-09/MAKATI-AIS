@@ -27,7 +27,11 @@ class DMBudgetaryObligationsTransac extends Model
         'furs_id',
         'cafoa_id',
         'type',
-        'number'
+        'number',
+        'og_transmital_no',
+        'og_sender',
+        'og_received_by',
+        'og_date'
     ];
 
     protected $casts = [

@@ -16,7 +16,7 @@ return new class extends Migration
         CREATE PROCEDURE `list_bot_outgoing` ()
         BEGIN
 
-        SELECT DATE_FORMAT(created_at, '%M %d %Y ') AS date,
+        SELECT DATE_FORMAT(dm_bot.created_at, '%M %d %Y ') AS date,
             og_transmital_no,
             transaction_id,
             departments.department_name,

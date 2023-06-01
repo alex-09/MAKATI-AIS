@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('sub_sub_ledger_accounts');
             $table->string('account_code');
             $table->string('account_title');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('status');
             $table->string('date_effect_index')->nullable();
             $table->string('date_effectivity');
