@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('current_bearer_contact_number');
             $table->string('current_bearer_email');
             $table->string('status');
+            $table->string('og_transmital_no')->nullable();
+            $table->string('og_sender')->nullable();
+            $table->string('og_received_by')->nullable();
+            $table->string('og_date')->nullable();
             $table->timestamps();
         });
     }

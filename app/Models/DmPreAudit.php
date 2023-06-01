@@ -18,6 +18,10 @@ class DmPreAudit extends Model
         'current_bearer_dept',
         'current_bearer_contact_number',
         'current_bearer_email',
-        'status'
+        'status',
+        'og_transmital_no',
+        'og_sender',
+        'og_received_by',
+        'og_date'
     ];
 }

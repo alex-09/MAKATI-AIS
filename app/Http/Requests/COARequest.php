@@ -30,7 +30,7 @@ class COARequest extends FormRequest
             'sub_sub_ledger_accounts' => ['required','max:3','min:3'],
             'account_title' => 'required',
             'account_code' => 'string',
-            'description' => 'string',
+            'description' => '',
             'date_effectivity' => 'string',
             'coa_title' => 'string'
         ];
