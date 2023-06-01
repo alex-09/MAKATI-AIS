@@ -73,7 +73,7 @@ class AssetsServices
     }
 
     public function approveByDh($id){
-        dd($app = COAAssets::where('id', $id));
+        $app = COAAssets::find('id', $id);
         $app->update(['status' => 'For Approval - CA']);
 
         return response()->json(['message' => 'Approved Account']);
