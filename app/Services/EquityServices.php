@@ -79,7 +79,7 @@ class EquityServices
 
     public function updateDesc(Request $request, $id){
 
-        $assetDescrip = COAEquity::find($id)->first();
+        $assetDescrip = COAEquity::find($id);
         $assetDescrip->update([ 
             'description' => $request->description
         ]);
