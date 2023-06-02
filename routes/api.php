@@ -224,7 +224,7 @@ Route::prefix('coa')->group(function() {
     Route::post('/importIncome', [IncomeImportController::class, 'import']); 
 
     Route::get('/exportAsset', [AssetExportController::class, 'export']); 
-    Route::get('/exportLiability', [LiabilityExportController::class, 'export']); 
+    Route::get('/exportLiabilities', [LiabilityExportController::class, 'export']); 
     Route::get('/exportEquity', [EquityExportController::class, 'export']); 
     Route::get('/exportExpenses', [ExpensesExportController::class, 'export']); 
     Route::get('/exportIncome', [IncomeExportController::class, 'export']); 
