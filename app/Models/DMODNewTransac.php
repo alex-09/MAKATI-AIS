@@ -20,7 +20,15 @@ class DMODNewTransac extends Model
         'bearer_name',
         'department_office',
         'contact_no',
-        'email'
+        'email',
+        'status',
+        'department',
+        'document_type',
+        'document_no',
+        'og_transmital_no',
+        'og_sender',
+        'og_received_by',
+        'og_date'
 
     ];
 }

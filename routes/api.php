@@ -25,6 +25,7 @@ use App\Http\Controllers\BAT\TrustFund\ListTr\ListTRController;
 use App\Http\Controllers\COA\Import\LiabilitiesImportController;
 use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewTRController;
 use App\Http\Controllers\BAT\TrustFund\Processor\ListsrcTRController;
+use App\Http\Controllers\Documentmanagement\Outgoing\OD\OGOdController;
 use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHToApproveController;
 use App\Http\Controllers\BAT\TrustFund\ListObli\ListObligationController;
 use App\Http\Controllers\DocumentManagement\Outgoing\BOT\OGBotController;
@@ -79,6 +80,7 @@ use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantA
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ListAppropriationController;
 use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDActionHistoryController;
+use App\Http\Controllers\DocumentManagement\Outgoing\PayrollApointment\OPayrollAppointController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\ListPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\PrevPayTransacCOntroller;
@@ -86,6 +88,7 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\EnrollAppro
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
 use App\Http\Controllers\DocumentManagement\Outgoing\CheckTranscation\OGCheckTransactionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
+use App\Http\Controllers\DocumentManagement\Outgoing\CollectionDeposit\OGCollectionDepositController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\PrintRecivingReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\DivisionHead\EditPayeeController;
 use App\Http\Controllers\DocumentManagement\Receiving\IncomeRelatedDocument\CollectionDepositController;
@@ -451,6 +454,11 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/receive-appointment', [PayrollsAndAppointmentController::class, 'payrollAppointment']); 
     Route::get('/list', [PayrollAppointmentReceivingController::class, 'list']); 
     Route::get('/print', [PayrollAppointmentReceivingController::class, 'print']); 
+
+    //OUTGOING
+    Route::get('/listoutgoing', [OPayrollAppointController::class, 'list']);
+    Route::post('/paTransmital', [OPayrollAppointController::class, 'transmital']);
+    Route::post('/paupdateOutgoing', [OPayrollAppointController::class, 'updateOutgoing']);
  
  });
 
@@ -462,6 +470,11 @@ Route::prefix('ContractPO')->group(function () {
  
     Route::get('/cd-for-process', [CDForProcessController::class, 'cdForProcess']); 
     Route::get('/cd-action-history', [CDActionHistoryController::class, 'cdActionHistory']); 
+
+    //OUTGOING
+    Route::get('/listoutgoing', [OGCollectionDepositController::class, 'list']);
+    Route::post('/rcdTransmital', [OGCollectionDepositController::class, 'transmital']);
+    Route::post('/rcdupdateOutgoing', [OGCollectionDepositController::class, 'updateOutgoing']);
  });
 
  Route::prefix('DO')->group(function () {
@@ -471,6 +484,11 @@ Route::prefix('ContractPO')->group(function () {
     Route::post('/update', [PreviousTransacController::class, 'update']); 
     Route::get('/list', [ODReceivingReceiptController::class, 'list']);
     Route::get('/print', [ODReceivingReceiptController::class, 'print']);
+
+    //OUTGOING
+    Route::get('/listoutgoing', [OGOdController::class, 'list']);
+    Route::post('/odTransmital', [OGOdController::class, 'transmital']);
+    Route::post('/odupdateOutgoing', [OGOdController::class, 'updateOutgoing']);
  
  });
 
