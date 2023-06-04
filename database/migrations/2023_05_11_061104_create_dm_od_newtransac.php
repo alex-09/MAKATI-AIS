@@ -21,6 +21,14 @@ return new class extends Migration
             $table->string('department_office');
             $table->string('contact_no');
             $table->string('email');
+            $table->string('status')->nullable();
+            $table->string('department')->nullable();
+            $table->string('document_type')->nullable();
+            $table->string('document_no')->nullable();
+            $table->string('og_transmital_no')->nullable();
+            $table->string('og_sender')->nullable();
+            $table->string('og_received_by')->nullable();
+            $table->string('og_date')->nullable();
             $table->timestamps();
         });
     }

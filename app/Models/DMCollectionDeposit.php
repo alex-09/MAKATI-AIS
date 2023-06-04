@@ -29,7 +29,14 @@ class DMCollectionDeposit extends Model
             'address',
             'department_office',
             'bearer_contact_no',
-            'status'
-
+            'status',
+            'department',
+            'source_document',
+            'remarks',
+            'og_transmital_no',
+            'og_sender',
+            'og_received_by',
+            'og_date'
+            
     ];
 }

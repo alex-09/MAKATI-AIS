@@ -32,7 +32,12 @@ class DMPaymentAppointment extends Model
         'bearer_contact',
         'bearer_dept',
         'document',
-        'status'
+        'appointment_status',
+        'status',
+        'og_transmital_no',
+        'og_sender',
+        'og_received_by',
+        'og_date'
 
     ];
 }

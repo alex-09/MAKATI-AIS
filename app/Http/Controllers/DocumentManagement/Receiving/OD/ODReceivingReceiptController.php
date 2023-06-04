@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\DocumentManagement\Receiving\OD;
 
 use App\Http\Controllers\Controller;
-use App\Models\DMODNewTransac;
-use App\Models\DMODPreviousTransac;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 

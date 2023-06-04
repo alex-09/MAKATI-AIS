@@ -30,6 +30,13 @@ return new class extends Migration
             $table->string('department_office');
             $table->string('bearer_contact_no');
             $table->string('status')->nullable();
+            $table->string('department')->nullable();
+            $table->string('source_document')->nullable();
+            $table->string('remarks')->nullable();
+            $table->string('og_transmital_no')->nullable();
+            $table->string('og_sender')->nullable();
+            $table->string('og_received_by')->nullable();
+            $table->string('og_date')->nullable();
             $table->timestamps();
         });
     }
