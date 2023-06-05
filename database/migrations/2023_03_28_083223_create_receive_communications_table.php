@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('receive_comm_type_id');
             $table->string('subject');
             $table->string('department');
+            $table->string('particulars');
             $table->string('email');
             $table->string('DRN');
             $table->string('reply_to');

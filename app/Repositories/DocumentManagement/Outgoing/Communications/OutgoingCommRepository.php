@@ -80,16 +80,16 @@ class OutgoingCommRepository
     {
         try {
 
-            for ($i = 0; $i < count($request->transac_id); $i++) {
+            for ($i = 0; $i < count($request->transmital_no); $i++) {
                 if (substr($request->transac_id[$i], 0, 3) == "COM") {
-                    $addTransmital = ReceiveCommunications::where('transaction_id_num', $request->transac_id[$i]);
+                    $addTransmital = ReceiveCommunications::where('og_transmital_no', $request->transmital_no[$i]);
                     $addTransmital->update([
                         'og_sender' => $request->og_sender,
                         'og_received_by' => $request->og_received_by,
                         'og_date' => $request->og_date
                     ]);
                 } else {
-                    $addTransmital = CreateCommunication::where('transac_id', $request->transac_id[$i]);
+                    $addTransmital = CreateCommunication::where('og_transmital_no', $request->transmital_no[$i]);
                     $addTransmital->update($request->except('transac_id'));
                 }
             }

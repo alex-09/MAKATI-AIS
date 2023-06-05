@@ -35,7 +35,9 @@ return new class extends Migration
 
         FROM ct_receive_checks
         join departments
-        on ct_receive_checks.department_office = departments.department_code;
+        on ct_receive_checks.department_office = departments.department_code
+        where status = 'For Outgoing'
+        order by dm_od_newtransac.created_at DESC;
 
         END";
 

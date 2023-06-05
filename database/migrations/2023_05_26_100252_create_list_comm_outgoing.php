@@ -19,9 +19,10 @@ return new class extends Migration
         select *
         from(
             select DATE_FORMAT(created_at, '%M %d %Y ') as date, 
-                        DATE_FORMAT(created_at, '%h:%i:%s') AS time,
                         og_transmital_no, 
                         transaction_id_num, 
+                        department,
+                        particulars,
                         og_memo_no, 
                         receive_comm_type_id, 
                         null as receiver, 
@@ -32,13 +33,14 @@ return new class extends Migration
                         og_date,
                         status
                 from receive_communications
-                where status = 'For outgoing'
+                where status = 'For Outgoing'
                 
                 UNION 
                 select DATE_FORMAT(created_at, '%M %d %Y ') as date, 
-                        DATE_FORMAT(created_at, '%h:%i:%s') AS time,
                         og_transmital_no, 
                         transac_id as transaction_id_num, 
+                        department,
+						particulars,
                         og_memo_no, 
                         receive_comm_type_id, 
                         null as receiver, 
@@ -49,9 +51,9 @@ return new class extends Migration
                         og_date,
                         status
                 from create_communications 
-                    where status = 'For outgoing'
+                where status = 'For Outgoing'
             )list
-            order by time;
+            order by dm_od_newtransac.created_at DESC;
         END";
 
         DB::unprepared($procedure); 

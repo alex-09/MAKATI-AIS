@@ -28,7 +28,9 @@ return new class extends Migration
 
         FROM dm_od_newtransac
         join departments
-        on dm_od_newtransac.department = departments.department_code;
+        on dm_od_newtransac.department = departments.department_code
+        where status = 'For Outgoing'
+        order by dm_od_newtransac.created_at DESC;
 
         END";
 

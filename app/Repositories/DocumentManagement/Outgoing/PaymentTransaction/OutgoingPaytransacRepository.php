@@ -44,9 +44,9 @@ class OutgoingPaytransacRepository
     {
         try {
 
-            for ($i = 0; $i < count($request->transac_id); $i++) {
+            for ($i = 0; $i < count($request->transmital_no); $i++) {
 
-                $addTransmital = DmPaymentTransaction::where('transac_id', $request->transac_id[$i]);
+                $addTransmital = DmPaymentTransaction::where('og_transmital_no', $request->transmital_no[$i]);
                 $addTransmital->update([
                     'og_sender' => $request->og_sender,
                     'og_received_by' => $request->og_received_by,
