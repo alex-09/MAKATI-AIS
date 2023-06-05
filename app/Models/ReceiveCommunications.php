@@ -21,6 +21,7 @@ class ReceiveCommunications extends Model
         'DRN',
         'reply_to',
         'sender',
+        'particulars',
         'contact_no',
         'bearer_name',
         'bearer_address',

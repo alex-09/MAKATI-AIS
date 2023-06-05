@@ -397,7 +397,7 @@ Route::prefix('ContractPO')->group(function () {
     Route::get('/list', [printPreAudController::class, 'listAll']);
     Route::get('/print', [printPreAudController::class, 'print']);
 
-    Route::get('/list', [OGPreauditController::class, 'list']);
+    Route::get('/listoutgoing', [OGPreauditController::class, 'list']);
     Route::post('/preaudTransmital', [OGPreauditController::class, 'transmital']);
     Route::post('/preaudpdateOutgoing', [OGPreauditController::class, 'updateOutgoing']);
  });

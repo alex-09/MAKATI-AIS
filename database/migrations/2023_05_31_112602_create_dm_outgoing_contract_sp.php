@@ -35,7 +35,9 @@ return new class extends Migration
 
         FROM dm_contractpos
         join departments
-        on dm_contractpos.department_id = departments.department_code;
+        on dm_contractpos.department_id = departments.department_code
+		where status = 'For Outgoing'
+        order by dm_od_newtransac.created_at DESC;
 
         END";
 
