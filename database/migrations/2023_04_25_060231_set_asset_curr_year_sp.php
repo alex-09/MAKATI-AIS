@@ -17,7 +17,9 @@ return new class extends Migration
         BEGIN
 
             SELECT date_effectivity FROM coa_assets AS curr
-            group by curr.date_effectivity DESC limit 1;
+            WHERE date_effectivity IN (SELECT MAX(date_effectivity) 
+            from coa_assets) ORDER BY date_effectivity
+            group by date_effectivity DESC;
 
         END
         ";

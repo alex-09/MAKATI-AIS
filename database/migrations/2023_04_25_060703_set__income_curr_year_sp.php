@@ -16,8 +16,10 @@ return new class extends Migration
         CREATE PROCEDURE `get_incomeSetYear` ()
         BEGIN
 
-            SELECT date_effectivity FROM coa_income AS curr
-            group by curr.date_effectivity DESC limit 1;
+            SELECT date_effectivity FROM coa_income
+            WHERE date_effectivity IN (SELECT MAX(date_effectivity) 
+            from coa_income) ORDER BY date_effectivity
+            group by date_effectivity DESC;
 
         END";
 

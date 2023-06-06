@@ -16,8 +16,10 @@ return new class extends Migration
         CREATE PROCEDURE `get_equitySetYear` ()
         BEGIN
 
-            SELECT date_effectivity FROM coa_equity AS curr
-            group by curr.date_effectivity DESC limit 1;
+            SELECT date_effectivity FROM coa_equity
+            WHERE date_effectivity IN (SELECT MAX(date_effectivity) 
+            from coa_equity) ORDER BY date_effectivity
+            group by date_effectivity DESC;
 
         END";
 
