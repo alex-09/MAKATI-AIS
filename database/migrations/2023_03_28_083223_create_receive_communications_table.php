@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('transaction_id_num', 32);
             $table->string('receive_comm_type_id');
             $table->string('subject');
-            $table->string('department');
-            $table->string('particulars');
+            $table->string('department')->nullable();
+            $table->string('particulars')->nullable();
             $table->string('email');
             $table->string('DRN');
             $table->string('reply_to');

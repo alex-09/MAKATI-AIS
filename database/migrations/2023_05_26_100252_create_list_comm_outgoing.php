@@ -53,7 +53,7 @@ return new class extends Migration
                 from create_communications 
                 where status = 'For Outgoing'
             )list
-            order by dm_od_newtransac.created_at DESC;
+            order by date DESC;
         END";
 
         DB::unprepared($procedure); 

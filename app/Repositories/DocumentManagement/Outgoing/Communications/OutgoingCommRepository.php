@@ -90,7 +90,11 @@ class OutgoingCommRepository
                     ]);
                 } else {
                     $addTransmital = CreateCommunication::where('og_transmital_no', $request->transmital_no[$i]);
-                    $addTransmital->update($request->except('transac_id'));
+                    $addTransmital->update([
+                        'og_sender' => $request->og_sender,
+                        'og_received_by' => $request->og_received_by,
+                        'og_date' => $request->og_date
+                    ]);
                 }
             }
 
