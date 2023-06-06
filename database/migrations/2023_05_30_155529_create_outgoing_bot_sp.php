@@ -32,7 +32,7 @@ return new class extends Migration
         join departments
         on dm_bot.department_id = departments.department_code
 		where status = 'For Outgoing'
-        order by dm_od_newtransac.created_at DESC;
+        order by date DESC;
 
         END";
 
