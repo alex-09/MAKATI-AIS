@@ -18,8 +18,9 @@ return new class extends Migration
 
             SELECT date_effectivity FROM coa_liabilities
             WHERE date_effectivity IN (SELECT MAX(date_effectivity) 
-            from coa_liabilities) ORDER BY date_effectivity
-            group by date_effectivity DESC;
+            from coa_liabilities)
+            group by date_effectivity
+            ORDER BY date_effectivity DESC;
 
         END";
 
