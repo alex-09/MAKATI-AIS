@@ -21,8 +21,7 @@ return new class extends Migration
             from coa_assets) ORDER BY date_effectivity
             group by date_effectivity DESC;
 
-        END
-        ";
+        END";
         
         DB::unprepared($procedure);
     }
