@@ -17,9 +17,16 @@ return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['POST', 'GET', 'DELETE', 'PUT', '*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => [
+        'http://127.0.0.1:80',
+        'http://127.0.0.1:80',
+        'http://makati-ais.com',
+        'http://makati-ais-api.com',
+        'http://ais.simplevia.com',
+        'http://ais-api.simplevia.com',
+    ],
 
     'allowed_origins_patterns' => [],
 
