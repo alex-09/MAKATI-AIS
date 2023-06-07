@@ -16,9 +16,7 @@ return new class extends Migration
         CREATE PROCEDURE `get_prevYear`()
         BEGIN
             SELECT date_effectivity, coa_title
-                FROM `makati-ais`.coa_assets
-                WHERE date_effectivity NOT 
-                IN (SELECT MAX(date_effectivity) from coa_assets)
+                FROM `makati-ais`.coa_assets_previouses
                 GROUP BY date_effectivity, 
                 coa_title
                 ORDER BY date_effectivity DESC;

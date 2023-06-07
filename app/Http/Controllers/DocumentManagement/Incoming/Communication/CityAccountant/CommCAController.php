@@ -40,7 +40,10 @@ class CommCAController extends Controller
         return $this->updateCARepo->update($request);
     }
 
-    public function document(){
+    public function document($pdf){
+        dd($pdfUrl = asset('Document/DocumentManagement/Receiving/Communication/'. $pdf));
+
+        return response()->json(['url' => $pdfUrl]);
     }
 
     public function actionHistory($id){

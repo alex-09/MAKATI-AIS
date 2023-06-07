@@ -17,7 +17,6 @@ return new class extends Migration
         BEGIN
             select *
             from coa_expenses
-            where date_effectivity = ( select max(date_effectivity) from coa_expenses )
             order by account_code asc;
         END
         ";

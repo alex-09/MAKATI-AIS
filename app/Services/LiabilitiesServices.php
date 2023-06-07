@@ -7,6 +7,7 @@ use App\Models\COALiabilities;
 use App\Http\Requests\COARequest;
 use App\Models\COALiabilitiesTemp;
 use Illuminate\Support\Facades\DB;
+use App\Models\COALiabilitiesPrevious;
 
 class LiabilitiesServices 
 {
@@ -123,10 +124,16 @@ class LiabilitiesServices
 
 
     public function approveByCa($request){
-            COALiabilitiesTemp::whereIn('id', $request->id)->each(function ($newRecord){
-                $newRecord->update(['approval_status' => 'Approved']);
-                $newRecord->replicate()->setTable('coa_liabilities')->save();   
-            });
+
+        COALiabilities::all()->each(function ($newRecord){
+            $newRecord->replicate()->setTable('coa_liabilities_previouses')->save();
+            $newRecord->delete();
+        });
+
+        COALiabilitiesTemp::whereIn('id', $request->id)->each(function ($newRecord){
+            $newRecord->update(['approval_status' => 'Approved']);
+            $newRecord->replicate()->setTable('coa_liabilities')->save();   
+        });
         COALiabilitiesTemp::whereIn('id', $request->id)->delete();
 
         return response()->json(['message' => 'Approved and Successfully moved to current']);

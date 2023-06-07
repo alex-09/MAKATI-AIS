@@ -16,7 +16,7 @@ return new class extends Migration
         CREATE PROCEDURE `slct_LiabilitiesSelectDate` (IN slctdate VARCHAR(15))
         BEGIN
             select *
-            from coa_liabilities AS coa
+            from coa_liabilities_previouses AS coa
             where coa.date_effectivity = slctdate
             order by  account_code ASC;
         END
