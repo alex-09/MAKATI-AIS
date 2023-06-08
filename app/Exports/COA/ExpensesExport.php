@@ -3,6 +3,7 @@
 namespace App\Exports\COA;
 
 use App\Models\COAExpenses;
+use App\Models\COAExpensesPrevious;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -22,7 +23,7 @@ class ExpensesExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        return COAExpenses::where('date_effectivity', $this->date)->select(
+        return COAExpensesPrevious::where('date_effectivity', $this->date)->select(
             'account_group',
             'major_account_group',
             'sub_major_account_group',

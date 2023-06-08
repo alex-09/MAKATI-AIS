@@ -3,6 +3,7 @@
 namespace App\Exports\COA;
 
 use App\Models\COAAssets;
+use App\Models\COAAssetsPrevious;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
@@ -22,7 +23,7 @@ class AssetExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        return COAAssets::where('date_effectivity', $this->date)->select(
+        return COAAssetsPrevious::where('date_effectivity', $this->date)->select(
             'account_group',
             'major_account_group',
             'sub_major_account_group',

@@ -3,6 +3,7 @@
 namespace App\Exports\COA;
 
 use App\Models\COAIncome;
+use App\Models\COAIncomePrevious;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -22,7 +23,7 @@ class IncomeExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        return COAIncome::where('date_effectivity', $this->date)->select(
+        return COAIncomePrevious::where('date_effectivity', $this->date)->select(
             'account_group',
             'major_account_group',
             'sub_major_account_group',

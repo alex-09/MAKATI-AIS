@@ -127,10 +127,11 @@ class EquityServices
     }
 
     public function approveByCa($request){
-        
-        $accounts = COAEquity::all();
-        $accounts->replicate()->setTable('coa_equity_previouses')->save();
-        $accounts->delete();
+
+        COAEquity::all()->each(function ($newRecord){
+            $newRecord->replicate()->setTable('coa_equity_previouses')->save();
+            $newRecord->delete();
+        });
 
         COAEquityTemp::whereIn('id', $request->id)->each(function ($newRecord){
             $newRecord->update(['approval_status' => 'Approved']);

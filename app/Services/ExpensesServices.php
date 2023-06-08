@@ -125,9 +125,10 @@ class ExpensesServices
 
     public function approveByCa($request){
 
-        $accounts = COAExpenses::all();
-        $accounts->replicate()->setTable('coa_expenses_previouses')->save();
-        $accounts->truncate();
+        COAExpenses::all()->each(function ($newRecord){
+            $newRecord->replicate()->setTable('coa_expenses_previouses')->save();
+            $newRecord->delete();
+        });
 
         COAExpensesTemp::whereIn('id', $request->id)->each(function ($newRecord){
             $newRecord->update(['approval_status' => 'Approved']);

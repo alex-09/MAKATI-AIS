@@ -107,9 +107,10 @@ class AssetsServices
 
     public function approveByCa($request){
 
-        $accounts = COAAssets::all();
-        $accounts->replicate()->setTable('coa_assets_previouses')->save();
-        $accounts->truncate();
+        COAAssets::all()->each(function ($newRecord){
+            $newRecord->replicate()->setTable('coa_assets_previouses')->save();
+            $newRecord->delete();
+        });
 
         COAAssetsTemp::whereIn('id', $request->id)->each(function ($newRecord){
             $newRecord->update(['approval_status' => 'Approved']);
