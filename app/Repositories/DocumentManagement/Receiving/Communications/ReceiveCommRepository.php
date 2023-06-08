@@ -26,7 +26,7 @@ class ReceiveCommRepository
 
             ReceiveCommunications::create([
             "transaction_id_num" => $transac_id,
-            "document" => public_path('Document/DocumentManagement/Receiving/Communication/').$docuFile
+            "document" => $docuFile
             ] + $request->validated());
 
             ActionHistory::create([
