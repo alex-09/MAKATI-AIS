@@ -3,6 +3,7 @@
 namespace App\Exports\COA;
 
 use App\Models\COALiabilities;
+use App\Models\COALiabilitiesPrevious;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -22,7 +23,7 @@ class LiabilityExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        return COALiabilities::where('date_effectivity', $this->date)->select(
+        return COALiabilitiesPrevious::where('date_effectivity', $this->date)->select(
             'account_group',
             'major_account_group',
             'sub_major_account_group',

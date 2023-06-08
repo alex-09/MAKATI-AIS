@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('create_communications', function (Blueprint $table) {
             $table->id();
-            $table->string('transac_id');
+            $table->string('transac_id')->nullable();
             $table->string('receive_comm_type_id');
             $table->string('mc_no');
             $table->string('sender');

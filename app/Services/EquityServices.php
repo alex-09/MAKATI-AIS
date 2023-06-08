@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\COAEquityTemp;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\COARequest;
+use App\Models\COAEquityPrevious;
 use Illuminate\Support\Facades\DB;
 
 class EquityServices 
@@ -126,6 +127,12 @@ class EquityServices
     }
 
     public function approveByCa($request){
+
+        COAEquity::all()->each(function ($newRecord){
+            $newRecord->replicate()->setTable('coa_equity_previouses')->save();
+            $newRecord->delete();
+        });
+
         COAEquityTemp::whereIn('id', $request->id)->each(function ($newRecord){
             $newRecord->update(['approval_status' => 'Approved']);
             $newRecord->replicate()->setTable('coa_equity')->save();

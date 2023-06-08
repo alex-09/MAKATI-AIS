@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\COAIncomeTemp;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\COARequest;
+use App\Models\COAIncomePrevious;
 use Illuminate\Support\Facades\DB;
 
 class IncomeServices 
@@ -123,6 +124,12 @@ class IncomeServices
     }
 
     public function approveByCa($request){
+
+        COAIncome::all()->each(function ($newRecord){
+            $newRecord->replicate()->setTable('coa_income_previouses')->save();
+            $newRecord->delete();
+        });
+
         COAIncomeTemp::whereIn('id', $request->id)->each(function ($newRecord){
             $newRecord->update(['approval_status' => 'Approved']);
             $newRecord->replicate()->setTable('coa_income')->save();

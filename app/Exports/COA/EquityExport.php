@@ -3,6 +3,7 @@
 namespace App\Exports\COA;
 
 use App\Models\COAEquity;
+use App\Models\COAEquityPrevious;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -22,7 +23,7 @@ class EquityExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        return COAEquity::where('date_effectivity', $this->date)->select(
+        return COAEquityPrevious::where('date_effectivity', $this->date)->select(
             'account_group',
             'major_account_group',
             'sub_major_account_group',

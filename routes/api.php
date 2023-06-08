@@ -287,6 +287,7 @@ Route::prefix('ReceiveCommunication')->group(function () {
     //CITY ACCOUNTANT
     Route::get('/listCA', [CommCAController::class, 'list']);
     Route::post('/updateCA', [CommCAController::class, 'update']);
+    Route::get('/viewDocument/{pdf}', [CommCAController::class, 'document']);
     
     Route::get('/actionHistory/{id}', [CAActionHistoryController::class, 'list']); 
     Route::post('/addActHistory', [CAActionHistoryController::class, 'addActHistory']); 

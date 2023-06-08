@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\COAAssets;
 use Illuminate\Http\Request;
 use App\Http\Requests\COARequest;
+use App\Models\COAAssetsPrevious;
 use App\Models\COAAssetsTemp;
 use Illuminate\Support\Facades\DB;
 
@@ -105,6 +106,12 @@ class AssetsServices
     }
 
     public function approveByCa($request){
+
+        COAAssets::all()->each(function ($newRecord){
+            $newRecord->replicate()->setTable('coa_assets_previouses')->save();
+            $newRecord->delete();
+        });
+
         COAAssetsTemp::whereIn('id', $request->id)->each(function ($newRecord){
             $newRecord->update(['approval_status' => 'Approved']);
             $newRecord->replicate()->setTable('coa_assets')->save();

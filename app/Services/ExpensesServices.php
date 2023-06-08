@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use App\Models\COAExpensesTemp;
 use App\Http\Requests\COARequest;
 use Illuminate\Support\Facades\DB;
+use App\Models\COAExpensesPrevious;
 
 class ExpensesServices 
 {
@@ -123,6 +124,12 @@ class ExpensesServices
     }
 
     public function approveByCa($request){
+
+        COAExpenses::all()->each(function ($newRecord){
+            $newRecord->replicate()->setTable('coa_expenses_previouses')->save();
+            $newRecord->delete();
+        });
+
         COAExpensesTemp::whereIn('id', $request->id)->each(function ($newRecord){
             $newRecord->update(['approval_status' => 'Approved']);
             $newRecord->replicate()->setTable('coa_expenses')->save();
