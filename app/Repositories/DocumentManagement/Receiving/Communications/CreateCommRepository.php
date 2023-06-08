@@ -27,7 +27,8 @@ class CreateCommRepository
 
         $insertRecCom = CreateCommunication::create([
             'transac_id' => $id,
-            "document" => $docuFile
+            "document" => $docuFile,
+            'og_memo_no' => $id
             ] + $request->validated());
 
             ActionHistory::create([
