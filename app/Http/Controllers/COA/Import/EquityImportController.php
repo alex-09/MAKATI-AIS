@@ -14,6 +14,13 @@ class EquityImportController extends Controller
     {
 
         try {
+
+            // $request->validate([
+            //     'date' => 'required|unique:coa_assets_previouses,date_effectivity|unique:coa_assets,date_effectivity',
+            //     'title' => 'required',
+            //     'file' => 'required', 'mimes:csv',
+            // ]);
+
             Excel::import(new EquityImport, $request->file);
 
             DB::table('coa_equity_temps')->update(array('coa_title' => $request->title, 'date_effectivity' => $request->date, 'approval_status' => 'For Approval - DH'));

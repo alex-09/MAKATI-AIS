@@ -13,6 +13,13 @@ class IncomeImportController extends Controller
     public function Import(Request $request){
 
         try {
+
+            // $request->validate([
+            //     'date' => 'required|unique:coa_assets_previouses,date_effectivity|unique:coa_assets,date_effectivity',
+            //     'title' => 'required',
+            //     'file' => 'required', 'mimes:csv',
+            // ]);
+
             Excel::import(new IncomeImport, $request->file);
 
             DB::table('coa_income_temps')->update(array('coa_title' => $request->title, 'date_effectivity' => $request->date, 'approval_status' => 'For Approval - DH'));

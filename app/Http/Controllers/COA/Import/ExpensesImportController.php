@@ -14,6 +14,13 @@ class ExpensesImportController extends Controller
     {
 
         try {
+
+            // $request->validate([
+            //     'date' => 'required|unique:coa_assets_previouses,date_effectivity|unique:coa_assets,date_effectivity',
+            //     'title' => 'required',
+            //     'file' => 'required', 'mimes:csv',
+            // ]);
+
             Excel::import(new ExpensesImport, $request->file);
 
             DB::table('coa_expenses_temps')->update(array('coa_title' => $request->title, 'date_effectivity' => $request->date, 'approval_status' => 'For Approval - DH'));
