@@ -278,5 +278,12 @@ class DeptSeeder extends Seeder
             'department_head' => 'Dr. Maria Magdalena M. Lim, CESO V',
             'designation' => 'Schools Division Superintendent'
         ]);
+
+        Department::create([
+            'department_name' => "Others",
+            'department_code' => '0001',
+            'department_head' => 'N/A',
+            'designation' => 'N/A'
+        ]);
     }
 }
