@@ -320,9 +320,21 @@ Route::prefix('trustfunds')->group(function () {
     Route::post('/enrolltransfer', [EnrollTransReceiptController::class, 'enrollNew']); 
     Route::post('/enrollDonation', [DonationPrivateSectorController::class, 'enrollDonate']); 
 
-    //ADD SUB FUND TITLE
+    //ADD SUB FUND TITLE DONATION
     Route::post('/donationAddSubFund', [DonationPrivateSectorController::class, 'addSubFund']); 
     Route::post('/donationForReview', [DonationPrivateSectorController::class, 'forReview']); 
+
+    //ADD SUB FUND TITLE TRANSFER
+    Route::post('/transferAddSubFund', [EnrollTransReceiptController::class, 'addSubFund']); 
+    Route::post('/transferForReview', [EnrollTransReceiptController::class, 'forReview']); 
+
+    //ADD SUB FUND TITLE COUNTER
+    Route::post('/counterAddSubFund', [LGUCounterPartController::class, 'addSubFund']); 
+    Route::post('/counterForReview', [LGUCounterPartController::class, 'forReview']); 
+
+    //ADD SUB FUND TITLE UNEXPENDED
+    Route::post('/unexpendedAddSubFund', [UnexpendedController::class, 'addSubFund']); 
+    Route::post('/unexpendedForReview', [UnexpendedController::class, 'forReview']); 
 
     //LIST TRUST RECEIPT
     Route::get('/forReviewTr', [ListTRController::class, 'listforReview']);

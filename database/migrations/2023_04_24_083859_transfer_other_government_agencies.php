@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('official_receipt_date');
             $table->integer('official_receipt_amount');
             $table->string('nadai_date');
-            $table->string('status')->default('For Review');
+            $table->string('status')->nullable();
             $table->integer('remarks')->default('1');
             $table->timestamps();
         });

@@ -32,27 +32,27 @@ class UnexpendedController extends Controller
         }
     }
 
-    public function upload(Request $request)
-    {
- 
-    
-       $upload = new UnexpendedBalance();
+    public function addSubFund(Request $request){
+        try{
+            return $this->unexRepo->addSubFund($request);
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
 
-       $upload->file = $request->file->hashName();
-
-       $result = $upload->save();
-       if($result){
-
-        return response()->json([
-
-            'result' => 'File Added'
-        ]);
-
-       }else{
-        return response()->json([
-            'result' => 'File Not Added'
-        ]);
-       }
-
+    public function forReview(Request $request){
+        try{
+            return $this->unexRepo->forReview($request);
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
     }
 }

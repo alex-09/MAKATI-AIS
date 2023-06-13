@@ -22,20 +22,20 @@ class TRRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'government_type' => 'required',
-            'agency_name' => 'required',
-            'document_source' => 'required|mimes:pdf,doc,docx|max:2048',
-            'general_description' => 'required',
-            'nadai_no' => 'required',
-            'official_receipt_no' => 'required',
-            'official_receipt_date' => 'required',
-            'official_receipt_amount' => 'required',
-            'nadai_date' => 'required',
-            'main_fund_title' => 'required',
-            'sub_fund_title' => 'required',
-            'specific_purpose' => 'required',
-            'amount_allocated' => 'required',
-            'implementing_office' => 'required'
+            // 'government_type' => 'required',
+            // 'agency_name' => 'required',
+            // 'document_source' => 'required|mimes:pdf,doc,docx|max:2048',
+            // 'general_description' => 'required',
+            // 'nadai_no' => 'required',
+            // 'official_receipt_no' => 'required',
+            // 'official_receipt_date' => 'required',
+            // 'official_receipt_amount' => 'required',
+            // 'nadai_date' => 'required',
+            // 'main_fund_title' => 'required',
+            // 'sub_fund_title' => 'required',
+            // 'specific_purpose' => 'required',
+            // 'amount_allocated' => 'required',
+            // 'implementing_office' => 'required'
         ];
     }
 }

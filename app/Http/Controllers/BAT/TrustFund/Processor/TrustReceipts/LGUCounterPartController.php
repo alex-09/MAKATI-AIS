@@ -29,4 +29,28 @@ class LGUCounterPartController extends Controller
             ]);
         }
     }
+
+    public function addSubFund(Request $request){
+        try{
+            return $this->lguRepo->addSubFund($request);
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function forReview(Request $request){
+        try{
+            return $this->lguRepo->forReview($request);
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
 }

@@ -22,13 +22,13 @@ class LGURequest extends FormRequest
     public function rules(): array
     {
         return [
-            'general_description' => 'required',
-            'legal_basis' => 'required',
-            'main_fund_title' => 'required',
-            'sub_fund_title' => 'required',
-            'specific_purpose' => 'required',
-            'amount_allocated' => 'required',
-            'implementing_office' => 'required',
+            // 'general_description' => 'required',
+            // 'legal_basis' => 'required',
+            // 'main_fund_title' => 'required',
+            // 'sub_fund_title' => 'required',
+            // 'specific_purpose' => 'required',
+            // 'amount_allocated' => 'required',
+            // 'implementing_office' => 'required',
         ];
     }
 }

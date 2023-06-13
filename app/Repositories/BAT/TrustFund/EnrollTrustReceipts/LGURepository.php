@@ -22,26 +22,71 @@ class LGURepository{
             'tf_id' => $tfid,
         ] + $request->validated());
 
-        for($i=0; $i<count($request->main_fund_title); $i++){
-            for($x=0; $x<count($request->sub_fund_title); $x++){
-                tfFundDetails::create([
-                    'tf_id' => $tfid,
-                    'tr_type' => 4,
-                    'main_fund_title' => $request->main_fund_title[$i],
-                    'sub_fund_title' => $request->sub_fund_title[$x],
-                    'specific_purpose' => $request->specific_purpose[$x],
-                    'amount_allocated' => $request->amount_allocated[$x],
-                    'latest_balance' => $request->amount_allocated[$x],
-                    'implementing_office' => $request->implementing_office[$x]
-                ]);
+        foreach ($request->fund_data as $fund) {
+            $main_fund_form = $fund['main_fund_form'];
+            foreach ($main_fund_form as $main) {
+                $sub_fund_form = $main['sub_fund_form'];
+
+                foreach ($sub_fund_form as $sub) {
+                    tfFundDetails::create([
+                        'tf_id' => $tfid,
+                        'tr_type' => 4,
+                        'main_fund_title' => $main["main_fund_title"],
+                        'sub_fund_title' => $sub['sub_fund_title'],
+                        'specific_purpose' => $sub['specific_purpose'],
+                        'amount_allocated' => $sub['amount_allocated'],
+                        'latest_balance' => $sub['amount_allocated'],
+                        'implementing_office' => $sub['implementing_office']
+                    ]);
+                }
             }
         }
-    
-        
+
         return response()->json([
             'status' => true,
             'message' => 'Success',
-            'data' => $insertLGU
+            'lgu_id' => $tfid
         ]);
+    }
+
+    public function addSubFund($request){
+
+        foreach ($request->fund_data as $fund) {
+            $main_fund_form = $fund['main_fund_form'];
+            foreach ($main_fund_form as $main) {
+                $sub_fund_form = $main['sub_fund_form'];
+    
+                foreach ($sub_fund_form as $sub) {
+                    tfFundDetails::create([
+                        'tf_id' => $request->tfid,
+                        'tr_type' => 4,
+                        'main_fund_title' => $main["main_fund_title"],
+                        'sub_fund_title' => $sub['sub_fund_title'],
+                        'specific_purpose' => $sub['specific_purpose'],
+                        'amount_allocated' => $sub['amount_allocated'],
+                        'latest_balance' => $sub['amount_allocated'],
+                        'implementing_office' => $sub['implementing_office']
+                    ]);
+                }
+            }
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'lgu_id' => $request->tfid
+        ]);
+    }
+
+    public function forReview($request){
+
+        $updateStatus = tfFundDetails::where('tf_id', $request->tfid);
+        $updateStatus->update(['status' => 'For Review']);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Your entry has been successfully added. The account has been subject for Review.'
+        ]); 
+
     }
 }
