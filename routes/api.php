@@ -319,6 +319,11 @@ Route::prefix('trustfunds')->group(function () {
     Route::post('/counterpart', [LGUCounterPartController::class, 'insertData']); 
     Route::post('/enrolltransfer', [EnrollTransReceiptController::class, 'enrollNew']); 
     Route::post('/enrollDonation', [DonationPrivateSectorController::class, 'enrollDonate']); 
+
+    //ADD SUB FUND TITLE
+    Route::post('/donationAddSubFund', [DonationPrivateSectorController::class, 'addSubFund']); 
+    Route::post('/donationForReview', [DonationPrivateSectorController::class, 'forReview']); 
+
     //LIST TRUST RECEIPT
     Route::get('/forReviewTr', [ListTRController::class, 'listforReview']);
     Route::get('/approvedTr', [ListTRController::class, 'listapproved']);

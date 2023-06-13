@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests\BAT\TrustFund\TrustReceipt\DPSRequest;
 use App\Repositories\BAT\TrustFund\EnrollTrustReceipts\DonationRepository;
 
@@ -41,6 +42,29 @@ class DonationPrivateSectorController extends Controller
                 'error' => $th->getMessage()
             ]);
         }
+    }
 
+    public function addSubFund(Request $request){
+        try{
+            return $this->donationRepo->addSubFund($request);
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function forReview(Request $request){
+        try{
+            return $this->donationRepo->forReview($request);
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
     }
 }

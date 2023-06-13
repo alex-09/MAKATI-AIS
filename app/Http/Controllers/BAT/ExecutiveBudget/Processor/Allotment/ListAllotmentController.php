@@ -13,7 +13,7 @@ class ListAllotmentController extends Controller
         $data = DB::select('CALL listAllot()');
 
         return response()->json([
-            'status' => true,
+            'status' => true,   
             'messge' => "Success",
             'data' => $data
         ]);
