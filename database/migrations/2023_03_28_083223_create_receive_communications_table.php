@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('particulars')->nullable();
             $table->string('email');
             $table->string('DRN');
-            $table->string('reply_to');
+            $table->string('reply_to')->nullable();
             $table->string('sender');
             $table->string('contact_no');
             $table->string('bearer_name');
