@@ -18,6 +18,9 @@ return new class extends Migration
         CREATE VIEW `division_list` AS
         SELECT 
         `users`.`id` AS `id`,
+        CONCAT(`users`.`firstname`,
+        ' ',
+        `users`.`surname`) AS `name`,
         `users`.`surname` AS `surname`,
         `users`.`firstname` AS `firstname`,
         `users`.`middlename` AS `middlename`,

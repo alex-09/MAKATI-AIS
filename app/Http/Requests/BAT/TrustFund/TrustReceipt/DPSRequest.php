@@ -27,6 +27,7 @@ class DPSRequest extends FormRequest
             'general_description' => 'required',
             'official_receipt_no' => 'required',
             'official_receipt_date' => 'required',
+            'official_receipt_amount' => 'required',
             'main_fund_title' => 'required',
             'sub_fund_title' => 'required',
             'specific_purpose' => 'required',
