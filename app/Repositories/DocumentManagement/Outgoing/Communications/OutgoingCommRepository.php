@@ -66,7 +66,10 @@ class OutgoingCommRepository
                 }
             }
 
-            return response()->json(['message' => 'Your entry has been successfully saved under Transmittal ID Number ' . $transmital]);
+            return response()->json([
+                'message' => 'Your entry has been successfully saved under Transmittal ID Number ' . $transmital,
+                'transmital' => $transmital
+            ]);
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => true,
@@ -82,14 +85,16 @@ class OutgoingCommRepository
 
             for ($i = 0; $i < count($request->transmital_no); $i++) {
                 if (substr($request->transac_id[$i], 0, 3) == "COM") {
-                    $addTransmital = ReceiveCommunications::where('og_transmital_no', $request->transmital_no[$i]);
+                    $addTransmital = ReceiveCommunications::where('og_transmital_no', $request->transmital_no[$i])
+                    ->where('transaction_id_num', $request->transac_id[$i]);
                     $addTransmital->update([
                         'og_sender' => $request->og_sender,
                         'og_received_by' => $request->og_received_by,
                         'og_date' => $request->og_date
                     ]);
                 } else {
-                    $addTransmital = CreateCommunication::where('og_transmital_no', $request->transmital_no[$i]);
+                    $addTransmital = CreateCommunication::where('og_transmital_no', $request->transmital_no[$i])
+                    ->where('transac_id', $request->transac_id[$i]);
                     $addTransmital->update([
                         'og_sender' => $request->og_sender,
                         'og_received_by' => $request->og_received_by,

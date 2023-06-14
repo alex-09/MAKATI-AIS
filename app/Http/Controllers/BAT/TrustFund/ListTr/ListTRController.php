@@ -14,7 +14,7 @@ class ListTRController extends Controller
     }
 
     public function listApproved(){
-        $list = DB::select('CALL tf_getapproved_processor()');
+        $list = DB::select('CALL tf_getapprove_processor()');
         return response()->json(['list' => $list]);
     }
 

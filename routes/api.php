@@ -357,6 +357,7 @@ Route::prefix('trustfunds')->group(function () {
     Route::get('/viewBot/{id}', [TFObligationController::class, 'view']);
     Route::post('/newObligation', [TFObligationController::class, 'store']);
     //LIST FURS 
+    Route::get('/listFurs', [TRListFursController::class, 'list']);
     Route::get('/forReviewFurs', [ListObligationController::class, 'listforReview']);
     Route::get('/approvedFurs', [ListObligationController::class, 'listapproved']);
     Route::get('/viewFurs/{id}', [ListObligationController::class, 'view']);

@@ -24,7 +24,7 @@ return new class extends Migration
                         transaction_id_num, 
                         department,
                         particulars,
-                        og_memo_no, 
+                        reply_to as og_memo_no, 
                         receive_comm_type_id, 
                         null as receiver, 
                         subject, 
