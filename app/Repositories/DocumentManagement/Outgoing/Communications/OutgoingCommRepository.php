@@ -68,7 +68,7 @@ class OutgoingCommRepository
 
             return response()->json([
                 'message' => 'Your entry has been successfully saved under Transmittal ID Number ' . $transmital,
-                'transmital' => $transmital
+                'transmittal' => $transmital
             ]);
         } catch (\Throwable $th) {
             return response()->json([
@@ -110,6 +110,20 @@ class OutgoingCommRepository
                 'message' => 'Something went wrong!',
                 'error' => $th->getMessage()
             ]);
+        }
+    }
+
+    public function uploadDocument($request){
+
+        $docuFile = $id.'.'.$request->file('document')->getClientOriginalExtension();
+        $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication/'), $docuFile);    
+
+        if (substr($request->transac_id, 0, 3) == "COM") {
+            $addTransmital = ReceiveCommunications::where('transaction_id_num', $request->transac_id);
+            $addTransmital->update(['document' => $docuFile]);
+        } else {
+            $addTransmital = CreateCommunication::where('transac_id', $request->transac_id);
+            $addTransmital->update(['document' => $docuFile]);
         }
     }
 }
