@@ -19,7 +19,7 @@ class ReceiveCommunicationType extends Seeder
         ],
         
         [
-            'rc_type' => 'Audit Observation Memorandun'
+            'rc_type' => 'Audit Observation Memorandum'
         ],
     
         [

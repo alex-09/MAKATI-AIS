@@ -19,7 +19,7 @@ return new class extends Migration
         transaction_id_num, sender, subject, bearer_name, department
         
         FROM receive_communications
-        ORDER BY Date DESC;
+        ORDER BY Date ASC;
         END;";
 
         DB::unprepared($procedure);

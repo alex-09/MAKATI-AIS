@@ -342,7 +342,7 @@ Route::prefix('trustfunds')->group(function () {
     
     //UPDATE TRUST RECEIPT
     Route::get('/listMainFund', [UpdateTRController::class, 'getMainFund']);
-    Route::get('/searchTr', [UpdateTRController::class, 'search']);
+    Route::post('/searchTr', [UpdateTRController::class, 'search']);
     Route::post('/updateTr', [UpdateTRController::class, 'update']);
     //VIEW TRUST RECEIPT
     Route::post('/viewTr', [ListTRController::class, 'view']);

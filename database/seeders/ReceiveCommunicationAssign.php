@@ -80,7 +80,7 @@ class ReceiveCommunicationAssign extends Seeder
                 'restrict_type' => 'Restricted'  ,
             ],
             [
-                'restrict_type' => 'Not Resricted',
+                'restrict_type' => 'Not Restricted',
             ]
         ]);
 

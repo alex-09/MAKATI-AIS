@@ -35,8 +35,8 @@ return new class extends Migration
             $table->string('cluster')->nullable();
             $table->string('restriction')->nullable();
             $table->string('action')->nullable();
-            $table->string('no_of_days')->nullable();
-            $table->string('status')->nullable();
+            $table->string('no_of_days')->default('5');
+            $table->string('status')->default('Pending');
             $table->string('og_transmital_no')->nullable();
             $table->string('og_memo_no')->nullable();
             $table->string('og_sender')->nullable();

@@ -22,9 +22,7 @@ return new class extends Migration
         FROM
             `makati-ais`.`tf_fund_details`
         WHERE
-            `makati-ais`.`tf_fund_details`.`status` = 'Approved'
-
-        END";
+            `makati-ais`.`tf_fund_details`.`status` = 'Approved'";
 
         DB::unprepared($procedure); 
     }

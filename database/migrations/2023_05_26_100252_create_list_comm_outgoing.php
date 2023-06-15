@@ -55,7 +55,7 @@ return new class extends Migration
                 from create_communications 
                 where status = 'For Outgoing'
             )list
-            order by date;
+            order by date DESC;
         END";
 
         DB::unprepared($procedure); 
