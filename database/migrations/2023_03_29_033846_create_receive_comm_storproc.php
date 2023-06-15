@@ -18,7 +18,8 @@ return new class extends Migration
         SELECT id, DATE_FORMAT(created_at, '%M %d %Y ') as Date, DATE_FORMAT(created_at, '%h:%i:%s') AS time, 
         transaction_id_num, sender, subject, bearer_name, department
         
-        FROM receive_communications;
+        FROM receive_communications
+        ORDER BY Date DESC;
         END;";
 
         DB::unprepared($procedure);

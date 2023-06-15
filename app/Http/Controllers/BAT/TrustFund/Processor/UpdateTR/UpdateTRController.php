@@ -16,6 +16,11 @@ class UpdateTRController extends Controller
     {
         $this->updateRepo = $updateRepo;
     }
+
+    public function getMainFund(){
+        
+        return $this->updateRepo->listMainFund();
+    }
     
     public function search(Request $request){
         try{

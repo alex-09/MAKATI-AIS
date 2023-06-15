@@ -7,6 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class UpdateTRRepository{
 
+    public function listMainFund(){
+
+        $list = DB::select('SELECT * from list_main_fund_approved');
+
+        return response()->json([
+        'message' => 'Fetch Success',
+        'list' => $list]);
+    }
+
     public function search($request){
 
         $result = DB::select('call tf_update_tr(?,?)',array(
@@ -19,7 +28,7 @@ class UpdateTRRepository{
 
     public function update($request){
         
-        $update = tfFundDetails::where('id', $request->id)->first();
+        $update = tfFundDetails::where('id', $request->id);
         $update->update([
             'reference' => $request->reference, 
             'update_reasons' => $request->update_reasons, 

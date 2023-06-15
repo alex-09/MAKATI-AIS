@@ -20,7 +20,7 @@ return new class extends Migration
 
 		SELECT id, 
         tf_id,
-        sub_funf_title,
+        sub_fund_title,
         reference, 
         update_reasons,
         latest_balance,
@@ -30,7 +30,7 @@ return new class extends Migration
 	
         FROM tf_fund_details
         WHERE tr_type = type
-        AND main_fund_title = main_title;;
+        AND main_fund_title = main_title;
 
         END";
 

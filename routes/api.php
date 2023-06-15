@@ -340,6 +340,8 @@ Route::prefix('trustfunds')->group(function () {
     Route::get('/forReviewTr', [ListTRController::class, 'listforReview']);
     Route::get('/approvedTr', [ListTRController::class, 'listapproved']);
     
+    //UPDATE TRUST RECEIPT
+    Route::get('/listMainFund', [UpdateTRController::class, 'getMainFund']);
     Route::get('/searchTr', [UpdateTRController::class, 'search']);
     Route::post('/updateTr', [UpdateTRController::class, 'update']);
     //VIEW TRUST RECEIPT
