@@ -115,7 +115,7 @@ class OutgoingCommRepository
 
     public function uploadDocument($request){
 
-        $docuFile = $id.'.'.$request->file('document')->getClientOriginalExtension();
+        $docuFile = $request->transac_id.'.'.$request->file('document')->getClientOriginalExtension();
         $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication/'), $docuFile);    
 
         if (substr($request->transac_id, 0, 3) == "COM") {

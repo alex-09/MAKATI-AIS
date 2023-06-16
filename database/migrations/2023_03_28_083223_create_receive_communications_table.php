@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('subject');
             $table->string('department')->nullable();
             $table->string('particulars')->nullable();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('DRN');
             $table->string('reply_to')->nullable();
             $table->string('sender');
             $table->string('contact_no');
             $table->string('bearer_name');
-            $table->string('bearer_address');
+            $table->string('bearer_address')->nullable();
             $table->string('bearer_contact_no');
             $table->string('bearer_department');
             $table->longText('remarks')->nullable();
