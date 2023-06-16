@@ -18,9 +18,6 @@ return new class extends Migration
         CREATE VIEW `division_list` AS
         SELECT 
         `users`.`id` AS `id`,
-        CONCAT(`users`.`firstname`,
-        ' ',
-        `users`.`surname`) AS `name`,
         `users`.`surname` AS `surname`,
         `users`.`firstname` AS `firstname`,
         `users`.`middlename` AS `middlename`,
@@ -44,10 +41,19 @@ return new class extends Migration
         `users`.`remember_token` AS `remember_token`,
         `users`.`created_at` AS `created_at`,
         `users`.`updated_at` AS `updated_at`
-        FROM
-            `users`
-        WHERE
-            `users`.`userdesignation` = 'approver';
+    FROM
+        `users`
+    WHERE
+        `users`.`division` IN ('Administrative Division' , 'Processing of Claims and Internal Control Division',
+            'Payroll Processing and Remittance Division',
+            'Bookkeeping Division',
+            'Financial Reporting Division',
+            'Barangay Accounts Division')
+            AND `users`.`position` IN ('Assistant Division Head' , 'Assistant Head',
+            'Division Head',
+            'Assistant Department Head for AICS',
+            'Assistant Department Head forFRS')
+    ORDER BY `users`.`division`;
         ";
 
         DB::unprepared($procedure); 
