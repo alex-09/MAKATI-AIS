@@ -32,7 +32,7 @@ return new class extends Migration
         ON fund_dets.tr_type = str.id
         
         where fund_dets.tr_type = type
-        and status = 'Approved'
+        and status = 'Approved';
 
         END";
 

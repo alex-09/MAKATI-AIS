@@ -26,7 +26,7 @@ class ListTRController extends Controller
         return response()->json(['list' => $view]);
     }
 
-    public function searchOnProcess(){
+    public function searchOnProcess(Request $request){
         try{
             $list = DB::select('CALL tf_search_tr_on_process(?)',array(
                 $request->tf_type,
@@ -42,7 +42,7 @@ class ListTRController extends Controller
         }
     }
 
-    public function searchApproved(){
+    public function searchApproved(Request $request){
         try{
             $list = DB::select('CALL tf_search_tr_approved(?)',array(
                 $request->tf_type,
