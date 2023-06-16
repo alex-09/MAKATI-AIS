@@ -20,13 +20,13 @@ class DonationRepository{
             $tfid = "tf_dps_".++$idinc;
         }
 
-        $docuFile = time().'.'.$request->file('document_source')->getClientOriginalExtension();
+        // $docuFile = time().'.'.$request->file('document_source')->getClientOriginalExtension();
         // $request->document->move(public_path('uploads'), $docuFile);
 
         DonationPrivateSector::create([
             'tf_id' => $tfid,
-            'document_source' => $docuFile
-        ] + $request->validated());
+            'document_source' => "test"
+        ] + $request->all());
 
         foreach ($request->fund_data as $fund) {
             $main_fund_form = $fund['main_fund_form'];

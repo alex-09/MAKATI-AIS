@@ -25,4 +25,36 @@ class ListTRController extends Controller
         ));
         return response()->json(['list' => $view]);
     }
+
+    public function searchOnProcess(){
+        try{
+            $list = DB::select('CALL tf_search_tr_on_process(?)',array(
+                $request->tf_type,
+            ));
+            return response()->json(['list' => $list]);
+
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function searchApproved(){
+        try{
+            $list = DB::select('CALL tf_search_tr_approved(?)',array(
+                $request->tf_type,
+            ));
+            return response()->json(['list' => $list]);
+
+        }catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
 }

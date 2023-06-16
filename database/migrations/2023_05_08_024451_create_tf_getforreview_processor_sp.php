@@ -23,7 +23,7 @@ return new class extends Migration
         FROM tf_fund_details as fund_dets
         INNER JOIN src_trust_receipt as str
         ON fund_dets.tr_type = str.id
-        where status = 'For Review';
+        where status != 'Approved';
         END";
 
         DB::unprepared($procedure);
