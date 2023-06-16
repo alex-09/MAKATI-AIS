@@ -39,6 +39,7 @@ use App\Http\Controllers\BAT\ExecutiveBudget\CityAccountant\ApproCAController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Dropdwons\ExecDropdwonController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ApproReviewerController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
+use App\Http\Controllers\BAT\TrustFund\Processor\Obligation\TRListFursController;
 use App\Http\Controllers\BAT\TrustFund\Report\Dashboard\DashboardReportController;
 use App\Http\Controllers\BAT\TrustFund\Processor\Obligation\TFObligationController;
 use App\Http\Controllers\DocumentManagement\Outgoing\PreAudit\OGPreauditController;
@@ -282,6 +283,7 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::get('/commtype', [CommunicationController::class, 'commType']); 
     Route::post('/insert', [CommunicationController::class, 'receive_comms']); 
     Route::get('/showRecComm', [PrintCommController::class, 'display']); 
+    Route::get('/listAssistants', [CreateCommController::class, 'listAssistants']);
     Route::post('/createComm', [CreateCommController::class, 'store']);
     Route::get('/printComm', [PrintCommController::class, 'forPrint']);
     //CITY ACCOUNTANT
@@ -309,6 +311,7 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::post('/updateMc', [OGCommunicationController::class, 'update']);
     Route::post('/transmital', [OGCommunicationController::class, 'transmital']);
     Route::post('/updateOutgoing', [OGCommunicationController::class, 'updateOutgoing']);
+    Route::post('/uploadDocument', [OGCommunicationController::class, 'uploadDocument']);
 });
 
 Route::prefix('trustfunds')->group(function () {

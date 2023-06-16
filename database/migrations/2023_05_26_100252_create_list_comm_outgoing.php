@@ -40,7 +40,7 @@ return new class extends Migration
                 select DATE_FORMAT(created_at, '%M %d %Y ') as date, 
 						transac_id as id,
                         og_transmital_no, 
-                        null as transaction_id_num, 
+                        reply_to as transaction_id_num, 
                         department,
 						particulars,
                         transac_id as og_memo_no, 

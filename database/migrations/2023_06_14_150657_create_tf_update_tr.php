@@ -30,7 +30,8 @@ return new class extends Migration
 	
         FROM tf_fund_details
         WHERE tr_type = type
-        AND main_fund_title = main_title;
+        AND main_fund_title = main_title
+        AND status = 'Approved';
 
         END";
 

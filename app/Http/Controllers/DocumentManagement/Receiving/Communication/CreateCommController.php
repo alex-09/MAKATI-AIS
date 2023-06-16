@@ -17,6 +17,10 @@ class CreateCommController extends Controller
         return $this->CreateCommRepo = $CreateCommRepo;
     }
 
+    public function listAssistants(){
+        return response()->json(['list' => DB::select('SELECT * FROM users_division_heads')]);
+    }
+
     public function store(CreateCommRequest $request){
         try{
             return $this->CreateCommRepo->store($request);

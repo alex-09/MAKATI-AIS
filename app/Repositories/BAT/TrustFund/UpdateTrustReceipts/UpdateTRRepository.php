@@ -30,7 +30,6 @@ class UpdateTRRepository{
         
         $update = tfFundDetails::where('id', $request->id);
         $update->update([
-            'reference' => $request->reference, 
             'update_reasons' => $request->update_reasons, 
             'latest_balance' => $request->updated_balance, 
             'addition' => $request->addition, 
