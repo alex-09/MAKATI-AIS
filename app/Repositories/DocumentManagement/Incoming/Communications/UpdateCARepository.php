@@ -11,12 +11,11 @@ class UpdateCARepository
 {
     private function forUpdate($request, $update){
         $update->update([
-            'receive_comm_assignto_id' => $request->assign_to,
+            'receive_comm_assignto_id' => serialize($request->assign_to),
             'restriction' => $request->restriction,
             'action' => $request->action,
             'cluster' => $request->cluster,
             'no_of_days' => $request->no_of_days,
-            'status' => $request->status
         ]);
     }
 

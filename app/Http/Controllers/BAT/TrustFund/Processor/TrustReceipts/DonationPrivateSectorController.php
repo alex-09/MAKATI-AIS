@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Request;
 use App\Http\Requests\BAT\TrustFund\TrustReceipt\DPSRequest;
 use App\Repositories\BAT\TrustFund\EnrollTrustReceipts\DonationRepository;
 

@@ -24,12 +24,12 @@ return new class extends Migration
             $table->string('department')->nullable();
             $table->string('particulars')->nullable();
             $table->longText('remarks')->nullable();
-            $table->string('receive_comm_assignto_id')->nullable();
+            $table->longText('receive_comm_assignto_id')->nullable();
             $table->string('cluster')->nullable();
             $table->string('restriction')->nullable();
             $table->string('action')->nullable();
             $table->string('no_of_days')->nullable();
-            $table->string('status')->default('For Outgoing');
+            $table->string('status')->default('For Outgoing')->nullable();
             $table->string('og_transmital_no')->nullable();
             $table->string('og_memo_no')->nullable();
             $table->string('og_sender')->nullable();
