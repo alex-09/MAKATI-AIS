@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('exec_appropriation_details', function (Blueprint $table) {
             $table->id();
             $table->string('appro_id');
-            $table->integer('budget_year_id');
-            $table->integer('department_code_id');
+            $table->string('budget_year_id');
+            $table->string('department_code_id');
             $table->string('AIPCode');
-            $table->integer('program_code');
+            $table->string('program_code');
             $table->string('program');
-            $table->integer('project_code');
+            $table->string('project_code');
             $table->string('project');
-            $table->integer('activity_code')->index();
+            $table->string('activity_code')->index();
             $table->string('activity');
             $table->string('activity_description');
             $table->float('appro_total', 17, 3)->nullable();
