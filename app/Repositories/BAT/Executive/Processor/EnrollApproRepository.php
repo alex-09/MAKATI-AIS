@@ -9,7 +9,7 @@ use App\Http\Requests\EnrollApproRequest;
 
 class EnrollApproRepository{
 
-    public function EnrollAppro(EnrollApproRequest $request){
+    public function EnrollAppro($request){
 
         $getApproId = Appropriation::all();
         if($getApproId->isEmpty()){
@@ -22,52 +22,45 @@ class EnrollApproRepository{
 
         Appropriation::create([
             'appro_id' => $appro_id,
-        ] + $request->validated());
-
-        $aipcode = $request->program_code."-".$request->project_code."-".$request->activity_code; 
+        ] + $request->all());
 
         foreach($request->mainProgramForms as $mainProgForms){
             $progForm = $mainProgForms['programForms'];
-            foreach($progForm as $progForms){
-                $projectForm = $progForms['projectForms'];
-                foreach($projectForm as $projectForms){
-                    $activityForm = $projectForms['activityForms'];
-                    foreach($activityForm as $activityForms){
-                        $expenses = $activityForms['expensesClassifications'];
-                        foreach($expenses as $expensesdetails){
-                            
-                            $aipcode = $projectForms['program_code']."-".$projectForms['project_code']."-".$activityForms['activity_code']; 
+                foreach ($progForm['projectForms'] as $projectForm) {
+                    foreach ($projectForm['activityForms'] as $activityForm) {
+                        foreach ($activityForm['expensesClassifications'] as $expenseClassification) {
+                        
+                            $aipcode = $progForm['program_code']."-".$projectForm['project_code']."-".$activityForm['activity_aip_code']; 
 
                             AppropriationDetails::create([
                                 'appro_id' => $appro_id, 
                                 'AIPCode' => $aipcode,
                                 'department_code_id' => $request->department_code_id,
                                 'budget_year_id' => $request->budget_year_id,
-                                'program_code' => $progForms['request->program_code'],
-                                'program' => $progForms['program'],
-                                'project_code' => $projectForms['project_code'],
-                                'project' => $projectForms['project'],
-                                'activity_code'=> $activityForms['activity_code'],
-                                'activity' => $activityForms['activity'],
-                                'activity_description' => $activityForms['activity_description'],
-                                'appro_total' => $expensesdetails['appro_total'],
-                                'latest_appro_total' => $expensesdetails['appro_total'],
+                                'program_code' => $progForm['program_code'],
+                                'program' => $progForm['program'],
+                                'project_code' => $projectForm['project_code'],
+                                'project' => $projectForm['project'],
+                                'activity_code'=> $activityForm['activity_aip_code'],
+                                'activity' => $activityForm['activity'],
+                                'activity_description' => $activityForm['activity_description'],
+                                'appro_total' => 21,
+                                'latest_appro_total' => 21,
                             ]);
 
                             AppropriationExpenses::create([
                                 'appro_id' => $appro_id, 
                                 'AIPCode' => $aipcode,
-                                'account_name' => $expensesdetails['account_name'],
-                                'account_code' => $expensesdetails['account_code'],
-                                'appro_amout' => $expensesdetails['appro_amout'],
-                                'latest_appro_amount' => $expensesdetails['latest_appro_amount'],
+                                'account_name' => $expenseClassification['account_name'],
+                                'account_code' => $expenseClassification['account_code'],
+                                'appro_amount' => 21,
+                                'latest_appro_amount' => 12,
 
-                            ] + $request->validated());
+                            ]);
                         
                         }
                     }
                 }
-            }
         }
         
         return response()->json([
@@ -78,11 +71,45 @@ class EnrollApproRepository{
         ]);
     }
 
-    public function addExpenses($request){
-        AppropriationExpenses::create([
-            'appro_id' => $request->appro_id, 
-            'AIPCode' => $request->aipcode,
-        ] + $request->all());
+    public function addProgram($request){
+
+        foreach($request->mainProgramForms as $mainProgForms){
+            $progForm = $mainProgForms['programForms'];
+                foreach ($progForm['projectForms'] as $projectForm) {
+                    foreach ($projectForm['activityForms'] as $activityForm) {
+                        foreach ($activityForm['expensesClassifications'] as $expenseClassification) {
+                        
+                            $aipcode = $progForm['program_code']."-".$projectForm['project_code']."-".$activityForm['activity_aip_code']; 
+
+                            AppropriationDetails::create([
+                                'appro_id' => $request->appro_id, 
+                                'AIPCode' => $aipcode,
+                                'department_code_id' => $request->department_code_id,
+                                'budget_year_id' => $request->budget_year_id,
+                                'program_code' => $progForm['program_code'],
+                                'program' => $progForm['program'],
+                                'project_code' => $projectForm['project_code'],
+                                'project' => $projectForm['project'],
+                                'activity_code'=> $activityForm['activity_aip_code'],
+                                'activity' => $activityForm['activity'],
+                                'activity_description' => $activityForm['activity_description'],
+                                'appro_total' => 21,
+                                'latest_appro_total' => 21,
+                            ]);
+
+                            AppropriationExpenses::create([
+                                'appro_id' => $request->appro_id, 
+                                'AIPCode' => $aipcode,
+                                'account_name' => $expenseClassification['account_name'],
+                                'account_code' => $expenseClassification['account_code'],
+                                'appro_amount' => 21,
+                                'latest_appro_amount' => 12,
+                            ]);
+                                
+                        }
+                    }
+                }
+        }
 
         return response()->json([
             'status' => true,

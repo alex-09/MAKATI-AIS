@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `list_main_fund_approved`;
+        $procedure = " DROP VIEW IF EXISTS `list_main_fund_approved`;
         CREATE VIEW `makati-ais`.`list_main_fund_approved` AS
         SELECT 
             `makati-ais`.`tf_fund_details`.`tf_id` AS `tf_id`,

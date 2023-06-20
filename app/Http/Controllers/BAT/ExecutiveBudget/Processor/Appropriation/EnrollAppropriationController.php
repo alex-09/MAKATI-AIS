@@ -17,7 +17,7 @@ class EnrollAppropriationController extends Controller
         return $this->enrollApproRepo = $enrollApproRepo;
     }
 
-    public function EnrollAppro(EnrollApproRequest $request){
+    public function EnrollAppro(Request $request){
         try{
             return $this->enrollApproRepo->EnrollAppro($request);
         } catch(\Throwable $th){
@@ -26,9 +26,9 @@ class EnrollAppropriationController extends Controller
 
     } 
 
-    public function addExpenses(Request $request){
+    public function addProgram(Request $request){
         try{
-            return $this->enrollApproRepo->addExpenses($request);
+            return $this->enrollApproRepo->addProgram($request);
         }catch(\Throwable $th){
             return $this->errorResponse($th);
         }

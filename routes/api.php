@@ -241,6 +241,7 @@ Route::prefix('appropriation')->group(function () {
     Route::get('/dropdown', [ExecDropdwonController::class, 'execDropdown']); 
     Route::get('/dropdown2', [ExecDropdwonController::class, 'execDropdown2']); 
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
+    Route::post('/addProgram', [EnrollAppropriationController::class, 'addProgram']); 
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
     //LIST s
     Route::get('/listAppro', [ListAppropriationController::class, 'index']);

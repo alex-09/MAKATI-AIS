@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('exec_appropriations', function (Blueprint $table) {
             $table->id();
             $table->string('appro_id')->index();
-            $table->integer('budget_year_id');
-            $table->integer('department_code_id');
+            $table->string('budget_year_id');
+            $table->string('department_code_id');
             $table->string('fundSource_id');
             $table->string('approType_id');
             $table->string('date_document')->nullable();
