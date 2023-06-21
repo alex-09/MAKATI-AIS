@@ -44,8 +44,8 @@ class EnrollApproRepository{
                                 'activity_code'=> $activityForm['activity_aip_code'],
                                 'activity' => $activityForm['activity'],
                                 'activity_description' => $activityForm['activity_description'],
-                                'appro_total' => 21,
-                                'latest_appro_total' => 21,
+                                'appro_total' => $expenseClassification['appro_total_amount'],
+                                'latest_appro_total' => $expenseClassification['appro_total_amount'],
                             ]);
 
                             AppropriationExpenses::create([
@@ -53,8 +53,8 @@ class EnrollApproRepository{
                                 'AIPCode' => $aipcode,
                                 'account_name' => $expenseClassification['account_name'],
                                 'account_code' => $expenseClassification['account_code'],
-                                'appro_amount' => 21,
-                                'latest_appro_amount' => 12,
+                                'appro_amount' => $expenseClassification['appro_amount'],
+                                'latest_appro_amount' => $expenseClassification['appro_amount'],
 
                             ]);
                         
@@ -67,7 +67,6 @@ class EnrollApproRepository{
             'status' => true,
             'message' => "Added Successfully!",
             'appro_id' => $appro_id,
-            'aipcode' => $aipcode
         ]);
     }
 
@@ -93,8 +92,8 @@ class EnrollApproRepository{
                                 'activity_code'=> $activityForm['activity_aip_code'],
                                 'activity' => $activityForm['activity'],
                                 'activity_description' => $activityForm['activity_description'],
-                                'appro_total' => 21,
-                                'latest_appro_total' => 21,
+                                'appro_total' => $expenseClassification['appro_total_amount'],
+                                'latest_appro_total' => $expenseClassification['appro_total_amount'],
                             ]);
 
                             AppropriationExpenses::create([
@@ -102,8 +101,8 @@ class EnrollApproRepository{
                                 'AIPCode' => $aipcode,
                                 'account_name' => $expenseClassification['account_name'],
                                 'account_code' => $expenseClassification['account_code'],
-                                'appro_amount' => 21,
-                                'latest_appro_amount' => 12,
+                                'appro_amount' => $expenseClassification['appro_amount'],
+                                'latest_appro_amount' => $expenseClassification['appro_amount'],
                             ]);
                                 
                         }
@@ -115,7 +114,6 @@ class EnrollApproRepository{
             'status' => true,
             'message' => "Added Successfully!",
             'appro_id' => $request->appro_id,
-            'aipcode' => $request->aipcode
         ]);
     }
 
