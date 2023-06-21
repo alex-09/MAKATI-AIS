@@ -11,12 +11,21 @@ class UpdateCARepository
 {
     private function forUpdate($request, $update){
         $update->update([
-            'receive_comm_assignto_id' => serialize($request->assign_to),
+            'receive_comm_assignto_id' => "",
             'restriction' => $request->restriction,
             'action' => $request->action,
             'cluster' => $request->cluster,
             'no_of_days' => $request->no_of_days,
         ]);
+
+        foreach($request->assign_to as $$assign){
+
+            CommunicationAssignTo::create([
+                'transac_id' => $assign['name'],
+                'assigned_to' => $request->transac_id
+            ]);
+            
+        }
     }
 
     public function update($request){
