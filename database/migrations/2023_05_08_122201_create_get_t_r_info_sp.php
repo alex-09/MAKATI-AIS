@@ -18,50 +18,42 @@ return new class extends Migration
 
             IF tf_type = 'Transfer from Other Government Agencies' THEN
         
-            SELECT toga.tf_id, document_source, general_description, official_receipt_no, official_receipt_date, 
-                government_type, agency_name, nadai_no, official_receipt_amount, nadai_date,
-                main_fund_title, sub_fund_title, amount_allocated, specific_purpose, implementing_office
+            SELECT tf_id, document_source, general_description, official_receipt_no, official_receipt_date, 
+                government_type, agency_name, nadai_no, official_receipt_amount, nadai_date	
             
-            FROM transfer_other_government_agencies as toga
-            JOIN tf_fund_details as tfd
+            FROM transfer_other_government_agencies 
             
-            WHERE tfd.tf_id = tfund_id
-            and toga.tf_id = tfund_id;
+            WHERE tf_id = tfund_id
+            and tf_id = tfund_id;
             
         ELSEIF tf_type = 'Donation from Private Sector' THEN
         
-            SELECT don.tf_id, company_name, document_source, 
+            SELECT tf_id, company_name, document_source, 
                 general_description, official_receipt_no, official_receipt_date
-                main_fund_title, sub_fund_title, amount_allocated, specific_purpose, implementing_office
             
-            FROM donation_private_sector as don
-            JOIN tf_fund_details as tfd
+            FROM donation_private_sector
             
-            WHERE tfd.tf_id = tfund_id
-            and don.tf_id = tfund_id;
+            WHERE Tf_id = tfund_id
+            and tf_id = tfund_id;
             
         ELSEIF tf_type = 'Unexpended Balance of LDRRMF' THEN
         
-            SELECT unex.tf_id, document_source, general_description, legal_basis,
+            SELECT tf_id, document_source, general_description, legal_basis,
                     budget_year_id, journal_voucher_no, journal_voucher_date
-                    main_fund_title, sub_fund_title, amount_allocated, specific_purpose, implementing_office
             
-            FROM trustfunds_unexpended_balance as unex
-            JOIN tf_fund_details as tfd
+            FROM trustfunds_unexpended_balance
             
-            WHERE tfd.tf_id = tfund_id
-            and unex.tf_id = tfund_id;
+            WHERE tf_id = tfund_id
+            and tf_id = tfund_id;
             
         ELSEIF tf_type = 'LGU Counterpart Contribution for Specific Projects' THEN
         
-            SELECT lgu.tf_id, general_description,  legal_basis
-            main_fund_title, sub_fund_title, amount_allocated, specific_purpose, implementing_office
+            SELECT tf_id, general_description,  legal_basis
             
-            FROM trustfunds_lgu_counterpart as lgu
-            JOIN tf_fund_details as tfd
+            FROM trustfunds_lgu_counterpart 
             
-            WHERE tfd.tf_id = tfund_id
-            and lgu.tf_id = tfund_id;
+            WHERE tf_id = tfund_id
+            and tf_id = tfund_id;
             
         END IF;
         END";

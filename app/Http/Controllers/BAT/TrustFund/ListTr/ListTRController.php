@@ -19,11 +19,18 @@ class ListTRController extends Controller
     }
 
     public function view(Request $request){
-        $view = DB::select('CALL tf_gettr_infor(?,?)',array(
-            $request->tf_type,
-            $request->tf_id
-        ));
-        return response()->json(['list' => $view]);
+        $info = DB::select('CALL tf_gettr_infor(?,?)',array(
+                    $request->tf_type,
+                    $request->tf_id
+                ));
+
+        $info2 = DB::select('CALL tf_gettr_infor2(?)',array(
+                    $request->tf_id
+                ));
+
+        return response()->json([
+            'list' => $info,
+            'list2' => $info2]);
     }
 
     public function searchOnProcess(Request $request){
