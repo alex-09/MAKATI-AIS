@@ -21,17 +21,28 @@ class UpdateAppropriationController extends Controller
     }
 
     // FILTER APPROPRIATION FOR UPDATE
-    public function FilterAppropriation(UpdateApproRequest $request)
+    public function getDepartment(Request $request)
     {
-        try {
-            return $this->updateApproRepo->filter($request);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => "Something went wrong!",
-                'error' => $th->getMessage()
-            ]);
-        }
+        return $this->updateApproRepo->getDepartment($request);
+    }
+
+    public function getProgram(Request $request)
+    {
+        return $this->updateApproRepo->getProgram($request);
+    }
+
+    public function getProject(Request $request)
+    {
+        return $this->updateApproRepo->getProject($request);
+    }
+
+    public function getActivity(Request $request)
+    {
+        return $this->updateApproRepo->getActivity($request);
+    }
+
+    public function getApproInfo(Request $request){
+        return $this->updateApproRepo->getApproInfo($request);
     }
 
     public function updateAppro(Request $request){

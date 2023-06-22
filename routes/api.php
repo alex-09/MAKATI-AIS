@@ -52,6 +52,7 @@ use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\PrevTransacContro
 use App\Http\Controllers\DocumentManagement\Receiving\PreAudit\printPreAudController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\ODReceivingReceiptController;
 use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\OGContractPOController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Dropdwons\ExecDropdwonController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\LGUCounterPartController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\DivisionHeadController;
 use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptOthersController;
@@ -85,6 +86,7 @@ use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayT
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\ListPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\PrevPayTransacCOntroller;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\EnrollAppropriationController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\UpdateAppropriationController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
 use App\Http\Controllers\DocumentManagement\Outgoing\CheckTranscation\OGCheckTransactionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEGovernementAgencyController;
@@ -262,6 +264,13 @@ Route::prefix('appropriation')->group(function () {
     Route::get('/viewApproAC/{id}/{aipcode}', [ApproCAController::class, 'view']);
     Route::post('/updateApproCA', [ApproCAController::class, 'update']);
     Route::post('/rejectApproCA', [ApproCAController::class, 'reject']);
+
+    //UPDATE APPROPRIATION
+    Route::post('/getDepartment', [UpdateAppropriationController::class, 'getDepartment']);
+    Route::post('/getProgram', [UpdateAppropriationController::class, 'getProgram']);
+    Route::post('/getProject', [UpdateAppropriationController::class, 'getProject']);
+    Route::post('/getActivity', [UpdateAppropriationController::class, 'getActivity']);
+    Route::post('/getApproInfo', [UpdateAppropriationController::class, 'getApproInfo']);
 });
 
 Route::prefix('allotment')->group(function () {
