@@ -18,7 +18,7 @@ class EnrollTransReceiptController extends Controller
     }
     
 
-    public function enrollNew(TRRequest $request){
+    public function enrollNew(Request $request){
         try{
 
             return $this->tranferRepo->enroll($request);

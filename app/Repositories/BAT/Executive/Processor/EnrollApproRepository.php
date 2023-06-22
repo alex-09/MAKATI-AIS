@@ -44,8 +44,8 @@ class EnrollApproRepository{
                                 'activity_code'=> $activityForm['activity_aip_code'],
                                 'activity' => $activityForm['activity'],
                                 'activity_description' => $activityForm['activity_description'],
-                                'appro_total' => $expenseClassification['appro_total_amount'],
-                                'latest_appro_total' => $expenseClassification['appro_total_amount'],
+                                'appro_total' => $activityForm['expenseTotal'],
+                                'latest_appro_total' => $activityForm['expenseTotal'],
                             ]);
 
                             AppropriationExpenses::create([
@@ -92,8 +92,8 @@ class EnrollApproRepository{
                                 'activity_code'=> $activityForm['activity_aip_code'],
                                 'activity' => $activityForm['activity'],
                                 'activity_description' => $activityForm['activity_description'],
-                                'appro_total' => $expenseClassification['appro_total_amount'],
-                                'latest_appro_total' => $expenseClassification['appro_total_amount'],
+                                'appro_total' => $activityForm['expenseTotal'],
+                                'latest_appro_total' => $activityForm['expenseTotal'],
                             ]);
 
                             AppropriationExpenses::create([
