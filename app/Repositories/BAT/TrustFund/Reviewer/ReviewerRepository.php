@@ -20,7 +20,8 @@ class ReviewerRepository{
         $updated = tfFundDetails::where('tf_id', $request->tf_id);
         $updated->update([
             "reviewer" => "qwerty",
-            "status" => "For Approval - DH"
+            "status" => "For Approval - DH",
+            "reviewer" => $request->reviewer
         ]);
 
         return response()->json(['message' => 'This entry has been successfully added. The account has been subject for Approval - DH.']);

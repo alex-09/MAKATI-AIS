@@ -21,6 +21,7 @@ class UpdateObligationRepository{
         $update->update([   
             'type' => 'Update', 
             'status' => 'For Review', 
+            'processer' => $request->processor
         ]);
 
         $update1 = TfObigation::where('tf_obli_id', $request->tf_obli_id);

@@ -19,6 +19,14 @@ return new class extends Migration
             $table->string('account_code');
             $table->float('appro_amount', 17, 3);
             $table->float('latest_appro_amount', 17, 3)->nullable();
+            $table->string('adjustemt_id')->nullable();
+            $table->string('document_source')->nullable();
+            $table->string('adjustment_date')->nullable();
+            $table->string('adjustment_type')->nullable();
+            $table->string('adjustment_no')->nullable();
+            $table->float('addition', 17, 3)->nullable();
+            $table->float('deduction', 17, 3)->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

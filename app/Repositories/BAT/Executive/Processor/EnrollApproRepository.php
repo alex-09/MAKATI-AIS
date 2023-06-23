@@ -117,8 +117,13 @@ class EnrollApproRepository{
         ]);
     }
 
+
     public function forReview($request){
         Appropriation::where('appro_id', $request->appro_id)->update(['status' => 'For Review']);
+
+        AppropriationDetails::where('appro_id', $request->appro_id)->update(['status' => 'For Review']);
+
+        AppropriationExpenses::where('appro_id', $request->appro_id)->update(['status' => 'For Review']);
 
         return response()->json([
             'status' => true,

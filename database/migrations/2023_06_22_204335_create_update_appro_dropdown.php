@@ -30,48 +30,6 @@ return new class extends Migration
 
         END";
 
-        " DROP PROCEDURE IF EXISTS `exec_appro_getprogram`;
-        CREATE PROCEDURE `exec_appro_getprogram` (IN dept VARCHAR(50), IN appro VARCHAR(50))
-        BEGIN
-
-        SELECT program, 
-        program_code, 
-        appro_id
-
-        FROM exec_appropriation_details
-        WHERE department_code_id = dept
-        and appro_id = appro
-        AND status = 'Approved'
-
-        END";
-
-        " DROP PROCEDURE IF EXISTS `exec_appro_getproject`;
-        CREATE PROCEDURE `exec_appro_getproject` (IN program VARCHAR(50), IN appro VARCHAR(50))
-        BEGIN
-
-        SELECT project, project_code, appro_id
-
-        FROM exec_appropriation_details
-        WHERE program_code = program
-        AND appro_id = appro
-        AND status = 'Approved'
-
-        END";
-
-        " DROP PROCEDURE IF EXISTS `exec_appro_getactivity`;
-        CREATE PROCEDURE `exec_appro_getactivity` (IN program VARCHAR(50), IN project VARCHAR(50), IN appro VARCHAR(50))
-        BEGIN
-
-        SELECT activity, activity_code, AIPCode, appro_id
-
-        FROM exec_appropriation_details
-        WHERE program_code = program
-        WHERE project_code = project
-        AND appro_id = appro
-        AND status = 'Approved';
-
-        END";
-
         DB::unprepared($procedure); 
     }
 

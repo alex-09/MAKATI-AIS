@@ -23,6 +23,8 @@ class DMBudgetaryObligationsTransac extends Model
         'current_bearer_dept',
         'current_bearer_contact_number',
         'current_bearer_email',
+        'processer',
+        'reviewer',
         'status',
         'furs_id',
         'cafoa_id',
