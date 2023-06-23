@@ -10,22 +10,24 @@ use Illuminate\Notifications\Action;
 class UpdateCARepository
 {
     private function forUpdate($request, $update){
+        
+        $assignto = "";
+        $space = ", ";
+
+        foreach ($request->assign_to as $assign) {
+            $assignto .= $assign . $space;
+        }
+
+        $assignto = rtrim($assignto, $space);
+
         $update->update([
-            'receive_comm_assignto_id' => "",
+            'receive_comm_assignto_id' => $assignto,
             'restriction' => $request->restriction,
             'action' => $request->action,
             'cluster' => $request->cluster,
             'no_of_days' => $request->no_of_days,
+            'status' => $request->status
         ]);
-
-        foreach($request->assign_to as $$assign){
-
-            CommunicationAssignTo::create([
-                'transac_id' => $assign['name'],
-                'assigned_to' => $request->transac_id
-            ]);
-            
-        }
     }
 
     public function update($request){

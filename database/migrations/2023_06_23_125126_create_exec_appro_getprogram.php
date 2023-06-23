@@ -24,7 +24,7 @@ return new class extends Migration
         FROM exec_appropriation_details
         WHERE department_code_id = dept
         and appro_id = appro
-        AND status = 'Approved'
+        AND status = 'Approved';
 
         END";
 

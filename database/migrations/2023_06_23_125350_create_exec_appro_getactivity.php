@@ -21,7 +21,7 @@ return new class extends Migration
 
         FROM exec_appropriation_details
         WHERE program_code = program
-        WHERE project_code = project
+        AND project_code = project
         AND appro_id = appro
         AND status = 'Approved';
 

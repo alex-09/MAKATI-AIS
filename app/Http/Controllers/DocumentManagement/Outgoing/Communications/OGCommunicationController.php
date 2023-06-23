@@ -51,7 +51,7 @@ class OGCommunicationController extends Controller
     public function uploadDocument(Request $request){
         try{
             $this->outgoingCommRepo->uploadDocument($request);
-        }catch(Exception $th){
+        }catch(\Throwable $th){
             return response()->json([
                 'status' => false,
                 'message' => 'Error uploading',
