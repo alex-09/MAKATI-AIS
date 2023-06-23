@@ -17,13 +17,31 @@ return new class extends Migration
         CREATE PROCEDURE `exec_appro_getinfo` (IN aipcode VARCHAR(50), IN appro VARCHAR(50))
         BEGIN
 
-        SELECT activity, activity_code, exec_appropriations.appro_id, AIPCode
+        SELECT DISTINCT appro_type.appro_type,
+		main_info.department_code_id,
+        appro_details.activity,
+		expenses.id,
+		expenses.appro_id,
+        expenses.AIPCode,
+        expenses.account_name,
+        expenses.account_code,
+        expenses.appro_amount
 
         FROM exec_appropriation_expenses as expenses
+        
         RIGHT JOIN exec_appropriations as main_info
         ON expenses.appro_id = main_info.appro_id
+        
         JOIN exec_appropriation_details AS appro_details
         ON appro_details.appro_id = expenses.appro_id
+        
+        JOIN exec_appropriation_types AS appro_type
+        ON appro_type.approType_id = main_info.approType_id
+        
+		INNER JOIN (SELECT appro_id, MAX(created_at) AS max_date FROM exec_appropriation_expenses GROUP BY appro_id) AS dets
+        ON expenses.appro_id = dets.appro_id
+        and expenses.created_at = dets.max_date
+        
         WHERE appro_details.AIPCode = expenses.AIPCode
         AND expenses.AIPCode = aipcode
         AND expenses.appro_id = appro;

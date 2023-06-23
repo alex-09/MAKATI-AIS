@@ -271,6 +271,8 @@ Route::prefix('appropriation')->group(function () {
     Route::post('/getProject', [UpdateAppropriationController::class, 'getProject']);
     Route::post('/getActivity', [UpdateAppropriationController::class, 'getActivity']);
     Route::post('/getApproInfo', [UpdateAppropriationController::class, 'getApproInfo']);
+    Route::post('/UpdateAppro', [UpdateAppropriationController::class, 'updateAppro']);
+
 });
 
 Route::prefix('allotment')->group(function () {

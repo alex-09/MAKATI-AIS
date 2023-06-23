@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('AIPCode');
             $table->string('account_name');
             $table->string('account_code');
-            $table->float('appro_amount', 17, 3);
+            $table->float('appro_amount', 17, 3)->nullable();
             $table->float('latest_appro_amount', 17, 3)->nullable();
             $table->string('adjustemt_id')->nullable();
             $table->string('document_source')->nullable();
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('adjustment_no')->nullable();
             $table->float('addition', 17, 3)->nullable();
             $table->float('deduction', 17, 3)->nullable();
+            $table->float('balance', 17, 3)->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

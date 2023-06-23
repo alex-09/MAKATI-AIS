@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('program_code');
             $table->string('program');
             $table->string('project_code');
-            $table->string('project');
+            $table->string('project'); 
             $table->string('activity_code')->index();
             $table->string('activity');
             $table->string('activity_description');

@@ -41,7 +41,7 @@ class CommCAController extends Controller
     }
 
     public function document($pdf){
-        dd($pdfUrl = asset('Document/DocumentManagement/Receiving/Communication/'. $pdf));
+        $pdfUrl = asset('Document/DocumentManagement/Receiving/Communication/'. $pdf);
 
         return response()->json(['url' => $pdfUrl]);
     }

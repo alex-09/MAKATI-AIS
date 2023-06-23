@@ -9,7 +9,7 @@ class ListAppropriationController extends Controller
 {
     public function index(){
 
-        $list = DB::select('CALL exec_list_appro()');
+        $list = DB::select('SELECT * FROM exec_list_appropriation');
 
         return response()->json([
             'status' => true,

@@ -14,11 +14,11 @@ class AppropriationExpenses extends Model
     protected $fillable = [
         'appro_id',
         'AIPCode',
-        'adjustemt_id',
         'account_name',
         'account_code',
         'appro_amount',
         'latest_appro_amount'.
+        'adjustemt_id',
         'document_source',
         'adjustment_date',
         'adjustment_type',

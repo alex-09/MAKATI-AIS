@@ -22,7 +22,7 @@ class AdjustmentType extends Seeder
         ]);
         
         TypeOfAdjustment::create([
-            'adjustment_type' => 'Revision'
+            'adjustment_type' => 'Reversion'
         ]);
     }
 }
