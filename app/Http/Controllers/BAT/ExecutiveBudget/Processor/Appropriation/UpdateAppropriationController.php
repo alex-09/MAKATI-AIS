@@ -41,11 +41,15 @@ class UpdateAppropriationController extends Controller
         return $this->updateApproRepo->getActivity($request);
     }
 
-    public function getApproInfo(Request $request){
+    public function getApproInfo(Request $request)
+    {
+
         return $this->updateApproRepo->getApproInfo($request);
     }
 
-    public function updateAppro(Request $request){
+    public function updateAppro(Request $request)
+    {
+
         return $this->updateApproRepo->updateAppro($request);
     }
     

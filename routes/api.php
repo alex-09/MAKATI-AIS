@@ -86,6 +86,7 @@ use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayT
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\ListPayTransacController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\PrevPayTransacCOntroller;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\EnrollAppropriationController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ReportAppropriationContorller;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\UpdateAppropriationController;
 use App\Http\Controllers\DocumentManagement\Incoming\Communication\CityAccountant\CommCAController;
 use App\Http\Controllers\DocumentManagement\Outgoing\CheckTranscation\OGCheckTransactionController;
@@ -273,12 +274,22 @@ Route::prefix('appropriation')->group(function () {
     Route::post('/getApproInfo', [UpdateAppropriationController::class, 'getApproInfo']);
     Route::post('/UpdateAppro', [UpdateAppropriationController::class, 'updateAppro']);
 
+    //REPORTS APPROPRIATION
+    Route::post('/reportAppro', [ReportAppropriationContorller::class, 'reportAppro']);
+
 });
 
 Route::prefix('allotment')->group(function () {
 
+    //FILTER APPROPRIATION
+    Route::post('/getDepartment', [EnrollAllotmentController::class, 'department']);
+    Route::post('/getApproType', [EnrollAllotmentController::class, 'approType']);
+    Route::post('/getProgram', [EnrollAllotmentController::class, 'program']);
+    Route::post('/getProject', [EnrollAllotmentController::class, 'project']);
+    Route::post('/getActivity', [EnrollAllotmentController::class, 'activity']);
+    Route::post('/getExpense', [EnrollAllotmentController::class, 'expense']);
+
     //ENROLL
-    Route::get('/filter', [EnrollAllotmentController::class, 'filterAllot']);
     Route::post('/enroll', [EnrollAllotmentController::class, 'enroll']);
     //UPDATE
     Route::get('/filterAllot', [UpdateAllotmentController::class, 'filter']);
