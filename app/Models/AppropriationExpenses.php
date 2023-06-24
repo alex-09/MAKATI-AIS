@@ -17,7 +17,7 @@ class AppropriationExpenses extends Model
         'account_name',
         'account_code',
         'appro_amount',
-        'latest_appro_amount'.
+        'latest_appro_amount',
         'adjustemt_id',
         'document_source',
         'adjustment_date',

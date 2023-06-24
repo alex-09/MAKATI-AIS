@@ -113,63 +113,47 @@ class UpdateApproRepository{
     public function updateAppro($request){
         try {
 
-            $adjustment = AppropriationExpenses::latest()->where('appro_id', $request->appro_id)->get();
-
-            foreach ($adjustment as $data) {
-                $adjustment = $data->adjustemt_id;
-            }
-
-            if($adjustment == null){
-                $adjst = "adjst_1";
-                return "wala";
-            }else{
-                $adjust = substr($adjustment, -1);
-                $adjst = ++$adjust;
-            }
+            $adjustment = AppropriationExpenses::latest()->where('appro_id', $request->appro_id)->first();
+            
+            $adjustment = $adjustment->adjustemt_id;
+            
+                if($adjustment == null){
+                    $adjst = "adjst_1";
+                }else{
+                    $adjust = (int)substr($adjustment, 6, 20);
+                    $adjst = ++$adjust;
+                }
 
             AppropriationDetails::where('appro_id', $request->appro_id)->update(['type' => "Update"]);
 
-            AppropriationExpenses::create([
-                'appro_id' => $request->appro_id,
-                'AIPCode' => $request->aipcode,
-                'account_code' => $request->account_code,
-                'account_name' => $request->account_name,
-                'adjustemt_id' => $adjst,
-                'latest_appro_amount' => $request->balance,
-                'adjustment_date' => $request->date,
-                'adjustment_type' => $request->adjustment_type,
-                'adjustment_no' => $request->adjustment_no,
-                'addition' => $request->addition,
-                'deduction' => $request->deduction,
-                'balance' => $request->balance,
+            foreach($request->details_form as $details){
+                    $expenses = $details['expense'];
+                foreach($expenses as $expense_details){
+                    AppropriationExpenses::create([
+                        'appro_id' => $expense_details['appro_id'],
+                        'AIPCode' => $expense_details['AIPCode'],
+                        'adjustemt_id' => "adjst_".$adjst,
+                        'document_source' => $request->source_document, 
+                        'date' => $request->date_of_document,
+                        'adjustment_type' => $request->type_of_adjustment,
+                        'adjustment_no' => $request->adjustment_no,
+                        'account_code' => $expense_details['account_code'],
+                        'account_name' => $expense_details['account_name'],
+                        // 'balance' => $request->balance,
+                        'addition' => $expense_details['addition'],
+                        'deduction' => $expense_details['deduction'],
+                        // 'latest_balance' => $request->balance,
+                    ]);
+
+                    }
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'update success!',
+                'appro_id' =>  $request->appro_id,
+                'aip_code' => $request->aip_code
             ]);
-
-            // for($i=0; $i<count($request->account_code); $i++){
-            //     AppropriationUpdate::create([
-            //         'appro_id' => $request->appro_id,
-            //         'AIPCode' => $request->aipcode,
-            //         'document_source' => $request->document_source, 
-            //         'date' => $request->date,
-            //         'adjustment_type' => $request->adjustment_type,
-            //         'adjustment_no' => $request->adjustment_no,
-            //         'account_code' => $request->account_code[$i],
-            //         'account_name' => $request->account_name[$i],
-            //         'balance' => $request->balance[$i],
-            //         'addition' => $request->addition[$i],
-            //         'deduction' => $request->deduction[$i],
-            //         'latest_balance' => $request->balance[$i],
-            //     ]);
-            // }
-
-            // $updateAccCode = AppropriationExpenses::where('appro_id', $request->approId)
-            //     ->where('AIPCode', $request->aipcode)
-            //     ->where('account_code', $request->account_code);
-            // $updateAccCode->update(['latest_appro_amount' => $request->latest_balance]);
-
-            // return response()->json([
-            //     'status' => true,
-            //     'message' => 'Success!'
-            // ]);
 
 
         }catch (\Throwable $th){
