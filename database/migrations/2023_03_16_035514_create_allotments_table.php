@@ -25,6 +25,7 @@ return new class extends Migration
             $table->float('allot_amount', 17, 3);
             $table->float('balance', 17, 3);
             $table->float('latest_balance', 17, 3)->nullable();
+            $table->string('adjustemt_id')->nullable();
             $table->string('document_source')->nullable();
             $table->string('date')->nullable();
             $table->string('adjustment_type')->nullable();

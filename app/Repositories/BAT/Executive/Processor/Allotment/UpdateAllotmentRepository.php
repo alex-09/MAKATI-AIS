@@ -114,36 +114,42 @@ class UpdateAllotmentRepository{
                     $adjst = "allot_adjst_1";
                 }else{
                     $adjust = (int)substr($adjustment, 12, 20);
-                    $adjst = ++$adjust;
+                    $adjst = "allot_adjst_".++$adjust;
                 }
 
-                Allotment::where('allot_id', $request->appro_id)->update(['type' => "Update"]);
-
-            foreach($request->details_form as $details){
-                    $expenses = $details['expense'];
-                foreach($expenses as $expense_details){
-                    Allotment::create([
-                        'appro_id' => $expense_details['appro_id'],
-                        'allot_id' => $expense_details['appro_id'],
-                        'AIPCode' => $expense_details['AIPCode'],
-                        'adjustemt_id' => "adjst_".$adjst,
-                        'budget_year_id' => $request->year,
-                        'department_code_id' => $request->department, 
-                        'document_source' => $request->source_document, 
-                        'date' => $request->date_of_document,
-                        'adjustment_type' => $request->type_of_adjustment,
-                        'adjustment_no' => $request->adjustment_no,
-                        'account_code' => $expense_details['account_code'],
-                        'account_name' => $expense_details['account_name'],
-                        'balance' => $request->balance,
-                        'addition' => $expense_details['addition'],
-                        'deduction' => $expense_details['deduction'],
-                        'adjusted_balance' => $request->adjusted_balance,
-                        'unalloted_balance' => $request->unalloted_balance,
-                    ]);
-
-                    }
+            foreach($request->expense as $expense){
+                Allotment::create([
+                    'appro_id' => $expense['appro_id'],
+                    'allot_id' => $expense['allot_id'],
+                    'AIPCode' => $expense['AIPCode'],
+                    'type' => 'Update',
+                    'adjustemt_id' => $adjst,
+                    'budget_year_id' => $request->budget_year,
+                    'department_code_id' => $expense['department_code_id'], 
+                    'document_source' => $request->source_document, 
+                    'date' => $request->date_of_document,
+                    'adjustment_type' => $request->type_of_adjustment,
+                    'adjustment_no' => $request->adjustment_no,
+                    'account_code' => $expense['account_code'],
+                    'account_name' => $expense['account_name'],
+                    "appro_amount" => $expense['appro_amount'],
+                    'balance' => $expense['balance'],
+                    'addition' => $expense['addition'],
+                    'deduction' => $expense['deduction'],
+                    'allot_amount' => $expense['allot_amount'],
+                    'adjusted_balance' => $expense['adjusted_balance'],
+                    'unalloted_balance' => $expense['unalloted_balance'],
+                ]); 
             }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'success',
+                'aipcode' => $request->aipcode,
+                'allot_id' => $request->allot_id,
+                'adjustment_id' => $adjst
+            ]);
+
         }catch(\Throwable $th){
             return response()->json([
                'status' => false,
@@ -157,8 +163,7 @@ class UpdateAllotmentRepository{
     public function forReview($request){
         try{
 
-            $data = Allotment::where('allot_id', $request->allot_id)
-            ->where('AIPCode', $request->aipcode)
+            $data = Allotment::where('adjustment_id', $request->adjustment_id)
             ->update([
                 'type' => 'Update',
                 'status' => "For Review"

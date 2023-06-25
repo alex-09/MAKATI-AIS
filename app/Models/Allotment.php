@@ -14,6 +14,7 @@ class Allotment extends Model
         'appro_id',
         'allot_id',
         'type',
+        'adjustemt_id',
         'budget_year_id',
         'department_code_id',
         'AIPCode',

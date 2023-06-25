@@ -81,7 +81,7 @@ return new class extends Migration
         CREATE PROCEDURE `get_appro_project_allot` (IN appro VARCHAR(20), IN program VARCHAR(20))
         BEGIN
 
-        select distinctexec_appropriation_details.project, exec_appropriation_details.project_code
+        select distinct exec_appropriation_details.project, exec_appropriation_details.project_code
 
         from exec_appropriations
         join exec_appropriation_details
