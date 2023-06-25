@@ -300,7 +300,6 @@ Route::prefix('allotment')->group(function () {
 
     //FILTER FOR UPDATE
     Route::post('/getAllotDepartment', [UpdateAllotmentController::class, 'department']);
-    Route::post('/getAllotApproType', [UpdateAllotmentController::class, 'approType']);
     Route::post('/getAllotProgram', [UpdateAllotmentController::class, 'program']);
     Route::post('/getAllotProject', [UpdateAllotmentController::class, 'project']);
     Route::post('/getAllotActivity', [UpdateAllotmentController::class, 'activity']);

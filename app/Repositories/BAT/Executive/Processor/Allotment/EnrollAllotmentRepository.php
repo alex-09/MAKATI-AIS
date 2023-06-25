@@ -173,7 +173,7 @@ class EnrollAllotmentRepository{
                 'status' => true,
                 'message' => "Added Successfully!",
                 'allot_id' => $allot_id,
-                'aipcode' => $aipcode
+                'aipcode' => $expenses['aipCode']
             ]);
 
         }catch (\Throwable $th){

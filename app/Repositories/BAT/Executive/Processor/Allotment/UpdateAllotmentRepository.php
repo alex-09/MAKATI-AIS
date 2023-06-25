@@ -91,7 +91,6 @@ class UpdateAllotmentRepository{
             ));
 
             return response()->json([
-                'activity' => $data1,
                 'activity_descript' => $data2
         ]);
 
