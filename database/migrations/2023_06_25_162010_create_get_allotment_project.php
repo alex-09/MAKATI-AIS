@@ -30,7 +30,7 @@ return new class extends Migration
         AND exec_allotments.allot_id = allot
         
         GROUP BY exec_appropriation_details.project,
-        exec_appropriation_details.project_code
+        exec_appropriation_details.project_code;
 
         END";
         DB::unprepared($procedure); 

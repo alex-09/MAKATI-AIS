@@ -35,7 +35,7 @@ return new class extends Migration
         AND exec_appropriations.department_code_id = department
         
         GROUP BY exec_appropriation_details.program, 
-        exec_appropriation_details.program_code
+        exec_appropriation_details.program_code;
 
         END";
         DB::unprepared($procedure); 

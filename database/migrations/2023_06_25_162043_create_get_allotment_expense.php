@@ -20,7 +20,7 @@ return new class extends Migration
         SELECT  exec_allotments.appro_id,
         exec_allotments.allot_id,
         exec_appropriation_details.department_code_id,
-        exec_appropriation_types.appro_type
+        exec_appropriation_types.appro_type,
         exec_allotments.AIPCode,
         exec_appropriation_details.activity,
         exec_appropriation_details.activity_code,
@@ -42,11 +42,11 @@ return new class extends Migration
         LEFT JOIN exec_appropriation_types
         ON exec_appropriations.approType_id = exec_appropriation_types.approType_id
         LEFT JOIN exec_appropriation_details
-        ON exec_appropriation_details.AIPcode = exec_allotments.AIPcode
+        ON exec_appropriation_details.AIPCode = exec_allotments.AIPCode
         AND exec_appropriation_details.appro_id = exec_allotments.appro_id
 
         WHERE exec_allotments.AIPCode = aipcode
-        AND exec_allotments.allot_id = allot
+        AND exec_allotments.allot_id = allot;
 
 
         END";

@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('list_main_fund');
+        Schema::dropIfExists('list_main_fund_approved');
     }
 };

@@ -113,7 +113,7 @@ return new class extends Migration
 
         DB::unprepared($procedure);
 
-        $procedure = " DROP PROCEDURE IF EXISTS `get_appro_expenses_allot`;
+        $procedure = " DROP PROCEDURE IF EXISTS `get_appro_activity_descrip_allot`;
         CREATE PROCEDURE `get_appro_activity_descrip_allot`(IN appro VARCHAR(250))
         BEGIN
 

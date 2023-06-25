@@ -28,7 +28,7 @@ return new class extends Migration
         WHERE exec_appropriations.budget_year_id = year
         AND exec_appropriations.approType_id = appro_type
         
-        GROUP BY departments.department_code, departments.department_name
+        GROUP BY departments.department_code, departments.department_name;
 
         END";
         DB::unprepared($procedure); 

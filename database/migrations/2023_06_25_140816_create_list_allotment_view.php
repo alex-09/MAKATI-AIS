@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         $procedure = " DROP VIEW IF EXISTS `list_allotment`;
-        CREATE VIEW `makati-ais`.`list_main_fund_approved` AS
+        CREATE VIEW `makati-ais`.`list_allotment` AS
         SELECT exec_allotments.appro_id, 
 		exec_allotments.allot_id,
 		null as type,
@@ -39,10 +39,7 @@ return new class extends Migration
         ON exec_appropriations.approType_id = exec_appropriation_types.approType_id
         LEFT JOIN exec_appropriation_details
         ON exec_appropriation_details.AIPcode = exec_allotments.AIPcode
-        AND exec_appropriation_details.appro_id = exec_allotments.appro_id
-
-        GROUP BY exec_allotments.allot_id
-        AND exec_allotments.AIPCode";
+        AND exec_appropriation_details.appro_id = exec_allotments.appro_id";
 
         DB::unprepared($procedure); 
     }
