@@ -23,7 +23,9 @@ return new class extends Migration
         WHERE program_code = program
         AND project_code = project
         AND appro_id = appro
-        AND status = 'Approved';
+        AND status = 'Approved'
+        
+        GROUP BY activity, activity_code;
 
         END";
 

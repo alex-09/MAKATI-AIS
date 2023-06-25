@@ -22,7 +22,9 @@ return new class extends Migration
         FROM exec_appropriation_details
         WHERE program_code = program
         AND appro_id = appro
-        AND status = 'Approved';
+        AND status = 'Approved'
+        
+        GROUP BY project, project_code;
 
         END";
 
