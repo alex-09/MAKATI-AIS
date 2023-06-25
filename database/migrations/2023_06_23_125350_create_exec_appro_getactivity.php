@@ -17,13 +17,13 @@ return new class extends Migration
         CREATE PROCEDURE `exec_appro_getactivity` (IN program VARCHAR(50), IN project VARCHAR(50), IN appro VARCHAR(50))
         BEGIN
 
-        SELECT activity, activity_code, AIPCode, appro_id
+        SELECT DISTINCT activity, activity_code, AIPCode, appro_id
 
         FROM exec_appropriation_details
         WHERE program_code = program
         AND project_code = project
         AND appro_id = appro
-        AND status = 'Approved'
+        AND status = 'Approved';
         
         GROUP BY activity, activity_code;
 

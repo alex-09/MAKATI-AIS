@@ -17,7 +17,7 @@ return new class extends Migration
         CREATE PROCEDURE `get_allotment_program` (IN year VARCHAR(50), IN appro_type VARCHAR(50), IN department VARCHAR(50))
         BEGIN
 
-        SELECT exec_appropriation_details.program, 
+        SELECT DISTINCT exec_appropriation_details.program, 
         exec_appropriation_details.program_code,
         exec_allotments.allot_id
         
@@ -32,10 +32,7 @@ return new class extends Migration
         
         WHERE exec_appropriations.budget_year_id = year
         AND exec_appropriations.approType_id = appro_type
-        AND exec_appropriations.department_code_id = department
-        
-        GROUP BY exec_appropriation_details.program, 
-        exec_appropriation_details.program_code;
+        AND exec_appropriations.department_code_id = department;
 
         END";
         DB::unprepared($procedure); 

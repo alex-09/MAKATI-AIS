@@ -17,15 +17,13 @@ return new class extends Migration
         CREATE PROCEDURE `exec_appro_getproject` (IN program VARCHAR(50), IN appro VARCHAR(50))
         BEGIN
 
-        SELECT project, project_code, appro_id
+        SELECT DISTINCT project, project_code, appro_id
 
         FROM exec_appropriation_details
         WHERE program_code = program
         AND appro_id = appro
-        AND status = 'Approved'
+        AND status = 'Approved';
         
-        GROUP BY project, project_code;
-
         END";
 
         DB::unprepared($procedure); 

@@ -17,17 +17,14 @@ return new class extends Migration
         CREATE PROCEDURE `exec_appro_getprogram` (IN dept VARCHAR(50), IN appro VARCHAR(50))
         BEGIN
 
-        SELECT program, 
+        SELECT DISTINCT program, 
         program_code, 
         appro_id
 
         FROM exec_appropriation_details
         WHERE department_code_id = dept
         and appro_id = appro
-        AND status = 'Approved'
-        
-        GROUP BY program, 
-        program_code;
+        AND status = 'Approved';
 
         END";
 
