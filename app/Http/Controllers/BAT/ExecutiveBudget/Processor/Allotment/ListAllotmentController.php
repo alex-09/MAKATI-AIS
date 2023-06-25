@@ -10,7 +10,7 @@ class ListAllotmentController extends Controller
 {
     public function list(){
         
-        $data = DB::select('CALL listAllot()');
+        $data = DB::select('SELECT * FROM list_allotment');
 
         return response()->json([
             'status' => true,   

@@ -18,126 +18,39 @@ class EnrollAllotmentController extends Controller
     }
 
     public function department(Request $request){
-        try{
 
-            $data = DB::select('call get_appro_department_allot(?,?)',array(
-                $request->year,
-                $request->fund_source
-            ));
+        return $this->enrollAllotRepo->department($request);
 
-            return response()->json(['department' => $data]);
-
-        }catch (\Throwable $th){
-            return response()->json([
-                'status' => false,
-                'message' => 'Something went Wrong',
-                'error' => $th->getMessage()
-            ]);
-        }
     }
 
     public function approType(Request $request){
-        try{
 
-            $data = DB::select('call get_appro_approtype_allot(?,?,?)',array(
-                $request->year,
-                $request->fund_source,
-                $request->department
-            ));
+        return $this->enrollAllotRepo->approType($request);
 
-            return response()->json(['approType' => $data]);
-
-        }catch (\Throwable $th){
-            return response()->json([
-                'status' => false,
-                'message' => 'Something went Wrong',
-                'error' => $th->getMessage()
-            ]);
-        }
     }
 
     public function program(Request $request){
-        try{
 
-            $data = DB::select('call get_appro_program_allot(?,?,?,?)',array(
-                $request->year,
-                $request->fund_source,
-                $request->department,
-                $request->appro_type
-            ));
-            return response()->json(['program' => $data]);
+        return $this->enrollAllotRepo->program($request);
 
-        }catch (\Throwable $th){
-            return response()->json([
-                'status' => false,
-                'message' => 'Something went Wrong',
-                'error' => $th->getMessage()
-            ]);
-        }
     }
 
     public function project(Request $request){
-        try{
 
-            $data = DB::select('call get_appro_project_allot(?,?)',array(
-                $request->appro_id,
-                $request->program
-            ));
-            return response()->json(['project' => $data]);
+        return $this->enrollAllotRepo->project($request);
 
-        }catch (\Throwable $th){
-            return response()->json([
-                'status' => false,
-                'message' => 'Something went Wrong',
-                'error' => $th->getMessage()
-            ]);
-        }
     }
 
     public function activity(Request $request){
-        try{
 
-            $data = DB::select('call get_appro_activity_allot(?,?,?)',array(
-                $request->appro_id,
-                $request->program,
-                $request->project
-            ));
+        return $this->enrollAllotRepo->activity($request);
 
-            return response()->json(['activity' => $data]);
-
-        }catch (\Throwable $th){
-            return response()->json([
-                'status' => false,
-                'message' => 'Something went Wrong',
-                'error' => $th->getMessage()
-            ]);
-        }
     }
 
     public function expense(Request $request){
-        try{
 
-            $data1 = DB::select('call get_appro_activity_descrip_allot(?)',array(
-                $request->appro_id
-            ));
+        return $this->enrollAllotRepo->expense($request);
 
-            $data2 = DB::select('call get_appro_expenses_allot(?,?)',array(
-                $request->appro_id,
-                $request->aipcode
-            ));
-
-            return response()->json([
-                'activity' => $data1,
-                'activity_descript' => $data2
-        ]);
-
-        }catch (\Throwable $th){
-            return response()->json([
-                'status' => false,
-                'message' => 'Something went Wrong',
-                'error' => $th->getMessage()
-            ]);
-        }
     }
 
     public function enroll(AllotmentRequest $request){
@@ -150,5 +63,11 @@ class EnrollAllotmentController extends Controller
                 'error' => $th->getMessage()
             ]);
         }
+    }
+
+    public function forReview(Request $request){
+
+        return $this->enrollAllotRepo->forReview($request);
+
     }
 }

@@ -291,11 +291,20 @@ Route::prefix('allotment')->group(function () {
 
     //ENROLL
     Route::post('/enroll', [EnrollAllotmentController::class, 'enroll']);
-    //UPDATE
-    Route::get('/filterAllot', [UpdateAllotmentController::class, 'filter']);
-    Route::get('/updateAllot', [UpdateAllotmentController::class, 'update']);
+    Route::post('/forReview', [EnrollAllotmentController::class, 'forReview']);
+
     //LIST
     Route::get('/listAllot', [ListAllotmentController::class, 'list']);
+
+    //UPDATE
+    Route::post('/getAllotDepartment', [UpdateAllotmentController::class, 'department']);
+    Route::post('/getAllotApproType', [UpdateAllotmentController::class, 'approType']);
+    Route::post('/getAllotProgram', [UpdateAllotmentController::class, 'program']);
+    Route::post('/getAllotProject', [UpdateAllotmentController::class, 'project']);
+    Route::post('/getAllotActivity', [UpdateAllotmentController::class, 'activity']);
+    Route::post('/getAllotExpense', [UpdateAllotmentController::class, 'expense']);
+
+    Route::get('/updateAllot', [UpdateAllotmentController::class, 'update']);
 
 
 });

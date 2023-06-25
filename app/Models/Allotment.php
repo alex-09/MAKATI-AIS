@@ -13,9 +13,24 @@ class Allotment extends Model
     protected $fillable = [
         'appro_id',
         'allot_id',
+        'type',
         'budget_year_id',
-        'fundSource_id',
-        'approType_id',
+        'department_code_id',
+        'AIPCode',
+        'account_name',
+        'account_code',
+        'appro_amount',
+        'allot_amount',
+        'balance',
+        'latest_balance',
+        'document_source',
+        'date',
+        'adjustment_type',
+        'adjustment_no',
+        'addition',
+        'deduction',
+        'adjusted_balance',
+        'unalloted_balance',
         'status'
     ];
 }
