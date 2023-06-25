@@ -102,7 +102,7 @@ return new class extends Migration
 
         from exec_appropriation_details
 
-        where exec_appropriation_details.appro_id = appro,
+        where exec_appropriation_details.appro_id = appro
         and exec_appropriation_details.program_code = program
         and exec_appropriation_details.project_code = project;
         END";
