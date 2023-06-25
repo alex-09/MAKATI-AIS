@@ -133,38 +133,56 @@ class EnrollAllotmentRepository{
     }
 
     public function enroll($request){
+        try{
+            $getallot_id = Allotment::all();
+            if($getallot_id->isEmpty()){
+                $allot_id = "allot_"."1";
+            }else{
+                $getallot_id = Allotment::latest('id')->first();
+                $allot_idInc = $getallot_id['id'];
+                $allot_id = "allot_".++$allot_idInc;
+            }
 
-        $getallotId = Allotment::all();
-        if($getallotId->isEmpty()){
-            $allot_id = "allot_"."1";
-        }else{
-            $getallotId = Allotment::latest('id')->first();
-            $allotIdInc = $getallotId['id'];
-            $allot_id = "allot_".++$allotIdInc;
+            foreach($request->program as $program){
+                $project = $program['project'];
+                foreach($project as $activity){
+                    $expense = $activity['activity'];
+                    foreach($expense as $expenses){
+                        $expDetails = $expenses['expense'];
+                            foreach($expDetails as $exp){
+
+                            Allotment::create([
+                                'appro_id' => $request->appro_id,
+                                'allot_id' => $allot_id,
+                                'budget_year_id' => $request->year,
+                                'department_code_id' => $request->department,
+                                'AIPCode' => $expenses['aipCode'],
+                                'account_name' => $exp['accountCode'],
+                                'account_code' => $exp['accountName'],
+                                'appro_amount' => $exp['appropriation'],
+                                'allot_amount' => $exp['allotment'],
+                                'balance' => $exp['balance'],
+                                'latest_balance' => $exp['balance']
+                            ]);
+                        }
+                    }
+                }
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => "Added Successfully!",
+                'allot_id' => $allot_id,
+                'aipcode' => $aipcode
+            ]);
+
+        }catch (\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went Wrong',
+                'error' => $th->getMessage()
+            ]);
         }
-
-        $aipcode = $request->program_code."-".$request->project_code."-".$request->activity_code;
-
-        Allotment::Create([
-            'allot_id' => $allot_id,
-            'appro_id' => $allot_id,
-            'budget_year_id' => $allot_id,
-            'department_code_id' => $allot_id,
-            'AIPCode' => $allot_id,
-            'account_name' => $allot_id,
-            'account_code' => $allot_id,
-            'appro_amount'=> $allot_id,
-            'allot_amount'=> $allot_id,
-            'balance' =>$allot_id,
-            'latest_balance' => $allot_id,
-        ]);
-;
-        return response()->json([
-            'status' => true,
-            'message' => "Added Successfully!",
-            'allot_id' => $allot_id,
-            'aipcode' => $aipcode
-        ]);
     }
 
     public function forReview($request){

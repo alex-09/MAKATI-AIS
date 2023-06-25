@@ -17,7 +17,8 @@ return new class extends Migration
         CREATE PROCEDURE `exec_appro_update_report_info` (IN aipcode VARCHAR(50), IN appro VARCHAR(50))
         BEGIN
 
-        SELECT appro_main.budget_year_id,
+        SELECT DISTINCT appro_main.appro_id, 
+        appro_main.budget_year_id,
         appro_main.fundSource_id,
         appro_main.approType_id,
         appro_main.reference_document,

@@ -247,6 +247,7 @@ Route::prefix('appropriation')->group(function () {
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
     //LIST s
     Route::get('/listAppro', [ListAppropriationController::class, 'index']);
+    Route::post('/viewAppro', [ListAppropriationController::class, 'view']);
 
     //REVIEWER
     Route::get('/listApproForReview', [ApproReviewerController::class, 'list']);
@@ -295,8 +296,9 @@ Route::prefix('allotment')->group(function () {
 
     //LIST
     Route::get('/listAllot', [ListAllotmentController::class, 'list']);
+    
 
-    //UPDATE
+    //FILTER FOR UPDATE
     Route::post('/getAllotDepartment', [UpdateAllotmentController::class, 'department']);
     Route::post('/getAllotApproType', [UpdateAllotmentController::class, 'approType']);
     Route::post('/getAllotProgram', [UpdateAllotmentController::class, 'program']);
@@ -304,7 +306,9 @@ Route::prefix('allotment')->group(function () {
     Route::post('/getAllotActivity', [UpdateAllotmentController::class, 'activity']);
     Route::post('/getAllotExpense', [UpdateAllotmentController::class, 'expense']);
 
-    Route::get('/updateAllot', [UpdateAllotmentController::class, 'update']);
+    //UPDATE
+    Route::post('/updateAllot', [UpdateAllotmentController::class, 'update']);
+    Route::post('/forReviewUpdateAllot', [UpdateAllotmentController::class, 'update']);
 
 
 });

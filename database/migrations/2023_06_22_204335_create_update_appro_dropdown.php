@@ -17,7 +17,7 @@ return new class extends Migration
         CREATE PROCEDURE `exec_appro_getdepartment` (IN year VARCHAR(50), IN fundSource VARCHAR(50))
         BEGIN
 
-        SELECT departments.department_name, 
+        SELECT DISTINCT departments.department_name, 
                 department_code, 
                 exec_appropriations.appro_id
 
@@ -26,10 +26,7 @@ return new class extends Migration
         ON exec_appropriations.department_code_id = department_code
         WHERE exec_appropriations.budget_year_id = year
         AND exec_appropriations.fundSource_id = fundSource
-        AND exec_appropriations.status = 'Approved'
-        
-        GROUP BY departments.department_name, 
-        department_code;
+        AND exec_appropriations.status = 'Approved';
 
         END";
 

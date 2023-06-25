@@ -24,8 +24,6 @@ return new class extends Migration
         AND project_code = project
         AND appro_id = appro
         AND status = 'Approved';
-        
-        GROUP BY activity, activity_code;
 
         END";
 

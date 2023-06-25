@@ -53,16 +53,10 @@ class EnrollAllotmentController extends Controller
 
     }
 
-    public function enroll(AllotmentRequest $request){
-        try{
-            return $this->enrollAllotRepo->enroll($request);
-        }catch (\Throwable $th){
-            return response()->json([
-                'status' => false,
-                'message' => 'Something went Wrong',
-                'error' => $th->getMessage()
-            ]);
-        }
+    public function enroll(Request $request){
+        
+        return $this->enrollAllotRepo->enroll($request);
+        
     }
 
     public function forReview(Request $request){

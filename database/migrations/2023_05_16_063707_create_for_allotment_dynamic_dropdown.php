@@ -61,7 +61,7 @@ return new class extends Migration
         IN approtype VARCHAR(20))
         BEGIN
 
-        select exec_appropriation_details.program, exec_appropriation_details.program_code, exec_appropriation_details.appro_id
+        select DISTINCT exec_appropriation_details.program, exec_appropriation_details.program_code, exec_appropriation_details.appro_id
 
         from exec_appropriations
         join exec_appropriation_details
@@ -72,9 +72,7 @@ return new class extends Migration
         and exec_appropriations.budget_year_id = year
         and exec_appropriations.fundSource_id = fundsrc
         and exec_appropriations.department_code_id = dept
-        and exec_appropriations.approType_id = approtype
-
-        group by exec_appropriation_details.program, exec_appropriation_details.program_code;
+        and exec_appropriations.approType_id = approtype;
         END";
 
         DB::unprepared($procedure);
@@ -83,7 +81,7 @@ return new class extends Migration
         CREATE PROCEDURE `get_appro_project_allot` (IN appro VARCHAR(20), IN program VARCHAR(20))
         BEGIN
 
-        select exec_appropriation_details.project, exec_appropriation_details.project_code
+        select distinctexec_appropriation_details.project, exec_appropriation_details.project_code
 
         from exec_appropriations
         join exec_appropriation_details
@@ -91,9 +89,7 @@ return new class extends Migration
 
         where exec_appropriation_details.status = 'Approved' 
         and exec_appropriations.appro_id = appro
-        and exec_appropriation_details.program_code = program
-
-        group by exec_appropriation_details.project, exec_appropriation_details.project_code;   
+        and exec_appropriation_details.program_code = program;   
         END";
 
         DB::unprepared($procedure);
@@ -106,7 +102,7 @@ return new class extends Migration
 
         from exec_appropriation_details
 
-        where exec_appropriation_details.appro_id = appro
+        where exec_appropriation_details.appro_id = appro,
         and exec_appropriation_details.program_code = program
         and exec_appropriation_details.project_code = project;
         END";
@@ -117,7 +113,7 @@ return new class extends Migration
         CREATE PROCEDURE `get_appro_activity_descrip_allot`(IN appro VARCHAR(250))
         BEGIN
 
-        select exec_appropriation_details.activity_description, 
+        select DISTINCT exec_appropriation_details.activity_description, 
         exec_appropriations.reference_document, 
         exec_appropriations.date_document
     
@@ -134,7 +130,7 @@ return new class extends Migration
         CREATE PROCEDURE `get_appro_expenses_allot`(IN appro VARCHAR(20), IN aipcode VARCHAR(20))
         BEGIN
 
-        select exec_appropriation_expenses.id, exec_appropriation_expenses.appro_id, exec_appropriation_expenses.AIPCode, 
+        select DISTINCT exec_appropriation_expenses.id, exec_appropriation_expenses.appro_id, exec_appropriation_expenses.AIPCode, 
         exec_appropriation_expenses.account_name, exec_appropriation_expenses.account_code, 
         exec_appropriation_expenses.appro_amount
 

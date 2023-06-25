@@ -12,7 +12,7 @@ class ApproDHController extends Controller
 {
     public function list(){
 
-        return response()->json(['list' => DB::select('CALL get_appro_division_head()')]);
+        return response()->json(['list' => DB::select('SELECT * FROM exec_list_appropriation')]);
     }
 
     public function view($id, $aipcode){

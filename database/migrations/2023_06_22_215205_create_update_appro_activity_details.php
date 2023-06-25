@@ -17,7 +17,7 @@ return new class extends Migration
         CREATE PROCEDURE `exec_appro_getinfo` (IN aipcode VARCHAR(50), IN appro VARCHAR(50))
         BEGIN
 
-        SELECT DISTINCT appro_type.appro_type,
+        SELECT appro_type.appro_type,
 		main_info.department_code_id,
         appro_details.activity,
 		expenses.id,
