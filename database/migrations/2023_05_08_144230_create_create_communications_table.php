@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('creator');
             $table->string('document')->nullable();
             $table->string('department')->nullable();
+            $table->string('addressee')->nullable();
             $table->string('particulars')->nullable();
             $table->longText('remarks')->nullable();
             $table->longText('receive_comm_assignto_id')->nullable();

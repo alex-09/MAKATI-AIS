@@ -7,5 +7,15 @@ use Illuminate\Http\Request;
 
 class ListObligationController extends Controller
 {
-    //
+    public function list(){
+        $list = DB::select('SELECT * FROM exec_obligation_list');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'list' => $list
+        ]);
+    }
+
+    
 }

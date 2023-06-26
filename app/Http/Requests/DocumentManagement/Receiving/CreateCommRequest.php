@@ -22,14 +22,15 @@ class CreateCommRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mc_no' => 'string',
-            'receive_comm_type_id' => 'required',
-            'sender' => 'required',
-            'subject' => 'required',
-            'reply_to' => 'required',
-            'creator' => 'required',
-            'department' => 'required',
-            'particulars' => 'required',
+            'mc_no' => '',
+            'receive_comm_type_id' => '',
+            'sender' => '',
+            'subject' => '',
+            'reply_to' => '',
+            'creator' => '',
+            'department' => '',
+            'particulars' => '',
+            'addressee' => ''
         ];
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         $procedure = "DROP PROCEDURE IF EXISTS `departments`;
             CREATE PROCEDURE `departments` ()
-            SELECT department_name, department_code
+            SELECT department_name, department_code, department_head
             FROM departments
             END;";
 

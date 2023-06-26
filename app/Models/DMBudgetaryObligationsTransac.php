@@ -28,7 +28,7 @@ class DMBudgetaryObligationsTransac extends Model
         'status',
         'furs_id',
         'cafoa_id',
-        'type',
+        'transaction_type',
         'number',
         'og_transmital_no',
         'og_sender',

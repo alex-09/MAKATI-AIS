@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('current_bearer_dept');
             $table->bigInteger('current_bearer_contact_number');
             $table->string('current_bearer_email');
-            $table->string('type')->default('New');
+            $table->string('transaction_type')->nullable();
             $table->string('furs_id')->nullable();
             $table->string('cafoa_id')->nullable();
             $table->string('processer')->nullable();

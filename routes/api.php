@@ -27,7 +27,6 @@ use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewTRController;
 use App\Http\Controllers\BAT\TrustFund\Processor\ListsrcTRController;
 use App\Http\Controllers\Documentmanagement\Outgoing\OD\OGOdController;
 use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHToApproveController;
-use App\Http\Controllers\BAT\TrustFund\ListObli\ListObligationController;
 use App\Http\Controllers\DocumentManagement\Outgoing\BOT\OGBotController;
 use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHObligationController;
 use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewObligationController;
@@ -66,6 +65,7 @@ use App\Http\Controllers\DocumentManagement\Outgoing\ContractPO\ReceiptContractC
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PayeeListController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\EnrollAllotmentController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\UpdateAllotmentController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Obligation\ListObligationController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\ReportsAllotmentController;
@@ -313,8 +313,15 @@ Route::prefix('allotment')->group(function () {
     //REPORTS ALLOTMENT
     Route::post('/reportAllotment', [ReportsAllotmentController::class, 'report']);
 
-
 });
+
+Route::prefix('obligation')->group(function () {
+
+    //FILTER APPROPRIATION
+    Route::post('/listObligation', [ListObligationController::class, 'list']);
+    
+});
+
 
 Route::prefix('ReceiveCommunication')->group(function () {
 

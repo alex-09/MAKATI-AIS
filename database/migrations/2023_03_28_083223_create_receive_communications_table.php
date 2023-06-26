@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('receive_comm_type_id');
             $table->string('subject');
             $table->string('department')->nullable();
+            $table->string('addressee')->nullable();
             $table->string('particulars')->nullable();
             $table->string('email')->nullable();
             $table->string('DRN');

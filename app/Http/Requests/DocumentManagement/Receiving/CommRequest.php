@@ -25,6 +25,7 @@ class CommRequest extends FormRequest
             'receive_comm_type_id' => 'required',
             'subject' => 'required',
             'department' => 'required',
+            'addressee' => '',            
             'document' => 'mimes:jpeg,jpg,JPG,doc,docx,pdf|max:2048',
             'email' => '',
             'DRN' => 'required',
@@ -34,7 +35,8 @@ class CommRequest extends FormRequest
             'bearer_name' => 'required',
             'bearer_address' => '',
             'bearer_contact_no' => 'required',
-            'bearer_department' => 'required'
+            'bearer_department' => 'required',
+            
         ];
     }
 }

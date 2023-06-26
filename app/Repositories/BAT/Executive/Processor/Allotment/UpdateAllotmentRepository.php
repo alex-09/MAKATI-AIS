@@ -129,7 +129,7 @@ class UpdateAllotmentRepository{
                     'document_source' => $request->source_document, 
                     'date' => $request->date_of_document,
                     'adjustment_type' => $request->type_of_adjustment,
-                    'adjustment_no' => $request->adjustment_no,
+                    'adjustment_no' => $request->adjustment_number,
                     'account_code' => $expense['account_code'],
                     'account_name' => $expense['account_name'],
                     "appro_amount" => $expense['appro_amount'],

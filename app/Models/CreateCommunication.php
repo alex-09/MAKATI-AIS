@@ -19,6 +19,7 @@ class CreateCommunication extends Model
         'creator',
         'document',
         'department',
+        'addressee',
         'particulars',
         'assign_to_id',
         'cluster',

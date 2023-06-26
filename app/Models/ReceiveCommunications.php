@@ -17,6 +17,7 @@ class ReceiveCommunications extends Model
         'receive_comm_type_id',
         'subject',
         'department',
+        'addressee',
         'email',
         'DRN',
         'reply_to',
