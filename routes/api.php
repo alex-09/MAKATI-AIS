@@ -68,6 +68,7 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\EnrollAllotment
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\UpdateAllotmentController;
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\ProcessorActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusinessController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\ReportsAllotmentController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CommunicationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateObligation\UpdateObligationController;
@@ -308,6 +309,9 @@ Route::prefix('allotment')->group(function () {
     //UPDATE
     Route::post('/updateAllot', [UpdateAllotmentController::class, 'update']);
     Route::post('/forReviewUpdateAllot', [UpdateAllotmentController::class, 'update']);
+
+    //REPORTS ALLOTMENT
+    Route::post('/reportAllotment', [ReportsAllotmentController::class, 'report']);
 
 
 });

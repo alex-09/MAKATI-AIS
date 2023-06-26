@@ -13,22 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `get_allotment_report_riversion`;
-        CREATE PROCEDURE `get_allotment_report_riversion` (IN aipcode VARCHAR(50), IN allot VARCHAR(50))
+        $procedure = " DROP PROCEDURE IF EXISTS `get_allotment_reports_total_adjustment`;
+        CREATE PROCEDURE `get_allotment_reports_total_adjustment` (IN aipcode VARCHAR(50), IN allot VARCHAR(50))
         BEGIN
 
-        SELECT id,
-		account_name,
-        account_code,
-        adjustment_no,
-        adjusted_balance,
-        status
-        
-        FROM exec_allotments
+        SELECT account_code, SUM(adjusted_balance)
 
-        where allot_id = allot
-        AND AIPCode = aipcode
-        and adjustment_type = 1;
+        FROM exec_allotments
+        
+        WHERE AIPCode = aipcode
+        AND allot_id = allot
+        
+        GROUP BY account_code;
 
 
         END";
@@ -42,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports_allotment_total_adjustment');
+        Schema::dropIfExists('get_allotment_reports_total_adjustment');
     }
 };

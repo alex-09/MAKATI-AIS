@@ -51,7 +51,7 @@ return new class extends Migration
             'Payroll Processing and Remittance Division',
             'Bookkeeping Division',
             'Financial Reporting Division',
-            'Barangay Accounts Division')
+            'Barangay Accounts Division', '-')
             AND `users`.`position` IN ('Assistant Division Head' , 'Assistant Head',
             'Division Head',
             'Assistant Department Head for AICS',

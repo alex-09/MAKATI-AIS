@@ -10,31 +10,37 @@ class ReportsAllotmentController extends Controller
     public function reports(Request $request){
         try {
             
-            $supplemental = DB::select('CALL get_allotment_report_main_info(?,?)',array(
-                $request->aipcode,
-                $request->appro_id
-            ));
-
-            $realignment = DB::select('CALL exec_appro_update_report_realignment(?,?)',array(
+            $supplemental = DB::select('CALL get_allotment_report_supplemental(?,?)',array(
                         $request->aipcode,
-                        $request->appro_id
+                        $request->allot_id
                     ));
 
-            $reversion = DB::select('CALL exec_appro_update_report_reversion(?,?)',array(
+            $realignment = DB::select('CALL get_allotment_report_realign(?,?)',array(
                         $request->aipcode,
-                        $request->appro_id
+                        $request->allot_id
                     ));
 
-            $mainInfo = DB::select('CALL exec_appro_update_report_info(?,?)',array(
+            $reversion = DB::select('CALL get_allotment_report_riversion(?,?)',array(
                         $request->aipcode,
-                        $request->appro_id
+                        $request->allot_id
+                    ));
+
+            $mainInfo = DB::select('CALL get_allotment_report_main_info(?,?)',array(
+                        $request->aipcode,
+                        $request->allot_id
+                    ));
+
+            $totalAdjustment = DB::select('CALL get_allotment_reports_total_adjustment(?,?)',array(
+                        $request->aipcode,
+                        $request->allot_id
                     ));
 
             return response()->json([
                 'mainInfo' => $mainInfo,
                 'supplemental' => $supplemental,
                 'realignment' => $realignment,
-                'mainInfo' => $mainInfo
+                'mainInfo' => $mainInfo,
+                'totalAdjustment' => $totalAdjustment
             ]);
 
         } catch (\Throwable $e) {
