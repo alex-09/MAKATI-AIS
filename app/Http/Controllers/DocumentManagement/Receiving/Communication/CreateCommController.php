@@ -18,7 +18,7 @@ class CreateCommController extends Controller
     }
 
     public function listAssistants(){
-        return response()->json(['list' => DB::select('SELECT * FROM users_division_heads')]);
+        return response()->json(['list' => DB::select('SELECT * FROM ')]);
     }
 
     public function store(CreateCommRequest $request){

@@ -10,7 +10,7 @@ class ReportsAllotmentController extends Controller
     public function reports(Request $request){
         try {
             
-            $supplemental = DB::select('CALL exec_appro_update_report_supple(?,?)',array(
+            $supplemental = DB::select('CALL get_allotment_report_main_info(?,?)',array(
                 $request->aipcode,
                 $request->appro_id
             ));
