@@ -17,6 +17,9 @@ return new class extends Migration
         $procedure = " DROP VIEW IF EXISTS `division_list`;
         CREATE VIEW `division_list` AS
         SELECT 
+        CONCAT(`users`.`firstname`,
+        ' ',
+        `users`.`surname`) AS `name`,
         `users`.`id` AS `id`,
         `users`.`surname` AS `surname`,
         `users`.`firstname` AS `firstname`,
