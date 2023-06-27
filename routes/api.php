@@ -318,9 +318,16 @@ Route::prefix('allotment')->group(function () {
 
 Route::prefix('obligation')->group(function () {
 
-    //FILTER APPROPRIATION
-    Route::post('/listObligation', [ListObligationController::class, 'list']);
-    
+    //LIST OBLIGATION
+    Route::get('/listObligation', [ListObligationController::class, 'list']);
+
+    //FILTER OBLIGATION
+    Route::post('/getDepartment', [AdjustmentObligationController::class, 'getDepartment']);
+    Route::post('/getProgram', [AdjustmentObligationController::class, 'getProgram']);
+    Route::post('/getProject', [AdjustmentObligationController::class, 'getProject']);
+    Route::post('/getActivity', [AdjustmentObligationController::class, 'getActivity']);
+    Route::post('/getExpense', [AdjustmentObligationController::class, 'getExpense']);
+
 });
 
 
@@ -361,8 +368,8 @@ Route::prefix('ReceiveCommunication')->group(function () {
 
     //REPORTS
     Route::get('/listReports', [CommunicationReportController::class, 'list']);
-    Route::get('/actionHistoryReports', [CommunicationReportController::class, 'actionHistory']);
-    Route::get('/editCommReport', [CommunicationReportController::class, 'edit']);
+    Route::post('/actionHistoryReports', [CommunicationReportController::class, 'actionHistory']);
+    Route::post('/editCommReport', [CommunicationReportController::class, 'edit']);
 });
 
 Route::prefix('trustfunds')->group(function () {
