@@ -39,6 +39,7 @@ use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ApproReviewerController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
 use App\Http\Controllers\BAT\TrustFund\Processor\Obligation\TRListFursController;
 use App\Http\Controllers\BAT\TrustFund\Report\Dashboard\DashboardReportController;
+use App\Http\Controllers\DocumentManagement\Reports\CommunicationReportController;
 use App\Http\Controllers\BAT\TrustFund\Processor\Obligation\TFObligationController;
 use App\Http\Controllers\DocumentManagement\Outgoing\PreAudit\OGPreauditController;
 use App\Http\Controllers\DocumentManagement\Receiving\ContractPO\PrevRecController;
@@ -357,6 +358,11 @@ Route::prefix('ReceiveCommunication')->group(function () {
     Route::post('/transmital', [OGCommunicationController::class, 'transmital']);
     Route::post('/updateOutgoing', [OGCommunicationController::class, 'updateOutgoing']);
     Route::post('/uploadDocument', [OGCommunicationController::class, 'uploadDocument']);
+
+    //REPORTS
+    Route::get('/listReports', [CommunicationReportController::class, 'list']);
+    Route::get('/actionHistoryReports', [CommunicationReportController::class, 'actionHistory']);
+    Route::get('/editCommReport', [CommunicationReportController::class, 'edit']);
 });
 
 Route::prefix('trustfunds')->group(function () {
