@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\DocumentManagement\Reports;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\CreateCommunication;
 use App\Http\Controllers\Controller;
 use App\Models\ReceiveCommunications;
@@ -40,6 +41,13 @@ class CommunicationReportController extends Controller
                 $addTransmital = CreateCommunication::where('transac_id', $request->transac_id);
                 $addTransmital->update(['status' => $request->status]);
             }
+
+            ActionHistory::create([
+                'type_id' => $request->transac_id,
+                'type' => 'Communication',
+                'particulars' => 'Update Report Status'. " " . "by". " ". $request->user,
+                'user' => $request->user
+            ]);
 
             return response()->json([
                 'status' => true,
