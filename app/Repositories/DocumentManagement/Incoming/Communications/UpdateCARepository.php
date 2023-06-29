@@ -40,6 +40,15 @@ class UpdateCARepository
             $this->forUpdate($request, $update); 
         }
 
+        $assignto = "";
+        $space = ", ";
+
+        foreach ($request->assign_to as $assign) {
+            $assignto .= $assign . $space;
+        }
+
+        $assignto = rtrim($assignto, $space);
+
         ActionHistory::create([
             'type_id' => $request->transac_id,
             'type' => 'Communication',
