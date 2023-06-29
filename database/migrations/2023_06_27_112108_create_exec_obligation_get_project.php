@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `exec_obligation_get_project `;
+        $procedure = " DROP PROCEDURE IF EXISTS `exec_obligation_get_project`;
         CREATE PROCEDURE `exec_obligation_get_project` (IN appro VARCHAR(50), IN program VARCHAR(50))
         BEGIN
         

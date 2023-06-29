@@ -43,7 +43,7 @@ class UpdateCARepository
         ActionHistory::create([
             'type_id' => $request->transac_id,
             'type' => 'Communication',
-            'particulars' => 'Assign Communication'. " " . "by". " ". $request->user,
+            'particulars' => 'Communication Assigned to: '. $assignto,
             'user' => $request->user
         ]);
 

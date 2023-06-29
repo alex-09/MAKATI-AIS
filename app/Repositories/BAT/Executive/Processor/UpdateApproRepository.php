@@ -118,10 +118,9 @@ class UpdateApproRepository{
             $adjustment = $adjustment->adjustemt_id;
             
                 if($adjustment == null){
-                    $adjst = "appro_adjst_1";
+                    $adjst = "1";
                 }else{
                     $adjust = (int)substr($adjustment, 12, 20);
-                    $adjst = ++$adjust;
                 }
 
             AppropriationDetails::where('appro_id', $request->appro_id)->update(['type' => "Update"]);

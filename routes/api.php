@@ -82,6 +82,7 @@ use App\Http\Controllers\DocumentManagement\Outgoing\PaymentTransaction\OGPaytra
 use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantActionController;
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ListAppropriationController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Obligation\AdjustmentObligationController;
 use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDActionHistoryController;
 use App\Http\Controllers\DocumentManagement\Outgoing\PayrollApointment\OPayrollAppointController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
@@ -327,6 +328,8 @@ Route::prefix('obligation')->group(function () {
     Route::post('/getProject', [AdjustmentObligationController::class, 'getProject']);
     Route::post('/getActivity', [AdjustmentObligationController::class, 'getActivity']);
     Route::post('/getExpense', [AdjustmentObligationController::class, 'getExpense']);
+
+    Route::post('/forProcess', [AdjustmentObligationController::class, 'store']);
 
 });
 

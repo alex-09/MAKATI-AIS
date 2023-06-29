@@ -25,7 +25,7 @@ return new class extends Migration
         receive_comm_assignto_id as assign_to, cluster, restriction, action, no_of_days, status, sender, document, null as department
         from create_communications
 	
-        order by time DESC;
+        order by date DESC;
         END";
 
         DB::unprepared($procedure);

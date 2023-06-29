@@ -31,7 +31,7 @@ class CreateCommRepository
             ActionHistory::create([
                 'type_id' => $id,
                 'type' => 'Communication',
-                'particulars' => 'Create Communication'. " " . "by". " ". $request->user,
+                'particulars' => 'Communication created by: '. $request->user,
                 'user' => $request->user
             ]);
 

@@ -32,7 +32,7 @@ class ReceiveCommRepository
             ActionHistory::create([
                 'type_id' => $transac_id,
                 'type' => 'Communication',
-                'particulars' => 'Receive Communication'. " " . "by". " ". $request->user,
+                'particulars' => 'Communication received by: '. $request->user,
                 'user' => $request->user
             ]);
 
