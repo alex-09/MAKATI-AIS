@@ -41,7 +41,7 @@ return new class extends Migration
 
         from create_communications
 	
-        where status = 'Closed'
+        where status = 'Closed' OR status = 'Cancelled'
         order by date DESC
         ";
 

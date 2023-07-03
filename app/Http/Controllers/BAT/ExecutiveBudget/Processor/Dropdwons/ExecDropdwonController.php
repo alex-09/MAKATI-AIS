@@ -7,6 +7,7 @@ use App\Models\FundSource;
 use App\Models\AppropriationType;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Database\Seeders\AdjustmentType;
 
 class ExecDropdwonController extends Controller
 {
@@ -16,7 +17,7 @@ class ExecDropdwonController extends Controller
             'approType' => AppropriationType::all(),
             'fundSource' => FundSource::all(),
             'department' => DB::select('CALL departments()'),
-            'adjustment' => Adjustment::all(),
+            'adjustment' => AdjustmentType::all(),
         ]);
     }
 
