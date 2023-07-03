@@ -23,14 +23,24 @@ class ApproCAController extends Controller
     public function update(Request $request)
     {
 
-        $update = AppropriationDetails::where('appro_id', $request->appro_id)
-            ->where('AIPCode', $request->aipcode);
+        AppropriationDetails::where('appro_id', $request->appro_id)
+            ->where('AIPCode', $request->aipcode)
+            ->update([
+                'status' => 'Approved',
+                // 'remarks' => $request->remarks
+            ]);;
 
-        $update->update([
-            'status' => 'Approved',
-            // 'remarks' => $request->remarks
-        ]);
+        AppropriationExpenses::where('appro_id', $request->appro_id)
+            ->where('AIPCode', $request->aipcode)
+            ->update([
+                'status' => 'Approved'
+            ]);
 
         return response()->json(['message' => 'The account has been successfully Approved.']);
+    }
+
+    public function reject(Request $request){
+
+        return (new AllotReviewerController)->reject($request);
     }
 }

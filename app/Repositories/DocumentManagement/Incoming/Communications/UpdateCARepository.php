@@ -10,7 +10,7 @@ use Illuminate\Notifications\Action;
 class UpdateCARepository
 {
     private function forUpdate($request, $update){
-        
+
         $assignto = "";
         $space = ", ";
 
@@ -40,21 +40,33 @@ class UpdateCARepository
             $this->forUpdate($request, $update); 
         }
 
-        $assignto = "";
-        $space = ", ";
-
-        foreach ($request->assign_to as $assign) {
-            $assignto .= $assign . $space;
+        if($request->restriction == NULL && $request->action == NULL && $request->cluser == NULL && $request->no_of_days == NULL && $request->assign_to == NULL){
+            ActionHistory::create([
+                'type_id' => $request->transac_id,
+                'type' => 'Communication',
+                'particulars' => 'Communication Status: '. $request->status,
+                'user' => $request->user
+            ]);
+        }else{
+            if($request->assign_to == NULL){
+                $assignto = "N/A";
+            }else{
+                $assignto = "";
+                $space = ", ";
+        
+                foreach ($request->assign_to as $assign) {
+                    $assignto .= $assign . $space;
+                }
+                $assignto = rtrim($assignto, $space);
+            }
+    
+            ActionHistory::create([
+                'type_id' => $request->transac_id,
+                'type' => 'Communication',
+                'particulars' => 'Communication Assigned to: '. $assignto,
+                'user' => $request->user
+            ]);
         }
-
-        $assignto = rtrim($assignto, $space);
-
-        ActionHistory::create([
-            'type_id' => $request->transac_id,
-            'type' => 'Communication',
-            'particulars' => 'Communication Assigned to: '. $assignto,
-            'user' => $request->user
-        ]);
 
         return response()->json([
             'status' => true,

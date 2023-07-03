@@ -23,13 +23,20 @@ class ApproDHController extends Controller
     public function update(Request $request)
     {
 
-        $update = AppropriationDetails::where('appro_id', $request->appro_id)
-            ->where('AIPCode', $request->aipcode);
+        AppropriationDetails::where('appro_id', $request->appro_id)
+            ->where('AIPCode', $request->aipcode)
+            ->update([
+                'status' => 'FOR APPROVAL - CA',
+                'remarks' => $request->remarks
+            ]);;
 
-        $update->update([
-            'status' => 'FOR APPROVAL - CA',
-            // 'remarks' => $request->remarks
-        ]);
+        AppropriationExpenses::where('appro_id', $request->appro_id)
+            ->where('AIPCode', $request->aipcode)
+            ->update([
+                'status' => 'FOR APPROVAL - CA'
+            ]);
+
+
 
         return response()->json(['message' => 'This entry has been successfully added. The account has been subject for Approval - CA.']);
     }

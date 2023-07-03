@@ -27,7 +27,7 @@ class CommCAController extends Controller
 
         return response()->json([
             'list' => DB::select('CALL get_ca_communication()'),
-            'division' => DB::select('SELECT * FROM `makati-ais`.division_list'),
+            'division' => DB::select('SELECT * FROM `makati-ais`.division_list'),   
             'cluster' => ReceiveCommCluster::all(),
             'action' => ReceiveCommAction::all(),
             'restrcit' => ReceiveCommRestrict::all(),

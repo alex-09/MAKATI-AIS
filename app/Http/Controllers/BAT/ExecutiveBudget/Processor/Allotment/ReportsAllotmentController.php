@@ -9,6 +9,17 @@ class ReportsAllotmentController extends Controller
 {
     public function reports(Request $request){
         try {
+
+            //ORIGINAL APPROPRIATION
+            $original = DB::select('CALL exec_appro_update_original(?,?)',array(
+                $request->aipcode,
+                $request->appro_id
+            ));
+
+            $original_total = DB::select('CALL exec_appro_update_original_total(?,?)',array(
+                $request->aipcode,
+                $request->appro_id
+            ));
             
             $supplemental = DB::select('CALL get_allotment_report_supplemental(?,?)',array(
                         $request->aipcode,

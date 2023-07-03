@@ -28,13 +28,10 @@ class Obligation extends Model
         'requesting_official',
         'cafoa_no',
         'adjustment_date',
-        'purchase/contact_no',
-        'purchase/contact_date',
+        'purchase_contact_no',
+        'purchase_contact_date',
         'reason',
         'date_process',
-        'program_code_id',
-        'project_code_id',
-        'activity_code_id',
         'status'
     ];
 }

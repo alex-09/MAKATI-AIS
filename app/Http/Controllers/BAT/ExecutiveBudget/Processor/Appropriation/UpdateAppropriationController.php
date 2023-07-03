@@ -52,5 +52,11 @@ class UpdateAppropriationController extends Controller
 
         return $this->updateApproRepo->updateAppro($request);
     }
+
+    public function updateForReview(Request $request)
+    {
+
+        return $this->updateApproRepo->updateForReview($request);
+    }
     
 }

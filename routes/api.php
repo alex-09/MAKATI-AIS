@@ -280,6 +280,8 @@ Route::prefix('appropriation')->group(function () {
 
     //REPORTS APPROPRIATION
     Route::post('/reportAppro', [ReportAppropriationContorller::class, 'reportAppro']);
+    Route::post('/updateForReview', [UpdateAppropriationController::class, 'updateForReview']);
+
 
 });
 
@@ -299,7 +301,6 @@ Route::prefix('allotment')->group(function () {
 
     //LIST
     Route::get('/listAllot', [ListAllotmentController::class, 'list']);
-    
 
     //FILTER FOR UPDATE
     Route::post('/getAllotDepartment', [UpdateAllotmentController::class, 'department']);
@@ -313,14 +314,33 @@ Route::prefix('allotment')->group(function () {
     Route::post('/forReviewUpdateAllot', [UpdateAllotmentController::class, 'update']);
 
     //REPORTS ALLOTMENT
-    Route::post('/reportAllotment', [ReportsAllotmentController::class, 'report']);
+    Route::post('/reportAllotment', [ReportsAllotmentController::class, 'reports']);
+
+    //REVIEWER
+    Route::post('/listApproForReview', [AllotReviewerController::class, 'list']);
+    Route::post('/viewApproForReview', [AllotReviewerController::class, 'view']);
+    Route::post('/updateApproForReview', [AllotReviewerController::class, 'update']);
+    Route::post('/rejectApproForReview', [AllotReviewerController::class, 'reject']);
+
+    //DIVISION HEAD
+    Route::post('/listApproDivisionHead', [AllotDHController::class, 'list']);
+    Route::post('/viewApproDH', [AllotDHController::class, 'view']);
+    Route::post('/updateApproDH', [AllotDHController::class, 'update']);
+    Route::post('/rejectApproDH', [AllotDHController::class, 'reject']);
+
+    //City Accountant
+    Route::post('/listApproCA', [AllotCAController::class, 'list']);
+    Route::post('/viewApproAC', [AllotCAController::class, 'view']);
+    Route::post('/updateApproCA', [AllotCAController::class, 'update']);
+    Route::post('/rejectApproCA', [AllotCAController::class, 'reject']);
 
 });
 
 Route::prefix('obligation')->group(function () {
 
     //LIST OBLIGATION
-    Route::get('/listObligation', [ListObligationController::class, 'list']);
+    Route::get('/listObligation', [ListObligationController::class, 'forprocess']);
+    Route::get('/list', [ListObligationController::class, 'listObligation']);
 
     //FILTER OBLIGATION
     Route::post('/getDepartment', [AdjustmentObligationController::class, 'getDepartment']);
@@ -331,6 +351,8 @@ Route::prefix('obligation')->group(function () {
 
     Route::post('/forProcess', [AdjustmentObligationController::class, 'store']);
 
+    //ADJUSTMENT OBLIGATION
+    Route::post('/adjustObligation', [AdjustmentObligationController::class, 'adjustObligation']);
 });
 
 

@@ -32,6 +32,21 @@ return new class extends Migration
 
         END";
         DB::unprepared($procedure); 
+
+        $procedure = " DROP PROCEDURE IF EXISTS `exec_appro_update_report_realignment_total`;
+        CREATE PROCEDURE `exec_appro_update_report_realignment_total` (IN aipcode VARCHAR(50), IN appro VARCHAR(50))
+        BEGIN
+
+        SELECT SUM(latest_appro_amount) Original_Total
+        FROM exec_appropriation_expenses
+        WHERE appro_id = 'appro_1'
+        AND AIPCode = '1-1-1'
+        AND adjustment_type = 1
+        AND adjustemt_id IS NOT NULL
+        GROUP BY adjustemt_id;
+
+        END";
+        DB::unprepared($procedure); 
     }
 
     /**

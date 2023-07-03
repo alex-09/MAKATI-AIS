@@ -21,11 +21,12 @@ return new class extends Migration
 		main_info.department_code_id,
         appro_details.activity,
 		expenses.id,
+        expenses.adjustemt_id,
 		expenses.appro_id,
         expenses.AIPCode,
         expenses.account_name,
         expenses.account_code,
-        expenses.appro_amount
+        expenses.latest_appro_amount AS appro_amount
 
         FROM exec_appropriation_expenses as expenses
         
@@ -38,14 +39,20 @@ return new class extends Migration
         JOIN exec_appropriation_types AS appro_type
         ON appro_type.approType_id = main_info.approType_id
         
-		INNER JOIN (SELECT appro_id, MAX(created_at) AS max_date FROM exec_appropriation_expenses GROUP BY appro_id) AS dets
+		INNER JOIN (SELECT appro_id, 
+				MAX(created_at) AS max_date 
+                FROM exec_appropriation_expenses 
+                
+                WHERE status = 'Approved'
+                GROUP BY appro_id) AS dets
+                
         ON expenses.appro_id = dets.appro_id
         and expenses.created_at = dets.max_date
         
         WHERE appro_details.AIPCode = expenses.AIPCode
         AND expenses.AIPCode = aipcode
         AND expenses.appro_id = appro;
-
+        
         END";
 
         DB::unprepared($procedure); 

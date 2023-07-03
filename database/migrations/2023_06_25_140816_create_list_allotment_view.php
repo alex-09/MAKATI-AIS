@@ -17,7 +17,7 @@ return new class extends Migration
         CREATE VIEW `makati-ais`.`list_allotment` AS
         SELECT exec_allotments.appro_id, 
 		exec_allotments.allot_id,
-		null as type,
+		exec_allotments.type,
         exec_allotments.budget_year_id,
         exec_appropriations.fundSource_id,
         exec_appropriation_types.appro_type,

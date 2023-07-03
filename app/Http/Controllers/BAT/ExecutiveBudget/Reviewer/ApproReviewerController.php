@@ -37,13 +37,20 @@ class ApproReviewerController extends Controller
     public function update(Request $request)
     {
 
-        $update = AppropriationDetails::where('appro_id', $request->appro_id)
-            ->where('AIPCode', $request->aipcode);
+        AppropriationDetails::where('appro_id', $request->appro_id)
+            ->where('AIPCode', $request->aipcode)
+            ->update([
+                'status' => 'FOR APPROVAL - DH',
+                'remarks' => $request->remarks
+            ]);;
+    
 
-        $update->update([
-            'status' => 'FOR APPROVAL - DH',
-            'remarks' => $request->remarks
-        ]);
+        AppropriationExpenses::where('appro_id', $request->appro_id)
+            ->where('AIPCode', $request->aipcode)
+            ->update([
+                'status' => 'FOR APPROVAL - DH'
+            ]);
+
         return response()->json(['message' => 'This entry has been successfully added. The account has been subject for Approval - DH.']);
     }
 

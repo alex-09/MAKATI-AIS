@@ -30,13 +30,10 @@ return new class extends Migration
             $table->string('requesting_official')->nullable();
             $table->string('cafoa_no')->nullable();
             $table->string('adjustment_date')->nullable();
-            $table->string('purchase/contact_no')->nullable();
-            $table->string('purchase/contact_date')->nullable();
+            $table->string('purchase_contact_no')->nullable();
+            $table->string('purchase_contact_date')->nullable();
             $table->string('reason')->nullable();
             $table->string('date_process')->nullable();
-            $table->string('program_code_id')->nullable();
-            $table->string('project_code_id')->nullable();
-            $table->string('activity_code_id')->nullable();
             $table->string('status')->nullable();;
             $table->timestamps();
         });

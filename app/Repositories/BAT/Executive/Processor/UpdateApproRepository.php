@@ -120,7 +120,8 @@ class UpdateApproRepository{
                 if($adjustment == null){
                     $adjst = "1";
                 }else{
-                    $adjust = (int)substr($adjustment, 12, 20);
+                    $adjust = (int)substr($adjustment, 14, 20);
+                    $adjst = ++$adjust;
                 }
 
             AppropriationDetails::where('appro_id', $request->appro_id)->update(['type' => "Update"]);
@@ -128,20 +129,20 @@ class UpdateApproRepository{
             foreach($request->details_form as $details){
                     $expenses = $details['expense'];
                 foreach($expenses as $expense_details){
+
                     AppropriationExpenses::create([
                         'appro_id' => $expense_details['appro_id'],
                         'AIPCode' => $expense_details['AIPCode'],
-                        'adjustemt_id' => "adjst_".$adjst,
+                        'adjustemt_id' => $expense_details['appro_id']."_adjst_".$adjst,
                         'document_source' => $request->source_document, 
                         'date' => $request->date_of_document,
                         'adjustment_type' => $request->type_of_adjustment,
                         'adjustment_no' => $request->adjustment_no,
                         'account_code' => $expense_details['account_code'],
                         'account_name' => $expense_details['account_name'],
-                        // 'balance' => $request->balance,
+                        'appro_amount' => $expense_details['appro_amount'],
                         'addition' => $expense_details['addition'],
                         'deduction' => $expense_details['deduction'],
-                        // 'latest_balance' => $request->balance,
                     ]);
 
                     }
@@ -162,6 +163,30 @@ class UpdateApproRepository{
                 'error' => $th->getMessage()
             ]);
 
+        }
+    }
+
+    public function updateForReview($request)
+    {
+        try {
+            AppropriationDetails::where('appro_id', $request->appro_id)
+                ->where('AIPCode', $request->aipcode)
+                ->update(['status', 'For Review']);
+            
+            AppropriationExpenses::where('adjustemt_id', $request->adjst_id)
+            ->update(['status', 'For Review']);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'update success!',
+            ]);
+
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong!',
+                'error' => $th->getMessage()
+            ]);
         }
     }
 }

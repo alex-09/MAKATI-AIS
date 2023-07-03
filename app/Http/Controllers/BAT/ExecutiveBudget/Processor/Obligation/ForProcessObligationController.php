@@ -8,6 +8,7 @@ use App\Models\Department;
 use App\Models\Obligation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DMBudgetaryObligationsTransac;
 
 class ForProcessObligationController extends Controller
 {
@@ -39,7 +40,7 @@ class ForProcessObligationController extends Controller
                 'payee' => $request->payee
             ]);
 
-            ExecObligation::create([
+            ExecObligationDetails::create([
                 'obli_id' => $obli_id,
                 'allot_id' => $request->allot_id,
                 'AIPCode' => $request->aipcode,
@@ -53,8 +54,10 @@ class ForProcessObligationController extends Controller
                 'addition' => $request->addition,
                 'deduction' => $request->deduction,
                 'updated_balance' => $request->updated_balance,
-                'status' => ""
             ]);
+
+            DMBudgetaryObligationsTransac::where("transaction_id". $request->transaction_id)
+            ->update(['cafoa_id' => $obli_id]);
 
             return response()->json([
                 'status' => true,

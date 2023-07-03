@@ -83,23 +83,26 @@ class OutgoingCommRepository
     {
         try {
 
-            for ($i = 0; $i < count($request->transmital_no); $i++) {
-                if (substr($request->transac_id[$i], 0, 3) == "COM") {
-                    $addTransmital = ReceiveCommunications::where('og_transmital_no', $request->transmital_no[$i])
-                    ->where('transaction_id_num', $request->transac_id[$i]);
-                    $addTransmital->update([
-                        'og_sender' => $request->og_sender,
-                        'og_received_by' => $request->og_received_by,
-                        'og_date' => $request->og_date
-                    ]);
-                } else {
-                    $addTransmital = CreateCommunication::where('og_transmital_no', $request->transmital_no[$i])
-                    ->where('transac_id', $request->transac_id[$i]);
-                    $addTransmital->update([
-                        'og_sender' => $request->og_sender,
-                        'og_received_by' => $request->og_received_by,
-                        'og_date' => $request->og_date
-                    ]);
+            foreach($request->transac as $transacID) {
+                $transac = $transacID['transac_id'];
+                foreach($transac as $id) {
+                    if (substr($id['transac_id'], 0, 3) == "COM") {
+                        $addTransmital = ReceiveCommunications::where('og_transmital_no', $transacID['transmital_no'])
+                        ->where('transaction_id_num', $id['transac_id']);
+                        $addTransmital->update([
+                            'og_sender' => $transacID['og_sender'],
+                            'og_received_by' => $transacID['og_received_by'],
+                            'og_date' => $transacID['og_date']
+                        ]);
+                    } else {
+                        $addTransmital = CreateCommunication::where('og_transmital_no', $transacID['transmital_no'])
+                        ->where('transac_id', $id['transac_id']);
+                        $addTransmital->update([
+                            'og_sender' => $transacID['og_sender'],
+                            'og_received_by' => $transacID['og_received_by'],
+                            'og_date' => $transacID['og_date']
+                        ]);
+                    }
                 }
             }
 

@@ -25,6 +25,7 @@ class AppropriationExpenses extends Model
         'adjustment_no',
         'addition',
         'deduction',
+        'balance',
         'status'
     ];
 }
