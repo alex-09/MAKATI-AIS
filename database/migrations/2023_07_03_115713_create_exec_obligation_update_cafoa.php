@@ -26,7 +26,7 @@ return new class extends Migration
         LEFT JOIN exec_obligations
         ON exec_obligation_details.obli_id = exec_obligations.obli_id
 
-        WHERE exec_obligation_details.year = year
+        WHERE exec_obligations.budget_year_id = year
         AND cafoa_no = cafoa
         group by account_code;
 
@@ -45,7 +45,7 @@ return new class extends Migration
         FROM exec_obligation_details
         LEFT JOIN exec_obligations
         ON exec_obligation_details.obli_id = exec_obligations.obli_id
-        WHERE exec_obligation_details.obli_id = year
+        WHERE exec_obligations.budget_year_id = year
         AND cafoa_no = cafoa;
 
         END";
@@ -60,8 +60,10 @@ return new class extends Migration
         allot_amount - obli_amount AS untilized_allot
 
         FROM exec_obligation_details
+        LEFT JOIN exec_obligations
+        ON exec_obligation_details.obli_id = exec_obligations.obli_id
         
-        WHERE obli_id = year
+        WHERE exec_obligations.budget_year_id = year
         AND cafoa_no = cafoa
         group by account_code;
 
@@ -75,8 +77,10 @@ return new class extends Migration
         SELECT account_code, 
         SUM(appro_amount) AS total_obli from
         exec_obligation_details
+        LEFT JOIN exec_obligations
+        ON exec_obligation_details.obli_id = exec_obligations.obli_id
         
-        WHERE obli_id = year
+        WHERE exec_obligations.budget_year_id = year
         AND cafoa_no = cafoa
         group by account_code;
 

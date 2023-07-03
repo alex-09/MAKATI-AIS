@@ -15,9 +15,9 @@ class ApproDHController extends Controller
         return response()->json(['list' => DB::select('SELECT * FROM exec_list_appropriation')]);
     }
 
-    public function view($id, $aipcode){
+    public function view(Request $request){
 
-        return (new ApproReviewerController)->view($id, $aipcode);
+        return (new ApproReviewerController)->view($request);
     }
 
     public function update(Request $request)

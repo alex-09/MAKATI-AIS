@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('type')->default('New');
             $table->string('status')->nullable();
             $table->string('remarks')->nullable();
+            $table->string('assign_processor')->nullable();
+            $table->string('assign_reviewer')->nullable();
             $table->timestamps();
         });
     }

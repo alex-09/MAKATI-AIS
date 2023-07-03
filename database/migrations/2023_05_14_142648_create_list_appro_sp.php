@@ -21,8 +21,8 @@ return new class extends Migration
         DATE_FORMAT(exec_appropriation_details.created_at, '%h:%i:%s') AS time,
         exec_appropriation_details.type, 
         exec_appropriations.budget_year_id,
-        exec_appropriations.fundSource_id,
-        exec_appropriations.approType_id, 
+        fund_sources.fund_Source,
+        exec_appropriation_types.appro_type, 
         departments.department_name, 
         exec_appropriations.department_code_id,
         exec_appropriation_details.program, 
@@ -42,7 +42,10 @@ return new class extends Migration
         
         INNER JOIN (SELECT appro_id, MAX(created_at) AS max_date FROM exec_appropriation_details GROUP BY appro_id) AS dets
         ON exec_appropriation_details.appro_id = dets.appro_id
-        and exec_appropriation_details.created_at = dets.max_date";
+        and exec_appropriation_details.created_at = dets.max_date
+        
+        JOIN fund_source ON exec_appropriations.fundSource_id =`fund_sources.fundSource_id
+        JOIN exec_appropriation_types ON exec_appropriation_types.approType_id = exec_appropriation_types.approType_id";
 
         DB::unprepared($procedure);
     }

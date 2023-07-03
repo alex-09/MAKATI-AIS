@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BAT\ExecutiveBudget\Processor\Dropdwons;
 
 use App\Models\BudgetYear;
 use App\Models\FundSource;
+use App\Models\TypeOfAdjustment;
 use App\Models\AppropriationType;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,7 @@ class ExecDropdwonController extends Controller
             'approType' => AppropriationType::all(),
             'fundSource' => FundSource::all(),
             'department' => DB::select('CALL departments()'),
-            'adjustment' => AdjustmentType::all(),
+            'adjustment' => TypeOfAdjustment::all(),
         ]);
     }
 

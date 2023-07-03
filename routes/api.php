@@ -29,12 +29,18 @@ use App\Http\Controllers\Documentmanagement\Outgoing\OD\OGOdController;
 use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHToApproveController;
 use App\Http\Controllers\DocumentManagement\Outgoing\BOT\OGBotController;
 use App\Http\Controllers\BAT\TrustFund\DivisioHead\DHObligationController;
+use App\Http\Controllers\BAT\ExecutiveBudget\DivisionHead\ObliDHController;
 use App\Http\Controllers\BAT\TrustFund\Reviewer\ReviewObligationController;
+use App\Http\Controllers\BAT\ExecutiveBudget\DivisionHead\AllotDHController;
 use App\Http\Controllers\BAT\ExecutiveBudget\DivisionHead\ApproDHController;
 use App\Http\Controllers\BAT\TrustFund\CityAccountant\CAToApproveController;
+use App\Http\Controllers\BAT\ExecutiveBudget\CityAccountant\ObliCAController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ObliReviewerController;
 use App\Http\Controllers\BAT\TrustFund\CityAccountant\ObligationCAController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateTR\UpdateTRController;
+use App\Http\Controllers\BAT\ExecutiveBudget\CityAccountant\AllotCAController;
 use App\Http\Controllers\BAT\ExecutiveBudget\CityAccountant\ApproCAController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\AllotReviewerController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ApproReviewerController;
 use App\Http\Controllers\DocumentManagement\Receiving\OD\NewTransacController;
 use App\Http\Controllers\BAT\TrustFund\Processor\Obligation\TRListFursController;
@@ -72,6 +78,7 @@ use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEBusiness
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Allotment\ReportsAllotmentController;
 use App\Http\Controllers\BAT\TrustFund\Processor\TrustReceipts\EnrollTransReceiptController;
 use App\Http\Controllers\DocumentManagement\Receiving\Communication\CommunicationController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Obligation\ReportObligationController;
 use App\Http\Controllers\BAT\TrustFund\Processor\UpdateObligation\UpdateObligationController;
 use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\PEIndividualController;
 use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDForProcessController;
@@ -357,6 +364,24 @@ Route::prefix('obligation')->group(function () {
 
     //REPORT
     Route::post('/reportObligation', [ReportObligationController::class, 'reportObligation']);
+
+    //REVIEWER
+    Route::post('/listObliForReview', [ObliReviewerController::class, 'list']);
+    Route::post('/viewObliForReview', [ObliReviewerController::class, 'view']);
+    Route::post('/updateObliForReview', [ObliReviewerController::class, 'update']);
+    Route::post('/rejectObliForReview', [ObliReviewerController::class, 'reject']);
+
+    //DIVISION HEAD
+    Route::post('/listObliDivisionHead', [ObliDHController::class, 'list']);
+    Route::post('/viewObliDH', [ObliDHController::class, 'view']);
+    Route::post('/updateObliDH', [ObliDHController::class, 'update']);
+    Route::post('/rejectObliDH', [ObliDHController::class, 'reject']);
+
+    //City Accountant
+    Route::post('/listObliCA', [ObliCAController::class, 'list']);
+    Route::post('/viewObliAC', [ObliCAController::class, 'view']);
+    Route::post('/updateObliCA', [ObliCAController::class, 'update']);
+    Route::post('/rejectObliCA', [ObliCAController::class, 'reject']);
 });
 
 

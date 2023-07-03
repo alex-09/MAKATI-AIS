@@ -39,7 +39,7 @@ class AllotReviewerController extends Controller
             ->where('AIPCode', $request->aipcode)
             ->update([
                 'status' => 'FOR APPROVAL - DH',
-                // 'remarks' => $request->remarks
+                'remarks' => $request->remarks
             ]);;
     
 
@@ -53,7 +53,7 @@ class AllotReviewerController extends Controller
             ->where('AIPCode', $request->aipcode)
             ->update([
             'status' => 'Rejected',
-            // 'remarks' => $request->remarks
+            'remarks' => $request->remarks
         ]);
 
         return response()->json(['message' => 'The account has been Rejected.']);

@@ -35,6 +35,10 @@ return new class extends Migration
             $table->float('adjusted_balance', 17, 3)->nullable();
             $table->float('unalloted_balance', 17, 3)->nullable();
             $table->string('status')->nullable();
+            $table->string('remarks')->nullable();
+            $table->string('assign_processor')->nullable();
+            $table->string('assign_reviewer')->nullable();
+
             $table->timestamps();
         });
     }

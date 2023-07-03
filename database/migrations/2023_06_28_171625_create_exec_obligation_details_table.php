@@ -29,6 +29,9 @@ return new class extends Migration
             $table->string('deduction')->nullable();
             $table->string('updated_balance')->nullable();
             $table->string('status')->nullable();
+            $table->string('remarks')->nullable();
+            $table->string('assign_processor')->nullable();
+            $table->string('assign_reviewer')->nullable();
             $table->timestamps();
         });
     }

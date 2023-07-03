@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\AppropriationDetails;
+use App\Models\AppropriationExpenses;
 
 class ApproReviewerController extends Controller
 {
@@ -15,7 +16,7 @@ class ApproReviewerController extends Controller
         return response()->json(['list' => DB::select('CALL get_appro_for_review()')]);
     }
 
-    public function view($id, $aipcode)
+    public function view(Request $request)
     {
         $mainInfo = DB::select('CALL exec_appro_update_report_info(?,?)',array(
             $request->aipcode,
@@ -29,7 +30,7 @@ class ApproReviewerController extends Controller
 
         return response()->json([
             'status' => true,
-            'main-info' => $mainInfo,
+            'main_info' => $mainInfo,
             'expenses' => $expenses
         ]);
     }
@@ -62,7 +63,7 @@ class ApproReviewerController extends Controller
 
         $update->update([
             'status' => 'Rejected',
-            // 'remarks' => $request->remarks
+            'remarks' => $request->remarks
         ]);
 
         return response()->json(['message' => 'The account has been Rejected.']);
