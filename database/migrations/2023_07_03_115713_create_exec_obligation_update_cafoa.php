@@ -75,10 +75,10 @@ return new class extends Migration
         SELECT account_code, 
         SUM(appro_amount) AS total_obli from
         exec_obligation_details
-        group by account_code;
         
         WHERE obli_id = year
-        AND cafoa_no = cafoa;
+        AND cafoa_no = cafoa
+        group by account_code;
 
         END";
         DB::unprepared($procedure); 
