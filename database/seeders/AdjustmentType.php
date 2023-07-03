@@ -14,7 +14,7 @@ class AdjustmentType extends Seeder
     public function run(): void
     {
         TypeOfAdjustment::create([
-            'adjustment_type' => 'Supplemtal budget'
+            'adjustment_type' => 'Supplemetal budget'
         ]);
 
         TypeOfAdjustment::create([

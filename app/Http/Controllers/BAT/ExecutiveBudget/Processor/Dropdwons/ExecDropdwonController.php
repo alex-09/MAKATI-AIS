@@ -16,6 +16,7 @@ class ExecDropdwonController extends Controller
             'approType' => AppropriationType::all(),
             'fundSource' => FundSource::all(),
             'department' => DB::select('CALL departments()'),
+            'adjustment' => Adjustment::all(),
         ]);
     }
 

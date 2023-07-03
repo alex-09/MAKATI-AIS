@@ -83,6 +83,7 @@ use App\Http\Controllers\DocumentManagement\Incoming\ContractsPO\CityAccountantA
 use App\Http\Controllers\DocumentManagement\Receiving\CheckTransactions\ReceiveChecksController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation\ListAppropriationController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Obligation\AdjustmentObligationController;
+use App\Http\Controllers\BAT\ExecutiveBudget\Processor\Obligation\ForProcessObligationController;
 use App\Http\Controllers\DocumentManagement\Incoming\CollectionDeposit\CDActionHistoryController;
 use App\Http\Controllers\DocumentManagement\Outgoing\PayrollApointment\OPayrollAppointController;
 use App\Http\Controllers\DocumentManagement\Receiving\PaymentTransaction\NewPayTransacController;
@@ -349,10 +350,13 @@ Route::prefix('obligation')->group(function () {
     Route::post('/getActivity', [AdjustmentObligationController::class, 'getActivity']);
     Route::post('/getExpense', [AdjustmentObligationController::class, 'getExpense']);
 
-    Route::post('/forProcess', [AdjustmentObligationController::class, 'store']);
+    Route::post('/forProcess', [ForProcessObligationController::class, 'store']);
 
     //ADJUSTMENT OBLIGATION
     Route::post('/adjustObligation', [AdjustmentObligationController::class, 'adjustObligation']);
+
+    //REPORT
+    Route::post('/reportObligation', [ReportObligationController::class, 'reportObligation']);
 });
 
 

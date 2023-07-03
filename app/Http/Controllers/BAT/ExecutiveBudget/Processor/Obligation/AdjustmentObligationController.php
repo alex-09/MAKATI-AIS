@@ -103,7 +103,9 @@ class AdjustmentObligationController extends Controller
             ]);
         }
     }
-    
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
     public function adjustObligation(Request $request){
         try {
@@ -125,6 +127,42 @@ class AdjustmentObligationController extends Controller
             ]);
 
         } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => "Something went wrong!",
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function storeAdjust(Request $request){
+        try {
+            foreach($request->obligation as $obligation){
+                $obli_main = $obligation['details'];
+                foreach($obli_main as $obli_expense){
+
+                        ExecObligationDetails::create([
+                            'obli_id' => $$obligation['obli_id'],
+                            'allot_id' => $obligation['allot_id'],
+                            'AIPCode' => $obli_expense['aipcode'],
+                            'account_title' => $obli_expense['account_title'],
+                            'account_code' => $obli_expense['account_code'],
+                            'appro_amount' => $obli_expense['appro_amount'],
+                            'allot_amount' => $obli_expense['allot_amount'],
+                            'obli_amount' => $obli_expense['obli_amount'],
+                            'balance' => $obli_expense['balance'],
+                            'latest_balance' => $obli_expense['balance'],
+                        ]);
+                    }
+                }
+
+                return response()->json([
+                    'status' => true,
+                    'message' => "success",
+                    'obli_id' => $obli_id
+                ]);
+
+        } catch (\Throwable $th){
             return response()->json([
                 'status' => false,
                 'message' => "Something went wrong!",

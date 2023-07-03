@@ -30,14 +30,13 @@ return new class extends Migration
         FROM exec_obligations
         LEFT JOIN exec_obligation_details
         ON exec_obligation_details.obli_id = exec_obligations.obli_id
-        LEFT JOIN exec_allotments
-        ON exec_allotments.allot_id = exec_obligation_details.allot_id
         LEFT JOIN exec_appropriations
-        ON exec_appropriations.appro_id = exec_allotments.appro_id
+        ON exec_appropriations.appro_id = exec_obligations.appro_id
         LEFT JOIN exec_appropriation_types 
         ON exec_appropriation_types.approType_id = exec_appropriations.approType_id
         LEFT JOIN exec_appropriation_details 
         ON exec_appropriation_details.appro_id = exec_appropriations.appro_id
+        AND exec_appropriation_details.AIPCode = exec_obligation_details.AIPCode
         
         WHERE exec_obligations.budget_year_id = year
         AND exec_obligations.cafoa_no = cafoa;
