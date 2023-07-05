@@ -76,7 +76,7 @@ return new class extends Migration
         ON exec_obligations.obli_id = exec_obligation_details.obli_id
         
         WHERE exec_obligations.obli_id = obli
-        AND cafoa_no = cafoa
+        AND cafoa_no = cafoa;
 
         END";
         DB::unprepared($procedure); 

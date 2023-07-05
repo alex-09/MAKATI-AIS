@@ -28,7 +28,7 @@ class CommRequest extends FormRequest
             'addressee' => '',            
             'document' => 'mimes:jpeg,jpg,JPG,doc,docx,pdf|max:2048',
             'email' => '',
-            'DRN' => 'required',
+            'DRN' => '',
             'reply_to' => '',
             'sender' => 'required',
             'contact_no' => 'string',

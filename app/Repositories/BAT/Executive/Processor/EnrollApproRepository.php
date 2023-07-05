@@ -2,6 +2,7 @@
 
 namespace App\Repositories\BAT\Executive\Processor;
 
+use Carbon\Carbon;
 use App\Models\Appropriation;
 use App\Models\AppropriationDetails;
 use App\Models\AppropriationExpenses;
@@ -19,6 +20,8 @@ class EnrollApproRepository{
             $approIdInc = $getApproId['id'];
             $appro_id = "appro_".++$approIdInc;
         }
+
+        $date_document = Carbon::now()->format('Y-m-d');
 
         Appropriation::create([
             'appro_id' => $appro_id,
@@ -45,6 +48,7 @@ class EnrollApproRepository{
                             'activity_description' => $activityForm['activity_description'],
                             'appro_total' => $activityForm['expenseTotal'],
                             'latest_appro_total' => $activityForm['expenseTotal'],
+                            'date_document' => $date_document
                         ]);
                         
                         foreach ($activityForm['expensesClassifications'] as $expenseClassification) {

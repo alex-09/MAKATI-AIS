@@ -44,7 +44,7 @@ return new class extends Migration
         ON exec_appropriation_details.appro_id = dets.appro_id
         and exec_appropriation_details.created_at = dets.max_date
         
-        JOIN fund_source ON exec_appropriations.fundSource_id =`fund_sources.fundSource_id
+        JOIN fund_sources ON exec_appropriations.fundSource_id =fund_sources.fundSource_id
         JOIN exec_appropriation_types ON exec_appropriation_types.approType_id = exec_appropriation_types.approType_id";
 
         DB::unprepared($procedure);

@@ -32,6 +32,9 @@ class Obligation extends Model
         'purchase_contact_date',
         'reason',
         'date_process',
-        'status'
+        'status',
+        'remarks',
+        'assign_processor',
+        'assign_reviewer',
     ];
 }

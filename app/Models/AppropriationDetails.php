@@ -27,6 +27,8 @@ class AppropriationDetails extends Model
         'latest_appro_total',
         'type',
         'status',
-        'remarks'
+        'remarks',
+        'assign_processor',
+        'assign_reviewer',
     ];
 }

@@ -26,7 +26,7 @@ return new class extends Migration
                 exec_obligations.particulars,
                 cafoa_amount,
                 transaction_type,
-                null as previous processor,
+                null as previous_processor,
                 null as assign_processor,
                 null as assign_reviewer,
                 exec_obligations.status

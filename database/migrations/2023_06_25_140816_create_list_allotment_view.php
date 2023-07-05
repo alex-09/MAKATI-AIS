@@ -19,7 +19,7 @@ return new class extends Migration
 		exec_allotments.allot_id,
 		exec_allotments.type,
         exec_allotments.budget_year_id,
-        exec_appropriations.fundSource_id,
+        fund_sources.fund_Source,
         exec_appropriation_types.appro_type,
         departments.department_name,
         exec_allotments.department_code_id,
@@ -39,7 +39,9 @@ return new class extends Migration
         ON exec_appropriations.approType_id = exec_appropriation_types.approType_id
         LEFT JOIN exec_appropriation_details
         ON exec_appropriation_details.AIPcode = exec_allotments.AIPcode
-        AND exec_appropriation_details.appro_id = exec_allotments.appro_id";
+        AND exec_appropriation_details.appro_id = exec_allotments.appro_id
+        LEFT JOIN fund_sources 
+        ON fund_sources.fundSource_id = exec_appropriations.fundSource_id";
 
         DB::unprepared($procedure); 
     }

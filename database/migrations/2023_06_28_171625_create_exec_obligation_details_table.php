@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('obli_id')->nullable();
             $table->string('allot_id');
             $table->string('AIPCode');
+            $table->string('cafoa_no');
             $table->string('account_title');
             $table->string('account_code');
             $table->string('appro_amount');

@@ -34,7 +34,10 @@ return new class extends Migration
             $table->string('purchase_contact_date')->nullable();
             $table->string('reason')->nullable();
             $table->string('date_process')->nullable();
-            $table->string('status')->nullable();;
+            $table->string('status')->nullable();
+            $table->string('remarks')->nullable();
+            $table->string('assign_processor')->nullable();
+            $table->string('assign_reviewer')->nullable();
             $table->timestamps();
         });
     }

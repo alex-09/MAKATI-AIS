@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('main_fund_title');
             $table->string('company');
             $table->string('sub_fund_title')->nullable();
+            $table->string('cafoa_no')->nullable();
             $table->float('latest_bal_tf', 17, 6)->nullable();
             $table->string('tf_count_id');
             $table->string('account_title')->nullable();

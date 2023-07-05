@@ -18,7 +18,9 @@ return new class extends Migration
         BEFORE INSERT ON exec_appropriation_expenses
         FOR EACH ROW
         BEGIN
-            DECLARE amount FLOAT DEFAULT 0;
+        DECLARE amount FLOAT DEFAULT 0;
+        
+        if NEW.addition AND NEW.deduction IS NOT NULL THEN
             
             IF NEW.addition IS NOT NULL THEN 
                 SET amount = NEW.appro_amount + NEW.addition;
@@ -28,6 +30,12 @@ return new class extends Migration
             
             SET NEW.latest_appro_amount = amount;
             SET NEW.balance = amount;
+            
+		ELSE
+			SET NEW.latest_appro_amount = NEW.appro_amount;
+        END IF;
+        
+        END;
 
         END'); 
     }

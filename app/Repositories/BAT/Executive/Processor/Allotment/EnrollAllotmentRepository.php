@@ -154,9 +154,9 @@ class EnrollAllotmentRepository{
                             Allotment::create([
                                 'appro_id' => $request->appro_id,
                                 'allot_id' => $allot_id,
-                                'budget_year_id' => $request->year,
+                                'budget_year_id' => $request->budget_year_id,
                                 'department_code_id' => $request->department,
-                                'AIPCode' => $expenses['aipCode'],
+                                'AIPCode' => $request->aipcode,
                                 'account_name' => $exp['accountCode'],
                                 'account_code' => $exp['accountName'],
                                 'appro_amount' => $exp['appropriation'],

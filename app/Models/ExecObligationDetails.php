@@ -14,6 +14,7 @@ class ExecObligationDetails extends Model
         'allot_id',
         'AIPCode',
         'account_title',
+        'cafoa_no',
         'account_code',
         'appro_amount',
         'allot_amount',

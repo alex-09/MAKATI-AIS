@@ -32,6 +32,9 @@ class Allotment extends Model
         'deduction',
         'adjusted_balance',
         'unalloted_balance',
-        'status'
+        'status',
+        'remarks',
+        'assign_processor',
+        'assign_reviewer',
     ];
 }

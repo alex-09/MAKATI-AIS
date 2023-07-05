@@ -53,7 +53,7 @@ class ReportAppropriationContorller extends Controller
                     $request->appro_id
                  ));
 
-        $reversion = DB::select('CALL exec_appro_update_report_reversion_total(?,?)',array(
+        $reversion_total = DB::select('CALL exec_appro_update_report_reversion_total(?,?)',array(
                     $request->aipcode,
                     $request->appro_id
                  ));

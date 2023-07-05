@@ -21,13 +21,23 @@ class ReceiveCommRepository
             $transac_id = "COM-" . $date . "-" . str_pad(++$ptId, 7, '0', STR_PAD_LEFT);
         }
 
-        $docuFile =  $transac_id.'.'.$request->file('document')->getClientOriginalExtension();
-        $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication/'), $docuFile);
+        if ($request->hasFile('your_file_input_name')) {
+
+            $docuFile =  $transac_id.'.'.$request->file('document')->getClientOriginalExtension();
+            $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication/'), $docuFile);
+    
+                ReceiveCommunications::create([
+                "transaction_id_num" => $transac_id,
+                "document" => $docuFile
+                ] + $request->validated());
+    
+        }else{
 
             ReceiveCommunications::create([
-            "transaction_id_num" => $transac_id,
-            "document" => $docuFile
-            ] + $request->validated());
+                "transaction_id_num" => $transac_id,
+                ] + $request->validated());
+    
+        }
 
             ActionHistory::create([
                 'type_id' => $transac_id,

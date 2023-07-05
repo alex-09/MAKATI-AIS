@@ -135,7 +135,7 @@ class UpdateApproRepository{
                         'AIPCode' => $expense_details['AIPCode'],
                         'adjustemt_id' => $expense_details['appro_id']."_adjst_".$adjst,
                         'document_source' => $request->source_document, 
-                        'date' => $request->date_of_document,
+                        'adjustment_date' => $request->date_of_document,
                         'adjustment_type' => $request->type_of_adjustment,
                         'adjustment_no' => $request->adjustment_no,
                         'account_code' => $expense_details['account_code'],

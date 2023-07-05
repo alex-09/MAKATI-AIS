@@ -38,15 +38,16 @@ return new class extends Migration
         IN dept VARCHAR(20))
         BEGIN
 
-        select exec_appropriations.approType_id 
+        select exec_appropriations.approType_id, appro_type
 
         from exec_appropriations
         join exec_appropriation_details
         join departments
+        join exec_appropriation_types
+        ON exec_appropriation_types.approType_id = exec_appropriations.approType_id
         
         where exec_appropriations.appro_id = exec_appropriation_details.appro_id
         and exec_appropriation_details.status = 'Approved' 
-        and exec_appropriations.department_code_id = departments.department_code
         and exec_appropriations.budget_year_id = year
         and exec_appropriations.fundSource_id = fundsrc
         and exec_appropriations.department_code_id = dept
