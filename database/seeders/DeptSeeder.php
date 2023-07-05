@@ -196,6 +196,27 @@ class DeptSeeder extends Seeder
         ]);
 
         Department::create([
+            'department_name' => "OM - MADAC",
+            'department_code' => '1032',
+            'department_head' => 'Atty. Cherry P. Canda-melodias CESO V ',
+            'designation' => 'City Director, DILG Makati, Caretaker MADAC'
+        ]);
+
+        Department::create([
+            'department_name' => "OM - Information Communication and Technology Office (ICTO)",
+            'department_code' => '1032',
+            'department_head' => 'Charles David P. Ramos',
+            'designation' => 'Officer-in-Charge'
+        ]);
+
+        Department::create([
+            'department_name' => "OM - Project Integrity and Monitoring Office (PRIMO)",
+            'department_code' => '1032',
+            'department_head' => 'Atty. Neil-San G. Patag',
+            'designation' => 'Officer-in-Charge'
+        ]);
+
+        Department::create([
             'department_name' => "Office of the Secretary",
             'department_code' => '1022',
             'department_head' => 'Atty. Dindo R. Cervantes',

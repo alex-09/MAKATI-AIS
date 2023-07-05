@@ -325,7 +325,7 @@ Route::prefix('allotment')->group(function () {
     Route::post('/reportAllotment', [ReportsAllotmentController::class, 'reports']);
 
     //REVIEWER
-    Route::post('/listApproForReview', [AllotReviewerController::class, 'list']);
+    Route::get('/listApproForReview', [AllotReviewerController::class, 'list']);
     Route::post('/viewApproForReview', [AllotReviewerController::class, 'view']);
     Route::post('/updateApproForReview', [AllotReviewerController::class, 'update']);
     Route::post('/rejectApproForReview', [AllotReviewerController::class, 'reject']);
