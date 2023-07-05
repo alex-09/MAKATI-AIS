@@ -154,11 +154,11 @@ class EnrollAllotmentRepository{
                             Allotment::create([
                                 'appro_id' => $request->appro_id,
                                 'allot_id' => $allot_id,
-                                'budget_year_id' => $request->budget_year_id,
+                                'budget_year_id' => $request->year,
                                 'department_code_id' => $request->department,
                                 'AIPCode' => $request->aipcode,
-                                'account_name' => $exp['accountCode'],
-                                'account_code' => $exp['accountName'],
+                                'account_name' => $exp['account_code'],
+                                'account_code' => $exp['account_name'],
                                 'appro_amount' => $exp['appropriation'],
                                 'allot_amount' => $exp['allotment'],
                                 'balance' => $exp['balance'],
@@ -173,7 +173,7 @@ class EnrollAllotmentRepository{
                 'status' => true,
                 'message' => "Added Successfully!",
                 'allot_id' => $allot_id,
-                'aipcode' => $expenses['aipCode']
+                'aipcode' => $request->aipcode
             ]);
 
         }catch (\Throwable $th){

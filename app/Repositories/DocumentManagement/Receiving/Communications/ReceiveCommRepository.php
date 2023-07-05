@@ -23,6 +23,10 @@ class ReceiveCommRepository
 
         if ($request->hasFile('your_file_input_name')) {
 
+            $validated = $request->validate([
+                'document' => 'mimes:jpeg,jpg,JPG,doc,docx,pdf|max:2048'    
+            ]);
+
             $docuFile =  $transac_id.'.'.$request->file('document')->getClientOriginalExtension();
             $request->document->move(public_path('Document/DocumentManagement/Receiving/Communication/'), $docuFile);
     
