@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\BAT\ExecutiveBudget\Reviewer;
 
+use App\Models\Allotment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;

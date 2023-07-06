@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\AppropriationDetails;
+use App\Models\AppropriationExpenses;
 use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ApproReviewerController;
 
 class ApproCAController extends Controller

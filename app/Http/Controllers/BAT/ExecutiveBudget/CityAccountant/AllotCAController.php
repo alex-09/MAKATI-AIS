@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\BAT\ExecutiveBudget\CityAccountant;
 
+use App\Models\Allotment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\AllotReviewerController;
 
 class AllotCAController extends Controller
 {

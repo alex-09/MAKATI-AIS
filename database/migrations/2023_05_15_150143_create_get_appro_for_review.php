@@ -16,18 +16,31 @@ return new class extends Migration
         CREATE PROCEDURE `get_appro_for_review` ()
         BEGIN
 
-        SELECT exec_appropriation_details.id, exec_appropriation_details.appro_id, DATE_FORMAT(exec_appropriation_details.created_at, '%M %d %Y ') as Data, 
-            DATE_FORMAT(exec_appropriation_details.created_at, '%h:%i:%s') AS time, exec_appropriations.budget_year_id,
-            exec_appropriations.fundSource_id, exec_appropriations.approType_id, departments.department_name, exec_appropriations.department_code_id,
-            exec_appropriation_details.program, exec_appropriation_details.project, exec_appropriation_details.activity, exec_appropriation_details.AIPCode,
-            exec_appropriation_details.appro_total, exec_appropriation_details.status
+        SELECT exec_appropriation_details.id, 
+        exec_appropriation_details.appro_id, 
+        DATE_FORMAT(exec_appropriation_details.created_at, '%M %d %Y ') as Data, 
+            DATE_FORMAT(exec_appropriation_details.created_at, '%h:%i:%s') AS time,
+            exec_appropriation_types.appro_type,
+            exec_appropriations.budget_year_id,
+            exec_appropriations.fundSource_id, 
+            exec_appropriations.approType_id, 
+            departments.department_name, 
+            exec_appropriations.department_code_id,
+            exec_appropriation_details.program, 
+            exec_appropriation_details.project, 
+            exec_appropriation_details.activity, 
+            exec_appropriation_details.AIPCode,
+            exec_appropriation_details.appro_total, 
+            exec_appropriation_details.status
         
         from exec_appropriations 
-            join exec_appropriation_details
-            join departments
-            
-        where exec_appropriations.appro_id = exec_appropriation_details.appro_id
-            and departments.department_code = exec_appropriations.department_code_id
+            INNER JOIN join exec_appropriation_details
+            ON exec_appropriations.appro_id = exec_appropriation_details.appro_id
+            INNER JOIN departments
+            ON departments.department_code = exec_appropriations.department_code_id
+            LEFT JOIN exec_appropriation_types 
+            ON exec_appropriation_types.approType_id = exec_appropriations.approType_id
+
             and exec_appropriation_details.status = 'For Review';
         END";
 

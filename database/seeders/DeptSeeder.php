@@ -198,7 +198,7 @@ class DeptSeeder extends Seeder
         Department::create([
             'department_name' => "OM - MADAC",
             'department_code' => '1032',
-            'department_head' => 'Atty. Cherry P. Canda-melodias CESO V ',
+            'department_head' => 'Atty. Cherry P. Canda-Melodias CESO V ',
             'designation' => 'City Director, DILG Makati, Caretaker MADAC'
         ]);
 

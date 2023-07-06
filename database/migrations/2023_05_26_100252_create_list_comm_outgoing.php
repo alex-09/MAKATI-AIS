@@ -18,7 +18,9 @@ return new class extends Migration
 
         select *
         from(
-            select DATE_FORMAT(created_at, '%M %d %Y ') as date, 
+            select 
+            created_at,
+            DATE_FORMAT(created_at, '%M %d %Y ') as date, 
             DATE_FORMAT(created_at, '%h:%i:%s') AS time,
 						transaction_id_num as id,
                         og_transmital_no, 
@@ -59,7 +61,7 @@ return new class extends Migration
                 from create_communications 
                 where status = 'For Outgoing'
             )list
-            order by date DESC, time DESC;
+            order by created_at;
         END";
 
         DB::unprepared($procedure); 
