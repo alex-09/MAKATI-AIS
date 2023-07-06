@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         $procedure = " DROP PROCEDURE IF EXISTS `exec_appro_getproject`;
-        CREATE PROCEDURE `exec_appro_getproject` (IN program VARCHAR(50), IN appro VARCHAR(50))
+        CREATE PROCEDURE `exec_appro_getproject` (IN program VARCHAR(250), IN appro VARCHAR(250))
         BEGIN
 
         SELECT DISTINCT project, project_code, appro_id

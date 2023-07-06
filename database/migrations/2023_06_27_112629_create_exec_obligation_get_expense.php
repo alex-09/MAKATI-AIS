@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         $procedure = " DROP PROCEDURE IF EXISTS `exec_obligation_get_expense`;
-        CREATE PROCEDURE `exec_obligation_get_expense` (IN appro VARCHAR(50), IN aipcode VARCHAR(50))
+        CREATE PROCEDURE `exec_obligation_get_expense` (IN appro VARCHAR(250), IN aipcode VARCHAR(250))
         BEGIN
         
         SELECT DISTINCT exec_allotments.id,

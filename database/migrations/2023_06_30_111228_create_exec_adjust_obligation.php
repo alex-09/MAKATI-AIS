@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         $procedure = " DROP PROCEDURE IF EXISTS `exec_adjust_obligation`;
-        CREATE PROCEDURE `exec_adjust_obligation` (IN year VARCHAR(50), IN cafoa VARCHAR(50))
+        CREATE PROCEDURE `exec_adjust_obligation` (IN year VARCHAR(250), IN cafoa VARCHAR(250))
         BEGIN
         
         SELECT id,

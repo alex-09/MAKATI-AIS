@@ -35,7 +35,7 @@ return new class extends Migration
 
 
         $procedure = " DROP PROCEDURE IF EXISTS `exec_obligation_report_2`;
-        CREATE PROCEDURE `exec_obligation_report_2` (IN year VARCHAR(50), IN cafoa VARCHAR(50))
+        CREATE PROCEDURE `exec_obligation_report_2` (IN year VARCHAR(250), IN cafoa VARCHAR(250))
         BEGIN
         
         SELECT cafoa_no, 

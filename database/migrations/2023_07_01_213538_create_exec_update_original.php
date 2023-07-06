@@ -45,7 +45,7 @@ return new class extends Migration
         DB::unprepared($procedure); 
 
         $procedure = " DROP PROCEDURE IF EXISTS `exec_appro_update_account_total`;
-        CREATE PROCEDURE `exec_appro_update_account_total` (IN aipcode VARCHAR(50), IN appro VARCHAR(50))
+        CREATE PROCEDURE `exec_appro_update_account_total` (IN aipcode VARCHAR(250), IN appro VARCHAR(250))
         BEGIN
 
         SELECT account_code, SUM(latest_appro_amount) total

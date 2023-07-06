@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         $procedure = " DROP PROCEDURE IF EXISTS `get_appro_department_allot`;
-        CREATE PROCEDURE `get_appro_department_allot` (IN year VARCHAR(20), IN fundsrc VARCHAR(20))
+        CREATE PROCEDURE `get_appro_department_allot` (IN year VARCHAR(250), IN fundsrc VARCHAR(250))
         BEGIN
 
         select departments.department_name, departments.department_code 
@@ -34,7 +34,7 @@ return new class extends Migration
         DB::unprepared($procedure);
 
         $procedure = " DROP PROCEDURE IF EXISTS `get_appro_approtype_allot`;
-        CREATE PROCEDURE `get_appro_approtype_allot` (IN year VARCHAR(20), IN fundsrc VARCHAR(20),
+        CREATE PROCEDURE `get_appro_approtype_allot` (IN year VARCHAR(250), IN fundsrc VARCHAR(250),
         IN dept VARCHAR(20))
         BEGIN
 
@@ -58,7 +58,7 @@ return new class extends Migration
         DB::unprepared($procedure);
 
         $procedure = " DROP PROCEDURE IF EXISTS `get_appro_program_allot`;
-        CREATE PROCEDURE `get_appro_program_allot` (IN year VARCHAR(20), IN fundsrc VARCHAR(20), IN dept VARCHAR(20),
+        CREATE PROCEDURE `get_appro_program_allot` (IN year VARCHAR(250), IN fundsrc VARCHAR(20), IN dept VARCHAR(250),
         IN approtype VARCHAR(20))
         BEGIN
 
@@ -79,7 +79,7 @@ return new class extends Migration
         DB::unprepared($procedure);
 
         $procedure = " DROP PROCEDURE IF EXISTS `get_appro_project_allot`;
-        CREATE PROCEDURE `get_appro_project_allot` (IN appro VARCHAR(20), IN program VARCHAR(20))
+        CREATE PROCEDURE `get_appro_project_allot` (IN appro VARCHAR(250), IN program VARCHAR(250))
         BEGIN
 
         select distinct exec_appropriation_details.project, exec_appropriation_details.project_code
@@ -96,7 +96,7 @@ return new class extends Migration
         DB::unprepared($procedure);
 
         $procedure = " DROP PROCEDURE IF EXISTS `get_appro_activity_allot`;
-        CREATE PROCEDURE `get_appro_activity_allot` (IN appro VARCHAR(20), IN program VARCHAR(20), IN project VARCHAR(20))
+        CREATE PROCEDURE `get_appro_activity_allot` (IN appro VARCHAR(20), IN program VARCHAR(250), IN project VARCHAR(250))
         BEGIN
 
         select exec_appropriation_details.activity, exec_appropriation_details.activity_code, exec_appropriation_details.appro_id, exec_appropriation_details.AIPCode
@@ -128,7 +128,7 @@ return new class extends Migration
         DB::unprepared($procedure);
 
         $procedure = " DROP PROCEDURE IF EXISTS `get_appro_expenses_allot`;
-        CREATE PROCEDURE `get_appro_expenses_allot`(IN appro VARCHAR(20), IN aipcode VARCHAR(20))
+        CREATE PROCEDURE `get_appro_expenses_allot`(IN appro VARCHAR(250), IN aipcode VARCHAR(250))
         BEGIN
 
         select DISTINCT exec_appropriation_expenses.id, exec_appropriation_expenses.appro_id, exec_appropriation_expenses.AIPCode, 

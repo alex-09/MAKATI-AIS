@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         $procedure = " DROP PROCEDURE IF EXISTS `get_allotment_reports_total_adjustment`;
-        CREATE PROCEDURE `get_allotment_reports_total_adjustment` (IN aipcode VARCHAR(50), IN allot VARCHAR(50))
+        CREATE PROCEDURE `get_allotment_reports_total_adjustment` (IN aipcode VARCHAR(250), IN allot VARCHAR(250))
         BEGIN
 
         SELECT account_code, SUM(adjusted_balance)
