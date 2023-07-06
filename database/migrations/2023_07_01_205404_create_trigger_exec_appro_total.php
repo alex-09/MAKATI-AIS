@@ -35,9 +35,7 @@ return new class extends Migration
 			SET NEW.latest_appro_amount = NEW.appro_amount;
         END IF;
         
-        END;
-
-        END'); 
+        END;'); 
     }
 
     /**

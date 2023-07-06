@@ -33,8 +33,8 @@ return new class extends Migration
             exec_appropriation_details.appro_total, 
             exec_appropriation_details.status
         
-        from exec_appropriations 
-            INNER JOIN join exec_appropriation_details
+        from exec_appropriations
+            INNER JOIN exec_appropriation_details
             ON exec_appropriations.appro_id = exec_appropriation_details.appro_id
             INNER JOIN departments
             ON departments.department_code = exec_appropriations.department_code_id
