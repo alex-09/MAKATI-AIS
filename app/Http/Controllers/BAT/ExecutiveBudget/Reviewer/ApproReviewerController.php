@@ -23,7 +23,7 @@ class ApproReviewerController extends Controller
             $request->appro_id
          ));
 
-         $expenses = DB::select('call exec_appro_getinfo(?,?)',array(
+         $expenses = DB::select('call exec_appro_getinfo_forreview(?,?)',array(
             $request->aipcode,
             $request->appro_id
         ));

@@ -20,7 +20,7 @@ return new class extends Migration
         BEGIN
         DECLARE amount FLOAT DEFAULT 0;
         
-        if NEW.addition AND NEW.deduction IS NOT NULL THEN
+        if NEW.addition OR NEW.deduction IS NOT NULL THEN
             
             IF NEW.addition IS NOT NULL THEN 
                 SET amount = NEW.appro_amount + NEW.addition;

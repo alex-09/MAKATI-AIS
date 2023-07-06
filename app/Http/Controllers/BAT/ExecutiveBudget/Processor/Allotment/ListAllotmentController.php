@@ -18,4 +18,20 @@ class ListAllotmentController extends Controller
             'data' => $data
         ]);
     }
+
+    public function search(Request $request)
+    {
+
+        $results = Allotment::where('AIPCode', 'like', "%$request->search%")
+            ->orWhere('program', 'like', "%$request->search%")
+            ->orWhere('project', 'like', "%$request->search%")
+            ->orWhere('activity', 'like', "%$request->search%")
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'result' => $results
+        ]);
+    }
+
 }

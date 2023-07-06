@@ -26,7 +26,7 @@ class CommRequest extends FormRequest
             'subject' => 'required',
             'department' => 'required',
             'addressee' => '',            
-            'document' => '',
+            'document' => 's',
             'email' => '',
             'DRN' => '',
             'reply_to' => '',

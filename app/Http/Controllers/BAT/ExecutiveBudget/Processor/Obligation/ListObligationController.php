@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\BAT\ExecutiveBudget\Processor\Obligation;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\ExecObligationDetails;
 
 class ListObligationController extends Controller
 {
@@ -24,6 +25,21 @@ class ListObligationController extends Controller
             'status' => true,
             'message' => 'Success',
             'list' => $list
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+
+        $results = ExecObligationDetails::where('AIPCode', 'like', "%$request->search%")
+            ->orWhere('program', 'like', "%$request->search%")
+            ->orWhere('project', 'like', "%$request->search%")
+            ->orWhere('activity', 'like', "%$request->search%")
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'result' => $results
         ]);
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\BAT\ExecutiveBudget\Processor\Appropriation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\AppropriationDetails;
 
 class ListAppropriationController extends Controller
 {
@@ -36,6 +37,21 @@ class ListAppropriationController extends Controller
             'expenses' => $expenses
         ]);
 
+    }
+
+    public function search(Request $request)
+    {
+
+        $results = AppropriationDetails::where('AIPCode', 'like', "%$request->search%")
+            ->orWhere('program', 'like', "%$request->search%")
+            ->orWhere('project', 'like', "%$request->search%")
+            ->orWhere('activity', 'like', "%$request->search%")
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'result' => $results
+        ]);
     }
 
 }

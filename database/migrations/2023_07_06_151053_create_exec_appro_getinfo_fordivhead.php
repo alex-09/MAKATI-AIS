@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        $procedure = " DROP PROCEDURE IF EXISTS `exec_appro_getinfo`;
-        CREATE PROCEDURE `exec_appro_getinfo` (IN aipcode VARCHAR(50), IN appro VARCHAR(50))
+        $procedure = " DROP PROCEDURE IF EXISTS `exec_appro_getinfo_fordivhead`;
+        CREATE PROCEDURE `exec_appro_getinfo_fordivhead` (IN aipcode VARCHAR(50), IN appro VARCHAR(50))
         BEGIN
 
         SELECT appro_type.appro_type,
@@ -44,7 +44,7 @@ return new class extends Migration
 				MAX(created_at) AS max_date 
                 FROM exec_appropriation_expenses 
                 
-                WHERE status = 'Approved'
+                WHERE status = 'FOR APPROVAL - DH'
                 GROUP BY appro_id) AS dets
                 
         ON expenses.appro_id = dets.appro_id
@@ -66,6 +66,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('update_appro_activity_details');
+        Schema::dropIfExists('exec_appro_getinfo_fordivhead');
     }
 };

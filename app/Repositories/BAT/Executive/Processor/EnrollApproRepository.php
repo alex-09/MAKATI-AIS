@@ -25,7 +25,13 @@ class EnrollApproRepository{
 
         Appropriation::create([
             'appro_id' => $appro_id,
-        ] + $request->all());
+            'date_document' => $date_document,
+            'budget_year_id' => $request->budget_year_id,
+            'fundSource_id' => $request->fundSource_id,
+            'reference_document' => $request->reference_document,
+            'approType_id' => $request->approType_id,
+            'department_code_id' => $request->department_code_id,
+        ]);
 
         foreach($request->mainProgramForms as $mainProgForms){
             $progForm = $mainProgForms['programForms'];

@@ -18,7 +18,22 @@ class ApproCAController extends Controller
 
     public function view(Request $request){
 
-        return (new ApproReviewerController)->view($request);
+        $mainInfo = DB::select('CALL exec_appro_update_report_info(?,?)',array(
+            $request->aipcode,
+            $request->appro_id
+         ));
+
+         $expenses = DB::select('call exec_appro_getinfo_forcityaccount(?,?)',array(
+            $request->aipcode,
+            $request->appro_id
+        ));
+
+        return response()->json([
+            'status' => true,
+            'main_info' => $mainInfo,
+            'expenses' => $expenses
+        ]);
+
     }
 
     public function update(Request $request)

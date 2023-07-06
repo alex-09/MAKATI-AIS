@@ -256,8 +256,9 @@ Route::prefix('appropriation')->group(function () {
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
     Route::post('/addProgram', [EnrollAppropriationController::class, 'addProgram']); 
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
-    //LIST s
+    //LISTs
     Route::get('/listAppro', [ListAppropriationController::class, 'index']);
+    Route::post('/searchAppro', [ListAppropriationController::class, 'search']);
     Route::post('/viewAppro', [ListAppropriationController::class, 'view']);
 
     //REVIEWER
@@ -309,6 +310,7 @@ Route::prefix('allotment')->group(function () {
 
     //LIST
     Route::get('/listAllot', [ListAllotmentController::class, 'list']);
+    Route::post('/searchAllot', [ListAllotmentController::class, 'search']);
 
     //FILTER FOR UPDATE
     Route::post('/getAllotDepartment', [UpdateAllotmentController::class, 'department']);
@@ -349,6 +351,7 @@ Route::prefix('obligation')->group(function () {
     //LIST OBLIGATION
     Route::get('/listObligation', [ListObligationController::class, 'forprocess']);
     Route::get('/list', [ListObligationController::class, 'listObligation']);
+    Route::post('/searchObli', [ListObligationController::class, 'search']);
 
     //FILTER OBLIGATION
     Route::post('/getDepartment', [AdjustmentObligationController::class, 'getDepartment']);
