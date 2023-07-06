@@ -52,7 +52,7 @@ return new class extends Migration
         and exec_appropriations.fundSource_id = fundsrc
         and exec_appropriations.department_code_id = dept
         
-        group by exec_appropriations.approType_id ;
+        group by exec_appropriations.approType_id, exec_appropriations.appro_type ;
         END";
 
         DB::unprepared($procedure);

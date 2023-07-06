@@ -29,7 +29,7 @@ return new class extends Migration
         appro_details.activity,
         appro_details.activity_code,
         appro_details.activity_description,
-        departments.departement_name	
+        departments.department_name	
         
         FROM exec_appropriation_details as appro_details
         JOIN exec_appropriations as appro_main
