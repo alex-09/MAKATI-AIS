@@ -39,9 +39,9 @@ return new class extends Migration
 
         SELECT SUM(latest_appro_amount) Original_Total
         FROM exec_appropriation_expenses
-        WHERE appro_id = 'appro_1'
-        AND AIPCode = '1-1-1'
-        AND adjustment_type = 1
+        WHERE appro_id = appro 
+        AND AIPCode = aipcode
+        AND adjustment_type = 3
         AND adjustemt_id IS NOT NULL
         GROUP BY adjustemt_id;
 

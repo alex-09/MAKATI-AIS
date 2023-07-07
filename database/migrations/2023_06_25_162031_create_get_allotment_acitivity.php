@@ -27,7 +27,7 @@ return new class extends Migration
         ON exec_appropriation_details.AIPcode = exec_allotments.AIPcode
         AND exec_appropriation_details.appro_id = exec_allotments.appro_id
         
-        WHERE exec_appropriation_details.project = project
+        WHERE exec_appropriation_details.project_codes = project
         AND exec_allotments.allot_id = allot;
 
         END";

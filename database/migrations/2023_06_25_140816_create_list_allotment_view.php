@@ -17,6 +17,8 @@ return new class extends Migration
         CREATE VIEW `makati-ais`.`list_allotment` AS
         SELECT exec_allotments.appro_id, 
 		exec_allotments.allot_id,
+        DATE_FORMAT(exec_allotments.created_at, '%M %d %Y ') as Date, 
+        DATE_FORMAT(exec_allotments.created_at, '%h:%i:%s') AS time,
 		exec_allotments.type,
         exec_allotments.budget_year_id,
         fund_sources.fund_Source,
