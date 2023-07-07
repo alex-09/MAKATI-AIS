@@ -42,7 +42,9 @@ class ListAppropriationController extends Controller
     public function search(Request $request)
     {
 
-        $results = AppropriationDetails::where('AIPCode', 'like', "%$request->search%")
+        $results = DB::table('exec_list_appropriation')
+            ->select('*')
+            ->where('AIPCode', 'like', "%$request->search%")
             ->orWhere('program', 'like', "%$request->search%")
             ->orWhere('project', 'like', "%$request->search%")
             ->orWhere('activity', 'like', "%$request->search%")
