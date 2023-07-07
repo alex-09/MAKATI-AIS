@@ -369,19 +369,23 @@ Route::prefix('obligation')->group(function () {
     Route::post('/reportObligation', [ReportObligationController::class, 'reportObligation']);
 
     //REVIEWER
-    Route::post('/listObliForReview', [ObliReviewerController::class, 'list']);
+    Route::get('/listObliForReview', [ObliReviewerController::class, 'list']);
     Route::post('/viewObliForReview', [ObliReviewerController::class, 'view']);
+
+    Route::get('/listBotProcessor', [ObliReviewerController::class, 'listBot']);
+    Route::post('/assignProcessor', [ObliReviewerController::class, 'assignOblig']);
+
     Route::post('/updateObliForReview', [ObliReviewerController::class, 'update']);
     Route::post('/rejectObliForReview', [ObliReviewerController::class, 'reject']);
 
     //DIVISION HEAD
-    Route::post('/listObliDivisionHead', [ObliDHController::class, 'list']);
+    Route::get('/listObliDivisionHead', [ObliDHController::class, 'list']);
     Route::post('/viewObliDH', [ObliDHController::class, 'view']);
     Route::post('/updateObliDH', [ObliDHController::class, 'update']);
     Route::post('/rejectObliDH', [ObliDHController::class, 'reject']);
 
     //City Accountant
-    Route::post('/listObliCA', [ObliCAController::class, 'list']);
+    Route::get('/listObliCA', [ObliCAController::class, 'list']);
     Route::post('/viewObliAC', [ObliCAController::class, 'view']);
     Route::post('/updateObliCA', [ObliCAController::class, 'update']);
     Route::post('/rejectObliCA', [ObliCAController::class, 'reject']);

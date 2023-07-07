@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ExecObligationDetails;
+use App\Models\DMBudgetaryObligationsTransac;
 use App\Http\Controllers\BAT\ExecutiveBudget\DivisionHead\ObliDHController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ObliReviewerController;
 
@@ -19,6 +20,34 @@ class ObliDHController extends Controller
     public function view(Request $request){
 
         return (new ObliReviewerController)->view($request);
+    }
+
+    public function listBot(){
+        return response()->json([
+            'list' => DB::select('SELECT * FROM exec_obligation_list_transactions'),
+            'processorLIst' => DB::select('SELECT * FROM list_processor_bot')]);
+    }
+
+    public function assignOblig(Request $request){
+        try {
+            DMBudgetaryObligationsTransac::where('transaction_id', $request->transac_id)
+            ->update([
+                'transaction_type' => $request->transaction_type,
+                'processer' => $request->processer
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Success',
+            ]);
+            
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ]);
+        }
     }
     
     public function update(Request $request)

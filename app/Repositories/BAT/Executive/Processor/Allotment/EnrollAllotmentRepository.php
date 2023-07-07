@@ -188,7 +188,7 @@ class EnrollAllotmentRepository{
     public function forReview($request){
         try{
 
-            $data = Allotment::where('appro_id', $request->appro_id)->where('AIPCode', $request->aipcode)->update(['status' => "For Review"]);
+            $data = Allotment::where('allot_id', $request->allot_id)->where('AIPCode', $request->aipcode)->update(['status' => "For Review"]);
 
             return response()->json([
                'status' => true,

@@ -16,6 +16,7 @@ return new class extends Migration
         CREATE VIEW `exec_list_appropriation` AS
 
 SELECT
+    exec_appropriation_details.created_at,
     exec_appropriation_details.id,
     exec_appropriation_details.appro_id,
     DATE_FORMAT(exec_appropriation_details.created_at, '%M %d %Y') AS `Date`,
@@ -46,7 +47,9 @@ INNER JOIN (
         exec_appropriation_details
     GROUP BY
         appro_id
-) AS dets ON exec_appropriation_details.appro_id = dets.appro_id AND exec_appropriation_details.created_at = dets.max_date
+) AS dets ON exec_appropriation_details.appro_id = dets.appro_id AND exec_appropriation_details.created_at = dets.max_dateget
+
+ORDER BY exec_appropriation_details.created_at DESC
 ";
 
         DB::unprepared($procedure);

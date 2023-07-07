@@ -15,10 +15,12 @@ return new class extends Migration
     {
         $procedure = " DROP VIEW IF EXISTS `list_allotment`;
         CREATE VIEW `makati-ais`.`list_allotment` AS
-        SELECT exec_allotments.appro_id, 
+        SELECT 
+        exec_allotments.created_at,
+        exec_allotments.appro_id, 
 		exec_allotments.allot_id,
-        DATE_FORMAT(exec_allotments.created_at, '%M %d %Y ') as Date, 
-        DATE_FORMAT(exec_allotments.created_at, '%h:%i:%s') AS time,
+        DATE_FORMAT(exec_appropriation_details.created_at, '%M %d %Y ') as Date, 
+        DATE_FORMAT(exec_appropriation_details.created_at, '%h:%i:%s') AS time,
 		exec_allotments.type,
         exec_allotments.budget_year_id,
         fund_sources.fund_Source,
@@ -43,7 +45,8 @@ return new class extends Migration
         ON exec_appropriation_details.AIPcode = exec_allotments.AIPcode
         AND exec_appropriation_details.appro_id = exec_allotments.appro_id
         LEFT JOIN fund_sources 
-        ON fund_sources.fundSource_id = exec_appropriations.fundSource_id";
+        ON fund_sources.fundSource_id = exec_appropriations.fundSource_id
+		ORDER BY exec_allotments.created_at DESC";
 
         DB::unprepared($procedure); 
     }
