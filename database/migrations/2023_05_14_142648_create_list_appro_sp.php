@@ -47,7 +47,7 @@ INNER JOIN (
         exec_appropriation_details
     GROUP BY
         appro_id
-) AS dets ON exec_appropriation_details.appro_id = dets.appro_id AND exec_appropriation_details.created_at = dets.max_dateget
+) AS dets ON exec_appropriation_details.appro_id = dets.appro_id AND exec_appropriation_details.created_at = dets.max_date
 
 ORDER BY exec_appropriation_details.created_at DESC
 ";
