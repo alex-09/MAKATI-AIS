@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ExecObligationDetails;
 use App\Models\DMBudgetaryObligationsTransac;
-use App\Http\Controllers\BAT\ExecutiveBudget\DivisionHead\ObliDHController;
 use App\Http\Controllers\BAT\ExecutiveBudget\Reviewer\ObliReviewerController;
 
 class ObliDHController extends Controller
@@ -64,6 +63,6 @@ class ObliDHController extends Controller
 
     public function reject(Request $request){
 
-        return (new ObliDHController)->reject($request);
+        return (new ObliReviewerController)->reject($request);
     }
 }

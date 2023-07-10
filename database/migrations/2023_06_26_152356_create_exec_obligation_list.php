@@ -16,7 +16,9 @@ return new class extends Migration
         $procedure = " DROP VIEW IF EXISTS `exec_obligation_list`;
         CREATE VIEW `exec_obligation_list` AS
 
-        SELECT  id,    
+        SELECT 
+        created_at,
+        id,    
         transaction_id,
 		date_format(created_at, '%M %e, %Y') as date, 
 		date_format(created_at, '%l:%i %p') as time, 

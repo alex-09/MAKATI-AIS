@@ -19,8 +19,8 @@ return new class extends Migration
 
         SELECT DISTINCT appro_main.appro_id, 
         appro_main.budget_year_id,
-        appro_main.fundSource_id,
-        appro_main.approType_id,
+        fund_sources.fund_Source,
+        exec_appropriation_types.appro_type,
         appro_main.reference_document,
         appro_details.program,
         appro_details.program_code,
@@ -36,8 +36,10 @@ return new class extends Migration
         ON appro_main.appro_id = appro_details.appro_id
         JOIN departments
         ON appro_main.department_code_id = departments.department_code
-        JOIN exec_appropriation_types AS appro_type
-        ON appro_main.approType_id = appro_type.approType_id
+		JOIN fund_sources 
+        ON appro_main.fundSource_id = fund_sources.fundSource_id
+        JOIN exec_appropriation_types
+        ON appro_main.approType_id = exec_appropriation_types.approType_id
         
         where appro_details.appro_id = appro
         AND appro_details.AIPCode = aipcode;

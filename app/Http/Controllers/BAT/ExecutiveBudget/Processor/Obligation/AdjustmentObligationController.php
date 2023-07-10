@@ -70,7 +70,7 @@ class AdjustmentObligationController extends Controller
     {
         try {
 
-            $data = DB::select('call exec_obligation_get_activity(?,?,?)', array(
+            $data = DB::select('call exec_obligation_get_activity(?,?)', array(
                 $request->appro_id,
                 $request->project
             ));

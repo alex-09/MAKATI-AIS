@@ -16,7 +16,8 @@ return new class extends Migration
         $procedure = " DROP VIEW IF EXISTS `exec_obligation_list_transactions`;
         CREATE VIEW `exec_obligation_list_transactions` AS
 
-        SELECT exec_obligations.obli_id, 
+        SELECT exec_obligations.created_at, 
+        exec_obligations.obli_id, 
         transaction_id,
         date_format(exec_obligations.created_at, '%M %e, %Y') as date, 
                 date_format(exec_obligations.created_at, '%l:%i %p') as time,
@@ -37,6 +38,8 @@ return new class extends Migration
         ON dm_bot.cafoa_id = exec_obligations.obli_id
         LEFT JOIN departments
         ON departments.department_code = exec_obligations.department
+
+        ORDER BY exec_obligations.created_at DESC
         ";
 
         DB::unprepared($procedure); 

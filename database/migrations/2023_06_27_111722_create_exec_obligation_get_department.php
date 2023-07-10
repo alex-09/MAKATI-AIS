@@ -27,7 +27,8 @@ return new class extends Migration
         ON exec_appropriations.department_code_id = departments.department_code
         
         WHERE exec_appropriations.budget_year_id = year
-        AND exec_appropriations.fundSource_id = fundSource;
+        AND exec_appropriations.fundSource_id = fundSource
+        AND exec_appropriation_details.status = 'Approved';
 
 
         END";

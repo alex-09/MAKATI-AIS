@@ -28,7 +28,7 @@ class AllotReviewerController extends Controller
 
         return response()->json([
             'status' => true,
-            'main-info' => $mainInfo,
+            'main_info' => $mainInfo,
             'expenses' => $expenses
         ]);
     }

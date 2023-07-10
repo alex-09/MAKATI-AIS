@@ -18,7 +18,7 @@ return new class extends Migration
         BEGIN
 
         SELECT DISTINCT exec_appropriations.budget_year_id,
-        exec_appropriations.fundSource_id,
+        fund_sources.fund_Source,
 		departments.department_name,
         exec_appropriation_types.appro_type,
         exec_appropriation_details.program,
@@ -34,6 +34,8 @@ return new class extends Migration
         ON exec_appropriations.appro_id = exec_allotments.appro_id
         LEFT JOIN departments
         ON exec_appropriations.department_code_id = departments.department_code
+		LEFT JOIN fund_sources 
+        ON appro_main.fundSource_id = fund_sources.fundSource_id
         LEFT JOIN exec_appropriation_types
 		ON exec_appropriations.approType_id = exec_appropriation_types.approType_id
 		LEFT JOIN exec_appropriation_details

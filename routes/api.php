@@ -333,13 +333,13 @@ Route::prefix('allotment')->group(function () {
     Route::post('/rejectApproForReview', [AllotReviewerController::class, 'reject']);
 
     //DIVISION HEAD
-    Route::post('/listApproDivisionHead', [AllotDHController::class, 'list']);
+    Route::get('/listApproDivisionHead', [AllotDHController::class, 'list']);
     Route::post('/viewApproDH', [AllotDHController::class, 'view']);
     Route::post('/updateApproDH', [AllotDHController::class, 'update']);
     Route::post('/rejectApproDH', [AllotDHController::class, 'reject']);
 
     //City Accountant
-    Route::post('/listApproCA', [AllotCAController::class, 'list']);
+    Route::get('/listApproCA', [AllotCAController::class, 'list']);
     Route::post('/viewApproAC', [AllotCAController::class, 'view']);
     Route::post('/updateApproCA', [AllotCAController::class, 'update']);
     Route::post('/rejectApproCA', [AllotCAController::class, 'reject']);

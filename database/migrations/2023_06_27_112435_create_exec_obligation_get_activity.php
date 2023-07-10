@@ -29,7 +29,8 @@ return new class extends Migration
         ON exec_appropriations.appro_id = exec_appropriation_details.appro_id
         
         WHERE exec_appropriations.appro_id = appro
-        AND exec_appropriation_details.project = project;
+        AND exec_appropriation_details.project = project
+        AND exec_appropriation_details.status = 'Approved';
 
 
         END";

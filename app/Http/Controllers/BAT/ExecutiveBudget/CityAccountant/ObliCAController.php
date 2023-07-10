@@ -34,6 +34,6 @@ class ObliCAController extends Controller
 
     public function reject(Request $request){
 
-        return (new ObliDHController)->reject($request);
+        return (new ObliReviewerController)->reject($request);
     }
 }
