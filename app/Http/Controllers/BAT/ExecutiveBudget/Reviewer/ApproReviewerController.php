@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\BAT\ExecutiveBudget\Reviewer;
 
 use Illuminate\Http\Request;
+use App\Models\Appropriation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\AppropriationDetails;
@@ -37,13 +38,19 @@ class ApproReviewerController extends Controller
 
     public function update(Request $request)
     {
+        Appropriation::where('appro_id', $request->appro_id)
+        ->where('AIPCode', $request->aipcode)
+        ->update([
+            'status' => 'FOR APPROVAL - DH',
+            'remarks' => $request->remarks
+        ]);
 
         AppropriationDetails::where('appro_id', $request->appro_id)
             ->where('AIPCode', $request->aipcode)
             ->update([
                 'status' => 'FOR APPROVAL - DH',
                 'remarks' => $request->remarks
-            ]);;
+            ]);
     
 
         AppropriationExpenses::where('appro_id', $request->appro_id)

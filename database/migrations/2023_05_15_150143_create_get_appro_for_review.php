@@ -43,9 +43,8 @@ return new class extends Migration
         LEFT JOIN departments
 		on exec_appropriations.department_code_id = departments.department_code
         
-        LEFT JOIN (SELECT appro_id, AIPCode, MAX(created_at) AS max_date FROM exec_appropriation_details GROUP BY appro_id) AS dets
+        LEFT JOIN (SELECT appro_id, MAX(created_at) AS max_date FROM exec_appropriation_details GROUP BY appro_id) AS dets
         ON exec_appropriation_details.appro_id = dets.appro_id
-        and exec_appropriation_details.AIPCode = dets.AIPCode
         and exec_appropriation_details.created_at = dets.max_date
         
         LEFT JOIN fund_sources 

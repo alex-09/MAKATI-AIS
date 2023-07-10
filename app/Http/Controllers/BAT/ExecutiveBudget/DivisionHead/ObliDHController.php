@@ -23,7 +23,7 @@ class ObliDHController extends Controller
 
     public function listBot(){
         return response()->json([
-            'list' => DB::select('SELECT * FROM exec_obligation_list_transactions'),
+            'list' => DB::select('SELECT * FROM exec_obligation_list'),
             'processorLIst' => DB::select('SELECT * FROM list_processor_bot')]);
     }
 

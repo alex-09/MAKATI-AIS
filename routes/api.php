@@ -372,9 +372,6 @@ Route::prefix('obligation')->group(function () {
     Route::get('/listObliForReview', [ObliReviewerController::class, 'list']);
     Route::post('/viewObliForReview', [ObliReviewerController::class, 'view']);
 
-    Route::get('/listBotProcessor', [ObliReviewerController::class, 'listBot']);
-    Route::post('/assignProcessor', [ObliReviewerController::class, 'assignOblig']);
-
     Route::post('/updateObliForReview', [ObliReviewerController::class, 'update']);
     Route::post('/rejectObliForReview', [ObliReviewerController::class, 'reject']);
 
@@ -383,6 +380,9 @@ Route::prefix('obligation')->group(function () {
     Route::post('/viewObliDH', [ObliDHController::class, 'view']);
     Route::post('/updateObliDH', [ObliDHController::class, 'update']);
     Route::post('/rejectObliDH', [ObliDHController::class, 'reject']);
+
+    Route::get('/listBotProcessor', [ObliDHController::class, 'listBot']);
+    Route::post('/assignProcessor', [ObliDHController::class, 'assignOblig']);
 
     //City Accountant
     Route::get('/listObliCA', [ObliCAController::class, 'list']);

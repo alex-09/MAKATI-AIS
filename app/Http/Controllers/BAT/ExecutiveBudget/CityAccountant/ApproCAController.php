@@ -38,6 +38,12 @@ class ApproCAController extends Controller
 
     public function update(Request $request)
     {
+        Appropriation::where('appro_id', $request->appro_id)
+        ->where('AIPCode', $request->aipcode)
+        ->update([
+            'status' => 'Approved',
+            'remarks' => $request->remarks
+        ]);
 
         AppropriationDetails::where('appro_id', $request->appro_id)
             ->where('AIPCode', $request->aipcode)
