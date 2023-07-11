@@ -27,7 +27,7 @@ return new class extends Migration
             $table->float('addition', 17, 3)->nullable();
             $table->float('deduction', 17, 3)->nullable();
             $table->float('balance', 17, 3)->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default('On Process');
             $table->timestamps();
         });
     }

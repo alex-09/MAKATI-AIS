@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('approType_id');
             $table->string('date_document')->nullable();
             $table->string('reference_document');
-            $table->string('status')->nullable();
+            $table->string('status')->default('On Process');
             $table->timestamps();
         });
     }
