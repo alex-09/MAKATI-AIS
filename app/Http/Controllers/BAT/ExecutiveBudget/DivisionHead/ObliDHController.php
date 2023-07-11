@@ -23,8 +23,10 @@ class ObliDHController extends Controller
 
     public function listBot(){
         return response()->json([
-            'list' => DB::select('SELECT * FROM exec_obligation_list'),
-            'processorLIst' => DB::select('SELECT * FROM list_processor_bot')]);
+            'listProcessor' => DB::select('SELECT * FROM exec_obligation_list'),
+            'listReviewer' => DB::select('SELECT * FROM list_reviewer_bot'),
+            'processorLIst' => DB::select('SELECT * FROM list_processor_bot')
+        ]);
     }
 
     public function assignOblig(Request $request){
@@ -32,7 +34,8 @@ class ObliDHController extends Controller
             DMBudgetaryObligationsTransac::where('transaction_id', $request->transac_id)
             ->update([
                 'transaction_type' => $request->transaction_type,
-                'processer' => $request->processer
+                'processer' => $request->processer,
+                'reviewer' => $request->reviewer
             ]);
 
             return response()->json([

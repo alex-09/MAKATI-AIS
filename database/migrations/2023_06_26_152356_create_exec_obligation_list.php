@@ -29,7 +29,9 @@ return new class extends Migration
 		description,
 		amount,
         status,
-        null as transaction_type
+        transaction_type,
+        assign_processor,
+        assign_reviewer
         
         FROM dm_bot
         ORDER BY created_at DESC
