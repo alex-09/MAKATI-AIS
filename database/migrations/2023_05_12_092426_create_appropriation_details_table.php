@@ -27,7 +27,6 @@ return new class extends Migration
             $table->float('appro_total', 17, 3)->nullable();
             $table->float('latest_appro_total', 17, 3)->nullable();
             $table->string('type')->default('New');
-            $table->string('status')->nullable();
             $table->string('remarks')->nullable();
             $table->string('assign_processor')->nullable();
             $table->string('status')->default('On Process');

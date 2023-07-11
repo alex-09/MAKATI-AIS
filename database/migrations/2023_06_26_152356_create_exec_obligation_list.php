@@ -30,8 +30,8 @@ return new class extends Migration
 		amount,
         status,
         transaction_type,
-        assign_processor,
-        assign_reviewer
+        processer,
+        reviewer
         
         FROM dm_bot
         ORDER BY created_at DESC

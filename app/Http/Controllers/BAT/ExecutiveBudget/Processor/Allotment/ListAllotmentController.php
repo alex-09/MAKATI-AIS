@@ -22,7 +22,7 @@ class ListAllotmentController extends Controller
     public function search(Request $request)
     {
 
-        $results = DB::select('SELECT * FROM list_allotment')
+        $results = DB::table('list_allotment')
             ->select('*')
             ->where('AIPCode', 'like', "%$request->search%")
             ->orWhere('program', 'like', "%$request->search%")

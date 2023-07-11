@@ -12,16 +12,17 @@ class EnrollApproRepository{
 
     public function EnrollAppro($request){
 
+        $date_document = Carbon::now()->format('Y-m-d');
+        $year = Carbon::now()->format('Y');
+
         $getApproId = Appropriation::all();
         if($getApproId->isEmpty()){
-            $appro_id = "appro_"."1";
+            $appro_id = "APPRO-".$year."-1";
         }else{
             $getApproId = Appropriation::latest('id')->first();
             $approIdInc = $getApproId['id'];
-            $appro_id = "appro_".++$approIdInc;
+            $appro_id = "APPRO-".$year."-".str_pad(++$approIdInc, 7, '0', STR_PAD_LEFT);
         }
-
-        $date_document = Carbon::now()->format('Y-m-d');
 
         Appropriation::create([
             'appro_id' => $appro_id,
@@ -104,7 +105,7 @@ class EnrollApproRepository{
                                 'activity' => $activityForm['activity'],
                                 'activity_description' => $activityForm['activity_description'],
                                 'appro_total' => $activityForm['expenseTotal'],
-                                'latest_appro_total' => $activityForm['expenseTotal'],
+                                'latest_appro_total' => $activityForm['expenseTotal']
                             ]);
 
                             AppropriationExpenses::create([
@@ -130,6 +131,7 @@ class EnrollApproRepository{
 
 
     public function forReview($request){
+
         Appropriation::where('appro_id', $request->appro_id)->update(['status' => 'For Review']);
 
         AppropriationDetails::where('appro_id', $request->appro_id)->update(['status' => 'For Review']);
