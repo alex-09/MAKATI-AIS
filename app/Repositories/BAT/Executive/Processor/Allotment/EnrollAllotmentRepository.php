@@ -159,7 +159,7 @@ class EnrollAllotmentRepository{
                                 'AIPCode' => $request->aipcode,
                                 'account_name' => $exp['account_code'],
                                 'account_code' => $exp['account_name'],
-                                'appro_amount' => $exp['appropriation'],
+                                'appro_amount' => $exp['appro_amount'],
                                 'allot_amount' => $exp['allotment'],
                                 'balance' => $exp['balance'],
                                 'latest_balance' => $exp['balance']

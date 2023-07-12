@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\BAT\ExecutiveBudget\CityAccountant;
 
 use Illuminate\Http\Request;
+use App\Models\Appropriation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\AppropriationDetails;
@@ -39,10 +40,8 @@ class ApproCAController extends Controller
     public function update(Request $request)
     {
         Appropriation::where('appro_id', $request->appro_id)
-        ->where('AIPCode', $request->aipcode)
         ->update([
             'status' => 'Approved',
-            'remarks' => $request->remarks
         ]);
 
         AppropriationDetails::where('appro_id', $request->appro_id)

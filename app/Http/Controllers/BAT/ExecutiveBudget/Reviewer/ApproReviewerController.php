@@ -39,10 +39,8 @@ class ApproReviewerController extends Controller
     public function update(Request $request)
     {
         Appropriation::where('appro_id', $request->appro_id)
-        ->where('AIPCode', $request->aipcode)
         ->update([
             'status' => 'FOR APPROVAL - DH',
-            'remarks' => $request->remarks
         ]);
 
         AppropriationDetails::where('appro_id', $request->appro_id)

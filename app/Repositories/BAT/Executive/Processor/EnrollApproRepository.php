@@ -17,7 +17,7 @@ class EnrollApproRepository{
 
         $getApproId = Appropriation::all();
         if($getApproId->isEmpty()){
-            $appro_id = "APPRO-".$year."-1";
+            $appro_id = "APPRO-".$year."-0000001";
         }else{
             $getApproId = Appropriation::latest('id')->first();
             $approIdInc = $getApproId['id'];
