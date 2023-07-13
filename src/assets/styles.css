@@ -1,0 +1,41 @@
+/* added by joe */
+.input-label-name{
+    width: 99px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    
+}
+.input-container{
+    flex-grow: 1;
+    height: 32px;
+    position: relative;
+}
+.grid-cell-container{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 120px auto;
+    
+}
+.button-design-1{
+    height: 42px;
+    padding: 0px 26px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 28px;
+    border-radius: 5px;
+}
+.title-heading-1{
+    font-weight: 700;
+    font-size: 22px;
+    color: #606060;
+}
+.table-actions-btn{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    border-radius: 5px;
+    border: 1px solid #3a354147;
+    padding: 4px;
+}
+/* added by joe */
