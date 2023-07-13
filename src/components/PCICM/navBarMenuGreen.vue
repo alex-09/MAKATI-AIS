@@ -2,12 +2,15 @@
   <div
     class="px-2 grid grid-cols-8 gap-4 sm:flex-row justify-between items-center text-other-black bg-white font-Inter text-xs font-semibold shadow-lg"
   >
-    <div class="flex flex-row items-center text-secondBtn">
-      <button @click.prevent="onBackClick()">
-        <img src="../../../public/assets/Go_Back.png" alt="" />
+    <div class="flex items-center text-[#05C64B] p-2 h-64">
+      <button @click.prevent="onBackClick()" class="flex-none w-30 h-30">
+        <img src="../../../public/assets/Go_Back_Green.png" class="w-6 h-6" alt="Go Back"/>
       </button>
-      <h1 class="text-2xl capetalize px-1">Contracts/P.O</h1>
+      <h1 class="flex text-2xl capetalize px-1">
+        Contracts/P.O
+      </h1>
     </div>
+    
   </div>
 </template>
 

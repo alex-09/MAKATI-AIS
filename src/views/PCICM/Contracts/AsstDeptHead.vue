@@ -2,8 +2,8 @@
 import { ref } from 'vue';
 import InProcess from '../../../components/PCICM/Contracts/InProcess.vue'
 import Processed from '../../../components/PCICM/Contracts/Processed.vue'
-import HeaderMenu from '../../../components/PCICM/headerMenu.vue'
-import NavbarMenu from '../../../components/PCICM/navBarMenu.vue'
+import HeaderMenu from '../../../components/PCICM/headerMenuGreen.vue'
+import NavbarMenu from '../../../components/PCICM/navBarMenuGreen.vue'
 const selectedIndex = ref(0)
 const tabMenus = ref(['IN PROCESS', 'PROCESSED'])
 </script>
