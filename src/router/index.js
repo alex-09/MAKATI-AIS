@@ -9,11 +9,54 @@ const router = createRouter({
       name: "sample",
       component: () => import("../views/SampleView.vue"),
     },
+
+    // In process and Processed-------------------------------------------------
     {
-      path: "/AlexComponent",
-      name: "alexComponent",
+      path: "/CityAccView",
+      name: "CityAccView",
+      component: () => import("../views/PCICM/Contracts/CityAccView.vue"),
+    },
+    {
+      path: "/DivHeadView",
+      name: "DivHeadView",
+      component: () => import("../views/PCICM/Contracts/DivHeadView.vue"),
+    },
+    {
+      path: "/AsstDeptHead",
+      name: "AsstDeptHead",
       component: () => import("../views/PCICM/Contracts/AsstDeptHead.vue"),
     },
+    //--------------------------------------------------------------------------
+
+    // Processor - CA (delivery term, new transactions )
+    {
+      path: "/CityAccViewTransactions",
+      name: "CityAccViewTransactions",
+      component: () => import("../views/PCICM/Contracts/CityAccViewTransactions.vue"),
+    },
+
+    // PROCESSOR - ADH (contract data entry, transactions in process, table with input)
+    {
+      path: "/AsstDeptHeadViewTransactions",
+      name: "AsstDeptHeadViewTransactions",
+      component: () => import("../views/PCICM/Contracts/AsstDeptHeadViewTransactions.vue"),
+    },
+
+    // PROCESSOR - ADH (delivery term read, transactions in process)
+    {
+      path: "/AsstDeptHeadViewTransactionsRead",
+      name: "AsstDeptHeadViewTransactionsRead",
+      component: () => import("../views/PCICM/Contracts/AsstDeptHeadViewTransactionsRead.vue"),
+    },
+
+    // PROCESSOR - ADH (labor comp, supply comp, the one with + green btn, Contract Data Entry)
+    {
+      path: "/AsstDeptHeadViewTransactionsHead",
+      name: "AsstDeptHeadViewTransactionsHead",
+      component: () => import("../views/PCICM/Contracts/AsstDeptHeadViewTransactionsHead.vue"),
+    },
+    
+    
     {
       path: "/",
       name: "login",

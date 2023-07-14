@@ -53,7 +53,7 @@
             <label class=" title-heading-1 sticky top-0 left-0">ACTION HISTORY</label>
             <TableView />
         </div>
-        <div class=" flex gap-x-[20px] sticky top-0 left-0">
+        <div class="w-4/5 flex gap-[20px] mr-0 ml-auto justify-end mb-[10px] max-lg:flex-col sticky top-0 left-0">
             <button class="button-design-1 text-white bg-[#0E4572]">ADD ENTRY</button>
             <button class="button-design-1 text-white bg-[#16B1FF]">SAVE</button>
             <button class="button-design-1 text-white bg-[#f8274c]">CLEAR</button>

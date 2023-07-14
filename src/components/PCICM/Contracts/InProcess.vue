@@ -25,9 +25,16 @@
                 <div class="grid grid-cols-2 gap-x-[45px]">
                     <div class="grid-cell-container ">
                         <label class="input-label-name">Payee</label>
+                        <!-- SEARCH ICON -->
                         <div class="input-container">
-                            <Dropdown />
-                        </div>
+                            <SearchBox />
+                        </div> 
+
+                        <!-- DROPDOWN
+                            <div class="input-container">
+                                <Dropdown />
+                            </div> 
+                        -->
                     </div>
                     <div class="grid-cell-container ">
                         <label class="input-label-name">Type of Transaction</label>
@@ -56,4 +63,5 @@
 <script setup>
 import TableView from './FPTableView.vue';
 import Dropdown from '../../TRComponents/reusableComponents/Dropdown.vue';
+import SearchBox from '../../TRComponents/reusableComponents/Searchbox.vue';
 </script>

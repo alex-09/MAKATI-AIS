@@ -1,19 +1,18 @@
 <script setup>
 import { ref } from "vue";
-import InProcess from "../../../components/PCICM/Contracts/InProcess.vue";
-import Processed from "../../../components/PCICM/Contracts/Processed.vue";
+import CityAcctCPO from "../../../components/PCICM/Contracts/ProcessorCPO/CityAcctCPO.vue";
 import HeaderMenu from "../../../components/PCICM/headerMenuGreen.vue";
 import navBarMenu from "../../../components/PCICM/navBarMenuGreen.vue";
 const selectedIndex = ref(0);
-const tabMenus = ref(["IN PROCESS", "PROCESSED"]);
+const tabMenus = ref(["NEW TRANSACTIONS", "PREVIOUS TRANSACTIONS"]);
 </script>
 
-
 <template>
-  <HeaderMenu />
-  <navBarMenu />
+  
   <div class="sticky top-0 left-0 z-50">
     <!--header and navbar here-->
+    <HeaderMenu />
+    <navBarMenu />
   </div>
 
   <div>
@@ -37,7 +36,7 @@ const tabMenus = ref(["IN PROCESS", "PROCESSED"]);
   </div>
   
   <section class="mx-[30px] mt-[14px]">
-    <InProcess v-if="selectedIndex == 0" />
+    <CityAcctCPO v-if="selectedIndex == 0" />
     <Processed v-if="selectedIndex == 1" />
   </section>
 </template>

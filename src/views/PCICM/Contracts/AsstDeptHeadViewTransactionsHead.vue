@@ -1,19 +1,19 @@
 <script setup>
 import { ref } from "vue";
-import InProcess from "../../../components/PCICM/Contracts/InProcess.vue";
+import InProcess from "../../../components/PCICM/Contracts/ProcessorCPO/AdhCPOHead.vue";
 import Processed from "../../../components/PCICM/Contracts/Processed.vue";
 import HeaderMenu from "../../../components/PCICM/headerMenuGreen.vue";
 import navBarMenu from "../../../components/PCICM/navBarMenuGreen.vue";
 const selectedIndex = ref(0);
-const tabMenus = ref(["IN PROCESS", "PROCESSED"]);
+const tabMenus = ref(["TRANSACTIONS IN PROCESS"]);
 </script>
 
-
 <template>
-  <HeaderMenu />
-  <navBarMenu />
+  
   <div class="sticky top-0 left-0 z-50">
     <!--header and navbar here-->
+    <HeaderMenu />
+    <navBarMenu />
   </div>
 
   <div>

@@ -3,6 +3,7 @@
     type="text"
     class="bg-[initial] text-sm border-[1px] border-[#3a354147] flex items-center cursor-default rounded-md w-full px-3 h-full focus:ring-0 focus:outline-none focus:border-[#3a354147] py-[auto]"
     :value="value"
+    :placeholder="placeHolder"
     @input="$emit('input', $event.target.value)"
   />
 </template>
@@ -11,6 +12,7 @@
 export default {
   props: {
     value: String, // Declare a prop called value
+    placeHolder : String
   },
 };
 </script>
