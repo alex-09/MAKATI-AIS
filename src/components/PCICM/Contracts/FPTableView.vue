@@ -27,7 +27,7 @@
 
             </thead>
             <tbody>
-                <tr v-for="i in 100" :key="i">
+                <tr v-for="i in 1" :key="i">
                     <td>
                         <div>
                             <input type="checkbox">
