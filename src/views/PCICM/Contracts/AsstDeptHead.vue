@@ -9,7 +9,7 @@ const tabMenus = ref(['IN PROCESS', 'PROCESSED'])
 </script>
 <template>
 
-    <div class="sticky top-0 left-0 z-50">
+    <div class="sticky top-0 left-0 z-50 max-md:relative">
         <!--header and navbar here-->
         <HeaderMenu />
         <NavbarMenu />

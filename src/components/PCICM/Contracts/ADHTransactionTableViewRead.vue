@@ -1,63 +1,65 @@
 <template>
     <div id="delivery-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>ITEM NO.</th>
-                    <th>SSCOPE OF WORKS</th>
-                    <th>AMOUNT PROGRAMMED</th>
-                    <th>PERCEENTAGE (&) PROGRAMMED</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="i in 7" :key="i">
-                    <td>
-                        <div >
-                            AUTOFILL
-                        </div>
-                    </td>
-                    <td>
-                        <div >
-                            AUTOFILL
-                        </div>
-                    </td>
-                    <td>
-                        <div >
-                            AUTOFILL
-                        </div>
-                    </td>
-                    <td>
-                        <div >
-                            AUTOFILL
-                        </div>
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td colspan="2" >
-                        <div>
-                            <Textbox placeHolder="TOTAL"/>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox placeHolder="PHPXXXX.00"/>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox placeHolder="PHPXXXX.00"/>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            
-        </table>
+        <div class="min-h-[400px] max-h-[400px] overflow-auto bg-white border-1 border-[#05C64B] border-solid">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ITEM NO.</th>
+                        <th>SSCOPE OF WORKS</th>
+                        <th>AMOUNT PROGRAMMED</th>
+                        <th>PERCEENTAGE (&) PROGRAMMED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="i in 1" :key="i">
+                        <td>
+                            <div >
+                                AUTOFILL
+                            </div>
+                        </td>
+                        <td>
+                            <div >
+                                AUTOFILL
+                            </div>
+                        </td>
+                        <td>
+                            <div >
+                                AUTOFILL
+                            </div>
+                        </td>
+                        <td>
+                            <div >
+                                AUTOFILL
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="2" >
+                            <div>
+                                <Textbox placeHolder="TOTAL"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox placeHolder="PHPXXXX.00"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox placeHolder="PHPXXXX.00"/>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
     </div>
 </template>
 <style scoped>
 #delivery-table{
-    /* border: 2px solid #05c46b; */
+    border: 2px solid #05c46b;
 }
 table{
     min-width: 100%;

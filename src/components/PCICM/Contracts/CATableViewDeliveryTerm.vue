@@ -1,34 +1,36 @@
-<template>
+<template> 
     <div id="delivery-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>PARTICULARS</th>
-                    <th>DELIVERY TERM</th>
-                    <th>DUE DATE</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="i in 7" :key="i">
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            
-        </table>
+        <div class="min-h-[400px] max-h-[400px] overflow-auto bg-white border-1 border-[#05C64B] border-solid">
+            <table>
+                <thead>
+                    <tr>
+                        <th>PARTICULARS</th>
+                        <th>DELIVERY TERM</th>
+                        <th>DUE DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="i in 1" :key="i">
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
         <div class="w-full flex justify-center items-center">
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="#05c46b" viewBox="0 0 24 24" stroke-width="1" stroke="white" class="w-30 h-30">
@@ -38,10 +40,11 @@
             ADD ROW
         </div>
     </div>
+    
 </template>
 <style scoped>
 #delivery-table{
-    border: 2px solid #05c46b;
+    border: 1px solid #05c46b;
 }
 table{
     min-width: 100%;

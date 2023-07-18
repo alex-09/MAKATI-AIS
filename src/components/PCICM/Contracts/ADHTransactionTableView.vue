@@ -1,75 +1,77 @@
 <template>
-    <div id="delivery-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>STOCK/PROPERTY NO.</th>
-                    <th>UNIT</th>
-                    <th>DESCRIPTION</th>
-                    <th>BRAND</th>
-                    <th>QUANTITY (A)</th>
-                    <th>UNITY COST (B)</th>
-                    <th>TOTAL COST (C = A X B)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="i in 7" :key="i">
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" >
-                        <div>
-                            <Textbox placeHolder="TOTAL AMOUNT IN WORDS"/>
-                        </div>
-                    </td>
-                    <td colspan="4">
-                        <div>
-                            <Textbox />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <Textbox placeHolder="PHPXXXX.00"/>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            
-        </table>
+    <div id="delivery-table" class="overflow-auto">
+        <div class="min-h-[400px] max-h-[400px] overflow-auto bg-white border-1 border-[#05C64B] border-solid">
+            <table>
+                <thead>
+                    <tr>
+                        <th>STOCK/PROPERTY NO.</th>
+                        <th>UNIT</th>
+                        <th>DESCRIPTION</th>
+                        <th>BRAND</th>
+                        <th>QUANTITY (A)</th>
+                        <th>UNITY COST (B)</th>
+                        <th>TOTAL COST (C = A X B)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="i in 1" :key="i">
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" >
+                            <div>
+                                <Textbox placeHolder="TOTAL AMOUNT IN WORDS"/>
+                            </div>
+                        </td>
+                        <td colspan="4">
+                            <div>
+                                <Textbox />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <Textbox placeHolder="PHPXXXX.00"/>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
     </div>
 </template>
 <style scoped>

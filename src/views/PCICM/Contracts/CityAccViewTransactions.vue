@@ -9,7 +9,7 @@ const tabMenus = ref(["NEW TRANSACTIONS", "PREVIOUS TRANSACTIONS"]);
 
 <template>
   
-  <div class="sticky top-0 left-0 z-50">
+  <div class="max-md:relative sticky top-0 left-0 z-50">
     <!--header and navbar here-->
     <HeaderMenu />
     <navBarMenu />

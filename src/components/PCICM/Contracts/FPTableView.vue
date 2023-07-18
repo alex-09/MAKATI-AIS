@@ -1,60 +1,65 @@
 <template>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    <div>
-                        <div></div>
-                        <span>DATE</span>
-                    </div>
-                </th>
-                <th>NUMBER</th>
-                <th>PAYEE</th>
-                <th>PARTICULARS</th>
-                <th>CONTRACT AMOUNT</th>
-                <th>CONTRACT DATE</th>
-                <th>CONTRACT NUMBER</th>
-                <th>TYPE OF CONTRACT</th>
-                <th>ASSIGN TO</th>
-                <th>STATUS</th>
-                <th>TRANSACTION DETAILS</th>
-                <th>ACTIONS</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="i in 7" :key="i">
+    
+    <div class="min-h-[400px] max-h-[400px] overflow-auto bg-white border-2 border-[#05C64B] border-solid">
+        
+        <table>
+            <thead>
                 
-                <td>
-                    <div>
-                        <input type="checkbox">
-                        <span>AUTOFILL</span>
-                    </div>
-                </td>
-                <td>AUTOFILL</td>
-                <td>AUTOFILL</td>
-                <td>AUTOFILL</td>
-                <td>AUTOFILL</td>
-                <td>AUTOFILL</td>
-                <td>AUTOFILL</td>
-                <td>AUTOFILL</td>
-                <td><div class="input-container"><Dropdown/></div></td>
-                <td><div class="input-container"><Dropdown/></div></td>
-                <td>
-                    <div class="border border-[#3a354147] rounded-md h-32 flex justify-center items-center">
-                        <eyeIcon style="width: 25px; height: 25px;"/>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <button class="table-actions-btn text-[#73D9F6]">R</button>
-                        <button class="table-actions-btn text-[#73D9F6]">E</button>
-                        <button class="table-actions-btn text-[#73D9F6]">A</button>
-                        <button class="table-actions-btn text-[#73D9F6]">D</button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                <tr>
+                    <th>
+                        <div>
+                            <div></div>
+                            <span>DATE</span>
+                        </div>
+                    </th>
+                    <th>NUMBER</th>
+                    <th>PAYEE</th>
+                    <th>PARTICULARS</th>
+                    <th>CONTRACT AMOUNT</th>
+                    <th>CONTRACT DATE</th>
+                    <th>CONTRACT NUMBER</th>
+                    <th>TYPE OF CONTRACT</th>
+                    <th>ASSIGN TO</th>
+                    <th>STATUS</th>
+                    <th>TRANSACTION DETAILS</th>
+                    <th>ACTIONS</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr v-for="i in 100" :key="i">
+                    <td>
+                        <div>
+                            <input type="checkbox">
+                            <span>AUTOFILL</span>
+                        </div>
+                    </td>
+                    <td>AUTOFILL</td>
+                    <td>AUTOFILL</td>
+                    <td>AUTOFILL</td>
+                    <td>AUTOFILL</td>
+                    <td>AUTOFILL</td>
+                    <td>AUTOFILL</td>
+                    <td>AUTOFILL</td>
+                    <td><div class="input-container"><Dropdown/></div></td>
+                    <td><div class="input-container"><Dropdown/></div></td>
+                    <td>
+                        <div class="border border-[#3a354147] rounded-md h-32 flex justify-center items-center">
+                            <eyeIcon style="width: 25px; height: 25px;"/>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <button class="table-actions-btn text-[#73D9F6]">R</button>
+                            <button class="table-actions-btn text-[#73D9F6]">E</button>
+                            <button class="table-actions-btn text-[#73D9F6]">A</button>
+                            <button class="table-actions-btn text-[#73D9F6]">D</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 <script setup>
 import eyeIcon from '../../icons/Menu/eyeIcon.vue'
@@ -63,7 +68,6 @@ import Dropdown from '../../TRComponents/reusableComponents/Dropdown.vue';
 <style scoped>
 table{
     min-width: max-content;
-    border: 2px solid #05c46b;
 }
 th{
     font-weight: 600;
@@ -106,8 +110,10 @@ tr>:nth-child(2),
 tr>:nth-child(n+5){
     width: 160px;
 }
-tr>:nth-child(3),
 tr>:nth-child(4){
+    width: 500px;
+}
+tr>:nth-child(3){
     width: 300px;
 }
 </style>

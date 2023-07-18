@@ -1,5 +1,5 @@
 <template>
-    <div id="delivery-table">
+    <div class="min-h-[400px] max-h-[400px] overflow-auto bg-white border-1 border-[#05C64B] border-solid">
         <table>
             <thead>
                 <tr>
@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="i in 7" :key="i">
+                <tr v-for="i in 1" :key="i">
                     <td>
                         <div >
                             <Textbox placeholder/>
@@ -80,9 +80,6 @@
     </div>
 </template>
 <style scoped>
-#delivery-table{
-    /* border: 2px solid #05c46b; */
-}
 table{
     min-width: 100%;
     table-layout: auto;

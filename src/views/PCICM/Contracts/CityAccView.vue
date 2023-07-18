@@ -8,12 +8,12 @@ const selectedIndex = ref(0);
 const tabMenus = ref(["IN PROCESS", "PROCESSED"]);
 </script>
 
-
 <template>
-  <HeaderMenu />
-  <navBarMenu />
-  <div class="sticky top-0 left-0 z-50">
+  
+  <div class="sticky top-0 left-0 z-50 max-md:relative">
     <!--header and navbar here-->
+    <HeaderMenu />
+    <navBarMenu />
   </div>
 
   <div>

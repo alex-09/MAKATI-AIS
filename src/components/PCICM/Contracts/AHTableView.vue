@@ -1,39 +1,40 @@
 <template>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    <div>
-                        <div></div>
-                        <span>DATE</span>
-                    </div>
-                </th>
-                <th>TIME</th>
-                <th>PARTICULARS</th>
-                <th>USER</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="i in 7" :key="i">
-                
-                <td>
-                    <div>
-                        <input type="checkbox">
-                        <span>AUTOFILL</span>
-                    </div>
-                </td>
-                <td>AUTOFILL</td>
-                <td>AUTOFILL</td>
-                <td>AUTOFILL</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="min-h-[400px] max-h-[400px] overflow-auto bg-white border-2 border-[#05C64B] border-solid">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <div>
+                            <div></div>
+                            <span>DATE</span>
+                        </div>
+                    </th>
+                    <th>TIME</th>
+                    <th>PARTICULARS</th>
+                    <th>USER</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="i in 1" :key="i">
+                    
+                    <td>
+                        <div>
+                            <input type="checkbox">
+                            <span>AUTOFILL</span>
+                        </div>
+                    </td>
+                    <td>AUTOFILL</td>
+                    <td>AUTOFILL</td>
+                    <td>AUTOFILL</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 <style scoped>
 table{
     min-width: 100%;
     table-layout: auto;
-    border: 2px solid #05c46b;
 }
 th{
     font-weight: 600;
@@ -61,9 +62,9 @@ tr>:nth-child(1)>div{
     padding-left: 16px;
     height: 32px;
 }
-tr>:nth-child(1)>div>span{
+/* tr>:nth-child(1)>div>span{
     flex-grow: 1;
-}
+} */
 /* table cells width */
 tr>:nth-child(1){
     width: 172px;

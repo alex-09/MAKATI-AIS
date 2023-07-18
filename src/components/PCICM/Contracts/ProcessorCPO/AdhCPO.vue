@@ -40,12 +40,12 @@
         </div>
     </div>
 
-    <div class=" w-4/5 flex gap-[20px] mr-0 ml-auto justify-end mb-[4rem] mt-[2rem]">
-        <button class="button-design-1 text-white bg-[#0E4572] w-full h-full">ADD PAGE</button>
-        <button class="button-design-1 text-white bg-[#A60000] w-full h-full">DELETE PAGE</button>
-        <button class="button-design-1 text-white bg-[#56CA00] w-full h-full">VIEW DATA ENCODED</button>
-        <button class="button-design-1 text-white bg-[#16B1FF] w-full h-full">SAVE</button>
-        <button class="button-design-1 text-white bg-[#f8274c] w-full h-full">CANCEL</button>
+    <div class="w-4/5 flex gap-[20px] mr-0 ml-auto justify-end mb-[10px] max-lg:flex-col max-lg:mr-auto">
+        <button class="button-design-1 text-white bg-[#0E4572] w-full h-[3rem]">ADD PAGE</button>
+        <button class="button-design-1 text-white bg-[#A60000] w-full h-[3rem]">DELETE PAGE</button>
+        <button class="button-design-1 text-white bg-[#56CA00] w-full h-[3rem]">VIEW DATA ENCODED</button>
+        <button class="button-design-1 text-white bg-[#16B1FF] w-full h-[3rem]">SAVE</button>
+        <button class="button-design-1 text-white bg-[#f8274c] w-full h-[3rem]">CANCEL</button>
     </div>
     
 </template>
