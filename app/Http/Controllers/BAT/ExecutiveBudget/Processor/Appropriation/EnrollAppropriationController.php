@@ -16,6 +16,15 @@ class EnrollAppropriationController extends Controller
     {
         return $this->enrollApproRepo = $enrollApproRepo;
     }
+    
+    public function listCoa(){
+        $list = DB::select('SELECT * FROM list_all_coa');
+
+        return response()->json([
+            'status' => true,
+            'coa_list' => $list
+        ]);
+    }
 
     public function EnrollAppro(Request $request){
         try{
@@ -23,7 +32,6 @@ class EnrollAppropriationController extends Controller
         } catch(\Throwable $th){
             return $this->errorResponse($th);
         }
-
     } 
 
     public function addProgram(Request $request){

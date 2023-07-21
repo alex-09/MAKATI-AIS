@@ -116,6 +116,12 @@ use App\Http\Controllers\DocumentManagement\Receiving\PayeeEnrollment\CityAccoun
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollsAndAppointmentController;
 use App\Http\Controllers\DocumentManagement\Receiving\ReceivePayrollsAndAppointment\PayrollAppointmentReceivingController;
 
+//Waldorf
+use App\Http\Controllers\PCICM\Contracts\ForProcessController;
+use App\Http\Controllers\PCICM\Contracts\ActionHistoryController;
+use App\Http\Controllers\PCICM\Contracts\ProcessedContractsController;
+use App\Http\Controllers\PCICM\Contracts\ProcessedContractsTypeController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -249,9 +255,10 @@ Route::prefix('coa')->group(function() {
 
 Route::prefix('appropriation')->group(function () {
 
-    //ENROLL
+    //ENROLLlistCoa
     Route::get('/dropdown', [ExecDropdwonController::class, 'execDropdown']); 
     Route::get('/dropdown2', [ExecDropdwonController::class, 'execDropdown2']); 
+    Route::get('/listCoa', [EnrollAppropriationController::class, 'listCoa']); 
     Route::post('/enrollappro', [EnrollAppropriationController::class, 'EnrollAppro']); 
     Route::post('/addProgram', [EnrollAppropriationController::class, 'addProgram']); 
     Route::post('/forReview', [EnrollAppropriationController::class, 'forReview']); 
@@ -669,6 +676,27 @@ Route::prefix('Outgoing-CPO')->group(function () {
 
 
     
+});
+
+//Waldorf
+Route::prefix('PCICM')->group(function () {
+    Route::get('/contracts-forprocess-processor', [ForProcessController::class, 'listForProcessProcessor']);
+    Route::get('/contracts-forprocess-cityaccountant', [ForProcessController::class, 'listForProcessCityAccountant']);
+    Route::get('/contracts-forprocess-divisionhead', [ForProcessController::class, 'listForProcessDivisionHead']);
+    Route::get('/contracts-forprocess-search', [ForProcessController::class, 'searchForProcessProcessor']); 
+    Route::get('/contracts-forprocess-search-dhca', [ForProcessController::class, 'searchForProcessDHCA']); 
+    Route::get('/contracts-forprocess-view/{transaction_id}', [ForProcessController::class, 'viewForProcess']);
+    Route::post('/contracts-forprocess-update}', [ForProcessController::class, 'updateForProcessProcessor']);
+
+    Route::get('/contracts-actionhistory-table', [ActionHistoryController::class, 'listActionHistory']);
+    Route::post('/contracts-actionhistory-print', [ActionHistoryController::class, 'printActionHistory']); 
+    Route::post('/contracts-actionhistory-insert', [ActionHistoryController::class, 'addEntryActionHistory']); 
+
+    Route::get('/contracts-processed-cityaccountant', [ProcessedContractsController::class, 'listProcessedCityAccountant']);
+    Route::get('/contracts-processed-divisionhead', [ProcessedContractsController::class, 'listProcessedDivisionHead']);
+    Route::post('/contracts-processcontract', [ProcessedContractsController::class, 'enterContractDetails']);
+    Route::post('/contracts-saveforapproval/{transaction_id}', [ProcessedContractsController::class, 'saveForApproval']);
+    Route::post('/contracts-contractdataentry', [ProcessedContractsTypeController::class, 'enterContractDetailsDataEntry']);
 });
 
 

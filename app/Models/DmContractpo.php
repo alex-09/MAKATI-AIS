@@ -11,7 +11,6 @@ class DmContractpo extends Model
 
     protected $fillable = [
         'transaction_id',
-        'type',
         'contract_no',
         'po_no',
         'po_date',

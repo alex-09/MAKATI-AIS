@@ -27,7 +27,8 @@ return new class extends Migration
         expenses.account_name,
         expenses.account_code,
         expenses.latest_appro_amount AS appro_amount,
-        expenses.status
+        expenses.status,
+        appro_details.status as act_status
 
         FROM exec_appropriation_expenses as expenses
         

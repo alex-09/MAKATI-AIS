@@ -34,7 +34,9 @@ class DatabaseSeeder extends Seeder
             PayrollEmpTypeSeeder::class,
             PayrollFundTypeSeeder::class,
             PayrollTransacTypeSeeder::class,
-            AdjustmentType::class
+            AdjustmentType::class,
+            //PCICM
+            PCICMProcessedContractsSeeder::class
 
         ]);
 

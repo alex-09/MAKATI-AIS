@@ -98,7 +98,13 @@ class UpdateApproRepository{
                 $request->appro_id
             ));
 
-            return response()->json(['status' => true, 'expense' => $data, ]);
+            // $update_status = AppropriationDetails::where('appro_id',$request->appro_id)->get();
+
+            return response()->json([
+                'status' => true, 
+                'expense' => $data,
+                // 'update_status' => $update_status
+            ]);
 
         } catch (\Throwable $th) {
             return response()->json([

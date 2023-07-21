@@ -24,6 +24,7 @@ class CPRequest extends FormRequest
         return [
             'payee_name' => 'required',
             'department_id' => 'required',
+            'type' => 'required',
             'description' => 'required',
             'amount' => 'required',
             'current_bearer' => 'required',
