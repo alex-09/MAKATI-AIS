@@ -1,7 +1,7 @@
 <template>
   <header class="top-0 bg-[#05C46B]">
-    <nav class="flex flex-col sm:flex-row items-center text-black">
-      <div class="flex items-center sm:py-4 sm:px-4">
+    <nav class="flex flex-col md:flex-row items-center text-black">
+      <div class="flex items-center py-4 px-4">
         <img
           src="/assets/Makati_City.png"
           alt=""
@@ -9,21 +9,21 @@
         />
         <RouterLink
           :to="{ name: 'Document' }"
-          class="font-bold font-Inter sm:px-5 text-base"
+          class="font-bold font-Inter px-5 text-base"
           >Processing Of Claims And Internal Control Management</RouterLink
         >
       </div>
 
-      <div class="flex flex-1 sm:justify-end sm:px-9">
-        <img src="/assets/Notifbell.svg" class="cursor-pointer sm:px-3" />
+      <div class="flex flex-1 md:justify-end md:px-9">
+        <img src="/assets/Notifbell.svg" class="cursor-pointer md:px-3" />
 
         <Menu as="div" class="relative inline-block text-left">
           <div class="">
             <MenuButton
               class="inline-flex flex-1 w-full items-center gap-x-1.5 rounded-md py-2 text-sm font-semibold text-black"
             >
-              <img src="/assets/profile_2.svg" class="cursor-pointer" />
-              <span>{{ userDetails.firstname }} {{ userDetails.surname }}</span>
+              <img src="/assets/profile_2.svg" class="cursor-pointer shrink-0" />
+              <span>ALEX{{ userDetails.firstname }} {{ userDetails.surname }}</span>
             </MenuButton>
           </div>
 

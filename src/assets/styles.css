@@ -1,10 +1,9 @@
 /* added by joe */
 .input-label-name{
-    width: 99px;
+    width: 150px;
     font-weight: 600;
     font-size: 14px;
     line-height: 17px;
-    
 }
 .input-container{
     flex-grow: 1;
@@ -15,7 +14,7 @@
     display: grid;
     align-items: center;
     grid-template-columns: 120px auto;
-    
+    gap: 10px;
 }
 .button-design-1{
     height: 42px;

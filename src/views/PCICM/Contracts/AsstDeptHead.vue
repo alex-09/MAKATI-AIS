@@ -1,11 +1,25 @@
-<script setup>
+<script>
 import { ref } from 'vue';
 import InProcess from '../../../components/PCICM/Contracts/InProcess.vue'
 import Processed from '../../../components/PCICM/Contracts/Processed.vue'
 import HeaderMenu from '../../../components/PCICM/headerMenuGreen.vue'
 import NavbarMenu from '../../../components/PCICM/navBarMenuGreen.vue'
-const selectedIndex = ref(0)
-const tabMenus = ref(['IN PROCESS', 'PROCESSED'])
+
+export default {
+    data() {
+        return{
+            selectedIndex: ref(0),
+            tabMenus: ref(['IN PROCESS', 'PROCESSED'])
+        }
+    },
+
+    components: {
+        InProcess,
+        Processed,
+        HeaderMenu,
+        NavbarMenu
+    }
+}
 </script>
 <template>
 

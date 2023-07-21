@@ -14,7 +14,7 @@ const selectedData = ref(null);
 var noDataSelected = ref(true);
 </script>
 <template>
-  <Listbox>
+  <Listbox >
     <ListboxButton
       class="text-sm relative whitespace-nowrap overflow-hidden font-normal py-[auto] border border-[#3a354147] flex items-center cursor-default rounded-md w-full px-3 h-full text-left"
       >{{ selectedData }}

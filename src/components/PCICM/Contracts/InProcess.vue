@@ -2,46 +2,54 @@
     <div class="overflow-x-auto h-max">
         <div class="px-[24px] flex items-center sticky top-0 left-0">
             <div class="flex-grow flex-col flex gap-[14px]">
-                <div class="grid grid-cols-3 gap-x-[45px] max-md:grid-cols-1">
-                    <div class=" max-sm:columns-1">
-                        <label class="input-label-name">Date</label>
+                <div class="grid grid-cols-3 gap-x-[45px] max-[1098px]:grid-cols-1">
+                    <div class="grid-cell-container max-[1098px]:py-1">
+                        <div class="py-1 leading-tight">
+                            <label class="input-label-name">Date</label>
+                        </div>
                         <div class="input-container">
-                            <input type="date" class="rounded-md text-text-gray-100 w-full h-full">
+                            <input type="date" class="rounded-md text-text-gray-100 w-full h-full border-solid border border-[#3a354147]">
                         </div>
                     </div>
-                    <div class="">
-                        <label class="input-label-name">Number</label>
+                    <div class="grid-cell-container max-[1098px]:py-1">
+                        <div class="py-1 leading-tight">
+                            <label class="input-label-name">Number</label>
+                        </div>
                         <div class="input-container">
                             <Dropdown />
                         </div>
                     </div>
-                    <div class=" ">
-                        <label class="input-label-name">Contact Number</label>
+                    <div class="grid-cell-container max-[1098px]:py-1 ">
+                        <div class="py-1 leading-tight">
+                            <label class="input-label-name">Contact Number</label>
+                        </div>
                         <div class="input-container">
                             <Dropdown />
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-x-[45px] max-md:grid-cols-1">
-                    <div class="">
+                <div class="grid grid-cols-2 gap-x-[45px] max-[1098px]:grid-cols-1">
+                    <div class="grid-cell-container max-[1098px]:py-1">
                         <label class="input-label-name">Payee</label>
                         <div class="input-container">
                             <SearchBox />
                         </div> 
                     </div>
-                    <div class=" ">
-                        <label class="input-label-name">Type of Transaction</label>
+                    <div class="grid-cell-container max-[1098px]:py-1 ">
+                        <div class="py-1 leading-tight">
+                            <label class="input-label-name">Type of Transaction</label>
+                        </div>
                         <div class="input-container">
                             <Dropdown />
                         </div>
                     </div>
                 </div>
-                <div class=" flex flex-row justify-end  pl-[24px] md:hidden">
+                <div class=" flex flex-row justify-end  pl-[24px] min-[1098px]:hidden">
                     <button class="button-design-1 bg-[#05c46b]">SEARCH</button>
                 </div>
             </div>
 
-            <div class=" justify-end  pl-[24px] max-md:hidden">
+            <div class=" justify-end pl-[24px] max-[1098px]:hidden">
                 <button class="button-design-1 bg-[#05c46b]">SEARCH</button>
             </div>
             

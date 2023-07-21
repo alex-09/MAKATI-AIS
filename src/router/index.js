@@ -9,7 +9,6 @@ const router = createRouter({
       name: "sample",
       component: () => import("../views/SampleView.vue"),
     },
-
     // In process and Processed-------------------------------------------------
     {
       path: "/CityAccView",
@@ -30,28 +29,28 @@ const router = createRouter({
 
     // Processor - CA (delivery term, new transactions )
     {
-      path: "/CityAccViewTransactions",
-      name: "CityAccViewTransactions",
+      path: "/Processor",
+      name: "Processor",
       component: () => import("../views/PCICM/Contracts/CityAccViewTransactions.vue"),
     },
 
     // PROCESSOR - ADH (contract data entry, transactions in process, table with input)
     {
-      path: "/AsstDeptHeadViewTransactions",
+      path: "/ProcessorInput",
       name: "AsstDeptHeadViewTransactions",
       component: () => import("../views/PCICM/Contracts/AsstDeptHeadViewTransactions.vue"),
     },
 
     // PROCESSOR - ADH (delivery term read, transactions in process)
     {
-      path: "/AsstDeptHeadViewTransactionsRead",
+      path: "/ProcessorRead",
       name: "AsstDeptHeadViewTransactionsRead",
       component: () => import("../views/PCICM/Contracts/AsstDeptHeadViewTransactionsRead.vue"),
     },
 
     // PROCESSOR - ADH (labor comp, supply comp, the one with + green btn, Contract Data Entry)
     {
-      path: "/AsstDeptHeadViewTransactionsHead",
+      path: "/ProcessorHead",
       name: "AsstDeptHeadViewTransactionsHead",
       component: () => import("../views/PCICM/Contracts/AsstDeptHeadViewTransactionsHead.vue"),
     },
@@ -75,7 +74,7 @@ const router = createRouter({
     },
     // MAIN MENU ROUTER
     {
-      path: "/",
+      path: "/menu", // change this to single forward slash 
       name: "MainMenu",
       component: () => import("../views/MenuView.vue"),
     },

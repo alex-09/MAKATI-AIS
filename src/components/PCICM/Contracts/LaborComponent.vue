@@ -1,7 +1,8 @@
 <template>
     <div class="min-h-[400px] max-h-[400px] overflow-auto bg-white border-1 border-[#05C64B] border-solid">
-        <table>
-            <thead>
+        <!-- Sticky header applied in <table> and <thead> -->
+        <table class="border-separate border-spacing-0">
+            <thead class="sticky top-0 z-1 bg-white">
                 <tr>
                     <th>ITEM NO.</th>
                     <th>UNIT (A)</th>
@@ -83,6 +84,13 @@
 table{
     min-width: 100%;
     table-layout: auto;
+}
+
+th {
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+    border-color: #3a354147;
+    border-style: solid;
 }
 th{
     font-weight: 600;

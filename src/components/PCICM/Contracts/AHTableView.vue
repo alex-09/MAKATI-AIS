@@ -1,11 +1,12 @@
 <template>
     <div class="min-h-[400px] max-h-[400px] overflow-auto bg-white border-2 border-[#05C64B] border-solid">
-        <table>
-            <thead>
+        <!-- Sticky header applied in <table> and <thead> -->
+        <table class="w-full min-w-max border-separate border-spacing-0">
+            <thead class=" sticky top-0 left-0 right-0 bg-white z-50">
                 <tr>
+                    <th></th>
                     <th>
                         <div>
-                            <div></div>
                             <span>DATE</span>
                         </div>
                     </th>
@@ -14,17 +15,24 @@
                     <th>USER</th>
                 </tr>
             </thead>
+
             <tbody>
                 <tr v-for="i in 1" :key="i">
-                    
-                    <td>
-                        <div>
-                            <input type="checkbox">
-                            <span>AUTOFILL</span>
-                        </div>
+                    <!-- CHECKBOX -->
+                    <td class="w-[50px]">
+                        <input type="checkbox" class="w-auto ml-[16px]">
                     </td>
+
+                    <!-- DATE -->
+                    <td class="w-[148px]">AUTOFILL</td>
+
+                    <!-- TIME -->
                     <td>AUTOFILL</td>
-                    <td>AUTOFILL</td>
+
+                    <!-- PARTICULARS -->
+                    <td class="w-[500px]">AUTOFILL</td>
+
+                    <!-- USER -->
                     <td>AUTOFILL</td>
                 </tr>
             </tbody>
@@ -32,10 +40,6 @@
     </div>
 </template>
 <style scoped>
-table{
-    min-width: 100%;
-    table-layout: auto;
-}
 th{
     font-weight: 600;
     font-size: 12px;
@@ -49,32 +53,9 @@ td{
     line-height: 24px;
     text-align: center;
     padding: 6px 4px;
-    
 }
 td, th{
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #3a354147;
 }
-tr>:nth-child(1)>div{
-    align-items: center;
-    display: flex;
-    text-align: center;
-    gap: 12px;
-    padding-left: 16px;
-    height: 32px;
-}
-/* tr>:nth-child(1)>div>span{
-    flex-grow: 1;
-} */
-/* table cells width */
-tr>:nth-child(1){
-    width: 172px;
 
-}
-tr>:nth-child(2){
-    width: 160px;
-}
-tr>:nth-child(3),
-tr>:nth-child(4){
-    width: 300px;
-}
 </style>
