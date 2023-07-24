@@ -26,3 +26,18 @@
   - src\views\PCICM\Contracts\\**DivHeadView.vue**
   - src\views\PCICM\Contracts\\**AsstDeptHead.vue**
 
+
+# Process of PCICM
+  What is R E A D P?
+
+  processor 
+  rev 
+  same rights - (cA asstdeph divhead)
+
+  1. Document Management
+  1. CAcct
+  1. DeptHead
+  1. Processor
+  1. DeptHead
+  1. CAcct
+

@@ -1,23 +1,23 @@
 <script>
-import CityAcctCPO from "../../../components/PCICM/Contracts/ProcessorCPO/CityAcctCPO.vue";
-import HeaderMenu from "../../../components/PCICM/headerMenuGreen.vue";
-import navBarMenu from "../../../components/PCICM/navBarMenuGreen.vue";
-import { ref } from "vue";
+  import CityAcctCPO from "../../../components/PCICM/Contracts/ProcessorCPO/CityAcctCPO.vue";
+  import HeaderMenu from "../../../components/PCICM/headerMenuGreen.vue";
+  import navBarMenu from "../../../components/PCICM/navBarMenuGreen.vue";
+  import { ref } from "vue";
 
-export default {
-  data() {
-    return{
-      selectedIndex: ref(0),
-      tabMenus: ref(["NEW TRANSACTIONS", "PREVIOUS TRANSACTIONS"])
+  export default {
+    data() {
+      return{
+        selectedIndex: ref(0),
+        tabMenus: ref(["NEW TRANSACTIONS", "PREVIOUS TRANSACTIONS"])
+      }
+    },
+
+    components: {
+      CityAcctCPO,
+      HeaderMenu,
+      navBarMenu
     }
-  },
-
-  components: {
-    CityAcctCPO,
-    HeaderMenu,
-    navBarMenu
   }
-}
 </script>
 
 <template>

@@ -29,9 +29,10 @@ const router = createRouter({
 
     // Processor - CA (delivery term, new transactions )
     {
-      path: "/Processor",
+      path: "/Processor/:data1?",
       name: "Processor",
       component: () => import("../views/PCICM/Contracts/CityAccViewTransactions.vue"),
+      props: true
     },
 
     // PROCESSOR - ADH (contract data entry, transactions in process, table with input)
@@ -39,6 +40,7 @@ const router = createRouter({
       path: "/ProcessorInput",
       name: "AsstDeptHeadViewTransactions",
       component: () => import("../views/PCICM/Contracts/AsstDeptHeadViewTransactions.vue"),
+      props: true
     },
 
     // PROCESSOR - ADH (delivery term read, transactions in process)

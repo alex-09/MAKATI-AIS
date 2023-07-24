@@ -46,14 +46,15 @@
             <button class="button-design-1 text-white bg-[#A60000] h-[3rem] m-2">DELETE PAGE</button>
             <button class="button-design-1 text-white bg-[#56CA00] h-[3rem] m-2">VIEW DATA ENCODED</button>
             <button class="button-design-1 text-white bg-[#16B1FF] w-[138px] h-[3rem] m-2">SAVE</button>
-            <RouterLink
-                :to="{ name: 'Processor' }"
+            <router-link
+                :to="{ name: 'Processor', params: {data1:JSON.stringify(dataHere)} }"
                 class="w-full" >
                 
                 <button class="button-design-1 text-white bg-[#f8274c] w-[138px] h-[3rem] m-2">CANCEL</button>
-            </RouterLink>
+            </router-link>
         </div>
     </div>
+
     
 </template>
 
@@ -62,6 +63,14 @@
     import TextBox from '../../../TRComponents/reusableComponents/Textbox.vue';
 
     export default {
+        data() {
+            return {
+                dataHere: [
+                    {id: 1, name: "Alexandei"},
+                    {id: 2, name: "Cancelled"}
+                ]
+            }
+        },
         components: {
             TableView,
             TextBox

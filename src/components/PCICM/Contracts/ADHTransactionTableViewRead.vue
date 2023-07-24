@@ -3,7 +3,7 @@
         <div class="min-h-[400px] max-h-[400px] overflow-auto bg-white border-1 border-[#05C64B] border-solid">
             <!-- Sticky header applied in <table> and <thead> -->
             <table class="border-separate border-spacing-0">
-                <thead class=" sticky top-0 left-0 right-0 bg-white z-50 border-b-[10px] border-[#000000] border-solid">
+                <thead class=" sticky top-0 left-0 right-0 bg-white z-5 border-b-[10px] border-[#000000] border-solid">
                     <tr>
                         <th>ITEM NO.</th>
                         <th>SSCOPE OF WORKS</th>

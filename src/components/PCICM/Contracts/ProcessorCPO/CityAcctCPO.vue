@@ -247,6 +247,7 @@ export default{
                 {id: 2, name: "option 2"},
                 {id: 3, name: "option 3"},
             ],
+            data1A: []
         }
     },
     components: {
@@ -254,6 +255,11 @@ export default{
         Dropdown,
         SearchBox,
         TextBox
+    },
+    props: ['data1'],
+    mounted() {
+        this.data1A = JSON.parse(this.$route.params.data1);
+        // this.data2Value = this.$route.params.data2;
     }
 }
 </script>
